@@ -48,6 +48,13 @@ class ExpertLevel
      * @ORM\Column(name="score", type="integer")
      */
     private $score;
+    
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Member", mappedBy="expertLevel", cascade={"persist", "remove"})
+     */
+    protected $members;
 
 
     /**

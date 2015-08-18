@@ -1,0 +1,10 @@
+AppBundle\Entity\Member:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: login
+            message: "Ce login est déjà utilisé"
+            groups: [registration]
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: email
+            message: "Cette adresse est déjà utilisée"
+            groups: [registration]

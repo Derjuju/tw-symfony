@@ -1,0 +1,25 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Problème de connexion - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}pbconnexion{% endblock %}
+
+{% block content %}
+
+    {{ parent() }}
+    
+    <h1>Problème de connexion</h1>
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}
+

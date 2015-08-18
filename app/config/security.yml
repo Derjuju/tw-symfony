@@ -1,24 +1,61 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+        AppBundle\Entity\Member: 
+            algorithm : sha512
+            encode_as_base64: true
+            iterations: 5000
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        ROLE_MEMBRE: ROLE_USER
+        ROLE_ADMIN: [ROLE_USER, ROLE_MEMBRE]
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     providers:
-        in_memory:
-            memory: ~
+        my_database_provider:
+            entity: {class: AppBundle:Member } 
 
-    firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+    firewalls:        
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
-
-        main:
+        
+        #BO:
+        #    pattern: ^/admin
+        #    form_login:
+        #        provider: fos_userbundle
+        #        csrf_provider: security.csrf.token_manager 
+        #        login_path: fos_user_security_login
+        #        check_path: fos_user_security_check
+        #        default_target_path: /admin
+        #    logout:
+        #        path:   fos_user_security_logout
+        #        target: /admin
+        #    anonymous:    true
+            
+        login_firewall:
+            pattern:    ^/login$
+            anonymous:  ~
+            
+        app:
+            pattern: ^/
             anonymous: ~
-            # activate different ways to authenticate
+            form_login:  # Authentication mecanism
+                provider: my_database_provider  
+                csrf_provider: form.csrf_provider
+                check_path: login_check
+                login_path: login
+                use_referer:    true
+                success_handler: app.authentication_handler
+                failure_handler: app.authentication_handler
+            logout:
+                path:   /logout
+                target: /               
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/mon-espace/, role: [ROLE_MEMBRE] }
+        - { path: ^/admin/, role: [ROLE_ADMIN] }

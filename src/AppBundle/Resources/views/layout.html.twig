@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+ 
+{% block stylesheets %}
+    {{ parent() }}
+    
+    
+{% endblock %}
+
+{% set displayModalFlash = false %}
+{% if app.session.flashbag.peekAll()|length %}
+    {% set displayModalFlash = true %}
+{% endif %}
+
+{% block body %}
+
+    {% block header %}
+        {% include "AppBundle::_header.html.twig" %}
+    {% endblock header %}
+
+    
+    
+    <div id="main">
+    
+    {% block content %}{% endblock content %}
+    </div>
+    
+    {% include 'AppBundle::_popin.html.twig' %}
+    
+    {% block footer %}
+        {% include "AppBundle::_footer.html.twig" %}
+    {% endblock footer %}
+{% endblock body %}
+
+{% block bottomJavascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% if displayModalFlash %}
+                $('#flashBagModal').modal('show');
+            {% endif %}
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,99 @@
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header hide">
+            <h4 class="modal-title " id="myModalLabel">Modal title</h4>
+          </div>
+
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Modal  -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title " id="loginModalLabel"><strong>Identification</strong></h4>
+          </div>
+
+          <div class="modal-body">
+            <p class="desc">Veuillez vous identifier</p>
+            <form class=" " action="{{ path('login_check') }}" method="post">
+                <div class="form-group">
+                    <label for="_username">Mon identifiant</label>
+                    <input type="text" id="_username" name="_username" value=""  class="form-control" placeholder=""/>                    
+                </div>
+                <div class="form-group m-b-5">
+                    <label for="_password">Mot de passe</label>
+                 <input type="password" id="_password" name="_password" class="form-control" placeholder=""/>                   
+                </div>
+                <p><a href="{{ path('front_pbconnexion') }}" class="link">Je n'arrive pas à me connecter à mon espace</a></p>
+                <div class="text-right p-t-10">
+                    <button type="submit" class="btn submit bg-green">OK</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Modal  -->
+
+    
+    <!-- Modal -->
+    <div class="modal fade green" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+      <div class="modal-dialog small">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="messageModalLabel"></h4>
+          </div>
+
+          <div class="modal-body"></div>
+          <!-- END .modal-body -->
+        </div>
+      </div>
+    </div>
+    <!-- END .modal -->
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="flashBagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header hide">
+            <h4 class="modal-title " id="myModalLabel">Modal title</h4>
+          </div>
+
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="flash-warning">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="flash-error">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Modal  -->

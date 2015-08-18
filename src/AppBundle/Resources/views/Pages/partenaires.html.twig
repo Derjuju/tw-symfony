@@ -1,0 +1,25 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Partenaires - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}partenaires{% endblock %}
+
+{% block content %}
+
+    {{ parent() }}
+    
+    <h1>Partenaires</h1>
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}
+

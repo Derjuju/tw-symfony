@@ -1,13 +1,54 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block head %}
+            <title>{% block title %}TrocWine{% endblock %}</title>
+        {% endblock %}
+        
+        <meta name="description" content="TrocWine">
+        <meta name="author" content="TrocWine">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {% block stylesheets %}
+            <!-- Bootstrap core CSS -->
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+            <!--[if gte IE 9]>
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/ie.css') }}" />
+            <![endif]-->      
+            <link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        {% endblock %}
+        
+        
+        
+        <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+        
+        {% block topJavascripts %}            
+        {% endblock %}
+        
     </head>
-    <body>
+    <body class="{% block bodyclass %}{% endblock %}">
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        
+        {% block bottomJavascripts %}
+            
+            <!-- Bootstrap core JavaScript
+            ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="{{ asset('js/vendor/jquery-1.11.2.min.js') }}"></script>
+            <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/plugins-front.js') }}"></script>
+            <script src="{{ asset('js/main-front.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
