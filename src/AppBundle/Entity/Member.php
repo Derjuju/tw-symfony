@@ -4,10 +4,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Address;
 use AppBundle\Entity\ExpertLevel;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Bouteille;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Util\SecureRandomInterface;
 
 /**
  * Member
@@ -57,7 +60,7 @@ class Member  implements UserInterface
     /**
      * @var boolean
      *
-     * @ORM\Column(name="confirmed_email", type="boolean", options={"default":0})
+     * @ORM\Column(name="confirmed_email", type="boolean", nullable=true, options={"default":0})
      */
     private $confirmedEmail;
 
@@ -502,6 +505,27 @@ class Member  implements UserInterface
     {
         return $this->mobile;
     }
+
+    /**
+     * Set address
+     *
+     * @param \AppBundle\Entity\Address $address
+     * @return Member
+     */
+    public function setAddress(\AppBundle\Entity\Address $address = null) {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \AppBundle\Entity\Address 
+     */
+    public function getAddress() {
+        return $this->address;
+    }
     
     
     /**
@@ -577,5 +601,12 @@ class Member  implements UserInterface
         return $this->bouteilles;
     }
     
+    
+    
+
+    public function generatePassword(PasswordEncoderInterface $encode, SecureRandomInterface $securRandom) {
+        $this->salt = md5($securRandom->nextBytes(10));    // Le md5 évite les caractères spé pouvant planter l'interface
+        $this->password = $encode->encodePassword($this->password, $this->salt);
+    }
     
 }

@@ -1,0 +1,15 @@
+{% extends 'bootstrap_3_layout.html.twig' %}
+
+
+
+{% block form_row %}
+{% spaceless %}
+    {% set classFormControl='' %}
+    {% if class is defined %}
+    {% set classFormControl = class %}
+    {% endif %}
+    <div class="form-group-wrapper {{ classFormControl }}">
+        {{ parent() }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}

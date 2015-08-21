@@ -4,12 +4,13 @@
 
 {% block bodyclass %}presse{% endblock %}
 
-{% block content %}
-
+{% block header %}
+    {% set titreH1 = "Presse" %}
     {{ parent() }}
-    
-    <h1>Presse</h1>
+{% endblock %}
 
+{% block content %}
+    {{ parent() }}
 {% endblock %}
 
 

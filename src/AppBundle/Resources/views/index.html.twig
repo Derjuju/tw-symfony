@@ -2,12 +2,84 @@
 
 {% block bodyclass %}homepage{% endblock %}
 
+{% form_theme formBouteille with ['AppBundle::form_theme.html.twig', _self] %}
+{% form_theme formTroqueur with ['AppBundle::form_theme.html.twig', _self] %}
+
 {% block content %}
-
     {{ parent() }}
-    
-    Homepage
-
+    <div class="site-wrapper">  
+        <div class="row boxResearchChoice">
+            <div class="col-md-12 navlink text-center">
+                <a href="#" onClick="switchPanelHome('panelBouteille'); return false;" class="ongletBouteille active"><i></i>Rechercher une bouteille</a>                
+                <a href="#" onClick="switchPanelHome('panelTroqueur'); return false;" class="ongletTroqueur"><i></i>Recherche un troqueur</a>
+            </div>
+        </div>
+        <div class="row boxResearch">
+            <div class="col-md-12 text-center">
+                <div class="panelHome panelBouteille">
+                    {{ form_start(formBouteille, {'attr': {'class': 'form-inline'} }) }}
+                    {{ form_end(formBouteille) }}
+                </div>
+                <div class="panelHome panelTroqueur hideMe">
+                    {{ form_start(formTroqueur, {'attr': {'class': 'form-inline'} }) }}
+                    {{ form_end(formTroqueur) }}
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+    <div class="site-wrapper meaTypeDeVinWrapper">        
+        <div class="row meaTypeDeVin text-center">
+            <h2>Troquez des vins d’exception</h2>
+            <p>échangez vos bouteilles de vins entre amateurs ou experts.</p>
+        </div>
+        <div class="row meaTypeDeVin">
+            <div class="col-md-3 text-center vignetteMea">
+                <a href="#" title="Recherche bouteilles de Bordeaux" class="thumbnail"><img src="{{asset("img/mea/home_bordeaux.jpg")}}" alt=""><span>Bordeaux</span></a>
+            </div>
+            <div class="col-md-3 text-center vignetteMea">
+                <a href="#" title="Recherche bouteilles de Bourgogne" class="thumbnail"><img src="{{asset("img/mea/home_bourgogne.jpg")}}" alt=""><span>Bourgogne</span></a>
+            </div>
+            <div class="col-md-3 text-center vignetteMea">
+                <a href="#" title="Recherche bouteilles de Champagne" class="thumbnail"><img src="{{asset("img/mea/home_champagne.jpg")}}" alt=""><span>Champagne</span></a>
+            </div>
+            <div class="col-md-3 text-center vignetteMea">
+                <a href="#" title="Recherche bouteilles" class="thumbnail"><img src="{{asset("img/mea/home_autres_vins.jpg")}}" alt=""><span>Autres Régions</span></a>
+            </div>
+        </div>  
+        <div class="row meaTypeDeVin allTheWine text-center">
+            <a href="#" title="" class="btn btn-default bg-pourpre">Tous les vins à l'échange</a>
+        </div>
+    </div>
+                    
+    <div class="site-wrapper">        
+        <div class="row text-center">
+            <h2>Notre sélection du mois</h2>
+            <p>le meilleur de TrocWine</p>
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-md-1-5 text-center"></div>
+            <div class="col-md-6 text-center">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a href="#" title="" class="thumbnail"><img src="{{asset("uploads/articles/preview_longue.jpg")}}" alt=""></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <a href="#" title="" class="thumbnail"><img src="{{asset("uploads/articles/preview_carre1.jpg")}}" alt=""></a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="#" title="" class="thumbnail"><img src="{{asset("uploads/articles/preview_carre2.jpg")}}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">                
+                <a href="#" title="" class="thumbnail"><img src="{{asset("uploads/articles/preview_haute.jpg")}}" alt=""></a>
+            </div>
+            <div class="col-md-1 col-md-1-5 text-center"></div>
+        </div>  
+    </div>
 {% endblock %}
 
 

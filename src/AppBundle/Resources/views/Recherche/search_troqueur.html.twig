@@ -1,0 +1,30 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Recherche de Troqueur - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}search search-troqueur{% endblock %}
+
+{% block header %}
+    {% set titreH1 = "Recherche de Troqueur" %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="site-wrapper">  
+        <h2>Recherche de Troqueur</h2>
+        <p></p>
+    </div>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}
+

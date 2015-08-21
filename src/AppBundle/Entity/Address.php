@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\AddressRepository")
+ * @ORM\EntityListeners({ "AppBundle\Entity\Listener\AddressListener" })
  */
 class Address
 {
@@ -24,60 +25,65 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=255)
+     * @ORM\Column(name="street", type="string", length=255, nullable=true)
      */
-    private $street;
+    private $street = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="zip_code", type="integer")
+     * @ORM\Column(name="zip_code", type="integer", nullable=true)
      */
-    private $zipCode;
+    private $zipCode = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
-    private $city;
+    private $city = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="departement", type="string", length=255)
+     * @ORM\Column(name="departement", type="string", length=255, nullable=true)
      */
-    private $departement;
+    private $departement = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255, nullable=true)
      */
-    private $region;
+    private $region = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
-    private $country;
+    private $country = null;
 
     /**
-     * @var string
+     * @var decimal
      *
-     * @ORM\Column(name="latitude", type="decimal")
+     * @ORM\Column(name="latitude", type="decimal", precision=16, scale=14, nullable=true, options={"comment":"geoloc latitude"})
      */
-    private $latitude;
+    private $latitude = null;
 
     /**
-     * @var string
+     * @var decimal
      *
-     * @ORM\Column(name="longitude", type="decimal")
+     * @ORM\Column(name="longitude", type="decimal", precision=17, scale=14, nullable=true, options={"comment":"geoloc longitude"})
      */
-    private $longitude;
+    private $longitude = null;
 
 
+
+    public function __toString() {
+        return $this->street . ' ' . $this->city;
+    }
+    
     /**
      * Get id
      *

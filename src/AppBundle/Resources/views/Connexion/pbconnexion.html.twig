@@ -4,12 +4,13 @@
 
 {% block bodyclass %}pbconnexion{% endblock %}
 
-{% block content %}
-
+{% block header %}
+    {% set titreH1 = "Problème de connexion" %}
     {{ parent() }}
-    
-    <h1>Problème de connexion</h1>
+{% endblock %}
 
+{% block content %}
+    {{ parent() }}
 {% endblock %}
 
 

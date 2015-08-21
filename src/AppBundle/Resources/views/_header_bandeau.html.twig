@@ -1,0 +1,28 @@
+<div id="bandeauWrapper">    
+<div id="bandeau" class="bandeau" data-ab-css-background='1' data-adaptive-background='1'>    
+    <div class="site-wrapper">
+        {% if app.request.attributes.get('_route') == 'front_accueil' %}            
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Bienvenue<br>sur</h1>
+                <img src="{{asset("img/logos/trocwine_home.png")}}" alt="TrocWine" class="logo">
+                <h2>Constituez votre cave sans dépenser un centime</h2>
+            </div>
+        </div>
+        {% else %}
+        <div class="row txt12px">
+            <div class="col-md-6">
+                <a href="{{path('front_accueil')}}" title="Accueil"><img src="{{asset("img/logos/trocwine.png")}}" alt="TrocWine" class="logo"></a>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="row txt12px">
+            <div class="col-md-6">
+                <h1>{{titreH1|default('')}}</h1>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>

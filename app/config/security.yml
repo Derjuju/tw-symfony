@@ -14,7 +14,9 @@ security:
 
     providers:
         my_database_provider:
-            entity: {class: AppBundle:Member } 
+            entity:
+                class: AppBundle:Member
+                property: login
 
     firewalls:        
         dev:

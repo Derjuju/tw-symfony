@@ -3,16 +3,16 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row">                    
-                    <div class="col-md-4"><a href="{{path('front_notre_histoire')}}">Notre histoire</a></div>
-                    <div class="col-md-4"><a href="{{path('front_partenaires')}}">Partenaires</a></div>
+                    <div class="col-md-4"><a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">Notre histoire</a></div>
+                    <div class="col-md-4"><a href="{{path('front_partenaires')}}" class="{{ app.request.attributes.get('_route') == 'front_partenaires' ? 'active' }}">Partenaires</a></div>
                     <div class="col-md-4">Plan du site<br>
                         <a href="{{path('front_accueil')}}" class="txt11px">- Home</a><br>
-                        <a href="{{path('front_mon_espace')}}" class="txt11px">- Mon espace</a>
+                        <a href="{{path('front_mon_espace')}}" class="txt11px {{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">- Mon espace</a>
                     </div>
                 </div>
                 <div class="row">                    
-                    <div class="col-md-4"><a href="{{path('front_contact')}}">Contact</a></div>
-                    <div class="col-md-4"><a href="{{path('front_presse')}}">Presse</a></div>
+                    <div class="col-md-4"><a href="{{path('front_contact')}}" class="{{ app.request.attributes.get('_route') == 'front_contact' ? 'active' }}">Contact</a></div>
+                    <div class="col-md-4"><a href="{{path('front_presse')}}" class="{{ app.request.attributes.get('_route') == 'front_presse' ? 'active' }}">Presse</a></div>
                     <div class="col-md-4"></div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="row mentions-footer txt11px">
             <div class="col-md-8">L'abus d'alcool est dangereux pour la santé, à consommer avec modération
             </div>
-            <div class="col-md-4"><a href="{{path('front_mentions_legales')}}">Mentions légales</a> - <a href="{{path('front_politique_de_cookies')}}">Politique de cookies</a> - TrocWine&reg;
+            <div class="col-md-4"><a href="{{path('front_mentions_legales')}}" class="{{ app.request.attributes.get('_route') == 'front_mentions_legales' ? 'active' }}">Mentions légales</a> - <a href="{{path('front_politique_de_cookies')}}" class="{{ app.request.attributes.get('_route') == 'front_politique_de_cookies' ? 'active' }}">Politique de cookies</a> - TrocWine&reg;
             </div>
         </div>
     </div>

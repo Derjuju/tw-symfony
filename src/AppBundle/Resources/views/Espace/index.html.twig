@@ -4,12 +4,13 @@
 
 {% block bodyclass %}mon-espace{% endblock %}
 
-{% block content %}
-
+{% block header %}
+    {% set titreH1 = "Mon espace" %}
     {{ parent() }}
-    
-    Mon espace
+{% endblock %}
 
+{% block content %}
+    {{ parent() }}
 {% endblock %}
 
 

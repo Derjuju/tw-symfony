@@ -4,12 +4,13 @@
 
 {% block bodyclass %}mentions-legales{% endblock %}
 
-{% block content %}
-
+{% block header %}
+    {% set titreH1 = "Mentions Légales" %}
     {{ parent() }}
-    
-    <h1>Mentions Légales</h1>
+{% endblock %}
 
+{% block content %}
+    {{ parent() }}
 {% endblock %}
 
 

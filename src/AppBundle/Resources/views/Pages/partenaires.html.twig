@@ -4,12 +4,13 @@
 
 {% block bodyclass %}partenaires{% endblock %}
 
-{% block content %}
-
+{% block header %}
+    {% set titreH1 = "Partenaires" %}
     {{ parent() }}
-    
-    <h1>Partenaires</h1>
+{% endblock %}
 
+{% block content %}
+    {{ parent() }}
 {% endblock %}
 
 

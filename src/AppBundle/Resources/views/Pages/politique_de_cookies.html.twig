@@ -4,12 +4,13 @@
 
 {% block bodyclass %}politique_de_cookies{% endblock %}
 
-{% block content %}
-
+{% block header %}
+    {% set titreH1 = "Politique de Cookies" %}
     {{ parent() }}
-    
-    <h1>Politique de Cookies</h1>
+{% endblock %}
 
+{% block content %}
+    {{ parent() }}
 {% endblock %}
 
 

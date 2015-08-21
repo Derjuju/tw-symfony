@@ -5,13 +5,32 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use AppBundle\Form\Type\SearchBouteilleType;
+use AppBundle\Form\Type\SearchTroqueurType;
+
 class DefaultController extends Controller
 {
     /**
      * @Route("/",name="front_accueil")          
      */
     public function indexAction() {
-        return $this->render("AppBundle::index.html.twig");
+        
+        $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
+            'action' => $this->generateUrl('front_search_bouteille'),
+            'method' => 'POST',
+        ));
+        $formBouteille->add('submit', 'submit', array('label' => 'Rechercher'));
+        
+        $formTroqueur = $this->createForm(new SearchTroqueurType(), null, array(
+            'action' => $this->generateUrl('front_search_troqueur'),
+            'method' => 'POST',
+        ));
+        $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));
+        
+        return $this->render("AppBundle::index.html.twig", array(
+            'formBouteille'   => $formBouteille->createView(),
+            'formTroqueur'   => $formTroqueur->createView(),
+        ));
     }
     
     /**

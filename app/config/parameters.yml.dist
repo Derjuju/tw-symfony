@@ -18,6 +18,9 @@ parameters:
     mailer_host:       127.0.0.1
     mailer_user:       ~
     mailer_password:   ~
+    mailer_port:   ~
+    mailer_encryption:   ~
+    mailer_auth_mode:   ~
 
     locale:            fr
 
@@ -25,3 +28,6 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     back_office_pagination_line_number: 10
+
+    app_front_url: "http://tw-symfony.local:8888"
+    online_mail_dir: /online/mail/

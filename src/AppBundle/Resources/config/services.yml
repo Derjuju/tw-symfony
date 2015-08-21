@@ -8,3 +8,8 @@ services:
         class: AppBundle\Handler\AuthenticationHandler
         public: false
         arguments: [@router, @session, @service_container, @security.http_utils]
+      
+    mail_to_user:
+        class: AppBundle\Services\MailToUser
+        arguments: [@mailer, @templating, @router, %app_front_url%, @kernel]    
+

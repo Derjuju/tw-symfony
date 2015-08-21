@@ -56,7 +56,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
         if ($curUser)
         {
         
-            if ($curUser->getActif()!=1 || $curUser->getEnabled()!=1)
+            if ($curUser->isActif()!=1 || $curUser->isEnabled()!=1)
             {
                 $this->container->get('security.context')->setToken(null);
                 $session = $request->getSession();
@@ -73,9 +73,9 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
                 $em->persist($curUser);
                 $em->flush();
 
-                if ( $request->headers->get('referer') ) {
+                /*if ( $request->headers->get('referer') ) {
                     $url = $request->headers->get('referer') ;
-                }
+                }*/
             }
         }
          
@@ -93,7 +93,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     {
           
         $session = $request->getSession();
-        $session->getFlashBag()->add("error","Erreur d'identification.");
+        $session->getFlashBag()->add("error","Erreur d'identification.".$exception);
         if ( $request->headers->get('referer') ) {
             $url = $request->headers->get('referer');
         } else {

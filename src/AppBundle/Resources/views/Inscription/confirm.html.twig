@@ -1,0 +1,31 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Inscription - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}inscription{% endblock %}
+
+{% block header %}
+    {% set titreH1 = "Inscription" %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="site-wrapper">  
+        <h2>Confirmation de votre inscription.</h2>
+        <p>Votre demande d'inscription a bien été enregistrée.</p>
+        <p>Pour pouvoir accéder à votre espace, merci de bien vouloir confirmer la validité de votre adresse mail en cliquant sur le lien que vous avez reçu.</p>
+    </div>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}
+
