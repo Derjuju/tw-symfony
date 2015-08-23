@@ -1,16 +1,17 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Mon espace - {{ parent() }}{% endblock %}
+{% block title %}Ma cave - {{ parent() }}{% endblock %}
 
-{% block bodyclass %}mon-espace{% endblock %}
+{% block bodyclass %}ma-cave{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Mon espace" %}
+    {% set titreH1 = "Ma cave" %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    {% include "AppBundle:Cave:_profil.html.twig" %}
 {% endblock %}
 
 

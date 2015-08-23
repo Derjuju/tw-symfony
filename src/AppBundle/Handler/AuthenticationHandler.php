@@ -62,9 +62,9 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
                 $session = $request->getSession();
                 $session->getFlashBag()->add("error","Votre compte n'est pas actif.");
                     
-                if ( $request->headers->get('referer') ) {
+                /*if ( $request->headers->get('referer') ) {
                     $url = $request->headers->get('referer') ;
-                }
+                }*/
             } else {
           
                 $curUser->setLastConnexion(new \DateTime(date('Y-m-d H:i:s')));
@@ -76,6 +76,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
                 /*if ( $request->headers->get('referer') ) {
                     $url = $request->headers->get('referer') ;
                 }*/
+                $url = $this->router->generate('front_ma_cave');
             }
         }
          

@@ -1,0 +1,100 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Modifier mon profil - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}modifier-profil{% endblock %}
+
+{% block header %}
+    {% set titreH1 = "Modifier mon profil" %}
+    {{ parent() }}
+{% endblock %}
+
+{% form_theme form with ['AppBundle::form_theme.html.twig', _self] %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="site-wrapper">    
+        <section id="form-content">
+            <div class="container p-t-30">
+
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <img id="avatar" src="{{asset('uploads/avatars/avatar_default.jpg')}}"><br>
+                        <a href="#">Modifier</a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-box">
+                            {{ form_start(form, {'attr': {'class': 'form-inline'} }) }}
+
+                            <div class="form-type-1">
+
+                                <div class="p-b-10">
+                                    {{ form_row(form.expertLevel, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                </div>
+
+                                <div class="p-b-10">
+                                    {{ form_row(form.lastname, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+
+                                    <div class="form-group-wrapper date">
+                                        <div class="form-group">
+                                            {{ form_label(form.birthdate) }}
+                                            <div class="input-group date">
+                                                {{ form_widget(form.birthdate) }}
+                                                <div class="input-group-addon"><i class="icon-calendar glyphicon glyphicon-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>  
+
+                                    {{ form_row(form.telephon, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+
+                                </div>
+
+                                <div class="p-b-10">
+                                    {{ form_row(form.firstname, {'class': 'p-right', 'attr': {'class': ''} }) }}
+
+                                    {{ form_row(form.email, {'class': 'double p-right', 'attr': {'class': ''} }) }} 
+
+                                    {{ form_row(form.mobile, {'class': '', 'attr': {'class': ''} }) }} 
+
+                                </div>
+
+                                <div class="p-b-10 p-t-10 address-box">
+
+                                    <p>Adresse : (l'adresse n'est pas obligatoire mais pourra être utile en cas de troc !)</p>
+                                    
+                                    {{ form_row(form.address, { 'label': false, 'class': '', 'attr': {'class': ''} }) }}    
+
+                                </div>
+
+                            </div>
+
+                            <div class="text-left p-b-30">
+                                {{ form_widget(form.submit, { 'attr': {'class': 'bg-pourpre submit text-center'} }) }}                      
+                            </div>
+                            
+                            <br>
+                            <p class="ob ob-margin">* Champs obligatoires</p>
+                            <!-- End .type-1 -->
+                            <br>
+
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,58 @@
+<div class="fullwidth-wrapper impair">
+    <div class="site-wrapper">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img id="avatar" src="{{asset('uploads/avatars/avatar_default.jpg')}}"><br>
+                <a href="{{path('front_mon_profil')}}" class="btn btn-default bg-pourpre editerProfil">Modifier mes informations</a>
+            </div>
+            <div class="col-md-3">
+                <div class="blocInfo">
+                    <span><br></span>
+                </div>
+                <div class="blocInfo">
+                    <h2 class="Vollkorn">{{user.firstname}}</h2>
+                </div>
+                <div class="blocInfo">
+                    <h2 class="Vollkorn">{{user.lastname}}</h2>
+                </div>
+                <div class="blocInfo">
+                    <span>{{user.birthdate|date('d/m/Y')}}</span>
+                </div>
+                <div class="blocInfo">
+                    <span>{{user.email}}</span>
+                </div>
+                <div class="blocInfo">
+                    <span>{{user.telephon|default('')}}</span>
+                </div>
+                <div class="blocInfo">
+                    <span>{{user.mobile|default('')}}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="blocInfo">
+                    <span><br></span>
+                </div>
+                <div class="blocInfo">
+                    <h2 class="gris Vollkorn">{{user.login}} <span class="txt13px">{{user.expertLevel.nameFr}}</span></h2>                    
+                </div>
+                <div class="blocInfo">
+                    <span><br></span>
+                </div>
+                {% if user.address %}
+                <div class="blocInfo">
+                    <span>{{user.address.street|default('')}}</span>
+                </div>
+                <div class="blocInfo">
+                    <span>{{user.address.zipCode|default('')}}</span>&nbsp;
+                    <span>{{user.address.city|default('')}}</span>
+                </div>
+                <div class="blocInfo">
+                    <span>{{user.address.departement|default('')}}</span>&nbsp;
+                    <span>{{user.address.region|default('')}}</span>&nbsp;
+                    <span>{{user.address.country|default('')}}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
