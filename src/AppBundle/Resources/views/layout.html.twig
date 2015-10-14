@@ -13,7 +13,6 @@
 
     {% block header %}
         {% include "AppBundle::_header.html.twig" %}
-        {% include "AppBundle::_header_bandeau.html.twig" %}
     {% endblock header %}
     
     <div id="main">    
@@ -34,45 +33,6 @@
             {% if displayModalFlash %}
             $('#flashBagModal').modal('show');
             {% endif %}
-                
-            
-            /*
-             *
-             * Couleur auto MEA Home
-             *
-             */
-            $.adaptiveBackground.run({
-                parent: "#bandeauWrapper",
-                success: function ($img, data) {
-
-                    function rgb2hex(rgb) {
-
-                        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-                        return "#" +
-                                ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
-                                ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
-                                ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2);
-                    }
-
-                    var color = data.color;
-                    var color2 = data.color.replace(')', ', 0)').replace('rgb', 'rgba');
-                    var hex = rgb2hex(data.color);
-
-                    $('#grad-left').css({
-                        background: "linear-gradient(to right,  " + color + " 0%, " + color2 + " 100%)",
-                        // background: "-ms-linear-gradient(left,  "+ color +" 0%, " + color2 + " 100%)",
-                        filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='" + hex + "', endColorstr='#00" + hex.replace('#', '') + "',GradientType=1 )"
-
-                    });
-                    $('#grad-right').css({
-                        background: "linear-gradient(to right,  " + color2 + " 0%, " + color + " 100%)",
-                        // background: "-ms-linear-gradient(left,  "+ color2 +" 0%, " + color + " 100%)",
-                        filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#00" + hex.replace('#', '') + "', endColorstr='" + hex + "',GradientType=1 )"
-                    });
-
-                }
-            });
-                
                 
         });
     </script>

@@ -13,11 +13,13 @@
             <title>{% block title %}TrocWine{% endblock %}</title>
         {% endblock %}
         
-        <meta name="description" content="TrocWine">
+        <meta name="description" content="Constituez votre cave sans dépenser un centime.">
         <meta name="author" content="TrocWine">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.css"/>
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />            
@@ -44,10 +46,12 @@
             ================================================== -->
             <!-- Placed at the end of the document so the pages load faster -->
             <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
+            <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>            
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/2.2.2/tinysort.min.js"></script>
             <script src="{{ asset('js/plugins-front.js') }}"></script>
+            <script src="{{ asset('js/tools-front.js') }}"></script>
             <script src="{{ asset('js/main-front.js') }}"></script>
         {% endblock %}
     </body>

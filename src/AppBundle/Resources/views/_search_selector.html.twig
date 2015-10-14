@@ -1,0 +1,78 @@
+<div class="search-selector search-bar-toggle-enabled">
+        <a href="#" class="btn-search-bottle"><i class="icon-bt"></i>Rechercher une bouteille</a>
+        <a href="#" class="btn-search-swapper"><i class="icon-rq"></i>Rechercher un troqueur</a>
+</div>
+<div class="search-wrapper search-bar-toggle">
+    <section class="search-container container">
+	<form action="_post.php" method="post" class="form-bottle-search">
+		<input type="search" placeholder="Rechercher une bouteille" class="desktop-field" name="name"/>
+		<div class="select-swagg-container">
+			<div class="select-swagg">
+				<select name="type">
+					<option value="" selected="selected">Type</option>
+					<option value="rouge">Vin Rouge</option>
+					<option value="blanc">Vin Blanc</option>
+					<option value="autres">Autres</option>
+				</select>
+			</div>
+			<div class="select-swagg">
+				<select name="region">
+					<option value="" selected="selected">Région</option>
+					<option value="bordeaux">Bordeaux</option>
+					<option value="bourgogne">Bourgogne</option>
+					<option value="alsace">Alsace</option>
+					<option value="autres">Autres</option>
+				</select>
+			</div>
+			<div class="select-swagg">
+				<select name="millesime">
+					<option value="" selected="selected">Millésime</option>
+					<option value="2014">2014</option>
+					<option value="2013">2013</option>
+					<option value="2012">2012</option>
+					<option value="2010">2010</option>
+					<option value="2009">2009</option>
+				</select>
+			</div>
+			<div class="select-swagg">
+				<select name="pays">
+					<option value="" selected="selected">Pays</option>
+					<option value="francais">France</option>
+					<option value="italie">Italie</option>
+					<option value="californie">U.S, Californie</option>
+					<option value="autres">Autres</option>
+				</select>
+			</div>
+		</div>
+		<div class="mobile-search-container">
+			<input type="search" placeholder="Rechercher une bouteille" class="mobile-field" name="name"/>
+			<input type="submit" value="Rechercher"/>
+		</div>
+	</form>
+	<form action="_post.php" method="post" class="form-swapper-search">
+		<input type="search" placeholder="Rechercher un troqueur" class="desktop-field" name="name"/>
+		<div class="select-swagg-container">
+			<div class="select-swagg">
+				<select name="level">
+					<option value="" selected="selected">Niveau</option>
+					<option value="pro">Expert</option>
+					<option value="noob">Néophyte</option>
+				</select>
+			</div>
+			<div class="select-swagg">
+				<select name="region">
+					<option value="" selected="selected">Région</option>
+					<option value="bordeaux">Bordeaux</option>
+					<option value="bourgogne">Bourgogne</option>
+					<option value="alsace">Alsace</option>
+					<option value="autres">Autres</option>
+				</select>
+			</div>
+		</div>
+		<div class="mobile-search-container">
+			<input type="search" placeholder="Rechercher un troqueur" class="mobile-field" name="name"/>
+			<input type="submit" value="Rechercher"/>
+		</div>
+	</form>
+    </section>
+</div>

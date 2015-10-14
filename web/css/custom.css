@@ -1,3 +1,13 @@
+/* RESET BOOTSTRAP */
+html{ font-size: initial; }
+body{ font-family: sans-serif; line-height: initial; font-size: initial; }
+.social-container .container {
+    width:auto;
+}
+.search-selector {
+    z-index: 99;
+}
+
 /****  Margin  ****/
 .m-auto {
   margin: auto; }
@@ -464,3 +474,43 @@
 
 .text-upper {
   text-transform: uppercase; }
+
+
+
+/* POPIN */
+#flashBagModal .modal-content {
+    background-color:transparent;    
+}
+#flashBagModal .close{
+    padding-right: 5px;
+}
+
+.modal .modal-header{
+    background-color: #740612;
+    color:#ffffff;
+    font-family: 'Vollkorn', serif;
+    font-size: 25px;
+    line-height: 28px;
+    font-weight: 400;
+}
+.modal-header .close{
+    color:#ffffff;
+}
+
+.modal .btn{    
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* modal loading */
+img.loadingWheel {
+  margin: 15% auto;
+  width: 43px;
+  position: relative;
+  display: block; }
+
+#buttons-box img.loadingWheel {
+  margin: 0 auto;
+  width: 32px;
+  position: relative;
+  display: block; }

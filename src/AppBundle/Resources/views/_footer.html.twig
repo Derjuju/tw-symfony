@@ -1,33 +1,41 @@
-<footer>
-    <div class="site-wrapper">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row">                    
-                    <div class="col-md-4"><a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">Notre histoire</a></div>
-                    <div class="col-md-4"><a href="{{path('front_partenaires')}}" class="{{ app.request.attributes.get('_route') == 'front_partenaires' ? 'active' }}">Partenaires</a></div>
-                    <div class="col-md-4">Plan du site<br>
-                        <a href="{{path('front_accueil')}}" class="txt11px">- Home</a><br>
-                        <a href="{{path('front_ma_cave')}}" class="txt11px {{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">- Mon espace</a>
-                    </div>
-                </div>
-                <div class="row">                    
-                    <div class="col-md-4"><a href="{{path('front_contact')}}" class="{{ app.request.attributes.get('_route') == 'front_contact' ? 'active' }}">Contact</a></div>
-                    <div class="col-md-4"><a href="{{path('front_presse')}}" class="{{ app.request.attributes.get('_route') == 'front_presse' ? 'active' }}">Presse</a></div>
-                    <div class="col-md-4"></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <a href="https://twitter.com/trocwine" target="_blank"><img src="{{ asset('img/pictos/twitter.png') }}" title="TrocWine sur Twitter"></a>
-                <a href="https://instagram.com/trocwine/" target="_blank"><img src="{{ asset('img/pictos/instagram.png') }}" title="TrocWine sur Instagram"></a>
-                <a href="https://www.facebook.com/trocwine" target="_blank"><img src="{{ asset('img/pictos/facebook.png') }}" title="TrocWine sur Facebook"></a>
-                <a href="http://trocwine.tumblr.com/" target="_blank"><img src="{{ asset('img/pictos/tumblr.png') }}" title="TrocWine sur Tumblr"></a>
-            </div>
-        </div>
-        <div class="row mentions-footer txt11px">
-            <div class="col-md-8">L'abus d'alcool est dangereux pour la santé, à consommer avec modération
-            </div>
-            <div class="col-md-4"><a href="{{path('front_mentions_legales')}}" class="{{ app.request.attributes.get('_route') == 'front_mentions_legales' ? 'active' }}">Mentions légales</a> - <a href="{{path('front_politique_de_cookies')}}" class="{{ app.request.attributes.get('_route') == 'front_politique_de_cookies' ? 'active' }}">Politique de cookies</a> - TrocWine&reg;
+<footer class="footer">
+    <div class="footer-top wrapper">
+        <ul class="link-container">
+            <li><a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">Notre histoire</a></li>
+            <li><a href="{{path('front_contact')}}" class="{{ app.request.attributes.get('_route') == 'front_contact' ? 'active' }}">Contact</a></li>
+        </ul>
+
+        <ul class="link-container">
+            <li><a href="{{path('front_partenaires')}}" class="{{ app.request.attributes.get('_route') == 'front_partenaires' ? 'active' }}">Partenaires</a></li>
+            <li><a href="{{path('front_presse')}}" class="{{ app.request.attributes.get('_route') == 'front_presse' ? 'active' }}">Presse</a></li>
+        </ul>
+
+        <ul class="link-container">
+            <li>
+                <a href="#">Plan du site</a>
+                <ul>
+                    <li><a href="{{path('front_accueil')}}">Home</a></li>
+                    <li><a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">Mon espace</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="social-container">
+            <div class="container">
+                <a href="https://twitter.com/trocwine" target="_blank" title="TrocWine sur Twitter"><i class="twitter-icon"></i></a>
+                <a href="https://instagram.com/trocwine/" target="_blank" title="TrocWine sur Instagram"><i class="instagram-icon"></i></a>
+                <a href="https://www.facebook.com/trocwine" target="_blank" title="TrocWine sur Facebook"><i class="facebook-icon"></i></a>
+                <a href="http://trocwine.tumblr.com/" target="_blank" title="TrocWine sur Tumblr"><i class="tumblr-icon"></i></a>
             </div>
         </div>
     </div>
-</footer>
+    <div class="footer-bottom wrapper">
+        <div class="left">
+            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération</span>
+        </div>
+        <div class="right">
+            <a href="{{path('front_mentions_legales')}}" class="{{ app.request.attributes.get('_route') == 'front_mentions_legales' ? 'active' }}">Mentions légales</a> -
+            <a href="{{path('front_politique_de_cookies')}}" class="{{ app.request.attributes.get('_route') == 'front_politique_de_cookies' ? 'active' }}">Politique de Cookies</a> -
+            <a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">TrocWine®</a>
+        </div>
+    </div>
+</footer> 

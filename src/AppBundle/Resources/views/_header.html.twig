@@ -1,19 +1,10 @@
-<header>
-    <div class="site-wrapper">
-        <div class="row txt12px">
-            <div class="col-md-8"></div>
-            <div class="col-md-4 navlink">
-            {% if is_granted('ROLE_USER') %}
-                <a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}">Ma Cave</a>
-                <a href="{{path('logout')}}" class="">Déconnexion</a>
-            {% else %}
-                <a href="{{path('front_inscription')}}" class="{{ app.request.attributes.get('_route') == 'front_inscription' ? 'active' }}">Inscription</a>
-                <a href="#" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'login' ? 'active' }}">Connexion</a>
-            {% endif %}
-                <a href="{{path('front_mode_emploi')}}" class="{{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}">Mode d'emploi</a>            
-            </div>
-        </div>
-    </div>
-</header>
-            
+{% if app.request.attributes.get('_route') == 'front_accueil' %}
+    {% include "AppBundle::_header_bandeau_full.html.twig" %}
+{% else %}
+    {% include "AppBundle::_header_bandeau_small.html.twig" %}
+{% endif %}
+
+{% if withoutSearchSelector is not defined %}
+    {% include "AppBundle::_search_selector.html.twig" %}
+{% endif %}            
 {# {% if app.request.attributes.get('_route') starts with 'book' %}active{% endif %} #}

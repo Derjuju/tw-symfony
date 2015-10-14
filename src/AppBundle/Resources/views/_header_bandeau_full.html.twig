@@ -1,0 +1,33 @@
+<header class="home-header">
+    <ul class="bxslider">
+        <li>
+            <span style="background-image: url('{{asset('img/slide-1.jpg')}}');" alt="Bouteille de vin dans une caisse"></span>
+        </li>
+        <li>
+            <span style="background-image: url('{{asset('img/slide-2.jpg')}}');" alt="Plan sur une bouteille"></span>
+        </li>
+        <li>
+            <span style="background-image: url('{{asset('img/slide-3.jpg')}}');" alt="Photo d'une bouteille et d'un verre de vin avec des monts en arrière-plan"></span>
+        </li>
+    </ul>
+    <div class="wrapper">
+        <nav class="home-header-nav">
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}">Ma Cave</a>
+                <a href="{{path('logout')}}" class="">Déconnexion</a>
+            {% else %}
+                <a href="{{path('front_inscription')}}" class="{{ app.request.attributes.get('_route') == 'front_inscription' ? 'active' }}">Inscription</a>
+                <a href="#" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'login' ? 'active' }}">Connexion</a>
+            {% endif %}
+            <a href="{{path('front_mode_emploi')}}" class="{{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}">Mode d'emploi</a> 
+        </nav>
+
+        <div class="logo-container">
+            <p class="greetings-title">Bienvenue
+                    sur</p>
+            <h1><a href="{{path('front_accueil')}}" title="Accueil" class="full-logo-white">TrocWine</a></h1>
+            <h2>Constituez votre cave sans dépenser un centime.</h2>
+        </div>
+    </div>
+</header>
+        

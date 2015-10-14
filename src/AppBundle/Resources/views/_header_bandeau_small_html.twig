@@ -1,0 +1,26 @@
+<header class="header connected <?php if(isset($bottle_owner)) { ?>bottle-owner<?php } if(isset($swappers)) { ?>swappers<?php } ?>">
+	<div class="container">
+		<?php include('block/header_mobile.php'); ?>
+		<div class="top-header wrapper">
+			<div class="logo-container">
+				<h1><a href="home.php" class="full-logo-dark" >TrocWine</a></h1>
+			</div>
+			<div class="header-menu-wrapper">
+				<div class="header-menu-container">
+					<a href="mode-demploi.php" title="Une Question ?"><i class="icon-question-mark active"></i></a>
+					<a href="ma-cave.php" title="Ma Cave"><i class="icon-cave"></i></a>
+					<a href="message.php" title="Messages"><i class="icon-message"></i></a>
+					<a href="ajouter-une-bouteille.php" title="Ajouter une bouteille"><i class="icon-add-bottle"></i></a>
+				</div>
+			</div>
+		</div>
+		<?php
+		if(isset($bottle_owner)) {
+			include( 'content-bottle-owner.php' );
+		} elseif(isset($swappers)) {
+			include('content-swappers.php');
+		} else { ?>
+			<h2 class="page-title <?php if(!isset($red_title)): ?>white-page-title<?php endif ?>"><?= $titre ?></h2>
+		<?php } ?>
+	</div>
+</header>
