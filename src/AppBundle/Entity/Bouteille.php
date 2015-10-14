@@ -170,6 +170,9 @@ class Bouteille
 
 
     public function __construct() {
+        $this->online = 0;
+        $this->reserved = 0;
+        $this->createdAt = new \Symfony\Component\Validator\Constraints\DateTime();
     }
     
     /**

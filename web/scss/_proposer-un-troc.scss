@@ -1,0 +1,42 @@
+.swap-wrapper {
+  width: 100%;
+  @include clearfix();
+  .page-title {
+    font-size: 38pt;
+  }
+  .my-cave-container,
+  .her-cave-container {
+    width: 50%;
+    float: left;
+    padding-bottom: 2em;
+    .wrapper {
+      padding: 10px 0;
+      width: $max-width / 2;
+    }
+  }
+  .my-cave-container {
+    .wrapper {
+      padding-right: 45px;
+      float: right; }
+  }
+  .her-cave-container {
+    background: #F6F6F6;
+    .wrapper {
+      padding-left: 45px;
+      float: left; }
+    .inner-winethumb,
+    .inner-winethumb .description {
+      background: #FFF;
+    }
+  }
+  .top {
+    @include clearfix();
+    .span-left {
+      float: left; }
+    .span-right {
+      width: 45%;
+      float: right; }
+    .select-swagg {
+      width: 100%; }
+  }
+}

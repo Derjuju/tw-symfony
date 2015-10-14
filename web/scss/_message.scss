@@ -1,0 +1,227 @@
+.message-menu {
+  padding: 48px 0;
+  a {
+    display: block;
+    margin-bottom: 10px;
+    &.active {
+      font-weight: bold;
+      color: $troc-red;
+    }
+  }
+}
+
+.message-container {
+  border-left: 1px solid #F3F3F3;
+  .top {
+    .btn-default {
+      margin: 1em;
+      padding: 8px 10px;
+      display: block;
+      border-radius: 0;
+      font-size: .9em;
+      i {
+        float: left;
+        margin-right: 5px;
+      }
+    }
+
+  }
+}
+
+.header-message {
+  padding: 1em;
+  background: #F6F6F6;
+  @include clearfix();
+  .image-person-container {
+    @include round-image();
+    vertical-align: middle;
+    display: inline-block;
+  }
+  h3 {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    color: $troc-red;
+    font-family: $font-serif;
+    font-size: 24px;
+    font-weight: 300;
+  }
+  .image-wine-container {
+    display: inline-block;
+    vertical-align: middle;
+    height: 62px; width: 42px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    .dot-qte {
+      @include dot-qte(30px);
+      margin: 0 auto;
+      position: absolute;
+      bottom: -10px;
+      left: 0; right: 0;
+      font-weight: 500;
+      font-style: italic;
+    }
+  }
+  .break {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 .5em;
+  }
+  .btn-ops {
+    display: inline-block;
+    vertical-align: middle;
+    background: #FFF;
+    border: 1px solid #F3F3F3;
+    color: #CCC;
+    font-size: 24px;
+    line-height: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+.message-zone {
+  padding: 1em 0 1em 1.5em;
+}
+
+.the-message-container {
+  border-bottom: 1px solid #F3F3F3;
+  padding-bottom: 20px;
+  &:last-child {
+    border-bottom: 0;
+  }
+  .message-time {
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+    font-size: .8em;
+    b {
+      color: $troc-red; }
+  }
+  .top {
+    @include clearfix();
+    .image-person-container {
+      @include round-image(65px);
+      margin-right: 15px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .break {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    h3 {
+      @extend .name;
+    }
+  }
+  .the-message {
+    background: #F6F6F6;
+    padding: 1em 1.5em;
+    border-radius: 10px;
+    white-space: pre-line;
+    display: inline-block;
+    margin-left: 80px;
+    font-size: 10pt;
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      height: 13px; width: 15px;
+      background: url('../img/bubble-tail.png') no-repeat;
+      position: absolute;
+      bottom: 5px; left: -9px;
+    }
+  }
+  .maps-wrapper {
+    .small-maps-wrapper {
+      width: 100%;
+      @include clearfix();
+      .address-container {
+        display: none; }
+      &.display-address {
+        .message-map-container {
+          margin: 2em 2% 1em 0; }
+        .address-container {
+          white-space: pre-line;
+          float: left;
+          margin: 80px 1% 0 0;
+          display: block;
+        }
+      }
+    }
+    .small-map-container {
+      float: left;
+      width: 20%;
+      margin: 2em 5% 1em 0;
+      &.selected .small-map {
+        border: 4px solid $troc-red; }
+      .small-map {
+        position: relative;
+        cursor: pointer;
+        @include message-map(160px, 160px);
+        .icon-magnifier {
+          width: 100%; height: 100%;
+          background-color: rgba(26, 2, 4, .1);
+          border-radius: 100%;
+          opacity: 0;
+          transition: opacity .1s;
+        }
+        &:hover .icon-magnifier {
+          opacity: 1;
+          transform: scale(1);
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .big-map-container {
+      width: 95%;
+      display: block;
+      border-top: 1px solid #F3F3F3;
+      .big-map-address {
+        text-align: center;
+        display: block;
+        margin: 1em 0;
+        font-size: .7em;
+      }
+    }
+    .big-map {
+      width: 90%; height: 320px;
+      margin: 0 auto;
+      opacity: 1;
+      position: relative;
+    }
+  }
+}
+
+.swap-ops-container {
+  background: #F6F6F6;
+  padding: 20px 2.5em 20px;
+  > div {
+    margin-bottom: 36px;
+    @include clearfix();
+  }
+  label {
+    color: $troc-red;
+    width: 230px;
+    font-size: 18px;
+    float: left;
+    padding: 9px 0;
+  }
+  .right {
+    width: 200px;
+    float: right;
+    .btn-default {
+      background: $light-gray;
+      width: 45%;
+      margin-right: 5%;
+      float: left;
+      &.active {
+        background: $troc-red; }
+      &:last-child {
+        margin-right: 0; }
+    }
+  }
+}

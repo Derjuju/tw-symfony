@@ -1,0 +1,99 @@
+.bottle-info-wrapper {
+  padding: 1em 0;
+  background: #F6F6F6;
+  .image-container {
+    .dot-qte {
+      @include dot-qte();
+      position: relative;
+      top: 10px; left: 10px;
+    }
+  }
+  .bottle-info {
+    padding: 0;
+    .title {
+      color: $troc-red;
+      margin-bottom: 30px;
+      h2 {
+        margin: 0 0 20px 0;
+        max-width: 75%;
+        font-weight: 300;
+        font-family: $font-serif;
+        font-size: 25px; }
+      span {
+        display: inline-block;
+        margin: 0 10px 5px 0;}
+    }
+    .info {
+      font-size: .8em;
+      p {
+        white-space: pre-line;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .qte-select-mobile {
+    @include clearfix();
+    .select-bottle {
+      float: left;
+      width: 49%;
+    }
+    .qte-level {
+      float: right;
+      width: 28%;
+    }
+  }
+  .qte-level {
+    h4 {
+      color: $troc-red;
+      font-weight: 300;
+      text-align: center; }
+    .select-swagg {
+      width: 100%;
+      float: none;
+      select {
+        font-weight: 300; }
+    }
+    .level-bottle {
+      margin: 30px auto 0;
+    }
+  }
+  .select-bottle {
+    color: $troc-red;
+    font-weight: bold;
+  }
+}
+
+.in-his-cave {
+  .page-title {
+    font-size: 40px;
+  }
+}
+
+.they-got-it-wrapper {
+  background: #F6F6F6;
+  margin: 10px 0;
+  padding: 1em 0;
+  h3 {
+    font-size: 30px; }
+  article {
+    margin: 20px 10px 0;
+    float: left; }
+  .image-container {
+    display: block;
+    width: 105px; height: 105px;
+    border-radius: 100%;
+    background-color: #F5F5F5;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    .dot-qte {
+      @include dot-qte();
+      position: absolute;
+      display: block;
+      font-weight: bold;
+      bottom: -10px;
+      margin: 0 auto;
+      left: 0; right: 0;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.container {
+  @include outer-container();
+}
+
+.wrapper {
+  @include outer-container();
+  @include pad(10px 0);
+  @include media($tablet) {
+    @include pad(10px 5%); }
+  @include media($mobile) {
+    @include pad(10px 2%)
+  }
+}
+
+.row {
+  padding: 1em 0;
+  @include row();
+}
+
+/* Generic Spans */
+
+.col-3 {
+  @include span-columns(3); }
+
+.col-6 {
+  @include span-columns(6); }
+
+.col-9 {
+  @include span-columns(9); }
+
+.col-12 {
+  @include span-columns(12); }
+
+@media screen and (min-width: 768px) {
+  .desktop-hide {
+    display: none; }
+}
+
+@include media($tablet) {
+  .featured-wines-thumbnails a,
+  .monthly-pick-thumbnail li .content {
+    transition: none;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@include media($phat-mobile) {
+  .mobile-hide {
+    display: none !important;
+  }
+}

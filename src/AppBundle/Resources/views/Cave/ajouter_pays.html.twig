@@ -1,0 +1,24 @@
+{% form_theme form with ['AppBundle::form_theme.html.twig', _self] %}
+
+{{ form_start(form, {'attr': {'class': 'form-inline add_new_pays'} }) }}
+
+<div class="form-type-1">
+
+    <div class="p-b-10">
+        {{ form_row(form.nameFr, {'class': 'p-right', 'attr': {'class': ''} }) }}                                          
+    </div>
+
+</div>
+
+<div class="text-left p-b-30">
+    <div class="text-right">
+        <button type="submit" class="btn submit bg-pourpre bt-valid-popin-ajout" data-url="{{path('front_pays_add')}}">Ajouter</button>
+        <button type="button" class="btn bt-default" data-dismiss="modal">Annuler</button>
+    </div>
+</div>
+
+<br>
+<p class="ob ob-margin">* Champs obligatoires</p>
+<!-- End .type-1 -->
+<br>
+{{ form_end(form) }}

@@ -1,0 +1,27 @@
+.header.swappers {
+  .top-header {
+    margin-bottom: 10px;
+  }
+  max-height: 255px;
+}
+
+.header-swapper {
+  margin-bottom: 20px;
+  @include clearfix();
+  .btns-container {
+    .btn-swap {
+      width: 90%;
+      margin: 0 auto 25px;
+      padding: 10px 0;
+      font-size: 30px;
+      font-family: $font-serif;
+    }
+    .btn-cancel {
+      padding-left: 10px;
+      padding-right: 10px;
+      background: #FFF;
+      color: $troc-red;
+      margin: 0 auto;
+    }
+  }
+}

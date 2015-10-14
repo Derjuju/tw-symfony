@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'Kraskario';
+  src: url('../font/Kraskario italic.eot'); /* IE9 Compat Modes */
+  src: url('../font/Kraskario italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Kraskario italic.woff') format('woff'), /* Modern Browsers */
+  url('../font/Kraskario italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Kraskario italic.svg#8ef8733a171129a0fc9f1b1f55419d45') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Kraskario';
+  src: url('../font/Kraskario.eot'); /* IE9 Compat Modes */
+  src: url('../font/Kraskario.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Kraskario.woff') format('woff'), /* Modern Browsers */
+  url('../font/Kraskario.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Kraskario.svg#a4c2295c26027ff7036282a85b4a6267') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../font/Vollkorn-Medium.eot'); /* IE9 Compat Modes */
+  src: url('../font/Vollkorn-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Vollkorn-Medium.woff') format('woff'), /* Modern Browsers */
+  url('../font/Vollkorn-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Vollkorn-Medium.svg#4057c7f30eb11c440d7c538ed2d05194') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  bold;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../font/Vollkorn-BoldItalic.eot'); /* IE9 Compat Modes */
+  src: url('../font/Vollkorn-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Vollkorn-BoldItalic.woff') format('woff'), /* Modern Browsers */
+  url('../font/Vollkorn-BoldItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Vollkorn-BoldItalic.svg#4057c7f30eb11c440d7c538ed2d05194') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  bold;
+}
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../font/Vollkorn-Italic.eot'); /* IE9 Compat Modes */
+  src: url('../font/Vollkorn-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Vollkorn-Italic.woff') format('woff'), /* Modern Browsers */
+  url('../font/Vollkorn-Italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Vollkorn-Italic.svg#4057c7f30eb11c440d7c538ed2d05194') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  400;
+}
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../font/Vollkorn-Medium.eot'); /* IE9 Compat Modes */
+  src: url('../font/Vollkorn-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Vollkorn-Medium.woff') format('woff'), /* Modern Browsers */
+  url('../font/Vollkorn-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Vollkorn-Medium.svg#4057c7f30eb11c440d7c538ed2d05194') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  500;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../font/Vollkorn-MediumItalic.eot'); /* IE9 Compat Modes */
+  src: url('../font/Vollkorn-MediumItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Vollkorn-MediumItalic.woff') format('woff'), /* Modern Browsers */
+  url('../font/Vollkorn-MediumItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Vollkorn-MediumItalic.svg#4057c7f30eb11c440d7c538ed2d05194') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  500;
+}
+
+@font-face {
+  font-family: 'Vollkorn';
+  src: url('../font/Vollkorn-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../font/Vollkorn-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/Vollkorn-Regular.woff') format('woff'), /* Modern Browsers */
+  url('../font/Vollkorn-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('../font/Vollkorn-Regular.svg#4057c7f30eb11c440d7c538ed2d05194') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
+
+
+
+/* Vollkorn est la police utilisée dans les .psds */
+
+$font-serif: "Vollkorn", serif;
+/*$font-serif: "Kraskario", serif;*/

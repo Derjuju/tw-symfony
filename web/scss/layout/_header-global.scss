@@ -1,0 +1,58 @@
+.header {
+  background: url('../img/header-banner.jpg') top/cover no-repeat;
+  position: relative;
+  z-index: 99999;
+  .header-left {
+    margin: 15px 0 30px;
+  }
+  h1 {
+    a {
+      max-width: 190px;
+      max-height: 50px;
+    }
+  }
+  .header-menu {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    width: 100%;
+    float: right;
+    @include clearfix();
+    li {
+      float: left;
+      padding: 17px 10px 15px;
+      width: 33%;
+      &.active {
+        background: $troc-red;
+        box-shadow: 0 0px 5px 0px #000;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #FFF;
+      font-size: .9em;
+      text-shadow: 0 1px 2px #444;
+      text-align: center;
+      display: block;
+    }
+  }
+}
+
+.header-menu-wrapper,
+.header-search-container {
+  a {
+    float: left;
+  }
+}
+
+.header-menu-wrapper {
+  a {
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0; }
+  }
+}
+
+.white-page-title {
+  color: #FFF;
+}

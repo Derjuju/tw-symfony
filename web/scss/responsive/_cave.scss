@@ -1,0 +1,29 @@
+/* Cave */
+
+.cave-wrapper {
+  .user-profile-image-container {
+    @include span-columns(3);
+  }
+  .user-infos-container {
+    @include span-columns(9);
+    .personnal-infos,
+    .pseudo-container {
+      @include span-columns(3); }
+    .address-level-container {
+      @include span-columns(6); }
+    .address-container .span {
+      display: inline-block;
+      width: 32%;
+      vertical-align: bottom; }
+  }
+  .top-bottle-container {
+    @include clearfix();
+    .sort {
+      float: left;
+      width: 200px;
+    }
+    .add-bottle {
+      float: right;
+    }
+  }
+}

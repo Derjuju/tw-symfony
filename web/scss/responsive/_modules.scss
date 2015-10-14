@@ -1,0 +1,181 @@
+/* Search Bar */
+
+@media screen and (max-width: 870px) {
+  .search-container {
+    .mobile-field {
+      display: block;
+      width: 74%; }
+    [type="submit"] {
+      width: 23%;
+      min-width: 120px;
+    }
+    .desktop-field {
+      display: none;
+    }
+  }
+  .select-swagg-container {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    margin-bottom: .5em;
+    > .select-swagg {
+      display: table-cell;
+      width: inherit;
+      float: none;
+      &:last-child {
+        border-right: 1px solid #e5e5e5;
+      }
+    }
+  }
+}
+
+@include media($phat-mobile) {
+  .search-selector {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .mobile-search-container {
+    .mobile-field {
+      width: 69%;
+    }
+    [type="submit"] {
+      width: 20%;
+    }
+  }
+}
+
+@include media($mobile) {
+  .search-selector {
+    position: relative;
+    left: initial; right: initial;
+    margin-top: -43px;
+    .btn-search-bottle,
+    .btn-search-swapper {
+      width: 100%;
+      text-align: center;
+    }
+    .btn-search-bottle {
+      border-radius: 5px 5px 0 0;
+    }
+    .btn-search-swapper {
+      border-radius: 0 0 5px 5px;
+    }
+  }
+  .search-container {
+    .search-bar-toggle {
+      padding-top: 20px; }
+  }
+
+  .mobile-search-container {
+    .mobile-field {
+      width: 66%;
+      min-width: inherit; }
+    [type="submit"] {
+      width: 28%;
+      min-width: inherit;
+      padding: 0;
+      font-size: .8em;
+    }
+  }
+}
+
+/* Winethumb */
+
+
+@include media($phat-mobile) {
+  .winethumb,
+  .bottle-container .winethumb-container .winethumb {
+    min-width: 150px;
+    width: 31%;
+    margin-right: 2%;
+    .image,
+    .description {
+      position: relative;
+      float: none;
+      width: 100%;
+      padding: 10px 15px;
+      h3 {
+        font-family: $font-serif;
+        font-size: 1.3em;
+        font-weight: 300;
+      }
+      p {
+        white-space: normal; }
+    }
+    .description {
+      height: inherit;
+    }
+    .dot-qte {
+      position: absolute;
+      z-index: 999;
+      bottom: -10px; left: 0; right: 0;
+      margin: 0 auto;
+    }
+    .social-btns {
+      float: none;
+      .twitter-share-button {
+        float: left;
+        margin: 5px 0 -5px; }
+      .fb-share-button {
+        float: right;
+        margin-top: 5px;
+      }
+    }
+    .owner-container {
+      display: none;
+    }
+
+    .top-in-his-cave {
+      label {
+        font-size: 0;
+      }
+      .select-swagg {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@include media($mobile) {
+  .bottle-container .winethumb-container .winethumb,
+  .winethumb {
+    width: 48%;
+    margin-right: 4%;
+    &:nth-child(2n) {
+      margin-right: 0; }
+  }
+}
+
+@include media($small-mobile) {
+  .bottle-container .winethumb-container .winethumb,
+  .winethumb {
+    width: 100%;
+  }
+}
+
+/* Profile Light */
+
+@include media($phat-mobile) {
+  .profile-light {
+    margin-top: 1em;
+    .left, .right {
+      width: 100%;
+      float: none;
+    }
+    .right {
+      position: static;
+    }
+    .profile-image {
+      width: 70px; height: 70px;
+    }
+    .owner-level {
+      font-size: 18px;
+      font-weight: 100;
+      text-align: center;
+      display: block;
+    }
+    .star-container {
+      text-align: center;
+    }
+  }
+}

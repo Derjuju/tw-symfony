@@ -1,0 +1,7 @@
+/* Presse */
+
+.presse-wrapper {
+  li {
+    @include span-columns(2.2);
+  }
+}

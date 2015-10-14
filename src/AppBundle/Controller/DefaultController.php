@@ -10,10 +10,19 @@ use AppBundle\Form\Type\SearchTroqueurType;
 
 class DefaultController extends Controller
 {
+    
     /**
-     * @Route("/",name="front_accueil")          
+     * @Route("/",name="front_intro")          
      */
     public function indexAction() {
+        
+        return $this->render("AppBundle::index.html.twig", array());
+    }
+    
+    /**
+     * @Route("/homepage",name="front_accueil")          
+     */
+    public function homepageAction() {
         
         $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
             'action' => $this->generateUrl('front_search_bouteille'),
@@ -27,7 +36,7 @@ class DefaultController extends Controller
         ));
         $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));
         
-        return $this->render("AppBundle::index.html.twig", array(
+        return $this->render("AppBundle::homepage.html.twig", array(
             'formBouteille'   => $formBouteille->createView(),
             'formTroqueur'   => $formTroqueur->createView(),
         ));

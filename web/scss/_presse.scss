@@ -1,0 +1,22 @@
+.presse-wrapper {
+  margin-top: 2em;
+  ul {
+    list-style: none;
+    padding-left: 0; }
+  .image-container {
+    @include round-image(175px); }
+  .presse-name {
+    font-family: $font-serif;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 300;
+    color: $troc-red;
+    margin: 0;
+  }
+  .date-review {
+    text-align: center;
+    display: block;
+    margin: 0 auto 40px;
+    font-size: .8em;
+  }
+}

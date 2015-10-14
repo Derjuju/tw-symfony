@@ -1,0 +1,51 @@
+.subscribe-wrapper {
+  padding: 50px 0;
+  .profile-image {
+    width: 170px; height: 170px;
+    margin: 0 auto;
+    background-color: #F6F6F6;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid #ECECEC;
+    border-radius: 100%;
+  }
+  .upload-btn {
+    text-align: center;
+    display: block;
+    margin: 20px 0;
+    font-size: .9em;
+  }
+  .input-hidden {
+    overflow: hidden;
+    width: 100%;
+    input {
+      position: relative;
+      top: -1000px;
+    }
+  }
+  .top-subscribe-form {
+    margin-top: 20px;
+    @include clearfix();
+    input, .select-swagg, select {
+      width: 100%;
+    }
+  }
+  input, .select-swagg {
+    margin-bottom: 10px;
+  }
+  .select-swagg, select {
+    background: #F6F6F6;
+  }
+  .btn-default {
+    max-width: 100%;
+    margin: 20px 0;
+  }
+  .address-title {
+    margin: 15px 0 10px 10px;
+  }
+  .error-message {
+    color: $troc-red;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+}

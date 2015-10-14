@@ -11,6 +11,9 @@ body{
 .Vollkorn{   
     font-family: 'Vollkorn', serif;
 }
+.pourpre{
+    color: #740612;
+}
 .txt11px{
     font-size: 11px;
     line-height: 14px;
@@ -23,6 +26,19 @@ body{
     font-size: 13px;
     line-height: 16px;
 }
+
+/* modal loading */
+img.loadingWheel {
+  margin: 15% auto;
+  width: 43px;
+  position: relative;
+  display: block; }
+
+#buttons-box img.loadingWheel {
+  margin: 0 auto;
+  width: 32px;
+  position: relative;
+  display: block; }
 
 /* HEADER */
 header{
@@ -382,4 +398,49 @@ body.homepage .thumbnail:hover{
     line-height: 15px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+/* AJOUTER BOUTEILLE */
+
+body.ajouter-bouteille label{
+    display:none;
+}
+body.ajouter-bouteille .checkbox label{
+    display:initial;
+}
+
+.ajouterBouteille{
+    text-transform: none;
+    font-size: 14px;
+    line-height: 17px;
+    padding-left: 10px;
+    padding-right: 40px;
+    padding-top:5px;
+    padding-bottom:4px;
+    position: relative;
+}
+.ajouterBouteille:hover{
+    color:#ffffff;
+    background-color: #740612;
+}
+.ajouterBouteille:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    background-image: url('../img/pictos/ajouter_bouteille.png');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
+.bt-add-popin{
+    font-size: 12px;
+    line-height:15px;
+    text-transform: none;
 }

@@ -1,0 +1,16 @@
+.mentions-legales-wrapper {
+  h3 {
+    color: $troc-red;
+    font-size: 20px;
+  }
+  p {
+    white-space: pre-line;
+    font-size: 14px;
+  }
+  .row:nth-child(even) {
+    background: #F6F6F6;
+  }
+  .row {
+    margin: 20px 0;
+  }
+}

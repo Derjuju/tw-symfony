@@ -1,0 +1,28 @@
+.header.bottle-owner {
+  .top-header {
+    margin-bottom: 0;
+  }
+}
+
+.header-owner-info {
+  position: relative;
+  bottom: 30px;
+  .btn-default {
+    font-size: .8em
+  }
+  .span-left {
+    .btn-default {
+      max-width: 80px;
+      padding: 10px 5px 10px 10px;
+      float: left;
+      .icon-arrow-left {
+        float: left;
+      }
+    }
+  }
+  .btn-default {
+    float: right;
+    width: 100%;
+    max-width: 160px;
+  }
+}

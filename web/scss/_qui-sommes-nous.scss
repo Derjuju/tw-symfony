@@ -1,0 +1,56 @@
+.qui-sommes-nous-wrapper {
+  padding-top: 2em;
+  .row {
+    &:nth-child(even) {
+      background: #F6F6F6; }
+    .left, .right {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .left {
+      width: 53%; }
+    .right {
+      width: 46%; }
+  }
+  .testimonials-container {
+    .left, right {
+      vertical-align: top; }
+    .left {
+      width: 24%; }
+    .right {
+      width: 74%;
+      p {
+        text-align: justify;
+        font-size: .9em; }
+    }
+  }
+  h2, h3 {
+    width: 80%;
+    text-align: center;
+    font-size: 20px;
+    font-family: $font-serif;
+    font-weight: 300;
+    color: $troc-red;
+    margin: 0 auto; }
+  h2 {
+    font-size: 30px;
+    text-align: left; }
+  .image-container {
+    @include round-image(170px);
+    margin: 0 auto 20px auto;
+    display: block;
+  }
+  .btn-default {
+    max-width: 160px;
+    padding: 10px 5px;
+    margin: 0 auto;
+  }
+  .author {
+    text-align: right;
+    margin-top: 40px;
+    display: block;
+    font-size: 1.2em;
+    font-style: italic;
+    color: $troc-red;
+  }
+}

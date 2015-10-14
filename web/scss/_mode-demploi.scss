@@ -1,0 +1,16 @@
+.how-to-wrapper {
+  margin-top: 2em;
+  .row:nth-child(even) {
+    padding: 1em 0;
+    background: #F6F6F6; }
+  h3 {
+    font-family: $font-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: $troc-red;
+  }
+  p {
+    white-space: pre-line;
+    font-size: 14px;
+  }
+}

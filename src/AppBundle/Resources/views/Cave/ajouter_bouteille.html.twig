@@ -1,0 +1,213 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Ajouter une bouteille - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}ma-cave ajouter-bouteille{% endblock %}
+
+{% block header %}
+    {% set titreH1 = "Ajouter une bouteille" %}
+    {{ parent() }}
+{% endblock %}
+
+{% form_theme form with ['AppBundle::form_theme.html.twig', _self] %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="fullwidth-wrapper impair">
+        <div class="site-wrapper">    
+            <section id="form-content">
+                <div class="p-t-30">
+
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <img id="avatar" src="{{asset('uploads/bouteilles/bouteille_default.jpg')}}"><br>
+                            <a href="#">Modifier</a><br>
+                            <div class="choisirNote"><span>Ma note :</span><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-box">
+                                {{ form_start(form, {'attr': {'class': 'form-inline'} }) }}
+
+                                <div class="form-type-1">
+
+                                    <div class="p-b-10">
+                                        {{ form_row(form.typeDeVin, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                        {{ form_row(form.quantite, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                        {{ form_row(form.boiteOrigine, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                    </div>
+
+                                    <div class="p-b-10">
+                                        {{ form_row(form.typeDomaine, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                        {{ form_widget(form.add_domaine, { 'attr': {'class': 'bg-pourpre bt-add-popin text-center', 'data-url' : path('front_domaine_add')} }) }}                      
+                                        {{ form_row(form.typePays, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                        {{ form_widget(form.add_pays, { 'attr': {'class': 'bg-pourpre bt-add-popin text-center', 'data-url' : path('front_pays_add')} }) }}  
+                                    </div>
+
+                                    <div class="p-b-10">
+                                        {{ form_row(form.typeAppellation, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                        {{ form_widget(form.add_appellation, { 'attr': {'class': 'bg-pourpre bt-add-popin text-center', 'data-url' : path('front_appellation_add')} }) }} 
+                                        {{ form_row(form.millesime, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                    </div>
+
+                                    <div class="p-b-10">
+                                        {{ form_row(form.typeCuvee, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                        {{ form_widget(form.add_cuvee, { 'attr': {'class': 'bg-pourpre bt-add-popin text-center', 'data-url' : path('front_cuvee_add')} }) }} 
+                                        {{ form_row(form.apogee, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                    </div>
+
+                                    <div class="p-b-10">
+                                        {{ form_row(form.typeRegion, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                        {{ form_widget(form.add_region, { 'attr': {'class': 'bg-pourpre bt-add-popin text-center', 'data-url' : path('front_region_add')} }) }} 
+                                        {{ form_row(form.typeContenance, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                    </div>
+
+                                    <div class="p-b-10">
+                                        {{ form_row(form.commentaire, {'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                        {{ form_row(form.typeDeCave, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+                                    </div>
+
+                                </div>
+
+                                <div class="text-left p-b-30">
+                                    {{ form_widget(form.submit, { 'attr': {'class': 'bg-pourpre submit text-center'} }) }}                      
+                                </div>
+
+                                <br>
+                                <p class="ob ob-margin">* Champs obligatoires</p>
+                                <!-- End .type-1 -->
+                                <br>
+                                    {{ form_row(form.note, {'class': 'hidden', 'attr': {'class': ''} }) }} 
+                                    {{ form_row(form.niveau, {'class': 'hidden', 'attr': {'class': ''} }) }} 
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                            
+                        <div class="col-md-3 text-center">
+                            <img id="avatar" src="{{asset('uploads/bouteilles/bouteille_default.jpg')}}"><br>
+                            <a href="#">Ajouter une photo</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            
+            
+            $('#AddBouteilleType_add_domaine').on('click',function(){
+                url = $(this).attr('data-url'); 
+                title = 'Ajouter <strong>un type de domaine</strong>';
+                openModalAddEntity(url, title);
+            });
+            
+            $('#AddBouteilleType_add_appellation').on('click',function(){
+                url = $(this).attr('data-url'); 
+                title = 'Ajouter <strong>un type d\'appellation</strong>';
+                openModalAddEntity(url, title);
+            });
+            
+            $('#AddBouteilleType_add_cuvee').on('click',function(){
+                url = $(this).attr('data-url'); 
+                title = 'Ajouter <strong>un type de cuvée</strong>';
+                openModalAddEntity(url, title);
+            });
+            
+            $('#AddBouteilleType_add_region').on('click',function(){
+                url = $(this).attr('data-url'); 
+                title = 'Ajouter <strong>un type de région</strong>';
+                openModalAddEntity(url, title);
+            });
+            
+            $('#AddBouteilleType_add_pays').on('click',function(){
+                url = $(this).attr('data-url'); 
+                title = 'Ajouter <strong>un type de pays</strong>';
+                openModalAddEntity(url, title);
+            });
+            
+            
+            function openModalAddEntity(url, title){
+                $.ajax({
+                    type : 'POST',
+                    url : url,
+                    data : null,
+                    timeout : 60000,
+                    success : function(htmlResponse) {
+
+                          $('#myModal .modal-header').removeClass('hide');
+                          $('#myModal h4').html(title);
+                          $('#myModal .modal-body').html(htmlResponse);
+
+                          $('#myModal').modal('show');
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    }
+                });
+            }
+            
+            
+            $(document).on('submit', 'form.add_new_domaine', function () {
+                var form = $(this);                
+                traitementForm(form, "#AddBouteilleType_typeDomaine");
+                return false;
+            });
+            
+            $(document).on('submit', 'form.add_new_appellation', function () {
+                var form = $(this);                
+                traitementForm(form, "#AddBouteilleType_typeAppellation");
+                return false;
+            });
+            
+            $(document).on('submit', 'form.add_new_cuvee', function () {
+                var form = $(this);                
+                traitementForm(form, "#AddBouteilleType_typeCuvee");
+                return false;
+            });
+            
+            $(document).on('submit', 'form.add_new_region', function () {
+                var form = $(this);                
+                traitementForm(form, "#AddBouteilleType_typeRegion");
+                return false;
+            });
+            
+            $(document).on('submit', 'form.add_new_pays', function () {
+                var form = $(this);                
+                traitementForm(form, "#AddBouteilleType_typePays");
+                return false;
+            });
+            
+            function traitementForm(form, cibleSelect) {
+
+                xhr = $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    dataType: "json",
+                    success: function (jsonResponse)
+                    {
+                        if(jsonResponse.result){
+                            $('#myModal').modal('hide');
+                            $(cibleSelect).append('<option value='+jsonResponse.id+'>'+jsonResponse.name+'</option>');
+                            $(cibleSelect).val(jsonResponse.id);
+                        }else{
+                            alert('erreur de soumission');
+                        }
+                    }
+                });
+            };
+            
+            
+            
+        });
+    </script>
+{% endblock %}
+

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use AppBundle\Entity\Bouteille;
 
 /**
@@ -25,21 +26,21 @@ class TypeCuvee
     /**
      * @var string
      *
-     * @ORM\Column(name="name_fr", type="string", length=255)
+     * @ORM\Column(name="name_fr", type="string", length=255, nullable=true)
      */
     private $nameFr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name_uk", type="string", length=255)
+     * @ORM\Column(name="name_uk", type="string", length=255, nullable=true)
      */
     private $nameUk;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reference", type="string", length=255)
+     * @ORM\Column(name="reference", type="string", length=255, nullable=true)
      */
     private $reference;
 

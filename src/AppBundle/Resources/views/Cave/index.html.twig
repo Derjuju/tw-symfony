@@ -12,6 +12,8 @@
 {% block content %}
     {{ parent() }}
     {% include "AppBundle:Cave:_profil.html.twig" %}
+    {% include "AppBundle:Cave:_toolbar.html.twig" with {'formFiltrerCave' : formFiltrerCave} %}
+    {{ render(controller('AppBundle:Cave:liste', { filtre : 0 } )) }}
 {% endblock %}
 
 
@@ -20,7 +22,15 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $(document).on('change','#ClasserCave_typeDeVin', function(){
+               var form = $(this).closest("form");
+               var valeur = $(this).val(); if(valeur == undefined || valeur == null || valeur == '') valeur = 0;      
+               var url = form.attr('action').replace('/0', '/'+valeur);
+               var target = "#listingBouteille";
+               var data = form.serialize();
+               var modalId = "#myModal";
+               ajaxRefreshHTML(url, target, data, modalId); 
+            });
         });
     </script>
 {% endblock %}

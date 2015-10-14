@@ -1,0 +1,190 @@
+/*
+** IMAGES —
+*/
+
+.wine-image {
+  height: 321px;
+  background: darken(#F6F6F6, 10);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.profile-image {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto;
+  background-color: #F6F6F6;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #ECECEC;
+  border-radius: 100%;
+}
+
+.full-logo {
+  @include hide-text();
+  cursor: pointer;
+  margin: 0;
+  background: url('../img/full-logo.png') left/contain no-repeat;
+  max-width: 427px;
+  height: 109px;
+  display: block;
+}
+
+.full-logo-white {
+  @extend .full-logo;
+  a {
+    background: url('../img/full-logo-white.png') left/contain no-repeat;
+  }
+}
+
+.full-logo-dark {
+  @extend .full-logo;
+  a {
+    background: url('../img/full-logo-dark.png') left/contain no-repeat;
+  }
+}
+
+/*
+** FORMS —
+*/
+
+.select-swagg {
+  float: left;
+  position: relative;
+  background: #FFF;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    border-top: 5px solid $troc-red;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  select {
+    background: transparent;
+    line-height: 1;
+    border-radius: 0;
+    height: 37px;
+    appearance: none;
+    width: 100%;
+  }
+}
+
+[type="text"],
+[type="password"],
+[type="email"],
+[type="date"],
+[type="search"],
+[type="submit"],
+select {
+  border: 1px solid #e5e5e5;
+  height: 37px;
+  padding-left: 10px;
+  font-size: .8em;
+}
+
+[type="submit"] {
+  font-size: 1em;
+}
+
+[type="text"],
+[type="password"],
+[type="email"],
+[type="date"],
+[type="search"] {
+  border-radius: 5px;
+  background: #f6f6f6;
+  outline: none;
+  &:focus {
+    background: #FFF;
+  }
+}
+
+input.big-checkbox:checked,
+input.big-checkbox:not(:checked) {
+  appearance: none;
+  background: #FFF;
+  width: 29px; height: 29px;
+  vertical-align: middle;
+  border: 1px solid #ECECEC;
+}
+
+input.big-checkbox:checked::after {
+  content: "";
+  display: block;
+  width: 21px; height: 21px;
+  margin: 3px;
+  background: $troc-red;
+}
+
+/*
+** BUTTONS —
+*/
+
+.btn-default {
+  max-width: 280px;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  background: $troc-red;
+  border-radius: 5px;
+  color: #FFF;
+  border: 0;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn-serif {
+  @extend .btn-default;
+  font-size: 16px;
+  font-family: $font-serif;
+}
+
+.btn-modify {
+  width: 70px; height: 70px;
+  display: block;
+  position: relative;
+  top: 30%;
+  margin: 0 auto;
+  line-height: 70px;
+  text-align: center;
+  font-size: .8em;
+  color: #FFF;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, .4);
+  transition: transform .2s, opacity .1s;
+  transform: scale(1);
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+/*
+** FUNCTIONS
+*/
+
+@mixin dot-qte($size: 34px) {
+  border-radius: 100%;
+  font-size: $size;
+  width: $size; height: $size;
+  line-height: .7;
+  text-align: center;
+  font-family: $font-serif;
+  background: $troc-red;
+  color: #FFF;
+  display: block;
+}
+
+@mixin round-image($size: 75px) {
+  width: $size; height: $size;
+  display: block;
+  border-radius: 100%;
+  background-color: #F6F6F6;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

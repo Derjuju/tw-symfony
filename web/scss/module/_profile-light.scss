@@ -1,0 +1,32 @@
+.profile-light {
+  max-width: 338px;
+  color: #FFF;
+  .profile-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100%;
+    border: 2px solid #FFF;
+    width: 130px; height: 130px; }
+  h3 {
+    text-align: center;
+    font-family: $font-serif;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+    margin: 0;
+  }
+  .left,
+  .right {
+    width: 50%;
+    float: left; }
+  .right {
+    position: relative;
+    top: 25px;
+  }
+  .owner-level {
+    font-family: $font-serif;
+    font-size: 25px;
+    font-weight: 300;
+  }
+}

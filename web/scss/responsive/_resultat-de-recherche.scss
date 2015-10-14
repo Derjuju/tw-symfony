@@ -1,0 +1,32 @@
+/* Résultat de Recherche */
+
+.search-results-wrapper {
+  .top {
+    .left, .center {
+      float: left;
+    }
+    .left {
+      @include span-columns(2); }
+    .center {
+      @include span-columns(10);
+      margin-left: -12%; }
+  }
+}
+
+@include media($phat-mobile) {
+  .search-results-wrapper .top {
+    .left, .center {
+      float: none;
+      width: 100%;
+    }
+    .left {
+      @include clearfix();
+      > .select-swagg {
+        width: 100%;
+      }
+    }
+    .center {
+      margin: 1em 0 0 0;
+    }
+  }
+}

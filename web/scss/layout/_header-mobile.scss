@@ -1,0 +1,10 @@
+.mobile-header {
+  display: none;
+  margin-bottom: 1em;
+  .col-6 h1 a {
+    margin: 0 auto;
+  }
+  .col-3:last-child a {
+    float: right;
+  }
+}

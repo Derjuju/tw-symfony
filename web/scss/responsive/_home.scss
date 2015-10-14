@@ -1,0 +1,36 @@
+.monthly-pick-thumbnail {
+  max-width: 720px;
+}
+
+@include media($phat-mobile) {
+  .featured-wines {
+    .btn-default {
+      width: 100%;
+      font-size: 1.2em;
+      font-weight: 500;
+      max-width: inherit;
+      margin: 0;
+    }
+  }
+  .featured-wines-thumbnails li {
+    width: 49%;
+    margin: 2% 2% 0 0;
+    font-size: 30px;
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
+
+@include media($mobile) {
+  .featured-wines-thumbnails a {
+    font-size: .8em; }
+  .monthly-pick-thumbnail li {
+    width: 49%;
+    &:first-child {
+      margin-right: 0;
+      width: 100%;
+      max-width: inherit;
+    }
+  }
+}

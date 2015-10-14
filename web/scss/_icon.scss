@@ -1,0 +1,150 @@
+.icon-bottle,
+.icon-search-profile,
+.icon-question-mark,
+.icon-message,
+.icon-add-bottle,
+.icon-add-bottle-active,
+.icon-cave {
+  background: url('../img/header-icon-set.png') no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-bottle,
+.icon-search-profile {
+  width: 29px; height: 29px;
+}
+
+.icon-question-mark,
+.icon-message,
+.icon-add-bottle,
+.icon-add-bottle-active,
+.icon-cave {
+  width: 35px; height: 35px;
+}
+
+.icon-bottle {
+  background-position: -95px -5px;
+  &:hover, &.active {
+    background-position: -134px -5px;
+  }
+}
+
+.icon-search-profile {
+  background-position: -353px -5px;
+  &:hover, &.active {
+    background-position: -392px -5px;
+  }
+}
+
+.icon-question-mark {
+  background-position: -431px -5px;
+  &:hover, &.active {
+    background-position: -476px -5px;
+  }
+}
+.icon-message {
+  background-position: -263px -5px;
+  &:hover, &.active {
+    background-position: -308px -5px;
+  }
+}
+.icon-cave {
+  background-position: -173px -5px;
+  &:hover, &.active {
+    background-position: -218px -5px;
+  }
+}
+.icon-add-bottle {
+  background-position: -5px -5px;
+  &:hover, &.active {
+    background-position: -50px -5px;
+  }
+}
+
+.icon-add-bottle-active {
+  background-position: -50px -5px;
+}
+
+.icon-arrow-left {
+  width: 8px; height: 15px;
+  background: url('../img/arrow-left.png') no-repeat center;
+  display: block;
+}
+
+.icon-star-static {
+  width: 25px; height: 22px;
+  background-image: url('../img/icon-stars-rate.png');
+  background-repeat: no-repeat;
+  background-position: -5px -5px;
+  display: block;
+  &.full-star {
+    background-position: -5px -37px;
+  }
+}
+
+.icon-magnifier {
+  width: 64px; height: 64px;
+  display: block;
+  background: url('../img/magnifier.png') no-repeat center;
+}
+
+.icon-cave-big,
+.icon-magnifier-big,
+.icon-swap-bottle-big,
+.icon-map-big,
+.icon-swap-place-big {
+  background-image: url('../img/sprite-how-to.png');
+  background-repeat: no-repeat;
+  display: block;
+  width: 49px; height: 49px;
+}
+
+.icon-magnifier-big {
+  width: 47px; height: 47px;
+  background-position: -5px -5px; }
+
+.icon-cave-big {
+  background-position: -62px -5px; }
+
+.icon-map-big {
+  background-position: -5px -64px; }
+
+.icon-swap-bottle-big {
+  width: 98px; height: 57px;
+  background-position: -64px -64px;
+}
+
+.icon-swap-place-big {
+  width: 159px; height: 47px;
+  background-position: -121px -5px;
+}
+
+.search-selector {
+  i {
+    background: url('../img/header-recherche-iconset.png');
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  .btn-search-bottle {
+    i {
+      width: 8px;
+      height: 22px;
+      background-position: -5px -5px;
+    }
+    &:hover i, &.active i {
+      background-position: -23px -5px;
+    }
+  }
+  .btn-search-swapper {
+    i {
+      width: 16px;
+      height: 22px;
+      background-position: -41px -5px;
+    }
+    &:hover i, &.active i {
+      background-position: -67px -5px;
+    }
+  }
+}

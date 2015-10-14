@@ -1,0 +1,44 @@
+/* Fiche Bouteille */
+
+.bottle-info-wrapper {
+  .image-container {
+    @include span-columns(2.5); }
+  .bottle-info {
+    @include span-columns(5.5);
+  }
+  .qte-level {
+    @include span-columns(2);
+  }
+  .select-bottle {
+    @include span-columns(2);
+  }
+}
+
+@include media($phat-mobile) {
+  .bottle-info-wrapper {
+    .image-container {
+      @include span-columns(4);
+    }
+    .bottle-info {
+      @include span-columns(7);
+    }
+  }
+}
+
+@include media($mobile) {
+  .bottle-info-wrapper {
+    .bottle-info .title span {
+      width: 100%;
+      margin-bottom: 0;
+      color: $gray-text;
+    }
+    .star-container .text,
+    .image-container .text {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .image-container .rating {
+      margin-top: 20px;
+    }
+  }
+}

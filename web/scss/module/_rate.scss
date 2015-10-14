@@ -1,0 +1,80 @@
+.rating {
+  padding: 10px 0;
+  .text,
+  .icon-rate {
+    display: inline-block;
+    vertical-align: middle;
+    color: $troc-red;
+    font-size: .8em;
+    margin-right: 5px;
+  }
+  .icon-rate {
+    input {
+      float: right;
+      width: 16px;
+      height: 16px;
+      padding: 0;
+      margin: 0 0 0 -16px;
+      opacity: 0;
+    }
+    label {
+      position: relative;
+      float: right;
+      margin-right: 12px;
+      display: block;
+    }
+    &.icon-bottle-rate-container label {
+      width: 11px; height: 32px;
+      background: url('../img/icon-bottle-rate.png') no-repeat -5px -5px;
+      &:hover {
+        background-position: -26px -5px;
+      }
+    }
+    &.icon-star-rate-container label {
+      width: 25px; height: 22px;
+      background: url('../img/icon-stars-rate.png') no-repeat -5px -5px;
+      &:hover {
+        background-position: -5px -37px;
+      }
+    }
+    .icon-bottle-rate-container:hover label:hover,
+    .icon-bottle-rate-container:hover label:hover ~ label,
+    input:checked ~ label,
+    label:hover,
+    label:hover ~ label {
+      background-position: -26px -5px;
+    }
+  }
+}
+
+.icon-rate.icon-bottle-rate-container {
+  &:hover label:hover,
+  &:hover label:hover ~ label,
+  input:checked ~ label,
+  label:hover,
+  label:hover ~ label {
+    background-position: -26px -5px;
+  }
+}
+
+.icon-rate.icon-star-rate-container {
+  &:hover label:hover,
+  &:hover label:hover ~ label,
+  input:checked ~ label,
+  label:hover,
+  label:hover ~ label {
+    background-position: -5px -37px;
+  }
+}
+
+
+.star-container {
+  .text {
+    display: inline-block;
+    vertical-align: middle;
+    color: $troc-red; }
+  i {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

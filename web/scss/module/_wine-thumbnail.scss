@@ -1,0 +1,131 @@
+.winethumb {
+  @include clearfix();
+  width: 33%;
+  min-width: 260px;
+  .dot-qte {
+    @include dot-qte();
+    margin: 10px; }
+  .image {
+    height: 230px;
+    width: 45%;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; }
+  .owner-container {
+    .image-container {
+      width: 65px; height: 65px;
+      border-radius: 100%;
+      position: absolute;
+      top: 0px; left: -32.5px;
+      background-color: #F5F5F5;
+      background-position: center;
+      background-size: cover;
+    }
+    .right {
+      float: right;
+      margin: -10px 0 20px;
+    }
+  }
+  .description {
+    position: relative;
+    height: 230px;
+    width: 55%;
+    float: left;
+    background: #F6F6F6;
+    border-bottom: 11px solid #740612;
+    padding: 20px; }
+  h3 {
+    color: $troc-red;
+    margin: 5px 0;
+    font-size: 1em; }
+  p {
+    white-space: pre-line;
+    font-size: .8em;
+    line-height: 1.4; }
+  .top-in-his-cave {
+    @include clearfix();
+    margin-bottom: 5px;
+    label {
+      float: left;
+    }
+    .select-swagg {
+      float: right;
+      width: 50%;
+    }
+  }
+}
+
+.social-btns {
+  float: right;
+  .twitter-share-button {
+    margin: 4px 30px -4px;
+  }
+}
+
+.winethumb-with-owner {
+  width: 31%;
+  min-width: 310px;
+  float: left;
+  margin-right: 2%;
+  margin-bottom: 40px;
+}
+
+.winethumb.swap-context {
+  width: 100%;
+  margin-bottom: 20px;
+  .winethumb-header {
+    display: block;
+    width: 100%;
+    @include clearfix();
+    margin-bottom: 10px;
+    .select-swagg {
+      float: right;
+      width: 100px;
+      select {
+        height: 24px;
+      }
+    }
+  }
+  .inner-winethumb {
+    @include clearfix();
+    width: 100%;
+    height: 155px;
+    background: #F6F6F6;
+  }
+  .checkbox-container {
+    float: left;
+    width: 10%;
+    .big-checkbox {
+      margin: 0 auto;
+      display: block;
+      margin-top: 62px;
+    }
+  }
+  input.big-checkbox:checked,
+  input.big-checkbox:not(:checked) {
+    width: 24px; height: 24px;
+    &::after {
+      width: 16px; height: 16px;
+    }
+  }
+  .image {
+    width: 25%;
+    height: 100%;
+    float: left; }
+  .description {
+    width: 65%;
+    height: 100%;
+    h3 {
+      font-size: 20px;
+      font-family: $font-serif;
+      font-weight: 300;
+    }
+    .dot-qte {
+      position: absolute;
+      left: -18px;
+      top: 60px;
+      margin: 0;
+    }
+  }
+}

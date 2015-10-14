@@ -1,0 +1,12 @@
+.search-results-wrapper {
+  .top {
+    padding: 0 1em 2em 1em;
+    @include clearfix();
+    .center {
+      font-size: 20px;
+      font-weight: lighter;
+      text-align: center; }
+    .red {
+      font-weight: 700; }
+  }
+}

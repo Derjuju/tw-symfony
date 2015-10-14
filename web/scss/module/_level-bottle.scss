@@ -1,0 +1,30 @@
+.level-bottle {
+  height: 182px;
+  width: 65px;
+  overflow: hidden;
+  position: relative;
+  &:hover .the-fullness {
+    top: 40%;
+  }
+  .the-emptyness,
+  .the-fullness {
+    background: $troc-red;
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+  }
+  .the-emptyness {
+    opacity: 0.4;
+    top: 0;
+  }
+  .the-fullness {
+    top: 90%;
+    transition: top .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .the-shape {
+    background: url('../img/big-bottle.png');
+    height: 100%;
+    position: relative;
+    z-index: 99;
+  }
+}

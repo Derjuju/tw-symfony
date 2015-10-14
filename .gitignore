@@ -7,3 +7,6 @@
 /web/bundles/
 composer.lock
 .DS_Store
+web/Gulpfile.js
+
+web/package.json

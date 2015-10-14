@@ -1,0 +1,25 @@
+.wrapper-404 {
+  background: url('../img/background-prehome.jpg') no-repeat 90% top/cover;
+  color: #FFF;
+  min-height: 100%;
+  > .wrapper {
+    padding-top: 10%;
+  }
+  h2 {
+    font-size: 100px;
+    font-family: $font-serif;
+    font-weight: 300;
+    line-height: 1;
+    text-shadow: 0 1px 0 darken($troc-red, 30);
+    margin: 0;
+  }
+  h3 {
+    font-family: $font-serif;
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .btn-default {
+    margin-top: 10%;
+  }
+}

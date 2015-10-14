@@ -1,0 +1,20 @@
+div.contact-wrapper {
+  padding-top: 2em;
+  .contact-text {
+    font-family: $font-serif;
+    font-size: 20px;
+    text-align: center;
+    white-space: pre-line;
+    letter-spacing: .5px;
+    color: $troc-red;
+    strong {
+      font-size: 25px; }
+  }
+  .btn-serif {
+    padding: 10px;
+    margin: 50px auto 10px;
+    max-width: 190px;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+}

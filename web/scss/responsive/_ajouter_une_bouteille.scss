@@ -1,0 +1,107 @@
+/* Ajouter une bouteille */
+
+.add-bottle-form {
+  .image-container {
+    @include span-columns(2.5)
+  }
+  .level-container {
+    @include span-columns(2); }
+  .data-container {
+    @include clearfix();
+    @include span-columns(7.5);
+    .span-left {
+      float: left;
+      width: 72%; }
+    .span-right {
+      float: right;
+      width: 24%; }
+    .form-top {
+      @include clearfix();
+      margin-bottom: 20px;
+      .type {
+        float: left;
+        width: 45%; }
+      .qte {
+        float: right;
+        width: 25%;
+      }
+    }
+  }
+}
+
+.add-bottle-wrapper {
+  .top-bottle-container {
+    @include clearfix();
+    .sort {
+      float: left;
+      width: 200px;
+    }
+    .add-bottle {
+      float: right;
+    }
+  }
+}
+
+@include media($phat-mobile) {
+  .add-bottle-form {
+    padding: 5px 0 10px;
+    .image-container {
+      .qte {
+        float: none;
+        margin-bottom: 1em;
+      }
+      .bte-origine-label {
+        font-size: .8em; }
+      .rating {
+        margin-top: 1em;
+      }
+    }
+    .data-container {
+      .span-left, .span-right {
+        float: none;
+        width: 100%;
+      }
+      .form-top .type {
+        width: 100%; }
+      .span-left .form-top {
+        margin-bottom: 10px; }
+      .span-right .form-top {
+        margin-bottom: 0; }
+      .data-add-aside {
+        .add {
+          display: none;
+        }
+        .select-swagg {
+          width: 100%;
+        }
+      }
+      .data-commentaire textarea {
+        display: none;
+      }
+    }
+    .image-container {
+      @include span-columns(4); }
+    .data-container {
+      @include span-columns(7.5); }
+    .submit-btn {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+    }
+  }
+  .add-bottle-wrapper {
+    .top-bottle-container .sort {
+      width: 100%;
+      float: none;
+    }
+  }
+}
+
+@include media($mobile) {
+  .add-bottle-form {
+    .image-container {
+      @include span-columns(6); }
+    .data-container {
+      @include span-columns(5.5); }
+  }
+}

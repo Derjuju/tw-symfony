@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<html>
+<!--[if lt IE 7]><html lang="fr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html lang="fr" class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"><![endif]-->
+<!--[if IE 8]><html lang="fr" class="no-js lt-ie10 lt-ie9 ie8"><![endif]-->
+<!--[if IE 9]><html lang="fr" class="no-js lt-ie10 ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><html lang="fr" class="no-js"><![endif]-->
+<!--[if !IE]><html lang="fr"><![endif]-->
     <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         {% block head %}
             <title>{% block title %}TrocWine{% endblock %}</title>
@@ -16,14 +18,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         {% block stylesheets %}
-            <!-- Bootstrap core CSS -->
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-            <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-            <!--[if gte IE 9]>
-            <link rel="stylesheet" type="text/css" href="{{ asset('css/ie.css') }}" />
-            <![endif]-->      
-            <link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.css"/>
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />            
         {% endblock %}
         
         
@@ -46,8 +43,10 @@
             <!-- Bootstrap core JavaScript
             ================================================== -->
             <!-- Placed at the end of the document so the pages load faster -->
-            <script src="{{ asset('js/vendor/jquery-1.11.2.min.js') }}"></script>
-            <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>            
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/2.2.2/tinysort.min.js"></script>
             <script src="{{ asset('js/plugins-front.js') }}"></script>
             <script src="{{ asset('js/main-front.js') }}"></script>
         {% endblock %}

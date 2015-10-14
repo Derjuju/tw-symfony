@@ -1,0 +1,40 @@
+.prehome-container {
+  @include span-columns(7);
+}
+
+@include media($tablet) {
+  .prehome-container {
+    @include span-columns(4);
+  }
+}
+
+@include media($mobile) {
+  .prehome-page {
+    background: url(../img/background-prehome-mobile.jpg) no-repeat;
+    background-size: 100% auto;
+  }
+  .prehome-container {
+    padding-top: 48px;
+    @include span-columns(4);
+    .greetings-title {
+      text-shadow: none;
+      font-size: 30pt;
+    }
+    h2 {
+      text-align: center;
+      text-shadow: none;
+      font-size: 1.2em;
+      font-weight: 300;
+      max-width: 250px;
+      margin: 10px auto 0;
+    }
+  }
+  .prehome-disclamer {
+    max-width: inherit;
+    p {
+      padding: 30px 10px;
+      font-size: 0.9em; }
+    .btn-ok {
+      margin-top: -30px; }
+  }
+};

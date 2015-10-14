@@ -1,0 +1,25 @@
+.connected {
+  .top-header {
+    padding-top: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.form-bottle-search-light {
+  margin-top: 0;
+  float: left;
+  font-size: .9em;
+  .select-swagg {
+    width: 13%;
+  }
+  [type=submit] {
+    padding: 0 10px;
+  }
+}
+
+.header-menu-wrapper {
+  @include clearfix();
+  .header-menu-container {
+    float: right;
+  }
+}

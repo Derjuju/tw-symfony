@@ -1,0 +1,41 @@
+/* Subscriptions */
+
+.subscribe-wrapper {
+  .profile-image-container {
+    @include span-columns(3); }
+  .subscribe-inputs-container {
+    @include span-columns(9); }
+  .top-subscribe-form {
+    .left, .right {
+      @include span-columns(6); }
+  }
+}
+
+@include media($phat-mobile) {
+  .subscribe-wrapper {
+    .profile-image-container,
+    .subscribe-inputs-container {
+      @include span-columns(12);
+    }
+    .profile-image-container {
+      position: relative;
+      z-index: 999999;
+      margin-top: -54px;
+    }
+    .top-subscribe-form .right .col-6 {
+      width: 100%;
+    }
+    .address-form {
+      input {
+        width: 48.5%; }
+      .col-12,
+      .department {
+        width: 100%;
+      }
+    }
+    [type='submit'] {
+      font-size: 26px;
+      height: inherit;
+    }
+  }
+}

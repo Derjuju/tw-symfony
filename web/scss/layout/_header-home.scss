@@ -1,0 +1,46 @@
+.home-header {
+  min-height: 410px;
+}
+
+.home-header-nav {
+  float: right;
+  @include clearfix();
+  a {
+    color: #FFF;
+    text-decoration: none;
+    font-size: .8em;
+    margin: 0 20px;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.home-header .logo-container {
+  color: #FFF;
+  margin: 60px auto 0;
+  max-width: 500px;
+  .greetings-title {
+    font-size: 40px;
+    line-height: .7;
+    text-align: center;
+    text-shadow: 1px 1px 2px #222;
+    font-family: $font-serif;
+    white-space: pre-line;
+    margin: 0;
+  }
+  .full-logo-white {
+    margin: 0;
+  }
+  h2 {
+    text-align: center;
+    text-shadow: 1px 1px 2px #222;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+}

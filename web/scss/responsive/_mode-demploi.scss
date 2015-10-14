@@ -1,0 +1,17 @@
+/* Mode d'emploi */
+.how-to-wrapper {
+  .left {
+    @include span-columns(2); }
+  .right {
+    @include span-columns(10); }
+  .usage-steps-container {
+    .span {
+      @include span-columns(4);
+    }
+  }
+  .limit-exchange-container {
+    .right {
+      @include span-columns(6);
+    }
+  }
+}

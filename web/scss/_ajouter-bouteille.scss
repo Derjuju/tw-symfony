@@ -1,0 +1,62 @@
+.add-bottle-form {
+  background: #F6F6F6;
+  padding: 50px 0 30px;
+  .data-container {
+    select, textarea, button, label {
+      font-weight: 300;
+      font-size: .8em; }
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      max-height: 230px;
+      min-height: 70px;
+      border: 1px solid #E5E5E5;
+      padding: 10px;
+    }
+    .data-add-aside {
+      .select-swagg {
+        @include clearfix();
+        margin-bottom: 10px;
+        width: 74%;
+      }
+      button {
+        padding: 5px;
+        width: 22%;
+        margin: 5px 0;
+        display: block;
+        border-radius: 0;
+        float: right;
+      }
+    }
+    .span-right {
+      .select-swagg {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .level-container {
+    h4 {
+      font-weight: 300;
+      color: $troc-red;
+      text-align: center; }
+    .level-bottle {
+      margin: 0 auto; }
+    button {
+      font-size: .8em;
+      margin: 30px auto;
+    }
+  }
+  .submit-btn {
+    width: 215px;
+    padding: 5px;
+    margin: 7px auto 0;
+    font-size: 12pt;
+    text-transform: uppercase;
+    line-height: 0;
+    position: absolute;
+    left: 0; right: 0;
+    font-family: $font-serif;
+    text-decoration: none;
+  }
+}
