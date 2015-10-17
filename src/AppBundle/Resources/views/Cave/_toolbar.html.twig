@@ -1,14 +1,13 @@
 {% form_theme formFiltrerCave with ['AppBundle::form_theme.html.twig', _self] %}
-<div class="fullwidth-wrapper">
-    <div class="site-wrapper">
-        <div class="row">
-            <div class="col-md-3 text-center"> 
-                {{ form_start(formFiltrerCave, {'attr': {'class': 'form-inline'} }) }}
-                {{ form_end(formFiltrerCave) }}
-            </div>
-            <div class="col-md-9 text-right">
-                <a href="{{path('front_ma_cave_ajouter')}}" class="btn btn-default pourpre ajouterBouteille">Ajouter une bouteille</a>
-            </div>
+<div class="top-bottle-container container">
+    <div class="sort">
+        <div class="select-swagg">
+            {{ form_start(formFiltrerCave, {'attr': {'class': ''} }) }}
+            {{ form_widget(formFiltrerCave.typeDeVin, { 'label': false,'class': '', 'attr': {'class': 'sorter'} }) }} 
+            {{ form_end(formFiltrerCave) }}
         </div>
+    </div>
+    <div class="add-bottle">
+        <a href="{{path('front_ma_cave_ajouter')}}">Ajouter une bouteille<i class="icon-add-bottle-active"></i></a>
     </div>
 </div>

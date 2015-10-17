@@ -6,11 +6,20 @@
 
 {% block header %}
     {% set titreH1 = "Politique de Cookies" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    <div class="site-wrapper"> 
+        <div class="row"> 
+            <div class="wrapper">
+                <h2>Politique de Cookies</h2>
+                <p></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

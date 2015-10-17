@@ -1,0 +1,32 @@
+<header class="header {% if is_granted('ROLE_USER') %} connected{% endif %}{% if bottle_owner is defined %} bottle-owner{% endif %}{% if swappers is defined %} swappers{% endif %}">
+	<div class="container">
+                {% include "AppBundle:Interface:_header_mobile.html.twig" %}
+		<div class="top-header wrapper">
+			<div class="logo-container">
+				<a href="{{path('front_accueil')}}" title="Accueil" class="full-logo-dark" >TrocWine</a>
+			</div>
+			<div class="header-menu-wrapper">
+				<div class="header-menu-container">
+					<a href="{{path('front_mode_emploi')}}" class="{{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}" title="Une Question ?"><i class="icon-question-mark {{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}"></i></a>
+					{% if is_granted('ROLE_USER') %}
+                                            <a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}" title="Ma Cave"><i class="icon-cave {{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}"></i></a>                                            
+                                        {% else %}
+                                            <a href="{{path('front_ma_cave')}}" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'login' ? 'active' }}"><i class="icon-cave"></i></a>
+                                        {% endif %}                                        
+					<a href="#" class="" title="Messages"><i class="icon-message "></i></a>
+					<a href="{{path('front_ma_cave_ajouter')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave_ajouter' ? 'active' }}" title="Ajouter une bouteille"><i class="icon-add-bottle {{ app.request.attributes.get('_route') == 'front_ma_cave_ajouter' ? 'active' }}"></i></a>
+                                        {% if is_granted('ROLE_USER') %}
+                                            <a href="{{path('logout')}}" class=""><i class="icon-deconnexion"></i></a>
+                                        {% endif %}
+				</div>
+			</div>
+		</div>
+                {% if bottle_owner is defined %}
+                    {% include "AppBundle:Interface:_content_bottle_owner.html.twig" %}
+                {% elseif swappers is defined %}
+                    {% include "AppBundle:Interface:_content_swappers.html.twig" %}
+                {% else %}
+                    <h1 class="page-title {% if use_red_title is not defined %}white-page-title{% endif %}">{{titreH1}}</h1>                
+                {% endif %}
+	</div>
+</header>

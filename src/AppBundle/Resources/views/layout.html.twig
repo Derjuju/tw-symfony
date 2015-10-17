@@ -12,17 +12,17 @@
 {% block body %}
 
     {% block header %}
-        {% include "AppBundle::_header.html.twig" %}
+        {% include "AppBundle:Interface:_header.html.twig" %}
     {% endblock header %}
     
     <div id="main">    
     {% block content %}{% endblock content %}
     </div>
     
-    {% include 'AppBundle::_popin.html.twig' %}
+    {% include 'AppBundle:Interface:_popin.html.twig' %}
     
     {% block footer %}
-        {% include "AppBundle::_footer.html.twig" %}
+        {% include "AppBundle:Interface:_footer.html.twig" %}
     {% endblock footer %}
 {% endblock body %}
 

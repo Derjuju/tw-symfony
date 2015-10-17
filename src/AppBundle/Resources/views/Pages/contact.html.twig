@@ -6,11 +6,22 @@
 
 {% block header %}
     {% set titreH1 = "Contact" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    
+    <div class="site-wrapper"> 
+        <div class="row"> 
+            <div class="wrapper contact-wrapper">
+                <p class="contact-text">Vous avez des questions à propos de TrocWine, ou vous souhaitez nous faire une remarque ?</p>
+                <p class="contact-text"><strong>Nous vous répondons tous les jours !</strong></p>
+                <a href="mailto:contact@trocwine.com" class="btn-serif">Contactez-nous</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

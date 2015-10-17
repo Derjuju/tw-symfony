@@ -10,10 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    {{ parent() }}
-    {% include "AppBundle:Cave:_profil.html.twig" %}
-    {% include "AppBundle:Cave:_toolbar.html.twig" with {'formFiltrerCave' : formFiltrerCave} %}
-    {{ render(controller('AppBundle:Cave:liste', { filtre : 0 } )) }}
+    {{ parent() }}     
+        <section class="cave-wrapper">
+            {% include "AppBundle:Cave:_profil.html.twig" %}
+            <div class="bottle-container wrapper">
+            {% include "AppBundle:Cave:_toolbar.html.twig" with {'formFiltrerCave' : formFiltrerCave} %}
+            {{ render(controller('AppBundle:Cave:liste', { filtre : 0 } )) }}
+            </div>
+        </section>
 {% endblock %}
 
 

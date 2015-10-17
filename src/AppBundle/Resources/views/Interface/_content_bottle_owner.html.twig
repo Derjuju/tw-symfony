@@ -1,0 +1,26 @@
+<div class="header-owner-info wrapper">
+	<div class="span-left">
+		<a href="#link-back" class="btn-default"><i class="icon-arrow-left"></i> Retour</a>
+	</div>
+	<div class="profile-light span-center">
+		<div class="left">
+			<div class="profile-image" style="background-image: url('<?= $bottle_owner['img'] ?>');"></div>
+			<h3><?= $bottle_owner['name'] ?></h3>
+		</div>
+		<div class="right">
+			<span class="owner-level"><?= $bottle_owner['level']; ?></span>
+			<div class="star-container">
+				<?php for($i = 1; $i <= 5; $i++): ?>
+					<?php if($i <= $bottle_owner['stars']): ?>
+						<i class="icon-star-static full-star"></i>
+					<?php else: ?>
+						<i class="icon-star-static"></i>
+					<?php endif; ?>
+				<?php endfor; ?>
+			</div>
+		</div>
+	</div>
+	<div class="span-right">
+		<a href="troquer-une-bouteille.php" class="btn-default">Troquer ma selection</a>
+	</div>
+</div>

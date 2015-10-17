@@ -1,0 +1,42 @@
+<section class="header-swapper">
+	<div class="profile-light swapper-a-container">
+		<div class="left">
+			<div class="profile-image" style="background-image: url('<?= $swappers[0]['img'] ?>');"></div>
+			<h3><?= $swappers[0]['name'] ?></h3>
+		</div>
+		<div class="right">
+			<span class="owner-level"><?= $swappers[0]['level']; ?></span>
+			<div class="star-container">
+				<?php for($i = 1; $i <= 5; $i++): ?>
+					<?php if($i <= $swappers[0]['rate']): ?>
+						<i class="icon-star-static full-star"></i>
+					<?php else: ?>
+						<i class="icon-star-static"></i>
+					<?php endif; ?>
+				<?php endfor; ?>
+			</div>
+		</div>
+	</div>
+	<div class="btns-container">
+		<button class="btn-default btn-swap">Proposer un troc</button>
+		<button class="btn-default btn-cancel">Annuler le troque</button>
+	</div>
+	<div class="profile-light swapper-b-container">
+		<div class="left">
+			<div class="profile-image" style="background-image: url('<?= $swappers[1]['img'] ?>');"></div>
+			<h3><?= $swappers[1]['name'] ?></h3>
+		</div>
+		<div class="right">
+			<span class="owner-level"><?= $swappers[1]['level']; ?></span>
+			<div class="star-container">
+				<?php for($i = 1; $i <= 5; $i++): ?>
+					<?php if($i <= $swappers[1]['rate']): ?>
+						<i class="icon-star-static full-star"></i>
+					<?php else: ?>
+						<i class="icon-star-static"></i>
+					<?php endif; ?>
+				<?php endfor; ?>
+			</div>
+		</div>
+	</div>
+</section>

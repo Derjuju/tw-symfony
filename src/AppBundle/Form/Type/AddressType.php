@@ -13,12 +13,12 @@ class AddressType extends AbstractType
     {
         
         $builder
-          ->add('street', 'text',['required'=>false,'label'=>'N° voie / Rue'])
-          ->add('zipCode', 'text',['label'=>'Code postal', 'required'=>false])
-          ->add('city', 'text',['label'=>'Ville', 'required'=>false])
-          ->add('departement', 'text',['label'=>'Département', 'required'=>false])
-          ->add('region', 'text',['label'=>'Région', 'required'=>false])
-          ->add('country', 'text',['label'=>'Pays', 'required'=>false])
+          ->add('street', 'text',['attr' => array('placeholder' => 'N° voie / Rue'),'label'=>'N° voie / Rue','required'=>false])
+          ->add('zipCode', 'text',['attr' => array('placeholder' => 'Code postal'),'label'=>'Code postal', 'required'=>false])
+          ->add('city', 'text',['attr' => array('placeholder' => 'Ville'),'label'=>'Ville', 'required'=>false])
+          ->add('departement', 'text',['attr' => array('placeholder' => 'Département'),'label'=>'Département', 'required'=>false])
+          ->add('region', 'text',['attr' => array('placeholder' => 'Région'),'label'=>'Région', 'required'=>false])
+          ->add('country', 'text',['attr' => array('placeholder' => 'Pays'),'label'=>'Pays', 'required'=>false])
           ;
        
     }

@@ -11,10 +11,14 @@
 
 {% block content %}
     {{ parent() }}
-    <div class="site-wrapper">  
-        <h2>Confirmation de votre adresse mail.</h2>
-        <p>Votre adresse a bien été confirmée.</p>
-        <p>Vous pouvez accéder à votre espace en vous <a href="#" onClick="showLogin(); return false;">identifiant ici</a></p>
+    <div class="site-wrapper"> 
+        <div class="row"> 
+            <div class="wrapper">  
+                <h2>Confirmation de votre adresse mail.</h2>
+                <p>Votre adresse a bien été confirmée.</p>
+                <p>Vous pouvez accéder à votre espace en vous <a href="#" onClick="showLogin(); return false;">identifiant ici</a></p>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Image;
 use AppBundle\Form\Type\RegisterMemberType;
 
 class InscriptionController extends Controller
@@ -35,6 +36,47 @@ class InscriptionController extends Controller
             
             $em->persist($entity);
             $em->flush();
+            
+            //avatar_default.jpg
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_avatars_dir');
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0777, true);
+            }
+            
+            $useDefaultAvatar = true;
+            if ($request->files && count($request->files) > 0)
+            {
+                if($request->files->get('profile_picture') != null)
+                {
+                    $uploadedFile = $request->files->get('profile_picture');
+                    //$nfile = $request->request->get('file_name');
+                    $file=$uploadedFile->getClientOriginalName();
+                    $ext=strrchr($file,'.');
+                    $nfile= date('YmdHis')."_".$entity->getLogin()."$ext";
+                    if (file_exists($dir . $nfile))
+                    {
+                        unlink($dir . $nfile);
+                    }
+                    $uploadedFile->move($dir, $nfile);
+                    $useDefaultAvatar = false;  
+                }
+            }
+            if($useDefaultAvatar){
+                $nfile= date('YmdHis')."_".$entity->getLogin().".jpg";
+                copy($dir.'avatar_default.jpg', $dir.$nfile);               
+            }
+            
+                    
+            $image = new Image();
+            $image->setFile($this->container->getParameter('upload_avatars_dir') . $nfile);
+            $image->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $em->persist($image);
+
+            $entity->setAvatar($image);
+            $em->persist($entity);
+                    
+            $em->flush();  
             
             if (!$this->get('mail_to_user')->sendEmailConfirmation($entity->getEmail())) {
                 throw $this->createNotFoundException('Unable to send confirmation mail.');

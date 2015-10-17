@@ -27,6 +27,7 @@ class Image
      * @ORM\Column(name="file", type="string", length=255)
      */
     private $file;
+    public $imageFile;
 
     /**
      * @var \DateTime

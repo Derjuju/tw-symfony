@@ -6,11 +6,80 @@
 
 {% block header %}
     {% set titreH1 = "Mode d'emploi" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+                <section class="how-to-wrapper">
+                    <div class="row usage-steps-container">
+                            <div class="wrapper">
+                                    <div class="left">
+                                            <h3>Créez votre profil</h3>
+                                    </div>
+                                    <div class="right">
+                                            <div class="span">
+                                                    <i class="icon-cave-big"></i>
+
+                                                    <p>Déposez en ligne
+                                                            les bouteilles que
+                                                            vous souhaitez échanger.</p>
+                                            </div>
+                                            <div class="span">
+                                                    <i class="icon-magnifier-big"></i>
+
+                                                    <p>Rechercher
+                                                            vos bouteilles rêvés.</p>
+                                            </div>
+                                            <div class="span">
+                                                    <i class="icon-swap-bottle-big"></i>
+
+                                                    <p>Une fois trouvés,
+                                                            faîtes une offre de troc
+                                                            au meilleur TrocWiner !</p>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="wrapper">
+                                    <div class="left">
+                                            <h3>Le Troc</h3>
+                                    </div>
+                                    <div class="right">
+                                            <div class="col-6">
+                                                    <i class="icon-map-big"></i>
+                                                    <p>Une fois l’offre validée,
+                                                            TrocWine vous propose un lieu de rendez-vous
+                                                            au plus proche de chez vous pour procéder
+                                                            à l’échange.</p>
+                                            </div>
+                                            <div class="col-6">
+                                                    <i class="icon-swap-place-big"></i>
+                                                    <p>Ces lieux peuvent être des bars à vins,
+                                                            des bistrots ou restaurants sélectionnés pour leur
+                                                            qualité d’accueil ou leur carte des vins.</p>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="row limit-exchange-container">
+                            <div class="wrapper">
+                                    <div class="left">
+                                            <h3>Limite d'échange</h3>
+                                    </div>
+                                    <div class="right">
+                                            <p>
+                                                    Aucune ! Une bouteille contre cent si décidé par le trocwiner.
+                                                    TrocWine propose à toute la communauté winelovers de constituer sa cave sans dépenser un centime. 
+
+                                                    <span class="red">Dénichez les meilleurs bouteilles à travers toute la France sans limite de budget. Votre seul et unique monnaie c’est le vin !</span>
+                                            </p>
+                                    </div>
+                            </div>
+                    </div>
+            </section>
 {% endblock %}
 
 

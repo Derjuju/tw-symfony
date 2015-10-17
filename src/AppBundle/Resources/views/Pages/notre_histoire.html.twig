@@ -5,12 +5,70 @@
 {% block bodyclass %}notre-histoire{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Notre Histoire" %}
+    {% set titreH1 = "TrocWine, c'est quoi ?" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    
+    <section class="qui-sommes-nous-wrapper">
+        <div class="row">
+                <div class="wrapper">
+                        <h3>TrocWine c’est le premier site exclusivement dédié à l’échange de bouteilles de vins en ligne. Pour la première fois, particuliers comme professionnels pourront acquérir les bouteilles de leur choix sans dépenser un centime.</h3>
+                </div>
+        </div>
+        <div class="row">
+                <div class="wrapper">
+                        <div class="left">
+                                <h2>Pourquoi avoir créer Troc<i>W</i>ine ?</h2>
+                        </div>
+                        <div class="right">
+                                <ul>
+                                        <li>Pour acquérir sans débourser</li>
+                                        <li>Pour lutter contre l’inflation du prix des bouteilles</li>
+                                        <li>Pour lutter contre le Parkerisme et ses points qui décident de tout.</li>
+                                        <li>Pour mettre en avant et trouver vos bouteilles de coeur.</li>
+                                        <li>Pour enfin accéder aux Grands Crus sans dépenser des milles.</li>
+                                        <li>Pour étendre l’amour de ce breuvage.</li>
+                                </ul>
+                        </div>
+                </div>
+        </div>
+        <div class="row testimonials-container">
+                <div class="wrapper">
+                        <div class="left">
+                                <div class="image-container" style="background-image: url('{{asset('img/demo-face.png')}}');"></div>
+                                <a href="ma-cave.php" class="btn-default btn-serif">Consultez sa cave</a>
+                        </div>
+                        <div class="right">
+                                <p>« J'ai toujours été un passionné.
+                                        Un passionné de toute chose, mais comme beaucoup de personnes, une fois touché par le vin il est impossible d'en sortir ! C'est un monde infini. J'ai tout mis de côté pour me consacrer à ma passion : le vin. Seulement, avec l'inflation des prix des bouteilles, il est souvent difficile de s'offrir ou même de goûter les très bons et très grands vins... De plus, les vins rares et recherchés ne sont plus sur le marché, mais bel et bien dans les caves de passionnés tel que nous. Voilà comment TrocWine est né ! J’ai créé une plateforme où chacun pourra enfin trouver ses bouteilles de coeur et les échanger entre winelovers ! »
+                                        <span class="author">Arthur Tutin - fondateur</span>
+                                </p>
+                        </div>
+                </div>
+        </div>
+        <div class="row testimonials-container">
+                <div class="wrapper">
+                        <div class="left">
+                                <div class="image-container" style="background-image: url('{{asset('img/demo-face-3.png')}}');"></div>
+                                <a href="ma-cave.php" class="btn-default btn-serif">Consultez sa cave</a>
+                        </div>
+                        <div class="right">
+                                <p>Passionné par l’univers mystérieux et envoûtant des vins et spiritueux, j’ai fait le choix de consacrer ma vie à la promotion de ces précieux élixirs.
+                                        Comme Arthur, je constate que cette passion à un coût et que certaines bouteilles, en fonction du domaine, du terroir ou du millésime, sont devenues de véritables objets de luxe.
+                                        Le vin ne doit pas être vu, simplement, comme un placement financier mais bien comme un produit de passion.
+                                        Du pied de vigne à la mise en bouteille, il s’agit avant tout de la sublimation par la main de l’homme, d’un fruit merveilleux de la nature.
+                                        TrocWine est une réponse aux puristes, aux passionnés, aux connaisseurs ou aux simples amateurs et qui voient la cote des vins s’envoler parfois sans raison, vers des sommets qui donnent souvent le vertige.
+                                        Nous offrons la possibilité aux troqueurs d’établir eux-mêmes la cote des vins et de mettre la main sur des cuvées dont ils ont longtemps rêvé mais qu’il n’auraient jamais osé pouvoir s’offrir un jour.
+                                        <span class="author">Florestan - Co-Fondateur</span>
+                                </p>
+                        </div>
+                </div>
+        </div>
+</section>
 {% endblock %}
 
 

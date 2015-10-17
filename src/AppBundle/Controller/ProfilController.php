@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Image;
 use AppBundle\Form\Type\EditMemberType;
 
 class ProfilController extends Controller
@@ -32,6 +33,46 @@ class ProfilController extends Controller
             $em = $this->getDoctrine()->getManager();            
             $em->persist($user);
             $em->flush();
+            
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_avatars_dir');
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0777, true);
+            }
+            if ($request->files && count($request->files) > 0)
+            {
+                if($request->files->get('profile_picture') != null)
+                {
+                    $uploadedFile = $request->files->get('profile_picture');
+                    //$nfile = $request->request->get('file_name');
+                    $file=$uploadedFile->getClientOriginalName();
+                    $ext=strrchr($file,'.');
+                    $nfile= date('YmdHis')."_".$user->getLogin()."$ext";
+                    if (file_exists($dir . $nfile))
+                    {
+                        unlink($dir . $nfile);
+                    }
+                    $uploadedFile->move($dir, $nfile);
+                
+                    // Modification de l'image lié au profil
+                    if ($user->getAvatar() !== null)
+                    {
+                        $user->getAvatar()->setFile($this->container->getParameter('upload_avatars_dir') . $nfile);
+                        $em->persist($user);
+                    }
+                    else
+                    {
+                        $image = new Image();
+                        $image->setFile($this->container->getParameter('upload_avatars_dir') . $nfile);
+                        $image->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                        $em->persist($image);
+
+                        $user->setAvatar($image);
+                        $em->persist($user);
+                    }
+                    $em->flush();  
+                }           
+            }     
             
             $session = $request->getSession();
             $session->getFlashBag()->add("success","Modifications du profil enregistrées.");

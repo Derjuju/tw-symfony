@@ -6,11 +6,19 @@
 
 {% block header %}
     {% set titreH1 = "Partenaires" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    
+    <div class="site-wrapper"> 
+        <div class="row"> 
+            <div class="wrapper contact-wrapper">                
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

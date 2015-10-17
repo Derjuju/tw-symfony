@@ -10,3 +10,6 @@ composer.lock
 web/Gulpfile.js
 
 web/package.json
+
+web/uploads/*
+web/online/*

@@ -1,12 +1,84 @@
-/* RESET BOOTSTRAP */
-html{ font-size: initial; }
-body{ font-family: sans-serif; line-height: initial; font-size: initial; }
-.social-container .container {
-    width:auto;
+.Vollkorn{   
+    font-family: 'Vollkorn', serif;
 }
+.pourpre{
+    color: #740612;
+}
+.txt11px{
+    font-size: 11px;
+    line-height: 14px;
+}
+.txt12px{
+    font-size: 12px;
+    line-height: 15px;
+}
+.txt13px{
+    font-size: 13px;
+    line-height: 16px;
+}
+
+
 .search-selector {
     z-index: 99;
 }
+.header {
+    z-index: 98;
+}
+
+
+.subscribe-wrapper .subscribe-inputs-container {
+    margin-right: 0;
+}
+
+label {
+    font-weight: 400;
+    line-height: 14px;
+    font-size: 12px;
+}
+
+.header a.full-logo-dark {
+    max-width: 190px;
+    max-height: 50px;
+}
+h1.page-title {
+    display: block;
+    font-size: 40px;
+    padding-bottom: .6em;
+    margin: 0;
+    line-height: 1;
+    font-weight: 300;
+}
+
+h2 {
+    color: #740612;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: initial;
+}
+.homepage h2 {
+    color: #8E8E8E;
+}
+.home-header .logo-container h2 {
+    color: #ffffff;
+}
+h3 {
+    color: #740612;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: initial;
+}
+
+
+
+/* les formulaires */
+.subscribe-form ul{
+    list-style: none;
+    padding-left: 0px;
+}
+.subscribe-form ul li{
+    color:#740612;
+}
+
 
 /****  Margin  ****/
 .m-auto {
@@ -514,3 +586,89 @@ img.loadingWheel {
   width: 32px;
   position: relative;
   display: block; }
+
+
+.icon-deconnexion{
+    background: url(../img/header-icon-set.png) no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    background-position: -521px -5px;
+}
+a:hover .icon-deconnexion{
+    background-position: -566px -5px;
+}
+
+@media screen and (max-width: 768px) {
+    .search-selector {
+        display: none;
+    }
+}
+
+
+
+
+.input-group-addon {
+    border-radius: 5px;
+    background: #f6f6f6;
+    outline: 0;
+    border: 1px solid #e5e5e5;   
+}
+/* INSCRIPTION */
+.inscription .btn-default{
+    padding-bottom: 35px;
+}
+.inscription .input-group.date input{    
+    margin-bottom: 0px;
+}
+
+/* MA CAVE */
+.cave-wrapper {
+    margin-top: -20px;
+}
+
+/* PROFIL */
+.blocInfo{    
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    line-height: 15px;
+}
+.blocInfo h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.blocInfo h2.gris{
+    color:#7a7a7a;
+}
+.blocInfo h2.gris span{ 
+    font-family: Arial, serif;
+    padding-left:20px;
+}
+
+.editerProfil{
+    text-transform: none;
+    font-size: 12px;
+    line-height: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.ma-cave .btn-default {
+    padding-bottom: 10px;
+}
+
+.modifier-profil .profile-image .btn-modify {
+    opacity: 0;
+    color:#ffffff;
+}
+.modifier-profil .profile-image .btn-modify:hover {
+    opacity: 1;
+    color:#ffffff;
+}
+.modifier-profil .btn-modify{
+    top: 15%;    
+}
+.modifier-profil .subscribe-wrapper .upload-btn {    
+    margin: 20px auto;
+}

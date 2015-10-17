@@ -28,7 +28,11 @@ class EditMemberType extends AbstractType
             ->add('email', 'email', array('attr' => array('placeholder' => 'Adresse mail*'),'label'=>'Adresse mail*'))
             ->add('telephon', 'text',['attr' => array('placeholder' => 'Téléphone fixe'),'label'=>'Téléphone fixe' ,'required'=>false])
             ->add('mobile', 'text',['attr' => array('placeholder' => 'Téléphone portable'),'label'=>'Téléphone portable' ,'required'=>false])
-            ->add('address', new AddressType());
+            ->add('address', new AddressType())
+            ->add('avatar', new ImageType(), array(
+                    'data_class' => 'AppBundle\Entity\Image',
+                    'required' => false,
+                ));
        
     }
     

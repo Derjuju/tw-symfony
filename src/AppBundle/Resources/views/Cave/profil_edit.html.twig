@@ -5,6 +5,7 @@
 {% block bodyclass %}modifier-profil{% endblock %}
 
 {% block header %}
+    {% set withoutSearchSelector = true %}
     {% set titreH1 = "Modifier mon profil" %}
     {{ parent() }}
 {% endblock %}
@@ -13,6 +14,85 @@
 
 {% block content %}
     {{ parent() }}
+     <section class="subscribe-wrapper wrapper">
+        {{ form_start(form, {'attr': {'class': 'subscribe-form'} }) }}	
+		<div class="profile-image-container user-profile-image-container">
+                    {% if user.avatar != null %}
+                        <div class="profile-image" style="background-image: url('{{ asset( user.avatar.file) }}');">
+                                <a href="#" class="btn-modify upload-btn">Modifier</a>
+                        </div>
+                    {% else %}
+                    <div class="profile-image" style="background-image: url('{{asset('uploads/avatars/avatar_default.jpg')}}');">
+                            <a href="#" class="btn-modify upload-btn">Modifier</a>
+                    </div>
+                    {% endif %}
+                    <div class="input-hidden">
+                            <input type="file" name="profile_picture" id="file_picker" data-class-dest="profile-image"/>
+                            {{ form_widget(form.avatar, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+                    </div>
+                </div>
+		<div class="subscribe-inputs-container">
+			<!-- Mettre les erreurs retournées ici -->
+			<div class="error-message">{{ form_errors(form) }}</div>
+			<div class="top-subscribe-form">
+				<div class="left">
+					{{ form_widget(form.lastname, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
+                                        {{ form_errors(form.lastname) }}
+					{{ form_widget(form.firstname, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
+                                        {{ form_errors(form.firstname) }}
+				</div>
+				<div class="right">
+					<div class="select-swagg">
+						{{ form_widget(form.expertLevel, { 'label': false,'class': 'p-right', 'attr': {'class': ''} }) }} 
+                                                {{ form_errors(form.expertLevel) }}
+					</div>
+					<div class="container">
+						<div class="col-6">
+							{#{{ form_widget(form.birthdate, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
+                                                        {{ form_errors(form.birthdate) }}
+                                                        #}
+                                                        <div class="form-group-wrapper date">
+                                                            <div class="form-group">
+                                                                <div class="input-group date">
+                                                                    {{ form_widget(form.birthdate) }}
+                                                                    <div class="input-group-addon"><i class="icon-calendar glyphicon glyphicon-calendar"></i></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{ form_errors(form.birthdate) }}
+                                                        
+							{{ form_widget(form.email, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
+                                                        {{ form_errors(form.email) }}
+						</div>
+						<div class="col-6">
+							{{ form_widget(form.telephon, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                                                        {{ form_errors(form.telephon) }}
+                                                        {{ form_widget(form.mobile, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                                                        {{ form_errors(form.mobile) }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="address-form">
+				<p class="address-title">Adresse : <span class="smaller">(l'adresse n'est pas obligatoire mais pourra être utile en cas de troc !)</span></p>				
+				{{ form_widget(form.address.street, { 'label': false, 'class': '', 'attr': {'class': 'col-12'} }) }}
+                                <div class="container">
+                                    {{ form_widget(form.address.zipCode, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
+                                    {{ form_widget(form.address.city, { 'label': false, 'class': '', 'attr': {'class': 'col-9'} }) }}
+				</div>
+                                <div class="container">
+                                    {{ form_widget(form.address.departement, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
+                                    {{ form_widget(form.address.region, { 'label': false, 'class': '', 'attr': {'class': 'col-6'} }) }}
+                                    {{ form_widget(form.address.country, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
+				</div>
+                                {{ form_errors(form.address) }}
+			</div>
+			{{ form_widget(form.submit, { 'attr': {'class': 'col-12 btn-default'} }) }}
+			<p class="smaller">*Champs obligatoires</p>
+		</div>
+	{{ form_end(form) }}
+    </section>
+    {#
     <div class="site-wrapper">    
         <section id="form-content">
             <div class="p-t-30">
@@ -85,6 +165,7 @@
             </div>
         </section>
     </div>
+    #}
 {% endblock %}
 
 

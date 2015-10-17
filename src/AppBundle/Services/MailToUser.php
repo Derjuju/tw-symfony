@@ -108,7 +108,7 @@ class MailToUser {
         $filenameWithExt = $filename.".dat";
         
         // variables dynamiques
-        $lien_version_online = $this->app_front_url.$this->router->generate('front_online_version', array('type' => 'mail', 'file' => $filename));
+        $lien_version_online = $this->app_front_url.$this->router->generate('front_online_version', array('type' => 'mail', 'hash' => $filename));
         $newView = str_replace('#LIEN_ONLINE#',$lien_version_online, $view);        
         
         // traitement du fichier justificatif

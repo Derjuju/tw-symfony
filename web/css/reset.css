@@ -1,0 +1,26 @@
+/* RESET BOOTSTRAP */
+html{ font-size: initial; }
+body{ font-family: sans-serif; line-height: initial; font-size: initial; }
+.container, .wrapper {
+    width:auto;
+}
+.social-container .container {
+    width:auto;
+}
+.container {
+    padding-right: 0;
+    padding-left: 0;
+}
+.btn-default {
+    text-shadow:initial;
+}
+.subscribe-wrapper .subscribe-inputs-container {
+    margin-right: 0;
+}
+.site-wrapper .row{
+    margin: 20px 0;
+}
+.site-wrapper .row p {
+    white-space: pre-line;
+    font-size: 14px;
+}

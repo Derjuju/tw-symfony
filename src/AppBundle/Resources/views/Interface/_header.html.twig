@@ -1,10 +1,10 @@
 {% if app.request.attributes.get('_route') == 'front_accueil' %}
-    {% include "AppBundle::_header_bandeau_full.html.twig" %}
+    {% include "AppBundle:Interface:_header_bandeau_full.html.twig" %}
 {% else %}
-    {% include "AppBundle::_header_bandeau_small.html.twig" %}
+    {% include "AppBundle:Interface:_header_bandeau_small.html.twig" %}
 {% endif %}
 
 {% if withoutSearchSelector is not defined %}
-    {% include "AppBundle::_search_selector.html.twig" %}
+    {% include "AppBundle:Interface:_search_selector.html.twig" %}
 {% endif %}            
 {# {% if app.request.attributes.get('_route') starts with 'book' %}active{% endif %} #}

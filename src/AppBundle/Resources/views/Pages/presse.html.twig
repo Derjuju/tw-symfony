@@ -6,11 +6,66 @@
 
 {% block header %}
     {% set titreH1 = "Presse" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    <section class="presse-wrapper wrapper">
+	<ul>
+            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-1.png')}}');"></div>
+                    <h3 class="presse-name">Journal du net</h3>
+                    <time class="date-review" datetime="2014-02-19 ">19 / 02 / 2014</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-2.png')}}');"></div>
+                    <h3 class="presse-name">Terre de vin</h3>
+                    <time class="date-review" datetime="2015-11-22 ">22 / 11 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-3.png')}}');"></div>
+                    <h3 class="presse-name">Business Box</h3>
+                    <time class="date-review" datetime="2015-03-09 ">09 / 03 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-4.png')}}');"></div>
+                    <h3 class="presse-name">Les Gourmands 2.0</h3>
+                    <time class="date-review" datetime="2015-12-15 ">15 / 12 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-5.png')}}');"></div>
+                    <h3 class="presse-name">lyonresto.com</h3>
+                    <time class="date-review" datetime="2015-04-12 ">12 / 04 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-1.png')}}');"></div>
+                    <h3 class="presse-name">Journal du net</h3>
+                    <time class="date-review" datetime="2015-07-08 ">08 / 07 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-2.png')}}');"></div>
+                    <h3 class="presse-name">Terre de vin</h3>
+                    <time class="date-review" datetime="2015-04-19 ">19 / 04 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-3.png')}}');"></div>
+                    <h3 class="presse-name">Business Box</h3>
+                    <time class="date-review" datetime="2014-02-18 ">18 / 02 / 2014</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-4.png')}}');"></div>
+                    <h3 class="presse-name">Les Gourmands 2.0</h3>
+                    <time class="date-review" datetime="2015-09-28 ">28 / 09 / 2015</time>
+            </li>
+                            <li>
+                    <div class="image-container" style="background-image: url('{{asset('img/presse-5.png')}}');"></div>
+                    <h3 class="presse-name">lyonresto.com</h3>
+                    <time class="date-review" datetime="2015-06-13 ">13 / 06 / 2015</time>
+            </li>
+            </ul>
+        </section>
 {% endblock %}
 
 
