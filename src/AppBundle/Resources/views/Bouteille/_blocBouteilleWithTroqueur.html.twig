@@ -1,0 +1,26 @@
+<article class="winethumb winethumb-with-owner type-region-{{bouteille.typeDeVin.reference}}"
+        data-millesime="{{bouteille.millesime}}"
+        data-qte="{{bouteille.quantite}}"
+        data-order="{{bouteille.id}}">
+        <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="Voir la Fiche">
+        <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+               <span class="dot-qte">{{bouteille.quantite}}</span>
+       </div>
+        </a>
+       <div class="description">
+                <div class="owner-container">
+                    <div class="image-container" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+                    <p class="info-owner">{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</p>
+                </div>
+               <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
+               <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
+               <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+
+               <p>{{bouteille.typeRegion.nameFr}}<br>{{bouteille.typePays.nameFr}}<br>{{bouteille.millesime}}</p>               
+       </div>
+       <div class="social-btns">
+               <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+               <div class="fb-share-button" data-href="#" data-layout="button"></div>
+       </div>
+       <div class="clearfix"></div>
+</article>

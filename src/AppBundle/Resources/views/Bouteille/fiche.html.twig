@@ -1,0 +1,194 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Fiche bouteille n° {{ bouteille.id }} - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}fiche-bouteille{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% set bottle_owner = true %}    
+    {% set titreH1 = "Fiche bouteille n°"~bouteille.id %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}  
+    <section class="bottle-page-wrapper">
+	<section class="bottle-info-wrapper">
+		<div class="wrapper">
+			<div class="qte-select-mobile desktop-hide">
+				<div class="qte-level">
+					<div class="select-swagg">
+						<select id="select-mobile-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="mobile-qte-for-{{bouteille.id}}">
+							<option value="" selected="selected">Quantité</option>
+							{% for i in range(1,bouteille.quantite) %}
+								<option value="{{i}}">{{i}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+				<div class="select-bottle">
+					<label><input id="checkbox-mobile-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="mobile-qte-for-{{bouteille.id}}"/> Sélectionner</label>
+				</div>
+			</div>
+			<div class="image-container">
+				<div class="upload-image-container">
+					<div class="wine-image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+						<span class="dot-qte">{{bouteille.quantite}}</span>
+					</div>
+				</div>
+				<div class="rating">
+					<span class="text">Ma note</span>
+					<span class="icon-bottle-rate-container icon-rate" id="ratingBottle">
+					    <input type="radio" id="rating-input-1-5" name="personnal-rating" value="5" disabled="disabled" {% if bouteille.note == 5 %}checked="checked"{% endif %}>
+					    <label for="rating-input-1-5"></label>
+					    <input type="radio" id="rating-input-1-4" name="personnal-rating" value="4" disabled="disabled" {% if bouteille.note == 4 %}checked="checked"{% endif %}>
+					    <label for="rating-input-1-4"></label>
+					    <input type="radio" id="rating-input-1-3" name="personnal-rating" value="3" disabled="disabled" {% if bouteille.note == 3 %}checked="checked"{% endif %}>
+					    <label for="rating-input-1-3"></label>
+					    <input type="radio" id="rating-input-1-2" name="personnal-rating" value="2" disabled="disabled" {% if bouteille.note == 2 %}checked="checked"{% endif %}>
+					    <label for="rating-input-1-2"></label>
+					    <input type="radio" id="rating-input-1-1" name="personnal-rating" value="1" disabled="disabled" {% if bouteille.note == 1 %}checked="checked"{% endif %}>
+					    <label for="rating-input-1-1"></label>
+					</span>
+				</div>
+			</div>
+			<div class="bottle-info">
+				<div class="title">
+                                    <h2>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h2>					
+					<span>{{bouteille.typeRegion.nameFr|default('')}}</span>
+					<span>{{bouteille.typePays.nameFr|default('')}}</span>
+					<span>{{bouteille.millesime|default('')}}</span>
+				</div>
+
+				<div class="info">
+					<p>
+						<b>{{bouteille.quantite}} bouteille{% if bouteille.quantite > 1 %}s{% endif %},</b>
+						conservée{% if bouteille.quantite > 1 %}s{% endif %} en {{bouteille.typeDeCave.nameFr}}
+					</p>
+
+					<p>{{bouteille.commentaire}}</p>
+
+					<div class="star-container">
+						<span class="text">Note moyenne</span>
+                                                {#
+						<?php for($i = 1; $i <= 5; $i++): ?>
+							<?php if($i <= $bottle_info['rate']): ?>
+								<i class="icon-star-static full-star"></i>
+							<?php else: ?>
+								<i class="icon-star-static"></i>
+							<?php endif; ?>
+						<?php endfor; ?>
+                                                #}
+					</div>
+				</div>
+			</div>
+			<div class="mobile-hide">
+				<div class="qte-level">
+					<div class="select-swagg">
+						<select id="select-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}">
+							<option value="" selected="selected">Quantité</option>
+							{% for i in range(1,bouteille.quantite) %}
+								<option value="{{i}}">{{i}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="level-container">
+						<!-- Pour remplir la bouteille, utilisez style="top: xx%;" sur .the-fullness -->
+						<div class="level-bottle">
+							<div class="the-shape"></div>
+							<div class="the-emptyness"></div>
+							<div class="the-fullness" style="top:{{100 - bouteille.niveau}}%"></div>
+						</div>
+						<h4>Niveau : {{bouteille.niveau}}%</h4>
+					</div>
+				</div>
+				<div class="select-bottle">
+					<label><input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/> Sélectionner</label>
+				</div>
+			</div>
+		</div>
+	</section>
+        {% if bouteilles|length > 0 %}
+	<section class="in-his-cave wrapper">
+		<h3 class="page-title">Aussi dans sa cave</h3>
+		<div class="winethumb-container">
+			{% for item in bouteilles %}
+                            {% include 'AppBundle:Bouteille:_blocOtherBouteilleWithTroqueur.html.twig' with {'bouteille' : item} %}
+                        {% endfor %}
+		</div>
+	</section>
+        {% endif %}
+        {#
+	<section class="they-got-it-wrapper">
+		<div class="wrapper">
+			<h3 class="page-title">Ils possèdent cette bouteille</h3>
+			<article>
+				<a href="#profile-guy">
+					<span class="image-container" style="background-image: url('img/demo-face.png');">
+						<span class="dot-qte">4</span>
+					</span>
+				</a>
+			</article>
+		</div>
+	</section>
+        #}
+</section>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('select.qte-select').on('change', function(event){
+                var dataSelect = $(this).attr('data-select');
+                if($(this).val() > 0){
+                   $('#checkbox-'+dataSelect).prop( "checked", true );
+                   //$('#checkbox-mobile-'+dataSelect).prop( "checked", true ); 
+                } else {
+                   $('#checkbox-'+dataSelect).prop( "checked", false );
+                   //$('#checkbox-mobile-'+dataSelect).prop( "checked", false );
+                } 
+            });
+             $('.big-checkbox').on('change', function(event){
+                var dataSelect = $(this).attr('data-select');
+                if($(this).prop( "checked")){
+                   if($('#select-'+dataSelect).val() < 1){
+                        alert("Vous devez indiquer une quantité.");
+                        $(this).prop( "checked", false );
+                   }
+                } 
+            });
+            
+            $('#btTroquerSelection').on('click', function(event){
+                event.preventDefault();
+                var toutEstOk = true;
+                var listeSelection = new Array();
+                // pour chaque selection cochée, si quantité non choisie alors affiche erreur
+                $('.big-checkbox').each(function(){
+                    var dataSelect = $(this).attr('data-select');
+                    if($(this).prop( "checked")){
+                       if($('#select-'+dataSelect).val() < 1){
+                            alert("Vous devez indiquer une quantité.");
+                            $(this).prop( "checked", false );
+                            toutEstOk = false;
+                       }else{
+                           listeSelection.push({'id':$(this).val(),'qte':$('#select-'+dataSelect).val()});
+                       }
+                    }
+                });
+                
+                if(toutEstOk){
+                    $('#TroquerSelectionChoix').val(JSON.stringify(listeSelection));
+                    $('#FormSelectionChoix').submit();            
+                }
+            });
+        });
+    </script>
+    
+{% endblock %}
+

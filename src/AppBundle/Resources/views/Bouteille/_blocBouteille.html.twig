@@ -1,0 +1,24 @@
+<article class="winethumb type-region-{{bouteille.typeDeVin.reference}}"
+        data-millesime="{{bouteille.millesime}}"
+        data-qte="{{bouteille.quantite}}"
+        data-order="{{bouteille.id}}">
+        <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+               <span class="dot-qte">{{bouteille.quantite}}</span>
+       </div>
+       <div class="description">
+               <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
+               <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
+               <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+
+               <p>{{bouteille.typeRegion.nameFr}}<br>{{bouteille.typePays.nameFr}}<br>{{bouteille.millesime}}</p>               
+       </div>
+       <div class="social-btns">
+               <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+               <div class="fb-share-button" data-href="#" data-layout="button"></div>
+       </div>
+       <div class="clearfix"></div>
+       <div class="actions-btns">
+        <a href="{{path('front_ma_cave_editer', {'id':bouteille.id}) }}" class="btn-default btn-edit">modifier</a>
+        <a href="{{path('front_ma_cave_supprimer', {'id':bouteille.id}) }}" onClick="return confirmSuppression();" class="btn-default btn-delete">supprimer</a>
+       </div>
+</article>

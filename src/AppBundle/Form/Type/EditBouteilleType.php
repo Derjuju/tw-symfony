@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
-class AddBouteilleType extends AbstractType
+class EditBouteilleType extends AbstractType
 {
     
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -167,12 +167,12 @@ class AddBouteilleType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Bouteille',
-            'validation_groups' => array('add'),
+            'validation_groups' => array('edit'),
         ));
     }
     
     public function getName()
     {
-        return 'AddBouteilleType';
+        return 'EditBouteilleType';
     }
 } 

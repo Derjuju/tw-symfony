@@ -4,23 +4,26 @@
 	</div>
 	<div class="profile-light span-center">
 		<div class="left">
-			<div class="profile-image" style="background-image: url('<?= $bottle_owner['img'] ?>');"></div>
-			<h3><?= $bottle_owner['name'] ?></h3>
+			<div class="profile-image" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<h3>{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</h3>
 		</div>
 		<div class="right">
-			<span class="owner-level"><?= $bottle_owner['level']; ?></span>
+			<span class="owner-level">{{bouteille.member.expertLevel.nameFr}}</span>
 			<div class="star-container">
-				<?php for($i = 1; $i <= 5; $i++): ?>
-					<?php if($i <= $bottle_owner['stars']): ?>
+                                {% for i in range(1,5) %}
+					{% if i <= bouteille.member.note %}
 						<i class="icon-star-static full-star"></i>
-					<?php else: ?>
+					{% else %}
 						<i class="icon-star-static"></i>
-					<?php endif; ?>
-				<?php endfor; ?>
+					{% endif %}
+                                {% endfor %}
 			</div>
 		</div>
 	</div>
-	<div class="span-right">
-		<a href="troquer-une-bouteille.php" class="btn-default">Troquer ma selection</a>
+	<div class="span-right">            
+            <form id="FormSelectionChoix" action="{{path('front_initialise_echange')}}" method="POST">
+                <input id="TroquerSelectionChoix" type="hidden" name="selection" value="">
+                <button id="btTroquerSelection" class="btn-default"  name="valider">Troquer ma sélection</button>
+            </form>
 	</div>
 </div>

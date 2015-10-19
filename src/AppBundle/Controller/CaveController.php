@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Bouteille;
+use AppBundle\Entity\Image;
 use AppBundle\Form\Type\AddBouteilleType;
+use AppBundle\Form\Type\EditBouteilleType;
 use AppBundle\Form\Type\ClasserCaveType;
 
 use AppBundle\Entity\TypeDomaine;
@@ -93,11 +95,53 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            
             $em = $this->getDoctrine()->getManager();
             $entity->setMember($user);
             $entity->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($entity);
             $em->flush();
+            
+            //bouteille_default.jpg
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_bouteilles_dir');
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0777, true);
+            }
+            
+            $useDefaultAvatar = true;
+            if ($request->files && count($request->files) > 0)
+            {
+                if($request->files->get('photo_image') != null)
+                {
+                    $uploadedFile = $request->files->get('photo_image');
+                    //$nfile = $request->request->get('file_name');
+                    $file=$uploadedFile->getClientOriginalName();
+                    $ext=strrchr($file,'.');
+                    $nfile= date('YmdHis')."_".$entity->getId()."$ext";
+                    if (file_exists($dir . $nfile))
+                    {
+                        unlink($dir . $nfile);
+                    }
+                    $uploadedFile->move($dir, $nfile);
+                    $useDefaultAvatar = false;  
+                }
+            }
+            if($useDefaultAvatar){
+                $nfile= date('YmdHis')."_".$entity->getId().".jpg";
+                copy($dir.'bouteille_default.jpg', $dir.$nfile);               
+            }
+            
+                    
+            $image = new Image();
+            $image->setFile($this->container->getParameter('upload_bouteilles_dir') . $nfile);
+            $image->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $em->persist($image);
+
+            $entity->setPhoto($image);
+            $em->persist($entity);
+                    
+            $em->flush(); 
             
             $session = $request->getSession();
             $session->getFlashBag()->add("success","Bouteille ajoutée à votre cave.");
@@ -125,14 +169,91 @@ class CaveController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('add_domaine', 'button', array('label' => 'Ajouter'));
-        $form->add('add_appellation', 'button', array('label' => 'Ajouter'));
-        $form->add('add_cuvee', 'button', array('label' => 'Ajouter'));
-        $form->add('add_region', 'button', array('label' => 'Ajouter'));
-        $form->add('add_pays', 'button', array('label' => 'Ajouter'));
         $form->add('submit', 'submit', array('label' => 'Ajouter à ma cave'));
 
         return $form;
+    }
+    
+    /**
+     * @Route("/ma-cave/edit/{id}",name="front_ma_cave_editer")          
+     */
+    public function editerAction($id) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
+            throw $this->createNotFoundException('Accès impossible.');
+        }
+        
+        if($id == null){$id = 0; }
+
+        $request = $this->get('request');
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        // on vérifie l'existence de la bouteille et si appartient à l'utilisateur
+        $entity = $em->getRepository('AppBundle:Bouteille')->findForIdAndUser($id,$user);
+        if($entity == null){
+            throw $this->createNotFoundException('Edition impossible.');
+        }
+        $entity = $entity[0];
+        
+        $form = $this->createEditForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();
+            
+            //bouteille_default.jpg
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_bouteilles_dir');
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0777, true);
+            }
+            
+            if ($request->files && count($request->files) > 0)
+            {
+                if($request->files->get('photo_image') != null)
+                {
+                    $uploadedFile = $request->files->get('photo_image');
+                    //$nfile = $request->request->get('file_name');
+                    $file=$uploadedFile->getClientOriginalName();
+                    $ext=strrchr($file,'.');
+                    $nfile= date('YmdHis')."_".$entity->getId()."$ext";
+                    if (file_exists($dir . $nfile))
+                    {
+                        unlink($dir . $nfile);
+                    }
+                    $uploadedFile->move($dir, $nfile);
+                    if($entity->getPhoto() != null)
+                    {
+                        $entity->getPhoto()->setFile($this->container->getParameter('upload_bouteilles_dir') . $nfile);
+                    }else{
+                        $image = new Image();
+                        $image->setFile($this->container->getParameter('upload_bouteilles_dir') . $nfile);
+                        $image->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                        $em->persist($image);
+
+                        $entity->setPhoto($image);
+                    }
+                }
+            }
+            
+            $em->persist($entity);                    
+            $em->flush(); 
+            
+            $session = $request->getSession();
+            $session->getFlashBag()->add("success","Bouteille modifiée.");
+
+            return $this->redirect($this->generateUrl('front_ma_cave'));
+        }
+
+        return $this->render('AppBundle:Cave:editer_bouteille.html.twig', array(
+            'user'=>$user,
+            'entity'=>$entity,
+            'form'   => $form->createView(),
+        ));
     }
     
     /**
@@ -144,14 +265,61 @@ class CaveController extends Controller
     */
     private function createEditForm(Bouteille $entity)
     {
-        $form = $this->createForm(new AddBouteilleType(), $entity, array(
-            'action' => $this->generateUrl('front_ma_cave_ajouter'),
+        $form = $this->createForm(new EditBouteilleType(), $entity, array(
+            'action' => $this->generateUrl('front_ma_cave_editer', array('id'=>$entity->getId())),
             'method' => 'POST',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Valider la modification'));
 
         return $form;
+    }
+    
+    /**
+     * @Route("/ma-cave/delete/{id}",name="front_ma_cave_supprimer")          
+     */
+    public function deleteAction($id) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
+            throw $this->createNotFoundException('Accès impossible.');
+        }
+        
+        if($id == null){$id = 0; }
+
+        $request = $this->get('request');
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        // on vérifie l'existence de la bouteille et si appartient à l'utilisateur
+        $entity = $em->getRepository('AppBundle:Bouteille')->findForIdAndUser($id,$user);
+        if($entity == null){
+            throw $this->createNotFoundException('Suppression impossible.');
+        }
+        $entity = $entity[0];
+        
+        $photo = "";
+        if($entity->getPhoto() != null)
+        {
+            $photo = $entity->getPhoto()->getFile();
+        }
+        $em->remove($entity);
+        $em->flush(); 
+        
+        if($photo != ""){
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_bouteilles_dir');
+            if (file_exists($dir . $photo))
+            {
+                unlink($dir . $photo);
+            }
+        }
+            
+        $session = $request->getSession();
+        $session->getFlashBag()->add("success","Bouteille supprimée.");
+
+        return $this->redirect($this->generateUrl('front_ma_cave'));
+        
     }
     
     

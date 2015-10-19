@@ -1,6 +1,8 @@
 $(function() {
     
     initialiseSliderHeader();
+    
+    initialiseSearchSelectorBar();
     /*
     *
     * Datepicker pour formulaires
@@ -13,9 +15,8 @@ $(function() {
     var data = $('.static-search').data('default');
 
     if (data) {
-      console.log(data);
       displaySearchForm(data);
-      $('.btn-search-bottle').addClass('active');
+      $('.btn-search-'+data).addClass('active');
     }
     
     if($('body').hasClass('inscription')){
@@ -24,19 +25,13 @@ $(function() {
     if($('body').hasClass('modifier-profil')){
         initialiseBoutonAvatar();
     }
+    if($('body').hasClass('ajouter-bouteille')){
+        initialiseBoutonBouteille();
+    }
+    if($('body').hasClass('editer-bouteille')){
+        initialiseBoutonBouteille();
+    }
 });
-
-function initialiseBoutonAvatar(){
-    $('.upload-btn').on('click', function(e) {
-        event.preventDefault();
-        document.getElementById('file_picker').click();
-    });
-
-    $('#file_picker').on('change', function(){
-        var target = $(this).data('classDest');
-        displayImage(this, '.' + target);
-    });
-}
 
 function initialiseSliderHeader(){
     $('.bxslider').bxSlider({
@@ -46,6 +41,27 @@ function initialiseSliderHeader(){
     });
 }
 
+function initialiseSearchSelectorBar(){
+    $('.btn-search-bottle').on('click', function(event) {
+        event.preventDefault();
+
+        $(this).parent().children().removeClass('active');
+
+        $(this).addClass('active');
+
+        displaySearchForm("bottle");
+    });
+
+    $('.btn-search-swapper').on('click', function(event) {
+        event.preventDefault();
+        
+        $(this).parent().children().removeClass('active');
+
+        $(this).addClass('active');
+
+        displaySearchForm("swapper");
+    });
+}
 
 
 
@@ -67,23 +83,45 @@ function displayImage(input, target) {
 
 function displaySearchForm(searchForm) {
   if(searchForm === "bottle") {
-    $('.form-swapper-search')
-      .removeClass('show');
+    $('.form-swapper-search').removeClass('show');
 
-    $('.form-bottle-search')
-      .addClass('show');
+    $('.form-bottle-search').addClass('show');
 
-    $('.search-bar-toggle')
-      .addClass('unfold');
+    $('.search-bar-toggle').addClass('unfold');
 
   } else if(searchForm === "swapper") {
-    $('.form-bottle-search')
-      .removeClass('show');
+    $('.form-bottle-search').removeClass('show');
 
-    $('.form-swapper-search')
-      .addClass('show');
+    $('.form-swapper-search').addClass('show');
 
-    $('.search-bar-toggle')
-      .addClass('unfold');
+    $('.search-bar-toggle').addClass('unfold');
   }
+}
+
+function initialiseBoutonAvatar(){
+    $('.upload-btn').on('click', function(e) {
+        event.preventDefault();
+        document.getElementById('file_picker').click();
+    });
+
+    $('#file_picker').on('change', function(){
+        var target = $(this).data('classDest');
+        displayImage(this, '.' + target);
+    });
+}
+
+function initialiseBoutonBouteille(){
+    $('.wine-image .upload-btn').on('click', function(e) {
+        event.preventDefault();
+        document.getElementById('file_picker').click();
+    });
+
+    $('#file_picker').on('change', function(){
+        var target = $(this).data('classDest');
+        displayImage(this, '.' + target);
+    });
+}
+
+function confirmSuppression(){
+    return confirm('Voulez-vous supprimer définitivement cette bouteille ?');
 }

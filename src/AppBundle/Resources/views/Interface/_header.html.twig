@@ -5,6 +5,14 @@
 {% endif %}
 
 {% if withoutSearchSelector is not defined %}
-    {% include "AppBundle:Interface:_search_selector.html.twig" %}
+    {% if openSearchSelectorBouteille is defined %}
+        {#{ render(controller('AppBundle:Interface:searchSelectorBouteille')) }#}
+        {% include "AppBundle:Interface:_search_selector.html.twig" %}
+    {% elseif openSearchSelectorTroqueur is defined %}
+        {#{ render(controller('AppBundle:Interface:searchSelectorTroqueur')) }#}
+        {% include "AppBundle:Interface:_search_selector.html.twig" %}
+    {% else %}
+        {{ render(controller('AppBundle:Interface:searchSelector')) }}
+    {% endif %}
 {% endif %}            
 {# {% if app.request.attributes.get('_route') starts with 'book' %}active{% endif %} #}

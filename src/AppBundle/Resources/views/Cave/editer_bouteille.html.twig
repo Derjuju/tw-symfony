@@ -1,12 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Ajouter une bouteille - {{ parent() }}{% endblock %}
+{% block title %}Editer une bouteille - {{ parent() }}{% endblock %}
 
-{% block bodyclass %}ma-cave ajouter-bouteille{% endblock %}
+{% block bodyclass %}ma-cave editer-bouteille{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
-    {% set titreH1 = "Ajouter une bouteille" %}
+    {% set titreH1 = "Editer une bouteille" %}
     {{ parent() }}
 {% endblock %}
 
@@ -16,7 +16,7 @@
     {{ parent() }}
     <section class="add-bottle-wrapper">
 	<section class="add-bottle-form">
-            {{ form_start(form, {'attr': {'class': 'form-inline', 'id': 'FormAddBouteille'} }) }}
+            {{ form_start(form, {'attr': {'class': 'form-inline', 'id': 'FormEditBouteille'} }) }}
                     <div class="wrapper">
                             <div class="image-container">
                                     <div class="upload-image-container">
@@ -36,15 +36,15 @@
                                             <span class="text mobile-hide">Ma note</span>
 
                                             <span class="icon-bottle-rate-container icon-rate" id="ratingBottle">
-                                                <input type="radio" id="rating-input-1-5" name="personnal-rating" value="5">
+                                                <input type="radio" id="rating-input-1-5" name="personnal-rating" value="5" {% if entity.note == 5 %}checked="checked"{% endif %}>
                                                 <label for="rating-input-1-5"></label>
-                                                <input type="radio" id="rating-input-1-4" name="personnal-rating" value="4">
+                                                <input type="radio" id="rating-input-1-4" name="personnal-rating" value="4" {% if entity.note == 4 %}checked="checked"{% endif %}>
                                                 <label for="rating-input-1-4"></label>
-                                                <input type="radio" id="rating-input-1-3" name="personnal-rating" value="3">
+                                                <input type="radio" id="rating-input-1-3" name="personnal-rating" value="3" {% if entity.note == 3 %}checked="checked"{% endif %}>
                                                 <label for="rating-input-1-3"></label>
-                                                <input type="radio" id="rating-input-1-2" name="personnal-rating" value="2">
+                                                <input type="radio" id="rating-input-1-2" name="personnal-rating" value="2" {% if entity.note == 2 %}checked="checked"{% endif %}>
                                                 <label for="rating-input-1-2"></label>
-                                                <input type="radio" id="rating-input-1-1" name="personnal-rating" value="1">
+                                                <input type="radio" id="rating-input-1-1" name="personnal-rating" value="1" {% if entity.note == 1 %}checked="checked"{% endif %}>
                                                 <label for="rating-input-1-1"></label>
                                             </span>
                                     </div>
@@ -64,31 +64,31 @@
                                                     <div class="select-swagg domaine">
                                                             {{ form_widget(form.typeDomaine, { 'label': false,'class': '', 'attr': {'class': ''} }) }}                  
                                                     </div>
-                                                    <button id="AddBouteilleType_add_domaine" class="btn-default add" data-url="{{path('front_domaine_add')}}">Ajouter</button>
+                                                    <button id="EditBouteilleType_add_domaine" class="btn-default add" data-url="{{path('front_domaine_add')}}">Ajouter</button>
                                             </div>
                                             <div class="data-add-aside data-appelation">
                                                     <div class="select-swagg appelation">
                                                             {{ form_widget(form.typeAppellation, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                                     </div>
-                                                    <button id="AddBouteilleType_add_appellation" class="btn-default add" data-url="{{path('front_appellation_add')}}">Ajouter</button>
+                                                    <button id="EditBouteilleType_add_appellation" class="btn-default add" data-url="{{path('front_appellation_add')}}">Ajouter</button>
                                             </div>
                                             <div class="data-add-aside data-cuvee">
                                                     <div class="select-swagg cuvee">
                                                             {{ form_widget(form.typeCuvee, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                                     </div>
-                                                    <button id="AddBouteilleType_add_cuvee" class="btn-default add" data-url="{{path('front_cuvee_add')}}">Ajouter</button>
+                                                    <button id="EditBouteilleType_add_cuvee" class="btn-default add" data-url="{{path('front_cuvee_add')}}">Ajouter</button>
                                             </div>
                                             <div class="data-add-aside data-region">
                                                     <div class="select-swagg qte">
                                                             {{ form_widget(form.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                                     </div>
-                                                    <button id="AddBouteilleType_add_region" class="btn-default add" data-url="{{path('front_region_add')}}">Ajouter</button>
+                                                    <button id="EditBouteilleType_add_region" class="btn-default add" data-url="{{path('front_region_add')}}">Ajouter</button>
                                             </div>
                                             <div class="data-add-aside data-pays">
                                                 <div class="select-swagg pays">
                                                         {{ form_widget(form.typePays, { 'label': false,'class': '', 'attr': {'class': ''} }) }}                                                                                                
                                                 </div>
-                                                <button id="AddBouteilleType_add_pays" class="btn-default add" data-url="{{path('front_pays_add')}}">Ajouter</button>
+                                                <button id="EditBouteilleType_add_pays" class="btn-default add" data-url="{{path('front_pays_add')}}">Ajouter</button>
                                             </div>
                                     </div>
                                     <div class="span-right">
@@ -131,7 +131,7 @@
                             </div>
                     </div>
 
-                    <button id="AjouterBouteille" class="submit-btn btn-default"><i class="icon-add-bottle-active"></i>Ajouter à ma cave</button>                                
+                    <button id="ModifierBouteille" class="submit-btn btn-default">Valider</button>
                     <br>
                 {{ form_row(form.submit, {'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                 {{ form_row(form.note, {'class': 'hidden', 'attr': {'class': ''} }) }} 
@@ -150,52 +150,53 @@
         
         $(document).ready(function () {
             
-            $('#FormAddBouteille').on('submit', function(){
+            $('#FormEditBouteille').on('submit', function(){
                 var selectedVal = 0;
                 var selected = $("#ratingBottle input[type='radio']:checked");
                 if (selected.length > 0) {
                     selectedVal = selected.val();
                 }
-                $('#AddBouteilleType_note').val(selectedVal);
+                $('#EditBouteilleType_note').val(selectedVal);
                 
                 /*
                 var total = parseInt($('.level-bottle .the-shape').height());
                 var pourcentage = parseInt($('.level-bottle .the-fullness').css('top')) * 100 / total;
                 pourcentage = Math.round(pourcentage/10)*10;
                 pourcentage = 100 - pourcentage;
-                $('#AddBouteilleType_niveau').val(pourcentage);*/
+                $('#EditBouteilleType_niveau').val(pourcentage);*/
             });
             
-            $('#AddBouteilleType_niveau').on('change', function(event){
+            $('#EditBouteilleType_niveau').on('change', function(event){
                 $('.level-bottle .the-fullness').css('top', (100 - $(this).val())+'%');
             });
+            $('#EditBouteilleType_niveau').trigger('change');
             
-            $('#AddBouteilleType_add_domaine').on('click',function(event){
+            $('#EditBouteilleType_add_domaine').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de domaine</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#AddBouteilleType_add_appellation').on('click',function(){
+            $('#EditBouteilleType_add_appellation').on('click',function(){
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type d\'appellation</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#AddBouteilleType_add_cuvee').on('click',function(){
+            $('#EditBouteilleType_add_cuvee').on('click',function(){
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de cuvée</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#AddBouteilleType_add_region').on('click',function(){
+            $('#EditBouteilleType_add_region').on('click',function(){
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de région</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#AddBouteilleType_add_pays').on('click',function(){
+            $('#EditBouteilleType_add_pays').on('click',function(){
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de pays</strong>';
                 openModalAddEntity(url, title);
@@ -225,31 +226,31 @@
             
             $(document).on('submit', 'form.add_new_domaine', function () {
                 var form = $(this);                
-                traitementForm(form, "#AddBouteilleType_typeDomaine");
+                traitementForm(form, "#EditBouteilleType_typeDomaine");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_appellation', function () {
                 var form = $(this);                
-                traitementForm(form, "#AddBouteilleType_typeAppellation");
+                traitementForm(form, "#EditBouteilleType_typeAppellation");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_cuvee', function () {
                 var form = $(this);                
-                traitementForm(form, "#AddBouteilleType_typeCuvee");
+                traitementForm(form, "#EditBouteilleType_typeCuvee");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_region', function () {
                 var form = $(this);                
-                traitementForm(form, "#AddBouteilleType_typeRegion");
+                traitementForm(form, "#EditBouteilleType_typeRegion");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_pays', function () {
                 var form = $(this);                
-                traitementForm(form, "#AddBouteilleType_typePays");
+                traitementForm(form, "#EditBouteilleType_typePays");
                 return false;
             });
             

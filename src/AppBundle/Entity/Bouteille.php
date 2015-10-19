@@ -134,7 +134,7 @@ class Bouteille
     /**
      * @var integer
      *
-     * @ORM\Column(name="apogee", type="integer")
+     * @ORM\Column(name="apogee", type="integer", nullable=true)
      */
     private $apogee;
     

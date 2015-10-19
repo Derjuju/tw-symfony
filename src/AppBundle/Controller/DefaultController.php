@@ -24,22 +24,7 @@ class DefaultController extends Controller
      */
     public function homepageAction() {
         
-        $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
-            'action' => $this->generateUrl('front_search_bouteille'),
-            'method' => 'POST',
-        ));
-        $formBouteille->add('submit', 'submit', array('label' => 'Rechercher'));
-        
-        $formTroqueur = $this->createForm(new SearchTroqueurType(), null, array(
-            'action' => $this->generateUrl('front_search_troqueur'),
-            'method' => 'POST',
-        ));
-        $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));
-        
-        return $this->render("AppBundle::homepage.html.twig", array(
-            'formBouteille'   => $formBouteille->createView(),
-            'formTroqueur'   => $formTroqueur->createView(),
-        ));
+        return $this->render("AppBundle::homepage.html.twig");
     }
     
     /**

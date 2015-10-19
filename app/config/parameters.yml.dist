@@ -33,3 +33,5 @@ parameters:
     online_mail_dir: /online/mail/
     upload_avatars_dir: uploads/avatars/
     upload_avatars_dir_temp: /uploads/avatars/temp/
+    upload_bouteilles_dir: uploads/bouteilles/
+    upload_bouteilles_dir_temp: /uploads/bouteilles/temp/

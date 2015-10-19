@@ -14,17 +14,30 @@ class SearchTroqueurType extends AbstractType
     {
         
         $builder
-          ->add('keyword', 'text',['required'=>false,'label'=>'Rechercher un troqueur'])         
-          ->add('expertLevel', 'entity', array(        
-            'label'=>'Niveau',
-            'expanded' => false,
-            'multiple' => false,
-            'choice_label' => 'nameFr',
-            'class' => 'AppBundle:ExpertLevel',
-            'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('el');
-            }))
-          ;
+            ->add('keyword', 'text',['required'=>false,'label'=>'Rechercher un troqueur', 'attr' => array('placeholder' => 'Rechercher un troqueur')])
+            ->add('expertLevel', 'entity', array(        
+                'label'=>'Niveau',
+                'required'=>false,
+                'expanded' => false,
+                'multiple' => false,
+                'choice_label' => 'nameFr',
+                'empty_value' => 'Niveau',
+                'class' => 'AppBundle:ExpertLevel',
+                'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('el');
+                }))
+            ->add('typeRegion', 'entity', array(        
+                'label'=>'Type',
+                'required'=>false,
+                'expanded' => false,
+                'multiple' => false,
+                'choice_label' => 'nameFr',
+                'empty_value' => 'Région',
+                'class' => 'AppBundle:TypeRegion',
+                'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('e');
+                }))
+            ;
        
     }
     

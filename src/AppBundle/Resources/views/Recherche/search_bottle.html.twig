@@ -5,16 +5,41 @@
 {% block bodyclass %}search search-bottle{% endblock %}
 
 {% block header %}
+    {% set openSearchSelectorBouteille = true %}
     {% set titreH1 = "Recherche de Bouteille" %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
-    <div class="site-wrapper">  
-        <h2>Recherche de Bouteille</h2>
-        <p></p>
-    </div>
+    <section class="search-results-wrapper">
+	<div class="wrapper">
+		<div class="top">
+                    <br><br><br><br>
+			<div class="left sort">
+				<div class="select-swagg">
+					<select name="sort_by" class="sorter">
+						<option value="" selected="selected">Classer par ...</option>
+						<option value="millesime">Millesime</option>
+						<option value="qte">Quantité (Décroissant)</option>
+					</select>
+				</div>
+			</div>
+			<div class="center">
+				<span class="red">{{bouteilles|length}}</span> résultat{% if bouteilles|length > 1 %}s{% endif %}
+			</div>
+		</div>
+                <div class="winethumb-container sort-container">
+                    {% if bouteilles|length > 0 %}
+                        {% for bouteille in bouteilles %}
+                            {% include 'AppBundle:Bouteille:_blocBouteilleWithTroqueur.html.twig' with {'bouteille' : bouteille} %}
+                        {% endfor %}
+                    {% else %}
+                        Aucun résultat ne correspond.
+                    {% endif %}
+                </div>
+        </div>
+    </section>
 {% endblock %}
 
 

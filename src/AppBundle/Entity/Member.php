@@ -150,12 +150,20 @@ class Member  implements UserInterface
      * @ORM\OneToMany(targetEntity="Bouteille", mappedBy="member", cascade={"persist", "remove"})
      */
     protected $bouteilles;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note", type="integer", nullable=true)
+     */
+    private $note;
     
 
     
 
     public function __construct() {
         $this->bouteilles = new ArrayCollection();
+        $this->note = 0;
     }
 
     public function getAvatarFile() {
@@ -599,6 +607,29 @@ class Member  implements UserInterface
      */
     public function getBouteilles() {
         return $this->bouteilles;
+    }
+
+    /**
+     * Set note
+     *
+     * @param integer $note
+     * @return Member
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return integer 
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
     
     

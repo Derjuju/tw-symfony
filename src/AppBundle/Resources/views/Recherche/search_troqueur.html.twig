@@ -5,16 +5,41 @@
 {% block bodyclass %}search search-troqueur{% endblock %}
 
 {% block header %}
+    {% set openSearchSelectorTroqueur = true %}
     {% set titreH1 = "Recherche de Troqueur" %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
-    <div class="site-wrapper">  
-        <h2>Recherche de Troqueur</h2>
-        <p></p>
-    </div>
+    <section class="search-results-wrapper">
+	<div class="wrapper">
+		<div class="top">
+                    <br><br><br><br>
+			<div class="left sort">
+				<div class="select-swagg">
+					<select name="sort_by" class="sorter">
+						<option value="" selected="selected">Classer par ...</option>
+						<option value="millesime">Millesime</option>
+						<option value="qte">Quantité (Décroissant)</option>
+					</select>
+				</div>
+			</div>
+			<div class="center">
+				<span class="red">150</span> résultats
+			</div>
+		</div>
+                <div class="winethumb-container sort-container">
+                    {% if troqueurs|length > 0 %}
+                        {% for troqueur in troqueurs %}
+                            {% include 'AppBundle:Troqueur:_blocTroqueur.html.twig' with {'troqueur' : troqueur} %}
+                        {% endfor %}
+                    {% else %}
+                        Aucun résultat ne correspond.
+                    {% endif %}
+                </div>
+        </div>
+    </section>
 {% endblock %}
 
 

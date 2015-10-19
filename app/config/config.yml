@@ -42,6 +42,8 @@ twig:
         online_mail_dir:  "%online_mail_dir%"
         upload_avatars_dir: "%upload_avatars_dir%"
         upload_avatars_dir_temp: "%upload_avatars_dir_temp%"
+        upload_bouteilles_dir: "%upload_bouteilles_dir%"
+        upload_bouteilles_dir_temp: "%upload_bouteilles_dir_temp%"
 
 # Assetic Configuration
 assetic:

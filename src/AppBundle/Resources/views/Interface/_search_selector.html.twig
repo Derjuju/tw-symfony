@@ -1,78 +1,68 @@
 <div class="search-selector search-bar-toggle-enabled">
-        <a href="#" class="btn-search-bottle"><i class="icon-bt"></i>Rechercher une bouteille</a>
-        <a href="#" class="btn-search-swapper"><i class="icon-rq"></i>Rechercher un troqueur</a>
+        <a href="#" class="btn-search-bottle {% if panelOpen is defined  and panelOpen == 'bouteille' %}active{% endif %}"><i class="icon-bt"></i>Rechercher une bouteille</a>
+        <a href="#" class="btn-search-swapper {% if panelOpen is defined  and panelOpen == 'troqueur'  %}active{% endif %}"><i class="icon-rq"></i>Rechercher un troqueur</a>
 </div>
 <div class="search-wrapper search-bar-toggle">
-    <section class="search-container container">
-	<form action="_post.php" method="post" class="form-bottle-search">
-		<input type="search" placeholder="Rechercher une bouteille" class="desktop-field" name="name"/>
-		<div class="select-swagg-container">
-			<div class="select-swagg">
-				<select name="type">
-					<option value="" selected="selected">Type</option>
-					<option value="rouge">Vin Rouge</option>
-					<option value="blanc">Vin Blanc</option>
-					<option value="autres">Autres</option>
-				</select>
-			</div>
-			<div class="select-swagg">
-				<select name="region">
-					<option value="" selected="selected">Région</option>
-					<option value="bordeaux">Bordeaux</option>
-					<option value="bourgogne">Bourgogne</option>
-					<option value="alsace">Alsace</option>
-					<option value="autres">Autres</option>
-				</select>
-			</div>
-			<div class="select-swagg">
-				<select name="millesime">
-					<option value="" selected="selected">Millésime</option>
-					<option value="2014">2014</option>
-					<option value="2013">2013</option>
-					<option value="2012">2012</option>
-					<option value="2010">2010</option>
-					<option value="2009">2009</option>
-				</select>
-			</div>
-			<div class="select-swagg">
-				<select name="pays">
-					<option value="" selected="selected">Pays</option>
-					<option value="francais">France</option>
-					<option value="italie">Italie</option>
-					<option value="californie">U.S, Californie</option>
-					<option value="autres">Autres</option>
-				</select>
-			</div>
-		</div>
-		<div class="mobile-search-container">
-			<input type="search" placeholder="Rechercher une bouteille" class="mobile-field" name="name"/>
-			<input type="submit" value="Rechercher"/>
-		</div>
-	</form>
-	<form action="_post.php" method="post" class="form-swapper-search">
-		<input type="search" placeholder="Rechercher un troqueur" class="desktop-field" name="name"/>
-		<div class="select-swagg-container">
-			<div class="select-swagg">
-				<select name="level">
-					<option value="" selected="selected">Niveau</option>
-					<option value="pro">Expert</option>
-					<option value="noob">Néophyte</option>
-				</select>
-			</div>
-			<div class="select-swagg">
-				<select name="region">
-					<option value="" selected="selected">Région</option>
-					<option value="bordeaux">Bordeaux</option>
-					<option value="bourgogne">Bourgogne</option>
-					<option value="alsace">Alsace</option>
-					<option value="autres">Autres</option>
-				</select>
-			</div>
-		</div>
-		<div class="mobile-search-container">
-			<input type="search" placeholder="Rechercher un troqueur" class="mobile-field" name="name"/>
-			<input type="submit" value="Rechercher"/>
-		</div>
-	</form>
+    <section class="search-container container static-search" data-default="{% if panelOpen is defined  and panelOpen == 'bouteille' %}bottle{% endif %}{% if panelOpen is defined  and panelOpen == 'troqueur' %}swapper{% endif %}">
+        {{ form_start(formBouteille, {'attr': {'class': 'form-bottle-search'} }) }}
+            {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['keyword'] is defined %}
+                {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'}, 'value' : filtres['keyword'] }) }} 
+            {% else %}
+                {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'} }) }} 
+            {% endif %}            
+            <div class="select-swagg-container">
+                <div class="select-swagg">
+                    {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['typeDeVin'] is defined %}
+                        {{ form_widget(formBouteille.typeDeVin, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : filtres['typeDeVin'] }) }} 
+                    {% else %}
+                        {{ form_widget(formBouteille.typeDeVin, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
+                    {% endif %}
+                </div>
+                <div class="select-swagg">
+                    {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['typeRegion'] is defined %}
+                        {{ form_widget(formBouteille.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : filtres['typeRegion'] }) }} 
+                    {% else %}
+                        {{ form_widget(formBouteille.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                    {% endif %}
+                </div>
+                <div class="select-swagg">
+                    {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['millesime'] is defined %}
+                        {{ form_widget(formBouteille.millesime, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : filtres['millesime'] }) }} 
+                    {% else %}
+                        {{ form_widget(formBouteille.millesime, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                    {% endif %}
+                </div>
+                <div class="select-swagg">
+                    {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['typePays'] is defined %}
+                        {{ form_widget(formBouteille.typePays, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : filtres['typePays'] }) }} 
+                    {% else %}
+                        {{ form_widget(formBouteille.typePays, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                    {% endif %}
+                </div>
+            </div>
+        {{ form_end(formBouteille) }}
+        {{ form_start(formTroqueur, {'attr': {'class': 'form-swapper-search'} }) }}            
+            {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['keyword'] is defined %}
+                {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'}, 'value' : filtres['keyword'] }) }} 
+            {% else %}
+                {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'} }) }} 
+            {% endif %}
+            <div class="select-swagg-container">
+                <div class="select-swagg">
+                    {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['expertLevel'] is defined %}
+                        {{ form_widget(formTroqueur.expertLevel, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : filtres['typeRegion'] }) }} 
+                    {% else %}
+                        {{ form_widget(formTroqueur.expertLevel, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                    {% endif %}
+                </div>
+                <div class="select-swagg">
+                    {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['typeRegion'] is defined %}
+                        {{ form_widget(formTroqueur.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : filtres['typeRegion'] }) }} 
+                    {% else %}
+                        {{ form_widget(formTroqueur.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                    {% endif %}
+                </div>
+            </div>
+        {{ form_end(formTroqueur) }}
     </section>
 </div>

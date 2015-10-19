@@ -14,21 +14,25 @@ class SearchBouteilleType extends AbstractType
     {
         
         $builder
-          ->add('keyword', 'text',['required'=>false,'label'=>'Rechercher une bouteille'])
+          ->add('keyword', 'text',['required'=>false,'label'=>'Rechercher une bouteille', 'attr' => array('placeholder' => 'Rechercher une bouteille')])
           ->add('typeDeVin', 'entity', array(        
             'label'=>'Type',
+            'required'=>false,
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
+            'empty_value' => 'Type',
             'class' => 'AppBundle:TypeDeVin',
             'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('e');
             }))
           ->add('typeRegion', 'entity', array(        
             'label'=>'Type',
+            'required'=>false,
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
+            'empty_value' => 'Région',
             'class' => 'AppBundle:TypeRegion',
             'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('e');
@@ -36,13 +40,16 @@ class SearchBouteilleType extends AbstractType
           ->add('millesime', 'choice', array(     
             'label'=>'Millésime',
             'required' => false,
+            'empty_value' => 'Millésime',
             'choices' => $this->buildYearChoices()
             ))
           ->add('typePays', 'entity', array(        
             'label'=>'Type',
+            'required'=>false,
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
+            'empty_value' => 'Pays',
             'class' => 'AppBundle:TypePays',
             'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('e');

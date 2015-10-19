@@ -615,6 +615,28 @@ a:hover .icon-deconnexion{
     outline: 0;
     border: 1px solid #e5e5e5;   
 }
+
+/* SEARCH SELECTOR */
+.form-bottle-search input[type=text], .form-swapper-search input[type=text] {    
+    box-sizing: content-box;
+}
+.form-bottle-search .keyword, .form-swapper-search .keyword {
+    border-radius: 5px 0 0 5px;
+    height: 33px;
+    width: 225px;
+    min-width: 225px;
+    outline: 0;
+    float: left;
+    -webkit-appearance: none;
+}
+.form-bottle-search .keyword:focus, .form-swapper-search .keyword:focus {
+    background:#ffffff;
+}
+.form-bottle-search, .form-swapper-search {
+    padding: 35px 0 30px 0;
+}
+
+
 /* INSCRIPTION */
 .inscription .btn-default{
     padding-bottom: 35px;
@@ -671,4 +693,84 @@ a:hover .icon-deconnexion{
 }
 .modifier-profil .subscribe-wrapper .upload-btn {    
     margin: 20px auto;
+}
+
+
+/* BOUTEILLES */
+article.type-region-rouge .image .dot-qte{background-color:#740612;}
+article.type-region-blanc .image .dot-qte{background-color:#eeeeee;}
+article.type-region-effervescent .image .dot-qte{background-color:#e8de46;}
+article.type-region-champagne .image .dot-qte{background-color:#e8de46;}
+article.type-region-liquoreux .image .dot-qte{background-color:#bda500;}
+article.type-region-rose .image .dot-qte{background-color:#c96e84;}
+
+article.type-region-rouge .description{border-bottom-color:#740612;}
+article.type-region-blanc .description{border-bottom-color:#eeeeee;}
+article.type-region-effervescent .description{border-bottom-color:#e8de46;}
+article.type-region-champagne .description{border-bottom-color:#e8de46;}
+article.type-region-liquoreux .description{border-bottom-color:#bda500;}
+article.type-region-rose .description{border-bottom-color:#c96e84;}
+
+.ma-cave article .actions-btns{
+    text-align: center;
+}
+.ma-cave article .btn-default.btn-edit, .ma-cave article .btn-default.btn-delete{
+    padding: 0px 0px;
+    width: 30%;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 18px;
+    display:inline-block;
+}
+
+.winethumb .owner-container .info-owner {    
+    margin: -10px 0px 20px 20px;
+}
+
+.winethumb h3 {
+    min-height: 18px;
+}
+
+/* AJOUT BOUTEILLE */
+.add-bottle-form .data-container button, .add-bottle-form .data-container label, .add-bottle-form .data-container select, .add-bottle-form .data-container textarea {
+    width:100%;
+}
+.add-bottle-form .level-container{
+    text-align: center;
+}
+.add-bottle-form .level-bottle .the-fullness {
+    top: 0%;
+}
+
+/* EDIT BOUTEILLE */
+#FormEditBouteille {
+    text-align:center;
+}
+.add-bottle-form .data-container button, .add-bottle-form .data-container label, .add-bottle-form .data-container select, .add-bottle-form .data-container textarea {
+    width:100%;
+}
+.add-bottle-form .level-container{
+    text-align: center;
+}
+.add-bottle-form .level-bottle .the-fullness {
+    top: 0%;
+}
+.ma-cave.editer-bouteille #ModifierBouteille, .ma-cave.editer-bouteille #SupprimerBouteille {
+    position:relative;
+    display:inline-block;
+    line-height: 22px;
+    font-size: 16px;
+    padding-bottom: 5px;
+}
+
+
+/* FICHE */
+.profile-light h3 {
+    color:#ffffff;
+}
+.bottle-info-wrapper .select-bottle label{
+    color: #740612;
+    font-weight: 700;
+    font-size:16px;
+    line-height: normal;
 }

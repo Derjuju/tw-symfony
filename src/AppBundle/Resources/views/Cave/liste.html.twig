@@ -1,15 +1,15 @@
 <div class="fullwidth-wrapper" id="listingBouteille">
     <div class="site-wrapper">
         <div class="row">
-            <div class="col-md-12">
+            <section class="winethumb-container container sort-container">
                 {% if bouteilles|length > 0 %}
                     {% for bouteille in bouteilles %}
-                        [affiche un bloc bouteille]
+                        {% include 'AppBundle:Bouteille:_blocBouteille.html.twig' with {'bouteille' : bouteille} %}
                     {% endfor %}
                 {% else %}
                     Aucune bouteille dans votre cave.
                 {% endif %}
-            </div>
+            </section>
         </div>
     </div>
 </div>

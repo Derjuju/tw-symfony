@@ -59,6 +59,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/ma-cave/, role: [ROLE_MEMBRE] }
-        - { path: ^/mon-profil/, role: [ROLE_MEMBRE] }
+        - { path: ^/ma-cave/$, role: [ROLE_MEMBRE] }
+        - { path: ^/mon-profil/$, role: [ROLE_MEMBRE] }
         - { path: ^/admin/, role: [ROLE_ADMIN] }
