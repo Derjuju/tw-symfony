@@ -47,16 +47,5 @@ class BouteilleController extends Controller
             'bouteilles'=>$bouteilles,
         ));
     }
-    
-    /**
-     * @Route("/bouteilles/echange",name="front_initialise_echange")          
-     */
-    public function echangeAction(Request $request) {
         
-        $selection = $request->request->get('selection',null);
-        $selection = json_decode($selection);
-        \Symfony\Component\VarDumper\VarDumper::dump($selection);
-        
-        //return $this->render('AppBundle:Bouteille:fiche.html.twig', array());
-    }
 }

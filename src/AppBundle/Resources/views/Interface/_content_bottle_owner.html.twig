@@ -1,6 +1,6 @@
 <div class="header-owner-info wrapper">
 	<div class="span-left">
-		<a href="#link-back" class="btn-default"><i class="icon-arrow-left"></i> Retour</a>
+		<a href="#link-back" onClick="history.back();" class="btn-default"><i class="icon-arrow-left"></i> Retour</a>
 	</div>
 	<div class="profile-light span-center">
 		<div class="left">
@@ -21,8 +21,8 @@
 		</div>
 	</div>
 	<div class="span-right">            
-            <form id="FormSelectionChoix" action="{{path('front_initialise_echange')}}" method="POST">
-                <input id="TroquerSelectionChoix" type="hidden" name="selection" value="">
+            <form id="FormSelectionChoix" action="{{path('front_troc_initialise', {'idTroqueur':bouteille.member.id})}}" method="POST">
+                <input id="TroquerSelectionChoix" type="hidden" name="selectionSaCave" value="">
                 <button id="btTroquerSelection" class="btn-default"  name="valider">Troquer ma sélection</button>
             </form>
 	</div>

@@ -9,6 +9,8 @@ use AppBundle\Entity\Address;
 use AppBundle\Entity\ExpertLevel;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Bouteille;
+use AppBundle\Entity\Troc;
+use AppBundle\Entity\TrocSection;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Util\SecureRandomInterface;
 
@@ -152,6 +154,21 @@ class Member  implements UserInterface
     protected $bouteilles;
 
     /**
+     * @ORM\OneToMany(targetEntity="Troc", mappedBy="memberA", cascade={"persist", "remove"})
+     */
+    protected $trocsA;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Troc", mappedBy="memberB", cascade={"persist", "remove"})
+     */
+    protected $trocsB;
+
+    /**
+     * @ORM\OneToMany(targetEntity="TrocSection", mappedBy="member", cascade={"persist", "remove"})
+     */
+    protected $trocSections;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="note", type="integer", nullable=true)
@@ -163,6 +180,9 @@ class Member  implements UserInterface
 
     public function __construct() {
         $this->bouteilles = new ArrayCollection();
+        $this->trocsA = new ArrayCollection();
+        $this->trocsB = new ArrayCollection();
+        $this->trocSections = new ArrayCollection();
         $this->note = 0;
     }
 
@@ -607,6 +627,96 @@ class Member  implements UserInterface
      */
     public function getBouteilles() {
         return $this->bouteilles;
+    }
+    
+    /**
+     * Add trocsA
+     *
+     * @param \AppBundle\Entity\Troc $trocsA
+     * @return Member
+     */
+    public function addTrocA(\AppBundle\Entity\Troc $trocsA) {
+        $this->trocsA[] = $trocsA;
+
+        return $this;
+    }
+
+    /**
+     * Remove trocsA
+     *
+     * @param \AppBundle\Entity\Troc $trocsA
+     */
+    public function removeTrocA(\AppBundle\Entity\Troc $trocsA) {
+        $this->trocsA->removeElement($trocsA);
+    }
+
+    /**
+     * Get trocsA
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrocsA() {
+        return $this->trocsA;
+    }
+    
+    /**
+     * Add trocsB
+     *
+     * @param \AppBundle\Entity\Troc $trocsB
+     * @return Member
+     */
+    public function addTrocB(\AppBundle\Entity\Troc $trocsB) {
+        $this->trocsB[] = $trocsB;
+
+        return $this;
+    }
+
+    /**
+     * Remove trocsB
+     *
+     * @param \AppBundle\Entity\Troc $trocsB
+     */
+    public function removeTrocB(\AppBundle\Entity\Troc $trocsB) {
+        $this->trocsB->removeElement($trocsB);
+    }
+
+    /**
+     * Get trocsB
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrocsB() {
+        return $this->trocsB;
+    }
+    
+    /**
+     * Add trocSections
+     *
+     * @param \AppBundle\Entity\TrocSection $trocSections
+     * @return Member
+     */
+    public function addTrocSection(\AppBundle\Entity\TrocSection $trocSections) {
+        $this->trocSections[] = $trocSections;
+
+        return $this;
+    }
+
+    /**
+     * Remove trocSections
+     *
+     * @param \AppBundle\Entity\TrocSection $trocSections
+     */
+    public function removeTrocSection(\AppBundle\Entity\TrocSection $trocSections) {
+        $this->trocSections->removeElement($trocSections);
+    }
+
+    /**
+     * Get trocSections
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrocSections() {
+        return $this->trocSections;
     }
 
     /**

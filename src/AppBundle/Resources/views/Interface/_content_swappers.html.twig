@@ -1,41 +1,45 @@
 <section class="header-swapper">
 	<div class="profile-light swapper-a-container">
 		<div class="left">
-			<div class="profile-image" style="background-image: url('<?= $swappers[0]['img'] ?>');"></div>
-			<h3><?= $swappers[0]['name'] ?></h3>
+			<div class="profile-image" style="background-image: url('{% if user.avatar != null %}{{asset(user.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<h3>{{user.firstname}}</h3>
 		</div>
 		<div class="right">
-			<span class="owner-level"><?= $swappers[0]['level']; ?></span>
+			<span class="owner-level">{{user.expertLevel.nameFr}}</span>
 			<div class="star-container">
-				<?php for($i = 1; $i <= 5; $i++): ?>
-					<?php if($i <= $swappers[0]['rate']): ?>
+				{% for i in range(1,5) %}
+					{% if i <= user.note %}
 						<i class="icon-star-static full-star"></i>
-					<?php else: ?>
+					{% else %}
 						<i class="icon-star-static"></i>
-					<?php endif; ?>
-				<?php endfor; ?>
+					{% endif %}
+                                {% endfor %}
 			</div>
 		</div>
 	</div>
 	<div class="btns-container">
-		<button class="btn-default btn-swap">Proposer un troc</button>
-		<button class="btn-default btn-cancel">Annuler le troque</button>
+            <form id="FormSelectionChoix" action="{{path('front_troc_proposer', {'idTroqueur':troqueur.id})}}" method="POST">
+                <input id="TroquerSelectionChoixMaCave" type="hidden" name="selection" value="">
+                <input id="TroquerSelectionChoixSaCave" type="hidden" name="selection" value="">
+                <button id="btTroquerSelection" class="btn-default btn-swap">Proposer un troc</button>
+            </form>				
+                <button id="btTroquerAnnuler" onClick="history.back();" class="btn-default btn-cancel">Annuler le troque</button>
 	</div>
 	<div class="profile-light swapper-b-container">
 		<div class="left">
-			<div class="profile-image" style="background-image: url('<?= $swappers[1]['img'] ?>');"></div>
-			<h3><?= $swappers[1]['name'] ?></h3>
+			<div class="profile-image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<h3>{{troqueur.firstname}}</h3>
 		</div>
 		<div class="right">
-			<span class="owner-level"><?= $swappers[1]['level']; ?></span>
+			<span class="owner-level">{{troqueur.expertLevel.nameFr}}</span>
 			<div class="star-container">
-				<?php for($i = 1; $i <= 5; $i++): ?>
-					<?php if($i <= $swappers[1]['rate']): ?>
+				{% for i in range(1,5) %}
+					{% if i <= troqueur.note %}
 						<i class="icon-star-static full-star"></i>
-					<?php else: ?>
+					{% else %}
 						<i class="icon-star-static"></i>
-					<?php endif; ?>
-				<?php endfor; ?>
+					{% endif %}
+                                {% endfor %}
 			</div>
 		</div>
 	</div>

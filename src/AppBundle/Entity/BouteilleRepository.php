@@ -34,6 +34,14 @@ class BouteilleRepository extends EntityRepository
     
     
     function findFromSelector($filtres){
+        return $this->applicationFilters($filtres, 0);
+    }
+    
+    function findFromSelectorWithoutUser($filtres, $idUser){
+        return $this->applicationFilters($filtres, $idUser);
+    }
+    
+    function applicationFilters($filters, $idUser){
         $query = $this->createQueryBuilder('b')
                 ->leftJoin('b.typeDeVin', 'tdv')
                 ->leftJoin('b.typeDomaine', 'td')
@@ -43,7 +51,9 @@ class BouteilleRepository extends EntityRepository
                 ->leftJoin('b.typePays', 'tp')
                 ->where("1 = 1")
                 ->andWhere("b.online = 1")
-                ->andWhere("b.reserved = 0");
+                ->andWhere("b.reserved = 0")
+                ->andWhere("b.member <>  :member")
+                ->setParameter('member', $idUser);
         
         if(isset($filtres['keyword'])&&($filtres['keyword']!='')){
             $orQuery = $query->expr()->orx();

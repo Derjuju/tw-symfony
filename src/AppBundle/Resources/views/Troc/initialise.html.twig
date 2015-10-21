@@ -1,0 +1,124 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Troc à initialiser - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}troc-initialise{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% set swappers = true %}    
+    {% set titreH1 = "Troc à initialiser" %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}  
+    <section class="swap-wrapper">
+	<section class="my-cave-container">
+		<div class="wrapper">
+			<div class="top">
+				<div class="span-left">
+					<h3 class="page-title">Ma cave</h3>
+				</div>
+				<div class="span-right">
+					<div class="select-swagg">
+						<select name="sort_by" class="sorter">
+							<option value="" selected="selected">Classer par ...</option>
+							<option value="a-z">de A à Z</option>
+							<option value="z-a">de Z à A</option>
+							<option value="quantity">Quantité</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<section class="winethumb-container">
+				{% if mesBouteilles|length > 0 %}
+                                    {% for bouteille in mesBouteilles %}
+                                        {% include 'AppBundle:Bouteille:_blocBouteilleTroc.html.twig' with {'bouteille' : bouteille} %}
+                                    {% endfor %}
+                                {% else %}
+                                    Aucune bouteille dans votre cave.
+                                {% endif %}
+			</section>
+		</div>
+	</section>
+	<section class="her-cave-container">
+		<div class="wrapper">
+			<div class="top">
+				<div class="span-left">
+					<h3 class="page-title">Sa cave</h3>
+				</div>
+				<div class="span-right">
+					<div class="select-swagg">
+						<select name="sort_by" class="sorter">
+							<option value="" selected="selected">Classer par ...</option>
+							<option value="a-z">de A à Z</option>
+							<option value="z-a">de Z à A</option>
+							<option value="quantity">Quantité</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<section class="winethumb-container">
+				{% if sesBouteilles|length > 0 %}
+                                    {% for bouteille in sesBouteilles %}
+                                        {% include 'AppBundle:Bouteille:_blocBouteilleTroc.html.twig' with {'bouteille' : bouteille} %}
+                                    {% endfor %}
+                                {% else %}
+                                    Aucune bouteille dans sa cave.
+                                {% endif %}
+			</section>
+		</div>
+	</section>
+</section>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {                        
+            
+            $('select.qte-select').on('change', function(event){
+                var dataSelect = $(this).attr('data-select');
+                if($(this).val() > 0){
+                   $('#checkbox-'+dataSelect).prop( "checked", true );
+                   //$('#checkbox-mobile-'+dataSelect).prop( "checked", true ); 
+                } else {
+                   $('#checkbox-'+dataSelect).prop( "checked", false );
+                   //$('#checkbox-mobile-'+dataSelect).prop( "checked", false );
+                } 
+            });
+             $('.big-checkbox').on('change', function(event){
+                var dataSelect = $(this).attr('data-select');
+                if($(this).prop( "checked")){
+                   if($('#select-'+dataSelect).val() < 1){
+                        alert("Vous devez indiquer une quantité.");
+                        $(this).prop( "checked", false );
+                   }
+                } 
+            });
+            
+            
+            function initialiseSaCave(){
+                var preselectionMaCave = JSON.parse('[ {% for i in preselectionMaCave %}{"id":{{i.id}},"qte":{{i.qte}}}{% if not loop.last %},{% endif %}{% endfor %} ]');
+                var preselectionSaCave = JSON.parse('[ {% for i in preselectionSaCave %}{"id":{{i.id}},"qte":{{i.qte}}}{% if not loop.last %},{% endif %}{% endfor %} ]');
+                for(elem in preselectionMaCave){
+                    console.log(preselectionMaCave[elem]);
+                    $('#select-qte-for-'+preselectionMaCave[elem]['id']).val(preselectionMaCave[elem]['qte']);
+                    $('#checkbox-qte-for-'+preselectionMaCave[elem]['id']).prop( "checked", true );
+                }
+                for(elem in preselectionSaCave){
+                    console.log(preselectionSaCave[elem]);
+                    $('#select-qte-for-'+preselectionSaCave[elem]['id']).val(preselectionSaCave[elem]['qte']);
+                    $('#checkbox-qte-for-'+preselectionSaCave[elem]['id']).prop( "checked", true );
+                }
+            }
+            initialiseSaCave();
+        });
+    </script>
+    
+{% endblock %}
+

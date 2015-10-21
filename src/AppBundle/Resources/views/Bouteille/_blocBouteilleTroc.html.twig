@@ -1,0 +1,26 @@
+<article class="winethumb swap-context type-region-{{bouteille.typeDeVin.reference}}"
+    data-millesime="{{bouteille.millesime}}"
+    data-qte="{{bouteille.quantite}}"
+    data-order="{{bouteille.id}}">
+        <div class="winethumb-header">
+                <div class="select-swagg">
+                    <select id="select-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}">
+                        <option value="" selected="selected">Quantité</option>
+                        {% for i in range(1,bouteille.quantite) %}
+                                <option value="{{i}}">{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+        </div>
+        <div class="inner-winethumb">
+                <div class="checkbox-container">
+                        <input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/>
+                </div>
+                <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');"></div>
+                <div class="description">
+                        <span class="dot-qte">{{bouteille.quantite}}</span>
+                        <h3>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+                        <p>{{bouteille.typeRegion.nameFr|default('')}} {{bouteille.typePays.nameFr|default('')}} {{bouteille.millesime|default('')}}</p>
+                </div>
+        </div>
+</article>
