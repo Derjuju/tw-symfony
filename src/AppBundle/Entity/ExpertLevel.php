@@ -57,6 +57,10 @@ class ExpertLevel
     protected $members;
 
 
+    public function __toString() {
+        return (string) $this->id.' - '.$this->reference;
+    }
+    
     /**
      * Get id
      *

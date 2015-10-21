@@ -37,6 +37,10 @@ class Image
     private $createdAt;
 
 
+    public function __toString() {
+        return (string) $this->id;
+    }
+    
     /**
      * Get id
      *

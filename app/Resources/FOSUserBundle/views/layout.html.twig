@@ -1,0 +1,62 @@
+{% extends "::baseBackOffice.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+    
+    {% include "BackOfficeBundle::header.html.twig" %}
+
+    {% block content %}
+    <div id="global-wrapper">
+        <!-- <div id="main"> -->
+            <div id="main-container" class="container">
+                
+                <div id="splash-text">
+                    <img src="{{ asset('img/splash-text.png')}}" alt="">
+                </div>
+
+                <div id="login-info" class="hide">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </div>
+
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                <div id="form-box">
+                    <h1><strong>Identifiez-</strong> vous</h1>
+                    {% block fos_user_content %}
+
+                    {% endblock fos_user_content %}
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!-- END .container -->
+        <!-- </div> -->
+        <!-- END #main -->
+    <div class="push"></div>
+    </div>
+    <!-- END #global-wrapper -->        
+    {% endblock %}
+    
+    {% include "BackOfficeBundle::footer.html.twig" %}
+
+{% endblock %}
+
+

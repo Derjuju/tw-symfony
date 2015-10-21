@@ -169,6 +169,11 @@ class Bouteille
     protected $member;
 
 
+
+    public function __toString() {
+        return (string) $this->id;
+    }
+    
     public function __construct() {
         $this->online = 0;
         $this->reserved = 0;

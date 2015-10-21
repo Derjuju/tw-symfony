@@ -1,3 +1,19 @@
+bo_fos_user:
+    resource: "@BackOfficeBundle/Resources/config/routing/security/all.xml"
+    
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin-dev
+    
+back_office_dev:
+    resource: "@BackOfficeDevBundle/Resources/config/routing.yml"
+    prefix:   /admin-dev
+
+back_office:
+    resource: "@BackOfficeBundle/Resources/config/routing.yml"
+    prefix:   /admin    
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

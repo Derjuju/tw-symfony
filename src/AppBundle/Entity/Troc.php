@@ -112,6 +112,10 @@ class Troc
     
     
     
+    public function __toString() {
+        return (string) $this->id;
+    }
+    
     public function __construct() {
         $this->createdAt = new \Symfony\Component\Validator\Constraints\DateTime();
         $this->trocSections = new ArrayCollection();

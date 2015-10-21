@@ -51,6 +51,10 @@ class TypeDomaine
     protected $bouteilles;
 
 
+    public function __toString() {
+        return (string) $this->id.' - '.$this->reference;
+    }
+    
     public function __construct() {
         $this->bouteilles = new ArrayCollection();
     }

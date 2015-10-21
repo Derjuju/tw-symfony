@@ -178,6 +178,10 @@ class Member  implements UserInterface
 
     
 
+    public function __toString() {
+        return (string) $this->id.' - '.$this->login;
+    }
+    
     public function __construct() {
         $this->bouteilles = new ArrayCollection();
         $this->trocsA = new ArrayCollection();

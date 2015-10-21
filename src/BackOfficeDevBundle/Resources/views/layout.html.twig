@@ -1,0 +1,80 @@
+{% extends "::baseBackOffice.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% set displayModalFlash = false %}
+{% if app.session.flashbag.peekAll()|length %}
+    {% set displayModalFlash = true %}
+{% endif %}
+    
+{% block body %}
+
+    {% include "BackOfficeBundle::header.html.twig" %}
+
+    {% block content %}{% endblock %}
+    
+    {% include "BackOfficeBundle::footer.html.twig" %}
+    
+    
+    
+    <!-- Modal -->
+    <div class="modal fade {% if app.session.flashbag.peek('success')|length or app.session.flashbag.peek('notice')|length %}green{% endif %}" id="flashBagModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title " id="myModalLabel">
+                {% if app.session.flashbag.peek('success')|length %}Confirmation{% endif %}
+                {% if app.session.flashbag.peek('notice')|length %}Information{% endif %}
+                {% if app.session.flashbag.peek('warning')|length %}Alerte{% endif %}
+                {% if app.session.flashbag.peek('error')|length %}Erreur{% endif %}
+            </h4>
+          </div>
+
+          <div class="modal-body">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="flash-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="flash-warning">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="flash-error">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Modal  -->
+    
+    <div class="modal fade" id="generalBOModal" tabindex="-1" role="dialog" aria-labelledby="myGeneralBOModalLabel" aria-hidden="true"></div>
+    <div class="modal fade" id="administratorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% if displayModalFlash %}
+                $('#flashBagModal').modal('show');    
+            {% endif %}
+        });
+    </script>
+{% endblock %}

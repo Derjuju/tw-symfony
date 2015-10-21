@@ -43,6 +43,10 @@ class TrocMessage
      */
     protected $trocSection;
     
+    public function __toString() {
+        return (string) $this->id;
+    }
+    
     public function __construct() {
         $this->addedAt = new \Symfony\Component\Validator\Constraints\DateTime();
     }

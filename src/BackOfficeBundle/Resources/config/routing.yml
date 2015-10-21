@@ -1,0 +1,8 @@
+back_office_homepage:
+    path:     /
+    defaults: { _controller: BackOfficeBundle:Dashboard:index }
+    
+
+
+
+    

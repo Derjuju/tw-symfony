@@ -90,6 +90,27 @@ swiftmailer:
     port:      "%mailer_port%"
     encryption: "%mailer_encryption%"
     auth_mode:  "%mailer_auth_mode%"
+    
+# FOSUser
+fos_user:
+    db_driver: orm 
+    firewall_name: BO
+    user_class: AppBundle\Entity\Administrator
+    
+#Easy Admin
+easy_admin:
+    entities:
+        - AppBundle\Entity\Administrator
+        - AppBundle\Entity\Member
+        - AppBundle\Entity\Bouteille
+        - AppBundle\Entity\TypeAppellation
+        - AppBundle\Entity\TypeContenance
+        - AppBundle\Entity\TypeCuvee
+        - AppBundle\Entity\TypeDeCave
+        - AppBundle\Entity\TypeDeVin
+        - AppBundle\Entity\TypeDomaine
+        - AppBundle\Entity\TypePays
+        - AppBundle\Entity\TypeRegion
 
 # KNP Pagniator
 knp_paginator:
