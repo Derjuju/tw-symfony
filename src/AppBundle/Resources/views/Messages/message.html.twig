@@ -16,7 +16,13 @@
 {% endblock %}
 
 {% block content %}
-    {{ parent() }}  
+    {{ parent() }}   
+    <section class="message-wrapper container">
+	<nav class="message-menu">
+		<a href="{{path('front_messagerie')}}" class="{% if not trocArchive %}active{% endif %}">Trocs en cours</a>
+		<a href="{{path('front_messagerie_archives')}}" class="{% if trocArchive %}active{% endif %}">Anciens trocs</a>
+	</nav>
+    </section>
 {% endblock %}
 
 

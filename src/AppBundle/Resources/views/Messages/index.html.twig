@@ -15,9 +15,37 @@
     {{ parent() }}  
     <section class="message-wrapper container">
 	<nav class="message-menu">
-		<a href="#" class="active">Trocs en cours</a>
-		<a href="#">Anciens trocs</a>
+		<a href="{{path('front_messagerie')}}" class="{% if not trocArchive %}active{% endif %}">Trocs en cours</a>
+		<a href="{{path('front_messagerie_archives')}}" class="{% if trocArchive %}active{% endif %}">Anciens trocs</a>
 	</nav>
+	<section class="message-container">
+		<div class="top">
+			<div class="header-message">
+				<div class="image-person-container" style="background-image: url('<?= $user[0]['img']; ?>');"></div>
+				<div class="break">
+					<h3><?= $user[0]['name']; ?></h3>
+					<span>( <?= $user[0]['level'] ?>, <?= $user[0]['age'] ?>, <?= $user[0]['years'] ?> )</span>
+				</div>
+				<div class="break">
+					<?php foreach($user[0]['bottle'] as $b): ?>
+						<span class="image-wine-container" style="background-image: url('<?= $b['img']; ?>')">
+							<span class="dot-qte"><?= $b['qte']; ?></span>
+						</span>
+					<?php endforeach; ?>
+					<button class="btn-ops">...</button>
+				</div>
+				<div class="break">
+					<h3>Contre</h3>
+					<?php foreach($user[1]['bottle'] as $b): ?>
+						<span class="image-wine-container" style="background-image: url('<?= $b['img']; ?>')">
+							<span class="dot-qte"><?= $b['qte']; ?></span>
+						</span>
+					<?php endforeach; ?>
+					<button class="btn-ops">...</button>
+				</div>
+			</div>
+		</div>
+        </section>
     </section>
 {% endblock %}
 

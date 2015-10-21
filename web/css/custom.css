@@ -774,3 +774,8 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     font-size:16px;
     line-height: normal;
 }
+
+/* NOTRE HISTOIRE */
+.notre-histoire ul li{
+    font-size: 14px;
+}

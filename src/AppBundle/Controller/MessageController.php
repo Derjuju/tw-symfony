@@ -23,12 +23,35 @@ class MessageController extends Controller
             throw $this->createNotFoundException('Accès impossible.');
         }
         
+        return $this->listeMessagerie(false, $user);
+    }
+    
+    /**
+     * @Route("/messages/archives",name="front_messagerie_archives")          
+     */
+    public function archiveAction(Request $request) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
+            throw $this->createNotFoundException('Accès impossible.');
+        }
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(!$user){
+            throw $this->createNotFoundException('Accès impossible.');
+        }
+        
+        return $this->listeMessagerie(true, $user);
+    }
+    
+    private function listeMessagerie($archive, $user){
+        
         $em = $this->getDoctrine()->getManager();
         
         
         
         return $this->render('AppBundle:Messages:index.html.twig', array(
-            'user' => $user
+            'user' => $user,
+            'trocArchive' => $archive
         ));
     }
     

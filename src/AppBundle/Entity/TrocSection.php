@@ -67,7 +67,7 @@ class TrocSection
     
     
     public function __toString() {
-        return (string) $this->id.' - '.$this->reference;
+        return (string) $this->id;
     }
     
     public function __construct() {

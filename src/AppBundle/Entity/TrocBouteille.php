@@ -45,6 +45,12 @@ class TrocBouteille
      * @ORM\JoinColumn(name="troc_contenu_b_id", referencedColumnName="id")
      */
     protected $trocContenuB;
+    
+    
+    
+    public function __toString() {
+        return (string) $this->id;
+    }
 
 
     /**
