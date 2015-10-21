@@ -1,0 +1,16 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+
+{% extends 'AppBundle::layout404.html.twig' %}
+
+{% block title %}{{ parent() }} - 404{% endblock %}
+
+{% block bodyclass %}error error404 wrapper-404{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="wrapper">
+            <h2>Erreur <span class="red">404</span></h2>
+            <h3 class="red">{{ exception.message }}</h3>
+            <p><a href="{{ path('front_accueil') }}">return to the homepage</a></p>
+    </div>
+{% endblock %}

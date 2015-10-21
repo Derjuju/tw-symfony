@@ -1,0 +1,16 @@
+{# app/Resources/TwigBundle/views/Exception/error.html.twig #}
+
+{% extends 'AppBundle::layout404.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ status_code }}{% endblock %}
+
+{% block bodyclass %}error error{{ status_code }} wrapper-404{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="wrapper">
+            <h2>Erreur <span class="red">{{ status_code }}</span></h2>
+            <h3 class="red"></h3>
+            <p><a href="{{ path('front_accueil') }}">return to the homepage</a></p>
+    </div>
+{% endblock %}

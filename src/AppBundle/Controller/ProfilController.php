@@ -74,8 +74,8 @@ class ProfilController extends Controller
                 }           
             }     
             
-            $session = $request->getSession();
-            $session->getFlashBag()->add("success","Modifications du profil enregistrées.");
+            //$session = $request->getSession();
+            //$session->getFlashBag()->add("success","Modifications du profil enregistrées.");
 
             return $this->redirect($this->generateUrl('front_ma_cave'));
         }

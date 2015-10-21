@@ -69,6 +69,8 @@ h3 {
 }
 
 
+body.error a{color: #ffffff;}
+
 
 /* les formulaires */
 .subscribe-form ul{
@@ -778,4 +780,10 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 /* NOTRE HISTOIRE */
 .notre-histoire ul li{
     font-size: 14px;
+}
+.how-to-wrapper p {
+    font-size: 13px;
+}
+.icon-cave-big, .icon-magnifier-big, .icon-map-big, .icon-swap-bottle-big, .icon-swap-place-big {
+    margin-bottom: 20px;
 }

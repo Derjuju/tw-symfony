@@ -1,0 +1,16 @@
+{# app/Resources/TwigBundle/views/Exception/error500.html.twig #}
+
+{% extends 'AppBundle::layout404.html.twig' %}
+
+{% block title %}{{ parent() }} - 500{% endblock %}
+
+{% block bodyclass %}error error500 wrapper-404{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="wrapper">
+            <h2>Erreur <span class="red">500</span></h2>
+            <h3 class="red">Erreur d'execution</h3>
+            <p><a href="{{ path('front_accueil') }}">return to the homepage</a></p>
+    </div>
+{% endblock %}

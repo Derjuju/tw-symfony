@@ -143,8 +143,8 @@ class CaveController extends Controller
                     
             $em->flush(); 
             
-            $session = $request->getSession();
-            $session->getFlashBag()->add("success","Bouteille ajoutée à votre cave.");
+            //$session = $request->getSession();
+            //$session->getFlashBag()->add("success","Bouteille ajoutée à votre cave.");
 
             return $this->redirect($this->generateUrl('front_ma_cave'));
         }
@@ -243,8 +243,8 @@ class CaveController extends Controller
             $em->persist($entity);                    
             $em->flush(); 
             
-            $session = $request->getSession();
-            $session->getFlashBag()->add("success","Bouteille modifiée.");
+            //$session = $request->getSession();
+            //$session->getFlashBag()->add("success","Bouteille modifiée.");
 
             return $this->redirect($this->generateUrl('front_ma_cave'));
         }
@@ -315,8 +315,8 @@ class CaveController extends Controller
             }
         }
             
-        $session = $request->getSession();
-        $session->getFlashBag()->add("success","Bouteille supprimée.");
+        //$session = $request->getSession();
+        //$session->getFlashBag()->add("success","Bouteille supprimée.");
 
         return $this->redirect($this->generateUrl('front_ma_cave'));
         
