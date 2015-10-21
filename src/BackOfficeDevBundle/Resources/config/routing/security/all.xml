@@ -8,14 +8,14 @@
         resource="@BackOfficeBundle/Resources/config/routing/security/security.xml" />
     <import
         resource="@BackOfficeBundle/Resources/config/routing/security/profile.xml"
-        prefix="/profile" />
+        prefix="/admin-dev/profile" />
     <import
         resource="@BackOfficeBundle/Resources/config/routing/security/registration.xml"
-        prefix="/register" />
+        prefix="/admin-dev/register" />
     <import
         resource="@BackOfficeBundle/Resources/config/routing/security/resetting.xml"
-        prefix="/resetting" />
+        prefix="/admin-dev/resetting" />
     <import
         resource="@BackOfficeBundle/Resources/config/routing/security/change_password.xml"
-        prefix="/profile" />
+        prefix="/admin-dev/profile" />
 </routes>

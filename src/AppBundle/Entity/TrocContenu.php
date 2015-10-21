@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use AppBundle\Entity\TrocSection;
 
@@ -36,20 +37,16 @@ class TrocContenu
      * @ORM\Column(name="added_at", type="datetime")
      */
     private $addedAt;
+        
+    /**
+     * @ORM\OneToMany(targetEntity="TrocBouteille", mappedBy="trocContenuA", cascade={"persist", "remove"})
+     */
+    protected $trocABouteilles;
     
     /**
-     * @var string
-     *
-     * @ORM\Column(name="bouteilles_a", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="TrocBouteille", mappedBy="trocContenuB", cascade={"persist", "remove"})
      */
-    private $bouteillesA;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bouteilles_b", type="string", length=255)
-     */
-    private $bouteillesB;
+    protected $trocBBouteilles;
     
     /**
      * @ORM\ManyToOne(targetEntity="TrocSection", inversedBy="rdvs")
@@ -63,7 +60,9 @@ class TrocContenu
     }
     
     public function __construct() {
-        $this->addedAt = new \Symfony\Component\Validator\Constraints\DateTime();
+        $this->addedAt = new \DateTime();
+        $this->trocABouteilles = new ArrayCollection();
+        $this->trocBBouteilles = new ArrayCollection();
     }
     
     /**
@@ -123,49 +122,63 @@ class TrocContenu
     }
     
     /**
-     * Set bouteillesA
+     * Add trocABouteilles
      *
-     * @param string $bouteillesA
+     * @param \AppBundle\Entity\TrocBouteille $trocABouteilles
      * @return TrocContenu
      */
-    public function setBouteillesA($bouteillesA)
-    {
-        $this->bouteillesA = $bouteillesA;
+    public function addTrocABouteille(\AppBundle\Entity\TrocBouteille $trocABouteilles) {
+        $this->trocABouteilles[] = $trocABouteilles;
 
         return $this;
     }
 
     /**
-     * Get bouteillesA
+     * Remove trocABouteilles
      *
-     * @return string 
+     * @param \AppBundle\Entity\TrocBouteille $trocABouteilles
      */
-    public function getBouteillesA()
-    {
-        return $this->bouteillesA;
+    public function removeTrocABouteille(\AppBundle\Entity\TrocBouteille $trocABouteilles) {
+        $this->trocABouteilles->removeElement($trocABouteilles);
+    }
+
+    /**
+     * Get trocABouteilles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrocABouteilles() {
+        return $this->trocABouteilles;
     }
     
     /**
-     * Set bouteillesB
+     * Add trocBBouteilles
      *
-     * @param string $bouteillesB
+     * @param \AppBundle\Entity\TrocBouteille $trocBBouteilles
      * @return TrocContenu
      */
-    public function setBouteillesB($bouteillesB)
-    {
-        $this->bouteillesB = $bouteillesB;
+    public function addTrocBBouteille(\AppBundle\Entity\TrocBouteille $trocBBouteilles) {
+        $this->trocBBouteilles[] = $trocBBouteilles;
 
         return $this;
     }
 
     /**
-     * Get bouteillesB
+     * Remove trocBBouteilles
      *
-     * @return string 
+     * @param \AppBundle\Entity\TrocBouteille $trocBBouteilles
      */
-    public function getBouteillesB()
-    {
-        return $this->bouteillesB;
+    public function removeTrocBBouteille(\AppBundle\Entity\TrocBouteille $trocBBouteilles) {
+        $this->trocBBouteilles->removeElement($trocBBouteilles);
+    }
+
+    /**
+     * Get trocBBouteilles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrocBBouteilles() {
+        return $this->trocBBouteilles;
     }
     
     /**

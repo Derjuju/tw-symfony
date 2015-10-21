@@ -48,7 +48,7 @@ class TrocMessage
     }
     
     public function __construct() {
-        $this->addedAt = new \Symfony\Component\Validator\Constraints\DateTime();
+        $this->addedAt = new \DateTime();
     }
 
 

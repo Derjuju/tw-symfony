@@ -1,0 +1,36 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Messagerie - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}troc-message{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% set titreH1 = "Messagerie" %}
+    
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}  
+    <section class="message-wrapper container">
+	<nav class="message-menu">
+		<a href="#" class="active">Trocs en cours</a>
+		<a href="#">Anciens trocs</a>
+	</nav>
+    </section>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {                        
+            
+            
+        });
+    </script>
+    
+{% endblock %}

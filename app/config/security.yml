@@ -90,4 +90,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ma-cave/$, role: [ROLE_MEMBRE] }
         - { path: ^/mon-profil/$, role: [ROLE_MEMBRE] }
+        - { path: ^/troc/$, role: [ROLE_MEMBRE] }
+        - { path: ^/messages/$, role: [ROLE_MEMBRE] }
         - { path: ^/admin/, role: [ROLE_ADMIN] }
+        - { path: ^/admin-dev/, role: [ROLE_ADMIN] }

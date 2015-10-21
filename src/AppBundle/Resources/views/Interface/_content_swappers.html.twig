@@ -19,8 +19,8 @@
 	</div>
 	<div class="btns-container">
             <form id="FormSelectionChoix" action="{{path('front_troc_proposer', {'idTroqueur':troqueur.id})}}" method="POST">
-                <input id="TroquerSelectionChoixMaCave" type="hidden" name="selection" value="">
-                <input id="TroquerSelectionChoixSaCave" type="hidden" name="selection" value="">
+                <input id="TroquerSelectionChoixMaCave" type="hidden" name="selectionMaCave" value="">
+                <input id="TroquerSelectionChoixSaCave" type="hidden" name="selectionSaCave" value="">
                 <button id="btTroquerSelection" class="btn-default btn-swap">Proposer un troc</button>
             </form>				
                 <button id="btTroquerAnnuler" onClick="history.back();" class="btn-default btn-cancel">Annuler le troque</button>

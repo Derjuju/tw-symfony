@@ -14,7 +14,7 @@
 {% block content %}
     {{ parent() }}  
     <section class="swap-wrapper">
-	<section class="my-cave-container">
+	<section id="my-cave-container" class="my-cave-container">
 		<div class="wrapper">
 			<div class="top">
 				<div class="span-left">
@@ -42,7 +42,7 @@
 			</section>
 		</div>
 	</section>
-	<section class="her-cave-container">
+	<section id="troqueur-cave-container" class="her-cave-container">
 		<div class="wrapper">
 			<div class="top">
 				<div class="span-left">
@@ -117,6 +117,49 @@
                 }
             }
             initialiseSaCave();
+            
+            
+            $('#btTroquerSelection').on('click', function(event){
+                event.preventDefault();
+                var toutEstOk = true;
+                
+                var listeSelectionMaCave = new Array();
+                // pour chaque selection cochée, si quantité non choisie alors affiche erreur
+                $('#my-cave-container .big-checkbox').each(function(){
+                    var dataSelect = $(this).attr('data-select');
+                    if($(this).prop( "checked")){
+                       if($('#select-'+dataSelect).val() < 1){
+                            alert("Vous devez indiquer une quantité.");
+                            $(this).prop( "checked", false );
+                            toutEstOk = false;
+                       }else{
+                           listeSelectionMaCave.push({'id':$(this).val(),'qte':$('#select-'+dataSelect).val()});
+                       }
+                    }
+                });
+                
+                var listeSelectionSaCave = new Array();
+                // pour chaque selection cochée, si quantité non choisie alors affiche erreur
+                $('#troqueur-cave-container .big-checkbox').each(function(){
+                    var dataSelect = $(this).attr('data-select');
+                    if($(this).prop( "checked")){
+                       if($('#select-'+dataSelect).val() < 1){
+                            alert("Vous devez indiquer une quantité.");
+                            $(this).prop( "checked", false );
+                            toutEstOk = false;
+                       }else{
+                           listeSelectionSaCave.push({'id':$(this).val(),'qte':$('#select-'+dataSelect).val()});
+                       }
+                    }
+                });
+                
+                if(toutEstOk){
+                    $('#TroquerSelectionChoixMaCave').val(JSON.stringify(listeSelectionMaCave));
+                    $('#TroquerSelectionChoixSaCave').val(JSON.stringify(listeSelectionSaCave));
+                    $('#FormSelectionChoix').submit();            
+                }
+            });
+            
         });
     </script>
     

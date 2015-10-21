@@ -7,7 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use AppBundle\Entity\Bouteille;
+use AppBundle\Entity\Troc;
+use AppBundle\Entity\TrocSection;
+use AppBundle\Entity\TrocContenu;
+use AppBundle\Entity\TrocBouteille;
+use AppBundle\Entity\TrocMessage;
+use AppBundle\Entity\TrocRDV;
 
 class TrocController extends Controller
 {    
@@ -83,8 +88,49 @@ class TrocController extends Controller
             throw $this->createNotFoundException('Sélection impossible.');
         }
         
+        $troc = new Troc();
+        $troc->setMemberA($user);
+        $troc->setMemberB($troqueur);        
+        $em->persist($troc);
+        
+        $trocContenu = new TrocContenu();
         
         
+        
+        foreach($preselectionMaCave as $indice){
+            $bouteille = new TrocBouteille();
+            $boutRef = $em->getRepository('AppBundle:Bouteille')->find($indice->id);
+            if($boutRef)
+            {
+                $bouteille->setBouteille($boutRef);
+                $bouteille->setQuantite($indice->qte);
+                $em->persist($bouteille);
+                $trocContenu->addTrocABouteille($bouteille);
+            }
+        }
+        
+        foreach($preselectionSaCave as $indice){
+            $bouteille = new TrocBouteille();
+            $boutRef = $em->getRepository('AppBundle:Bouteille')->find($indice->id);
+            if($boutRef)
+            {
+                $bouteille->setBouteille($boutRef);
+                $bouteille->setQuantite($indice->qte);
+                $em->persist($bouteille);
+                $trocContenu->addTrocBBouteille($bouteille);
+            }
+        }                
+        $em->persist($trocContenu);
+                
+        $trocSection = new TrocSection();
+        $trocSection->setTroc($troc);
+        $trocSection->setContenu($trocContenu);
+        $trocSection->setMember($user);
+        $em->persist($trocSection);
+        
+        $em->flush();
+        
+        return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
     }
     
 }

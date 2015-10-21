@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use AppBundle\Entity\Member;
 
@@ -61,14 +62,14 @@ class Troc
     /**
      * @var integer
      *
-     * @ORM\Column(name="note_a", type="integer")
+     * @ORM\Column(name="note_a", type="integer", nullable=true)
      */
     private $noteA;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="note_b", type="integer")
+     * @ORM\Column(name="note_b", type="integer", nullable=true)
      */
     private $noteB;
 
@@ -117,7 +118,10 @@ class Troc
     }
     
     public function __construct() {
-        $this->createdAt = new \Symfony\Component\Validator\Constraints\DateTime();
+        $this->createdAt = new \DateTime();
+        $this->finishedA = false;
+        $this->finishedB = false;
+        $this->archived = false;
         $this->trocSections = new ArrayCollection();
     }
 
@@ -393,5 +397,52 @@ class Troc
      */
     public function getTrocSections() {
         return $this->trocSections;
+    }
+    
+    /**
+     * Set memberA
+     *
+     * @param \AppBundle\Entity\Member $memberA
+     * @return Troc
+     */
+    public function setMemberA(\AppBundle\Entity\Member $memberA = null)
+    {
+        $this->memberA = $memberA;
+
+        return $this;
+    }
+
+    /**
+     * Get memberA
+     *
+     * @return \AppBundle\Entity\Member 
+     */
+    public function getMemberA()
+    {
+        return $this->memberA;
+    }
+    
+    
+    /**
+     * Set memberB
+     *
+     * @param \AppBundle\Entity\Member $memberB
+     * @return Troc
+     */
+    public function setMemberB(\AppBundle\Entity\Member $memberB = null)
+    {
+        $this->memberB = $memberB;
+
+        return $this;
+    }
+
+    /**
+     * Get memberB
+     *
+     * @return \AppBundle\Entity\Member 
+     */
+    public function getMemberB()
+    {
+        return $this->memberB;
     }
 }

@@ -1,0 +1,34 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Troc {% if trocArchive %}terminé{% else %}en cours{% endif %} - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}troc-message {% if trocArchive %}troc-archive{% else %}troc-en-cours{% endif %}{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% if trocArchive %}
+        {% set titreH1 = "Troc terminé" %}
+    {% else %}
+        {% set titreH1 = "Troc en cours" %}
+    {% endif %}
+    
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}  
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {                        
+            
+            
+        });
+    </script>
+    
+{% endblock %}

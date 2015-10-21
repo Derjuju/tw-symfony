@@ -31,9 +31,11 @@ class RechercheController extends Controller
         $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher')); 
         
         $idUserToFilter = 0;
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if($user){
-            $idUserToFilter = $user->getId();
+        if ($this->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if($user){
+                $idUserToFilter = $user->getId();
+            }
         }
         
         $em = $this->getDoctrine()->getManager();
