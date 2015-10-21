@@ -69,7 +69,10 @@ class RechercheController extends Controller
             'action' => $this->generateUrl('front_search_troqueur'),
             'method' => 'POST',
         ));
-        $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));                
+        $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));    
+        
+        $em = $this->getDoctrine()->getManager();
+        $troqueurs = $em->getRepository('AppBundle:Member')->findAll();
         
         return $this->render("AppBundle:Recherche:search_troqueur.html.twig", array(                
             'formBouteille'   => $formBouteille->createView(),

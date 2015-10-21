@@ -20,13 +20,13 @@
 				<div class="select-swagg">
 					<select name="sort_by" class="sorter">
 						<option value="" selected="selected">Classer par ...</option>
-						<option value="millesime">Millesime</option>
-						<option value="qte">Quantité (Décroissant)</option>
+						<option value="lastname">A à Z</option>
+						<option value="niveau">Niveau</option>
 					</select>
 				</div>
 			</div>
 			<div class="center">
-				<span class="red">150</span> résultats
+				<span class="red">{{troqueurs|length}}</span> résultat{% if troqueurs|length > 1 %}s{% endif %}
 			</div>
 		</div>
                 <div class="winethumb-container sort-container">
