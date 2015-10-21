@@ -4,17 +4,21 @@
     data-order="{{bouteille.id}}">
         <div class="winethumb-header">
                 <div class="select-swagg">
+                    {% if is_granted('ROLE_USER') %}
                     <select id="select-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}">
                         <option value="" selected="selected">Quantité</option>
                         {% for i in range(1,bouteille.quantite) %}
                                 <option value="{{i}}">{{i}}</option>
                         {% endfor %}
                     </select>
+                    {% endif %}
                 </div>
         </div>
         <div class="inner-winethumb">
                 <div class="checkbox-container">
+                    {% if is_granted('ROLE_USER') %}
                         <input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/>
+                    {% endif %}
                 </div>
                 <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');"></div>
                 <div class="description">

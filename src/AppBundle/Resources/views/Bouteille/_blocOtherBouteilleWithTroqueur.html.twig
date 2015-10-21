@@ -3,6 +3,7 @@
         data-qte="{{bouteille.quantite}}"
         data-order="{{bouteille.id}}">
         <div class="top-in-his-cave">
+            {% if is_granted('ROLE_USER') %}
                 <label><input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/> Sélectionner</label>
                 <div class="select-swagg">
                         <select id="select-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}">
@@ -12,6 +13,7 @@
                                 {% endfor %}
                         </select>
                 </div>
+            {% endif %}
         </div>
         <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="Voir la Fiche">
         <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">

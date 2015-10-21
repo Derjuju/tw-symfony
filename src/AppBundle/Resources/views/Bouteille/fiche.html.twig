@@ -16,6 +16,7 @@
     <section class="bottle-page-wrapper">
 	<section class="bottle-info-wrapper">
 		<div class="wrapper">
+                        {% if is_granted('ROLE_USER') %}
 			<div class="qte-select-mobile desktop-hide">
 				<div class="qte-level">
 					<div class="select-swagg">
@@ -31,6 +32,7 @@
 					<label><input id="checkbox-mobile-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="mobile-qte-for-{{bouteille.id}}"/> Sélectionner</label>
 				</div>
 			</div>
+                        {% endif %}
 			<div class="image-container">
 				<div class="upload-image-container">
 					<div class="wine-image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
@@ -83,6 +85,7 @@
 					</div>
 				</div>
 			</div>
+                        {% if is_granted('ROLE_USER') %}
 			<div class="mobile-hide">
 				<div class="qte-level">
 					<div class="select-swagg">
@@ -107,6 +110,7 @@
 					<label><input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/> Sélectionner</label>
 				</div>
 			</div>
+                        {% endif %}
 		</div>
 	</section>
         {% if bouteilles|length > 0 %}
