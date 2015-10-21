@@ -54,6 +54,10 @@
 					    <label for="rating-input-1-1"></label>
 					</span>
 				</div>
+                                <div class="social-btns">
+                                        <a href="https://twitter.com/share" data-url="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" class="twitter-share-button" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                        <div class="fb-share-button" data-href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" data-layout="button"></div>
+                                </div>
 			</div>
 			<div class="bottle-info">
 				<div class="title">
