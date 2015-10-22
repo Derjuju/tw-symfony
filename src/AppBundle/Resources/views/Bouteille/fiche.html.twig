@@ -107,7 +107,15 @@
 							<div class="the-emptyness"></div>
 							<div class="the-fullness" style="top:{{100 - bouteille.niveau}}%"></div>
 						</div>
-						<h4>Niveau : {{bouteille.niveau}}%</h4>
+						<h4>Niveau : 
+                                                    {% if bouteille.niveau >= 80 %}Normal{% endif %}
+                                                    {% if bouteille.niveau == 77 %}Bas goulot{% endif %}
+                                                    {% if bouteille.niveau == 75 %}Très légèrement bas{% endif %}
+                                                    {% if bouteille.niveau == 72 %}Légèrement bas{% endif %}
+                                                    {% if bouteille.niveau == 70 %}Haute épaule{% endif %}
+                                                    {% if bouteille.niveau == 65 %}Mi-épaule{% endif %}
+                                                    {% if bouteille.niveau == 60 %}Bas{% endif %}
+                                                </h4>
 					</div>
 				</div>
 				<div class="select-bottle">

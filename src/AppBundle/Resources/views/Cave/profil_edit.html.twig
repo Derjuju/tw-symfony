@@ -27,8 +27,7 @@
                     </div>
                     {% endif %}
                     <div class="input-hidden">
-                            <input type="file" name="profile_picture" id="file_picker" data-class-dest="profile-image" max-size=2000000/>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+                            <input type="file" name="profile_picture" id="file_picker" data-class-dest="profile-image"/>                            
                             {{ form_widget(form.avatar, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                     </div>
                 </div>
@@ -103,7 +102,7 @@
         $(document).ready(function () {
             
             $('#EditMember_submit').on('submit', function(){
-                var isOk = true;
+                /*var isOk = true;
                 $('input[type=file][max-size]').each(function(){
                     if(typeof this.files[0] !== 'undefined'){
                         var maxSize = parseInt($(this).attr('max-size'),10),
@@ -118,7 +117,7 @@
                     }
                 });
                 return isOk;
-        
+                */
             });
         });
     </script>

@@ -154,7 +154,8 @@ class AddBouteilleType extends AbstractType
         return array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));
     }
     public function buildNiveauChoices() {
-        return array_combine(range(100,0, 10), range(100,0, 10));
+        //return array_combine(range(100,0, 10), range(100,0, 10));
+        return array_combine(array(80,77,75,72,70,65,60),array('Normal','Bas goulot','Très légèrement bas','Légèrement bas','Haute épaule','Mi-épaule','Bas'));
     }
     public function buildApogeeChoices() {
         return array_combine(range(0,25), range(0,25));

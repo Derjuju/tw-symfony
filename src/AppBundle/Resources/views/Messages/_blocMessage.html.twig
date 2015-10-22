@@ -4,8 +4,8 @@
 {% set troqueurBouteilles = message.trocSections[0].contenu.trocBBouteilles %}
 {% else %}
 {% set troqueur = message.memberA %}
-{% set mesBouteilles = message.trocSections.contenu.trocBBouteilles %}
-{% set troqueurBouteilles = message.trocSections.contenu.trocABouteilles %}
+{% set mesBouteilles = message.trocSections[0].contenu.trocBBouteilles %}
+{% set troqueurBouteilles = message.trocSections[0].contenu.trocABouteilles %}
 {% endif %}
 {% if clicable %}<a href="{{path('front_messagerie_gestion', {'id':message.id})}}">{% endif %}
 <div class="header-message">

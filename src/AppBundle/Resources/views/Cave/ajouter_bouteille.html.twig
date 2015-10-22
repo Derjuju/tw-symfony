@@ -25,7 +25,7 @@
                                                     <a href="#" class="btn-modify upload-btn">Modifier</a>
                                             </div>
                                             <div class="input-hidden">
-                                                    <input type="file" name="photo_image" id="file_picker" data-class-dest="wine-image" max-size=2000000/>
+                                                    <input type="file" name="photo_image" id="file_picker" data-class-dest="wine-image"/>
                                                     {{ form_widget(form.photo, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                                             </div>
                                     </div>
@@ -165,6 +165,7 @@
                 pourcentage = Math.round(pourcentage/10)*10;
                 pourcentage = 100 - pourcentage;
                 $('#AddBouteilleType_niveau').val(pourcentage);*/
+                /*
                 var isOk = true;
                 $('input[type=file][max-size]').each(function(){
                     if(typeof this.files[0] !== 'undefined'){
@@ -180,6 +181,7 @@
                     }
                 });
                 return isOk;
+                */
         
             });
             

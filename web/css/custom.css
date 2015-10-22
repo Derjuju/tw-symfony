@@ -622,6 +622,11 @@ a:hover .icon-deconnexion{
     border: 1px solid #e5e5e5;   
 }
 
+/* HOME */
+.monthly-pick-thumbnail a{width:100%;height:100%;color:#FFF;display:block;text-decoration:none}
+.monthly-pick-thumbnail li:hover a{opacity:1;}
+.monthly-pick-thumbnail a{position:relative;background:rgba(0,0,0,.2);opacity:0;-webkit-transition:opacity .1s,-webkit-transform .1s;transition:opacity .1s,transform .1s}
+
 /* SEARCH SELECTOR */
 .form-bottle-search input[type=text], .form-swapper-search input[type=text] {    
     box-sizing: content-box;
@@ -745,7 +750,7 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     text-align: center;
 }
 .add-bottle-form .level-bottle .the-fullness {
-    top: 0%;
+    top: 20%;
 }
 #AjouterBouteille {
     padding-bottom: 5px;
@@ -762,7 +767,7 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     text-align: center;
 }
 .add-bottle-form .level-bottle .the-fullness {
-    top: 0%;
+    top: 20%;
 }
 .ma-cave.editer-bouteille #ModifierBouteille, .ma-cave.editer-bouteille #SupprimerBouteille {
     position:relative;
