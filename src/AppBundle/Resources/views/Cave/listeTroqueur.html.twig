@@ -1,0 +1,9 @@
+<div id="listingBouteille" class="winethumb-container">
+    {% if bouteilles|length > 0 %}
+        {% for item in bouteilles %}
+            {% include 'AppBundle:Bouteille:_blocOtherBouteilleWithTroqueur.html.twig' with {'bouteille' : item} %}
+        {% endfor %}
+    {% else %}
+        Aucune bouteille dans la cave.
+    {% endif %}
+</div>

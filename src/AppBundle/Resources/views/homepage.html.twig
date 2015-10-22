@@ -12,10 +12,10 @@
 		<span class="subtitle">Échangez vos bouteilles de vins entre amateurs ou experts</span>
 
 		<ul class="featured-wines-thumbnails">
-			<li style="background-image: url('{{asset('img/bordeaux.jpg')}}');"><a href="#" title="Recherche bouteilles de Bordeaux"><span>Bordeaux</span></a></li>
-			<li style="background-image: url('{{asset('img/bourgogne.jpg')}}');"><a href="#" title="Recherche bouteilles de Bourgogne"><span>Bourgogne</span></a></li>
-			<li style="background-image: url('{{asset('img/champagne.jpg')}}');"><a href="#" title="Recherche bouteilles de Champagne"><span>Champagne</span></a></li>
-			<li style="background-image: url('{{asset('img/autres-regions.jpg')}}');"><a href="#" title="Recherche bouteilles"><span>Autres Régions</span></a></li>
+			<li style="background-image: url('{{asset('img/bordeaux.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'bordeaux'})}}" title="Recherche bouteilles de Bordeaux"><span>Bordeaux</span></a></li>
+			<li style="background-image: url('{{asset('img/bourgogne.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'bourgogne'})}}" title="Recherche bouteilles de Bourgogne"><span>Bourgogne</span></a></li>
+			<li style="background-image: url('{{asset('img/champagne.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'champagne'})}}" title="Recherche bouteilles de Champagne"><span>Champagne</span></a></li>
+			<li style="background-image: url('{{asset('img/autres-regions.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'others-regions'})}}" title="Recherche bouteilles autres régions"><span>Autres Régions</span></a></li>
 		</ul>
 
 		<a href="{{path('front_search_bouteille')}}" class="btn-default">Tous les vins à l'échange</a>
@@ -29,26 +29,24 @@
 			<li style="background-image: url('{{asset('img/pick-1.jpg')}}');">
 				<a href="#">
 					<div class="content">
-						<h3 class="title">Au nouveau nez</h3>
-						<p class="description">accueillie par Hélène
-							Paris 12
-						</p>
+						<h3 class="title">L’équipe TrocWine<br>vous propose...</h3>
+						<p class="description">Notre sélection rien que pour vous.</p>
 					</div>
 				</a>
 			</li>
-			<li style="background-image: url('{{asset('img/pick-4.jpg')}}');">
-				<a href="#">
+			<li style="background-image: url('{{asset('img/pick-5.jpg')}}');">
+				<a href="http://vinexplore.com/fr/" target="_blank">
 					<div class="content">
-						<h3 class="title">Moët & Chandon</h3>
+						<h3 class="title">Télécharger l'application Vinexplore</h3>
 						<p class="description"></p>
 					</div>
 				</a>
 			</li>
-			<li style="background-image: url('{{asset('img/pick-2.png')}}');">
-				<a href="#">
+			<li style="background-image: url('{{asset('img/pick-6.jpg')}}');">
+				<a href="{{path('front_cave', {'id':17}) }}">
 					<div class="content">
-						<h3 class="title">Lumière sur</h3>
-						<p class="description">Jean Périgon</p>
+						<h3 class="title">Le troqueur du mois</h3>
+						<p class="description">Notre fondateur</p>
 					</div>
 				</a>
 			</li>

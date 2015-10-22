@@ -1,0 +1,92 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Cave n° {{ troqueur.id }} - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}cave fiche-bouteille{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% set cave_owner = true %}    
+    {% set titreH1 = "Cave n°"~troqueur.id %}
+    {% set use_red_title = true %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}  
+    <section class="bottle-page-wrapper">
+	{% if troqueur.bouteilles|length > 0 %}
+	<section class="in-his-cave wrapper">
+		<h3 class="page-title">Dans sa cave</h3>
+                {% include "AppBundle:Cave:_toolbar_troqueur.html.twig" with {'formFiltrerCave' : formFiltrerCave} %}                       
+                {% include 'AppBundle:Cave:listeTroqueur.html.twig' with {'bouteilles' : troqueur.bouteilles} %}
+	</section>
+        {% endif %}
+</section>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('change','#ClasserCave_typeDeVin', function(){
+               var form = $(this).closest("form");
+               var valeur = $(this).val(); if(valeur == undefined || valeur == null || valeur == '') valeur = 0;      
+               var url = form.attr('action').replace('/0', '/'+valeur);
+               var target = "#listingBouteille";
+               var data = form.serialize();
+               var modalId = "#myModal";
+               ajaxRefreshHTML(url, target, data, modalId); 
+            });
+            
+            $('select.qte-select').on('change', function(event){
+                var dataSelect = $(this).attr('data-select');
+                if($(this).val() > 0){
+                   $('#checkbox-'+dataSelect).prop( "checked", true );
+                   //$('#checkbox-mobile-'+dataSelect).prop( "checked", true ); 
+                } else {
+                   $('#checkbox-'+dataSelect).prop( "checked", false );
+                   //$('#checkbox-mobile-'+dataSelect).prop( "checked", false );
+                } 
+            });
+             $('.big-checkbox').on('change', function(event){
+                var dataSelect = $(this).attr('data-select');
+                if($(this).prop( "checked")){
+                   if($('#select-'+dataSelect).val() < 1){
+                        alert("Vous devez indiquer une quantité.");
+                        $(this).prop( "checked", false );
+                   }
+                } 
+            });
+            
+            $('#btTroquerSelection').on('click', function(event){
+                event.preventDefault();
+                var toutEstOk = true;
+                var listeSelection = new Array();
+                // pour chaque selection cochée, si quantité non choisie alors affiche erreur
+                $('.big-checkbox').each(function(){
+                    var dataSelect = $(this).attr('data-select');
+                    if($(this).prop( "checked")){
+                       if($('#select-'+dataSelect).val() < 1){
+                            alert("Vous devez indiquer une quantité.");
+                            $(this).prop( "checked", false );
+                            toutEstOk = false;
+                       }else{
+                           listeSelection.push({'id':$(this).val(),'qte':$('#select-'+dataSelect).val()});
+                       }
+                    }
+                });
+                
+                if(toutEstOk){
+                    $('#TroquerSelectionChoix').val(JSON.stringify(listeSelection));
+                    $('#FormSelectionChoix').submit();            
+                }
+            });
+        });
+    </script>
+    
+{% endblock %}
+

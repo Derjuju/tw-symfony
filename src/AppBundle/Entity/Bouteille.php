@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use AppBundle\Entity\TypeAppellation;
 use AppBundle\Entity\TypeContenance;

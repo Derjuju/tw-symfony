@@ -41,7 +41,8 @@ class BouteilleRepository extends EntityRepository
         return $this->applicationFilters($filtres, $idUser);
     }
     
-    function applicationFilters($filters, $idUser){
+    function applicationFilters($filtres, $idUser){
+        
         $query = $this->createQueryBuilder('b')
                 ->leftJoin('b.typeDeVin', 'tdv')
                 ->leftJoin('b.typeDomaine', 'td')
@@ -79,8 +80,12 @@ class BouteilleRepository extends EntityRepository
                 ->setParameter('typeDeVin', $filtres['typeDeVin']);
         }
         if(isset($filtres['typeRegion'])&&($filtres['typeRegion']!='')){
-            $query->andWhere('tr.id = :typeRegion')
-                ->setParameter('typeRegion', $filtres['typeRegion']);
+            if($filtres['typeRegion']!=-1){
+                $query->andWhere('tr.id = :typeRegion')
+                    ->setParameter('typeRegion', $filtres['typeRegion']);
+            }else{
+                $query->andWhere($query->expr()->notIn('tr.id', $filtres['typeRegionAExclure']));
+            }
         }
         if(isset($filtres['millesime'])&&($filtres['millesime']!='')){
             $query->andWhere('b.millesime = :millesime')

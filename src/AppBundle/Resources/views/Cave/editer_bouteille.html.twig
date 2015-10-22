@@ -1,12 +1,13 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Editer une bouteille - {{ parent() }}{% endblock %}
+{% block title %}Modifier une bouteille - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}ma-cave editer-bouteille{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
-    {% set titreH1 = "Editer une bouteille" %}
+    {% set titreH1 = "Modifier une bouteille" %}
+    {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
@@ -132,6 +133,8 @@
                     </div>
 
                     <button id="ModifierBouteille" class="submit-btn btn-default">Valider</button>
+                    <br><br>
+                    <a href="{{path('front_ma_cave_supprimer', {'id':entity.id}) }}" onClick="return confirmSuppression();" class="btn-default btn-delete">Supprimer</a>
                     <br>
                 {{ form_row(form.submit, {'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                 {{ form_row(form.note, {'class': 'hidden', 'attr': {'class': ''} }) }} 

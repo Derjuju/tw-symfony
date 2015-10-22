@@ -1,0 +1,31 @@
+<div class="header-owner-info wrapper">
+	<div class="span-left">
+		<a href="#link-back" onClick="history.back();" class="btn-default"><i class="icon-arrow-left"></i> Retour</a>
+	</div>
+	<div class="profile-light span-center">
+		<div class="left">
+			<div class="profile-image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<h3>{{troqueur.lastname}}<br>{{troqueur.firstname}}</h3>
+		</div>
+		<div class="right">
+			<span class="owner-level">{{troqueur.expertLevel.nameFr}}</span>
+			<div class="star-container">
+                                {% for i in range(1,5) %}
+					{% if i <= troqueur.note %}
+						<i class="icon-star-static full-star"></i>
+					{% else %}
+						<i class="icon-star-static"></i>
+					{% endif %}
+                                {% endfor %}
+			</div>
+		</div>
+	</div>
+        {% if is_granted('ROLE_USER') %}
+	<div class="span-right">            
+            <form id="FormSelectionChoix" action="{{path('front_troc_initialise', {'idTroqueur':troqueur.id})}}" method="POST">
+                <input id="TroquerSelectionChoix" type="hidden" name="selectionSaCave" value="">
+                <button id="btTroquerSelection" class="btn-default"  name="valider">Troquer ma sélection</button>
+            </form>
+	</div>
+        {% endif %}
+</div>

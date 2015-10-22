@@ -137,7 +137,12 @@ function ajaxRefreshHTML(url, target, data, modalId){
             $(modalId).empty().html();                 
             $(modalId).modal('toggle');
             $(target).empty().html(htmlResponse);                               
-            checkAjaxModal();              
+            checkAjaxModal();  
+            
+            //re-render the facebook icons (in a div with id of 'content') 
+            var idDom = target.substring(1);
+            FB.XFBML.parse(document.getElementById(idDom));
+            twttr.widgets.load();
         },
         error : function(jqXHR, textStatus, errorThrown) {
             $(modalId).empty().html('Erreur de traitement...');                             

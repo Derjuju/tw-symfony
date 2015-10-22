@@ -48,6 +48,26 @@ class CaveController extends Controller
     }
     
     /**
+     * @Route("/cave/{id}",name="front_cave")          
+     */
+    public function caveAction($id) {
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $troqueur = $em->getRepository('AppBundle:Member')->find($id);        
+        if(!$troqueur){
+            throw $this->createNotFoundException('Troqueur inconnu.');
+        }
+        
+        $formFiltrerCave = $this->createForm(new ClasserCaveType(), null, array(
+            'action' => $this->generateUrl('front_cave_liste', array('id'=>$id, 'filtre'=>0)),
+            'method' => 'POST',
+        ));
+        
+        return $this->render("AppBundle:Cave:cave.html.twig", ['troqueur'=>$troqueur, 'formFiltrerCave' => $formFiltrerCave->createView()]);
+    }
+    
+    /**
      * @Route("/ma-cave",name="front_ma_cave_filtrer")          
      */
     public function filtrerAction() {
@@ -74,6 +94,27 @@ class CaveController extends Controller
             $bouteilles = $em->getRepository('AppBundle:Bouteille')->findBy(array('member' => $user));
         }
         return $this->render("AppBundle:Cave:liste.html.twig", ['bouteilles'=>$bouteilles]);
+    }
+    
+    /**
+     * @Route("/cave/liste/{id}/{filtre}",name="front_cave_liste")          
+     */
+    public function listeCaveAction($id, $filtre) {
+        if($filtre == null){$filtre = 0;}
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $troqueur = $em->getRepository('AppBundle:Member')->find($id);        
+        if(!$troqueur){
+            throw $this->createNotFoundException('Troqueur inconnu.');
+        }
+        
+        if($filtre != 0){
+            $bouteilles = $em->getRepository('AppBundle:Bouteille')->findBy(array('member' => $troqueur, 'typeDeVin'=>$filtre));
+        }else{
+            $bouteilles = $em->getRepository('AppBundle:Bouteille')->findBy(array('member' => $troqueur));
+        }
+        return $this->render("AppBundle:Cave:listeTroqueur.html.twig", ['bouteilles'=>$bouteilles]);
     }
     
     /**

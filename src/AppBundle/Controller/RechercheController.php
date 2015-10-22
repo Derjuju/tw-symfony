@@ -15,8 +15,56 @@ class RechercheController extends Controller
      * @Route("/search/bottle",name="front_search_bouteille")          
      */
     public function searchBottleAction(Request $request) {
+        $filtres = $request->request->get('SearchBouteille',null);        
+        return $this->lanceRechercheBouteille($filtres);
+    }
+    
+    /**
+     * @Route("/search/bottle/{reference}",name="front_search_bouteille_ref_region")          
+     */
+    public function searchBottleRegionReferenceAction(Request $request, $reference) {
+        $filtres = array();
+        if($reference == 'others-regions'){
+            $filtres['typeRegion'] = -1;
+            $filtres['typeRegionAExclure'] = $this->getRegionAExclure(array('bordeaux','bourgogne','champagne'));
+        }else{
+            $filtres['typeRegion'] = $this->getRegionIdByReference($reference);        
+        }
+        return $this->lanceRechercheBouteille($filtres);
+    }
+    
+    private function getRegionIdByReference($reference){
+        $em = $this->getDoctrine()->getManager();
+        $idRegion = 0;
+        $region = $em->getRepository('AppBundle:TypeRegion')->findBy(array('reference'=>$reference));
+        if($region[0]){
+            $idRegion = $region[0]->getId();
+        }
+        return $idRegion;
+    }
+    private function getRegionAExclure($references){
+        $em = $this->getDoctrine()->getManager();
+        $idRegion = "0";
+        $regions = $em->getRepository('AppBundle:TypeRegion')->findRefAExclure($references);
+        if($regions){
+            foreach($regions as $region){
+                $idRegion .= ','.$region->getId();
+            }
+        }
+        return $idRegion;
+    }
+    
+    
+    private function lanceRechercheBouteille($filtres) {
+        
+        $idUserToFilter = 0;
+        if ($this->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if($user){ $idUserToFilter = $user->getId(); }
+        }
+        
+        $em = $this->getDoctrine()->getManager();
         $bouteilles = array();
-        $filtres = $request->request->get('SearchBouteille',null);
         
         $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
             'action' => $this->generateUrl('front_search_bouteille'),
@@ -30,18 +78,8 @@ class RechercheController extends Controller
         ));
         $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher')); 
         
-        $idUserToFilter = 0;
-        if ($this->get('security.context')->isGranted('ROLE_USER') ) {
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            if($user){
-                $idUserToFilter = $user->getId();
-            }
-        }
-        
-        $em = $this->getDoctrine()->getManager();
         //$bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelector($filtres);
         $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
-        
         
         return $this->render("AppBundle:Recherche:search_bottle.html.twig", array(                
                     'formBouteille'   => $formBouteille->createView(),

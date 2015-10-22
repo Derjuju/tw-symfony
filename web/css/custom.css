@@ -72,6 +72,10 @@ h3 {
 body.error a{color: #ffffff;}
 
 
+.icon-add-bottle, .icon-add-bottle-active, .icon-cave, .icon-message, .icon-question-mark {
+    margin-right: 5px;
+}
+
 /* les formulaires */
 .subscribe-form ul{
     list-style: none;
@@ -743,6 +747,9 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 .add-bottle-form .level-bottle .the-fullness {
     top: 0%;
 }
+#AjouterBouteille {
+    padding-bottom: 5px;
+}
 
 /* EDIT BOUTEILLE */
 #FormEditBouteille {
@@ -765,6 +772,17 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     padding-bottom: 5px;
 }
 
+.ma-cave.editer-bouteille .btn-default.btn-delete{
+    width: 215px;
+    padding: 5px;
+    margin: 7px auto 0;
+    font-size: 16px;
+    line-height: 22px;
+    display:inline-block;
+    font-family: Vollkorn,serif;
+    text-transform: uppercase;
+}
+
 
 /* FICHE */
 .profile-light h3 {
@@ -776,6 +794,15 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     font-size:16px;
     line-height: normal;
 }
+
+
+/* SA CAVE */
+body.cave.fiche-bouteille .top-bottle-container{
+    max-width: 200px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
 
 /* NOTRE HISTOIRE */
 .notre-histoire ul li{

@@ -23,6 +23,8 @@
 		</div>
                 {% if bottle_owner is defined %}
                     {% include "AppBundle:Interface:_content_bottle_owner.html.twig" %}
+                {% elseif cave_owner is defined %}
+                    {% include "AppBundle:Interface:_content_cave_owner.html.twig" %}
                 {% elseif swappers is defined %}
                     {% include "AppBundle:Interface:_content_swappers.html.twig" %}
                 {% else %}

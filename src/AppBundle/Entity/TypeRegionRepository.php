@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class TypeRegionRepository extends EntityRepository
 {
+    
+    function findRefAExclure($references){
+        $query = $this->createQueryBuilder('tr')
+                ->where("1 = 1");
+        
+        if(count($references)>0){            
+            $orQuery = $query->expr()->orx();
+            foreach($references as $key => $reference){             
+                $orQuery->add($query->expr()->like("tr.reference", ":reference_".$key));
+                $query->setParameter("reference_".$key, '%'.$reference.'%');
+            }
+            $query->andWhere($orQuery);
+        }
+        
+        return $query->getQuery()->getResult();
+    }
+    
 }
