@@ -3,13 +3,13 @@
         data-qte="{{bouteille.quantite}}"
         data-order="{{bouteille.id}}">
         <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="Voir la Fiche">
-        <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+        <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_cave')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
                <span class="dot-qte">{{bouteille.quantite}}</span>
        </div>
         </a>
        <div class="description">
                 <div class="owner-container">
-                    <div class="image-container" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+                    <div class="image-container" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
                     <p class="info-owner">{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</p>
                 </div>
                <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>

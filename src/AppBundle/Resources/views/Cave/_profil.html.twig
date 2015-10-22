@@ -4,7 +4,7 @@
             <div class="wrapper">  
                 <div class="col-3 text-center">
                     {% if user.avatar != null %}
-                        <div class="profile-image" style="background-image: url('{{asset(user.avatar.file)}}');"></div>
+                        <div class="profile-image" style="background-image: url('{{asset(user.avatar.file)|imagine_filter('avatar_resize_cave')}}');"></div>
                     {% else %}
                         <div class="profile-image" style="background-image: url('{{asset('uploads/avatars/avatar_default.jpg')}}');"></div>
                     {% endif %}                    

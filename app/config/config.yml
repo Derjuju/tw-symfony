@@ -123,4 +123,61 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
-  
+        
+#LIIP RESIZE
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root: %kernel.root_dir%/../web
+                cache_prefix: uploads/media/cache
+
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web/
+
+    driver:               gd
+    cache:                default
+    data_loader:          default
+    default_image:        null
+    controller:
+        filter_action:         liip_imagine.controller:filterAction
+        filter_runtime_action: liip_imagine.controller:filterRuntimeAction
+    
+    filter_sets:        
+        bouteille_resize_fiche:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [200, 320], mode: outbound }
+        bouteille_resize_cave:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [142, 230], mode: outbound }
+        bouteille_resize_messagerie:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [42, 62], mode: outbound }
+        avatar_resize_cave:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [170, 170], mode: outbound }
+        avatar_resize_header:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [130, 130], mode: outbound }
+        avatar_resize_mini:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [65, 65], mode: outbound }
+        avatar_resize_messagerie:
+            quality: 75
+            cache: ~
+            filters:
+                thumbnail: { size: [75, 75], mode: outbound }

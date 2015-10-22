@@ -4,7 +4,7 @@
 	</div>
 	<div class="profile-light span-center">
 		<div class="left">
-			<div class="profile-image" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<div class="profile-image" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)|imagine_filter('avatar_resize_header')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
 			<h3>{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</h3>
 		</div>
 		<div class="right">

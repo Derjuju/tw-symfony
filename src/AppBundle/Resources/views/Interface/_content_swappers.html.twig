@@ -1,7 +1,7 @@
 <section class="header-swapper">
 	<div class="profile-light swapper-a-container">
 		<div class="left">
-			<div class="profile-image" style="background-image: url('{% if user.avatar != null %}{{asset(user.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<div class="profile-image" style="background-image: url('{% if user.avatar != null %}{{asset(user.avatar.file)|imagine_filter('avatar_resize_header')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
 			<h3>{{user.firstname}}</h3>
 		</div>
 		<div class="right">
@@ -27,7 +27,7 @@
 	</div>
 	<div class="profile-light swapper-b-container">
 		<div class="left">
-			<div class="profile-image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+			<div class="profile-image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)|imagine_filter('avatar_resize_header')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
 			<h3>{{troqueur.firstname}}</h3>
 		</div>
 		<div class="right">

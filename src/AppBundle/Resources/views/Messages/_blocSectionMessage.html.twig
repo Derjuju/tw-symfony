@@ -2,7 +2,7 @@
 <time class="message-time" datetime="{{section.addedAt | date("Y-m-d")}}">{{section.addedAt | date("H:i")}} <b>{{section.addedAt | date("d/m/Y")}}</b></time>
 <div class="message-line">
         <div class="top">
-                <div class="image-person-container" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+                <div class="image-person-container" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
                 <div class="break">
                     <h3>{{troqueur.lastname}}</h3>
                     <span>( {{troqueur.expertLevel.nameFr}} )</span>

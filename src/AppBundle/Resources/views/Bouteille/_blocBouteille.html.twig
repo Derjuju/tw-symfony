@@ -3,7 +3,7 @@
         data-qte="{{bouteille.quantite}}"
         data-order="{{bouteille.id}}">
     <a href="{{path('front_ma_cave_editer', {'id':bouteille.id}) }}">
-        <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+        <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_cave')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
                <span class="dot-qte">{{bouteille.quantite}}</span>
        </div>
        <div class="description">

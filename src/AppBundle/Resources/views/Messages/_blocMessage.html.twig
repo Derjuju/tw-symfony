@@ -9,15 +9,14 @@
 {% endif %}
 {% if clicable %}<a href="{{path('front_messagerie_gestion', {'id':message.id})}}">{% endif %}
 <div class="header-message">
-        <div class="image-person-container" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+        <div class="image-person-container" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)|imagine_filter('avatar_resize_messagerie')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
         <div class="break">
                 <h3>{{troqueur.lastname}}</h3>
                 <span>( {{troqueur.expertLevel.nameFr}} )</span>
-        </div>
-        {{message.trocSections[0].id }}        
+        </div>       
         <div class="break">
                 {% for item in troqueurBouteilles %}
-                        <span class="image-wine-container" style="background-image: url('{% if item.bouteille.photo != null %}{{asset(item.bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}')">
+                        <span class="image-wine-container" style="background-image: url('{% if item.bouteille.photo != null %}{{asset(item.bouteille.photo.file)|imagine_filter('bouteille_resize_messagerie')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}')">
                                 <span class="dot-qte">{{item.quantite}}</span>
                         </span>
                 {% endfor %}
@@ -28,7 +27,7 @@
         <div class="break">
                 <h3>Contre</h3>
                 {% for item in mesBouteilles %}
-                        <span class="image-wine-container" style="background-image: url('{% if item.bouteille.photo != null %}{{asset(item.bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}')">
+                        <span class="image-wine-container" style="background-image: url('{% if item.bouteille.photo != null %}{{asset(item.bouteille.photo.file)|imagine_filter('bouteille_resize_messagerie')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}')">
                                 <span class="dot-qte">{{item.quantite}}</span>
                         </span>
                 {% endfor %}
