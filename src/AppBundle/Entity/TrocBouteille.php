@@ -29,7 +29,7 @@ class TrocBouteille
     private $quantite;
     
     /**
-     * @ORM\OneToOne(targetEntity="Bouteille", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Bouteille", inversedBy="inTroc")
      * @ORM\JoinColumn(name="bouteille_id", referencedColumnName="id")
      * */
     protected $bouteille;

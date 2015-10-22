@@ -20,11 +20,11 @@
                     <div class="wrapper">
                             <div class="image-container">
                                     <div class="upload-image-container">
-                                            <div class="wine-image" style="background-image: url('{{asset('uploads/bouteilles/bouteille_default.jpg')}}');">
+                                            <div class="wine-image" style="background-image: url('{% if entity.photo != null %}{{asset(entity.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
                                                     <a href="#" class="btn-modify upload-btn">Modifier</a>
                                             </div>
                                             <div class="input-hidden">
-                                                    <input type="file" name="photo_image" id="file_picker" data-class-dest="wine-image"/>
+                                                    <input type="file" name="photo_image" id="file_picker" data-class-dest="wine-image" max-size=2000000/>
                                                     {{ form_widget(form.photo, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                                             </div>
                                     </div>
@@ -164,6 +164,21 @@
                 pourcentage = Math.round(pourcentage/10)*10;
                 pourcentage = 100 - pourcentage;
                 $('#EditBouteilleType_niveau').val(pourcentage);*/
+                var isOk = true;
+                $('input[type=file][max-size]').each(function(){
+                    if(typeof this.files[0] !== 'undefined'){
+                        var maxSize = parseInt($(this).attr('max-size'),10),
+                        size = this.files[0].fileSize;
+                        isOk = maxSize > size;
+                        
+                        if(!isOk){
+                            alert('Votre image est trop grosse. Elle doit faire moins de 2Mo');
+                        }
+                        
+                        return isOk;
+                    }
+                });
+                return isOk;
             });
             
             $('#EditBouteilleType_niveau').on('change', function(event){

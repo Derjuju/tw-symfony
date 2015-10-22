@@ -787,3 +787,9 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 .icon-cave-big, .icon-magnifier-big, .icon-map-big, .icon-swap-bottle-big, .icon-swap-place-big {
     margin-bottom: 20px;
 }
+
+
+/* MESSAGERIE */
+.troc-actions .choix-actions form{ display:inline-block;}
+.troc-actions .choix-actions button.btn-default{ display:inline-block;}
+.troc-actions .choix-actions a.btn-default{ display:inline-block; width:140px;}

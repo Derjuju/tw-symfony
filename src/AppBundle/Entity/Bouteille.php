@@ -168,6 +168,10 @@ class Bouteille
      */
     protected $member;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TrocBouteille", mappedBy="bouteille", cascade={"persist", "remove"})
+     */
+    protected $inTroc;
 
 
     public function __toString() {
@@ -178,6 +182,7 @@ class Bouteille
         $this->online = 0;
         $this->reserved = 0;
         $this->createdAt = new \Symfony\Component\Validator\Constraints\DateTime();
+        $this->inTroc = new ArrayCollection();
     }
     
     /**
@@ -663,5 +668,38 @@ class Bouteille
     public function getMember()
     {
         return $this->member;
+    }
+    
+    
+    
+    
+    /**
+     * Add inTroc
+     *
+     * @param \AppBundle\Entity\TrocBouteille $inTroc
+     * @return Bouteille
+     */
+    public function addInTroc(\AppBundle\Entity\TrocBouteille $inTroc) {
+        $this->inTroc[] = $inTroc;
+
+        return $this;
+    }
+
+    /**
+     * Remove inTroc
+     *
+     * @param \AppBundle\Entity\TrocBouteille $inTroc
+     */
+    public function removeInTroc(\AppBundle\Entity\TrocBouteille $inTroc) {
+        $this->inTroc->removeElement($inTroc);
+    }
+
+    /**
+     * Get inTrocs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInTrocs() {
+        return $this->inTroc;
     }
 }

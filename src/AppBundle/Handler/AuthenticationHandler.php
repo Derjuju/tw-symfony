@@ -94,7 +94,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     {
           
         $session = $request->getSession();
-        $session->getFlashBag()->add("error","Erreur d'identification.".$exception);
+        $session->getFlashBag()->add("error","Erreur d'identification.");//.$exception);
         if ( $request->headers->get('referer') ) {
             $url = $request->headers->get('referer');
         } else {

@@ -15,7 +15,11 @@
                 <a href="#">Plan du site</a>
                 <ul>
                     <li><a href="{{path('front_accueil')}}">Home</a></li>
+                    {% if is_granted('ROLE_USER') %}
                     <li><a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">Mon espace</a></li>
+                    {% else %}
+                    <li><a href="#" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">Mon espace</a></li>
+                    {% endif %}
                 </ul>
             </li>
         </ul>

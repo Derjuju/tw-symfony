@@ -12,4 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class TrocRepository extends EntityRepository
 {
+    
+    function findByAllForUser($user, $archived){        
+        $query = $this->createQueryBuilder('t')
+                ->leftJoin('t.trocSections', 'ts')
+                ->leftJoin('ts.contenu', 'tc')
+                ->where('t.archived = :archived')
+                ->setParameter('archived', $archived);
+        
+        $orQuery = $query->expr()->orx();
+        $orQuery->add($query->expr()->eq("t.memberA", ":member"));
+        $orQuery->add($query->expr()->eq("t.memberB", ":member"));
+        
+        $query->andWhere($orQuery)
+            ->setParameter('member', $user);
+        
+        $query->orderBy('t.createdAt', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+    
 }

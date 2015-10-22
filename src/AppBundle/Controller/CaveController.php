@@ -152,6 +152,7 @@ class CaveController extends Controller
         return $this->render('AppBundle:Cave:ajouter_bouteille.html.twig', array(
             'user'=>$user,
             'form'   => $form->createView(),
+            'bouteille' => $entity
         ));
     }
     

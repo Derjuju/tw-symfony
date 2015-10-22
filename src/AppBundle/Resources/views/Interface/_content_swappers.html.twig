@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div class="btns-container">
-            <form id="FormSelectionChoix" action="{{path('front_troc_proposer', {'idTroqueur':troqueur.id})}}" method="POST">
+            <form id="FormSelectionChoix" action="{% if swappersForUpdate is defined %}{{path('front_troc_update', {'idTroc':idTroc})}}{% else %}{{path('front_troc_proposer', {'idTroqueur':troqueur.id})}}{% endif %}" method="POST">
                 <input id="TroquerSelectionChoixMaCave" type="hidden" name="selectionMaCave" value="">
                 <input id="TroquerSelectionChoixSaCave" type="hidden" name="selectionSaCave" value="">
                 <button id="btTroquerSelection" class="btn-default btn-swap">Proposer un troc</button>
