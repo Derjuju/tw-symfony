@@ -121,6 +121,8 @@ class Troc
         $this->createdAt = new \DateTime();
         $this->finishedA = false;
         $this->finishedB = false;
+        $this->addToCaveA = false;
+        $this->addToCaveB = false;
         $this->archived = false;
         $this->trocSections = new ArrayCollection();
     }

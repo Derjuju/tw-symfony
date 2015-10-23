@@ -28,19 +28,19 @@ class TrocSection
     private $id;
     
     /**
-     * @ORM\OneToOne(targetEntity="TrocMessage", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="TrocMessage", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\JoinColumn(name="troc_message_id", referencedColumnName="id")
      * */
     protected $message;
     
     /**
-     * @ORM\OneToOne(targetEntity="TrocContenu", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="TrocContenu", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\JoinColumn(name="troc_contenu_id", referencedColumnName="id")
      * */
     protected $contenu;
     
     /**
-     * @ORM\OneToOne(targetEntity="TrocRDV", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="TrocRDV", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\JoinColumn(name="troc_rdv_id", referencedColumnName="id")
      * */
     protected $rdv;

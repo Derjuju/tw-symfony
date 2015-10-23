@@ -2,11 +2,23 @@
 <time class="message-time" datetime="{{section.addedAt | date("Y-m-d")}}">{{section.addedAt | date("H:i")}} <b>{{section.addedAt | date("d/m/Y")}}</b></time>
 <div class="message-line">
         <div class="top">
-                <div class="image-person-container" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
+                <div class="image-person-container" style="background-image: url('{% if troqueur != null and troqueur.avatar != null %}{{asset(troqueur.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
                 <div class="break">
+                    {% if troqueur == null %}
+                    <h3>TrocWine</h3>
+                    {% else %}
                     <h3>{{troqueur.lastname}}</h3>
                     <span>( {{troqueur.expertLevel.nameFr}} )</span>
+                    {% endif %}
                 </div>
         </div>
 </div>
-<div class="the-message">{% if section.message.message == "###NEW_TROC###" %}Nouveau troc proposé. Merci de vérifier la nouvelle proposition.{% else %}{{section.message.message}}{% endif %}</div>
+<div class="the-message">
+    {% if section.message.message == "###NEW_TROC###" %}
+        Nouveau troc proposé. Merci de vérifier la nouvelle proposition.
+    {% elseif section.message.message == "###TROC_BOTTLE_REMOVED###" %}
+        Une des bouteilles n'est plus disponible pour votre troc.<br>
+        Elle a été retirée ou échangée pendant un autre troc.
+    {% else %}        
+        {{section.message.message}}
+    {% endif %}</div>

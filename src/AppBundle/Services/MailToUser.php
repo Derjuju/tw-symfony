@@ -82,14 +82,14 @@ class MailToUser {
     
     
     
-    public function sendEmailNouveauTroc($to){
+    public function sendEmailNouveauTroc($to, $refTroc){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:nouveau_troc.html.twig', array());
         if (!$view)
             return false;
         
         // sujet
-        $subject = "[TrocWine] Nouveau troc proposé";
+        $subject = "[TrocWine] #".$refTroc." - Nouveau troc proposé";
         
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
@@ -99,14 +99,14 @@ class MailToUser {
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailNouveauTrocOwner($to){
+    public function sendEmailNouveauTrocOwner($to, $refTroc){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:nouveau_troc_owner.html.twig', array());
         if (!$view)
             return false;
         
         // sujet
-        $subject = "[TrocWine] Nouveau troc proposé";
+        $subject = "[TrocWine] #".$refTroc." - Nouveau troc proposé";
         
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
@@ -118,14 +118,14 @@ class MailToUser {
     
     
     
-    public function sendEmailModifierTroc($to){
+    public function sendEmailModifierTroc($to, $refTroc){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:modifier_troc.html.twig', array());
         if (!$view)
             return false;
         
         // sujet
-        $subject = "[TrocWine] Modification du troc proposé";
+        $subject = "[TrocWine] #".$refTroc." - Modification du troc proposé";
         
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
@@ -135,14 +135,14 @@ class MailToUser {
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailModifierTrocOwner($to){
+    public function sendEmailModifierTrocOwner($to, $refTroc){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:modifier_troc_owner.html.twig', array());
         if (!$view)
             return false;
         
         // sujet
-        $subject = "[TrocWine] Modification du troc proposé";
+        $subject = "[TrocWine] #".$refTroc." - Modification du troc proposé";
         
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
@@ -150,6 +150,30 @@ class MailToUser {
         $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
                         
         return $this->sendMail($subject, $view, $to);
+    }
+    
+    public function sendEmailAbandonTroc($to, $refTroc){        
+        $view = null;
+        $view = $this->templating->render('AppBundle:Mailing:abandon_troc.html.twig', array());
+        if (!$view)
+            return false;
+        
+        // sujet
+        $subject = "[TrocWine] #".$refTroc." - Abandon troc proposé";
+        
+        // variables dynamiques
+        $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
+        $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
+        $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
+        
+        $view = str_replace('#REF#','#'.$refTroc, $view);
+        
+                        
+        return $this->sendMail($subject, $view, $to);
+    }
+    
+    public function sendEmailFinTroc($toA, $toB, $refTroc){
+        return true;
     }
     
 

@@ -36,6 +36,10 @@ label {
     font-size: 12px;
 }
 
+.prehome-disclamer .swap-ops-container .right .active.btn-ok, .swap-ops-container .right .active.btn-serif, .swap-ops-container .right .btn-default.active, .swap-ops-container .right .prehome-disclamer .active.btn-ok {    
+    color: #ffffff;
+}
+
 .header a.full-logo-dark {
     max-width: 190px;
     max-height: 50px;
@@ -868,3 +872,8 @@ body.search-troqueur article .description {
 .troc-actions .choix-actions form{ display:inline-block;}
 .troc-actions .choix-actions button.btn-default{ display:inline-block;}
 .troc-actions .choix-actions a.btn-default{ display:inline-block; width:140px;}
+.troc-actions .panel-actions {margin-top: 20px;margin-bottom: 20px;}
+.troc-actions .panel-actions textarea{
+    width: 80%;
+    margin-bottom: 10px;
+}

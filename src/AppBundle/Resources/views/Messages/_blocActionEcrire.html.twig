@@ -1,0 +1,7 @@
+{% form_theme formMessage with ['AppBundle::form_theme.html.twig', _self] %}
+{{ form_start(formMessage, {'attr': {'class': 'form-inline', 'id': 'FormAddMessage'} }) }}
+    <div class="data-commentaire">
+        {{ form_widget(formMessage.message, {'label': false,'class': '', 'attr': {'class': ''} }) }}
+    </div>
+    <button id="AjouterMessage" class="submit-btn btn-default">Valider le message</button>                                                                        
+{{ form_end(formMessage) }}

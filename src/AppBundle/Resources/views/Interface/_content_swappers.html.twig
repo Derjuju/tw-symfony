@@ -21,9 +21,9 @@
             <form id="FormSelectionChoix" action="{% if swappersForUpdate is defined %}{{path('front_troc_update', {'idTroc':idTroc})}}{% else %}{{path('front_troc_proposer', {'idTroqueur':troqueur.id})}}{% endif %}" method="POST">
                 <input id="TroquerSelectionChoixMaCave" type="hidden" name="selectionMaCave" value="">
                 <input id="TroquerSelectionChoixSaCave" type="hidden" name="selectionSaCave" value="">
-                <button id="btTroquerSelection" class="btn-default btn-swap">Proposer un troc</button>
+                <button id="btTroquerSelection" class="btn-default btn-swap">{% if swappersForUpdate is defined %}Proposer le troc{% else %}Proposer un troc{% endif %}</button>
             </form>				
-                <button id="btTroquerAnnuler" onClick="history.back();" class="btn-default btn-cancel">Annuler le troc</button>
+                <button id="btTroquerAnnuler" onClick="history.back(); return false;" class="btn-default btn-cancel">{% if swappersForUpdate is defined %}Annuler{% else %}Annuler le troc{% endif %}</button>
 	</div>
 	<div class="profile-light swapper-b-container">
 		<div class="left">

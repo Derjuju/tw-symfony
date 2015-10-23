@@ -16,8 +16,6 @@
     {{ parent() }}
 {% endblock %}
 
-{% form_theme formMessage with ['AppBundle::form_theme.html.twig', _self] %}
-
 {% block content %}
     {{ parent() }}   
     <section class="message-wrapper container">
@@ -46,24 +44,30 @@
                                 </article>
                             {% endif %}
                         {% endfor %}
+                  
+                {# si troc encore en cours #}
+                {% if not trocArchive %}                        
+                        
                         <div class="troc-actions">
                             <div class="choix-actions">
                                 <button id="bt-action-ecrire" class="btn-default"> Ecrire un message</button> <button id="bt-action-rdv" class="btn-default"> Donner rendez-vous</button> <form id="FormSelectionChoix" action="{{path('front_troc_modifier', {'idTroc':troc.id})}}" method="POST"><button id="bt-action-changer" class="btn-default"> Modifier le troc</button></form>
                             </div>
                             <div class="panel-actions">
                                 <div class="panel-action-ecrire hidden">
-                                    {{ form_start(formMessage, {'attr': {'class': 'form-inline', 'id': 'FormAddMessage'} }) }}
-                                        <div class="data-commentaire">
-                                            {{ form_widget(formMessage.message, {'label': false,'class': '', 'attr': {'class': ''} }) }}
-                                        </div>
-                                        <button id="AjouterMessage" class="submit-btn btn-default">Valider le message</button>                                                                        
-                                    {{ form_end(formMessage) }}
+                                    {% include 'AppBundle:Messages:_blocActionEcrire.html.twig' with {'formMessage' : formMessage} %}			                                                        
                                 </div>
                                 <div class="panel-action-rdv hidden">
                                     rdv
                                 </div>
                             </div>
                         </div>
+                                
+                        <div class="troc-finalisation">
+                            {% include 'AppBundle:Messages:_blocFinalisation.html.twig' with {'formFinTroc' : formFinTroc, 'user' : user, 'troc' : troc } %}			                                                                                    
+                        </div>
+                            
+                {% endif %}
+                            
 		</section>
                 
         </section>
@@ -85,6 +89,65 @@
                 $('.panel-action-ecrire').addClass('hidden');   
                 $('.panel-action-rdv').removeClass('hidden');               
             });  
+            
+            $('.troc-finalisation').find('.btn-choice').on('click', function(event) {
+                event.preventDefault();
+                var parent = $(this).parent();
+                parent.children().removeClass('active');
+                $(this).toggleClass('active');
+                parent.find('.hidden_field').val($(this).val());
+            });
+            
+            $('#FormFinaliserTroc').on('submit', function(event){
+                                
+                var submitForm = true;        
+                var selectedVal = 0;
+                var selected = $("#ratingTroqueur input[type='radio']:checked");
+                if (selected.length > 0) {
+                    selectedVal = selected.val();
+                }
+                
+                
+        {% if user == troc.memberA %}     
+                if($('#TrocAType_finishedA').val() == null){
+                    submitForm = false;
+                    alert('Vous devez indiquer si le troc a été effectué ou non.');
+                }
+                if(submitForm){
+                    if($('#TrocAType_addToCaveA').val() == null){
+                        submitForm = false;
+                        alert('Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave.');
+                    }
+                }
+                if(submitForm){
+                    $('#TrocAType_noteB').val(selectedVal);
+                    if(selectedVal == 0){
+                        submitForm = false;
+                        alert('Vous devez indiquer une note pour le troqueur.');
+                    }
+                }
+        {% else %}
+                if($('#TrocBType_finishedB').val() == null){
+                    submitForm = false;
+                    alert('Vous devez indiquer si le troc a été effectué ou non.');
+                }
+                if(submitForm){
+                    if($('#TrocBType_addToCaveB').val() == null){
+                        submitForm = false;
+                        alert('Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave.');
+                    }
+                }
+                if(submitForm){
+                    $('#TrocBType_noteA').val(selectedVal);
+                    if(selectedVal == 0){
+                        submitForm = false;
+                        alert('Vous devez indiquer une note pour le troqueur.');
+                    }
+                }
+        {% endif %}
+                
+                return submitForm;
+            });
             
         });
     </script>

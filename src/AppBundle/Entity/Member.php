@@ -174,6 +174,13 @@ class Member  implements UserInterface
      * @ORM\Column(name="note", type="integer", nullable=true)
      */
     private $note;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_troc", type="integer", nullable=true)
+     */
+    private $totalTroc;
     
 
     
@@ -188,6 +195,7 @@ class Member  implements UserInterface
         $this->trocsB = new ArrayCollection();
         $this->trocSections = new ArrayCollection();
         $this->note = 0;
+        $this->totalTroc = 0;
     }
 
     public function getAvatarFile() {
@@ -743,7 +751,62 @@ class Member  implements UserInterface
      */
     public function getNote()
     {
-        return $this->note;
+        if($this->note == 0){
+            return $this->note;
+        }else{
+            return round($this->note/$this->totalTroc);
+        }
+    }
+    
+    
+    /**
+     * Update note
+     *
+     * @param integer $note
+     * @return Member
+     */
+    public function updateNote($note)
+    {
+        $this->note = $this->note+$note;
+
+        return $this;
+    }
+    
+
+    /**
+     * Set totalTroc
+     *
+     * @param integer $totalTroc
+     * @return Member
+     */
+    public function setTotalTroc($totalTroc)
+    {
+        $this->totalTroc = $totalTroc;
+
+        return $this;
+    }
+
+    /**
+     * Get totalTroc
+     *
+     * @return integer 
+     */
+    public function getTotalTroc()
+    {
+        return $this->totalTroc;
+    }
+    
+    /**
+     * Increase totalTroc
+     *
+     * @param integer $note
+     * @return Member
+     */
+    public function increaseTotalTroc()
+    {
+        $this->totalTroc++;
+
+        return $this;
     }
     
     

@@ -6,9 +6,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\Form\FormError;
+
 use AppBundle\Entity\TrocMessage;
-use AppBundle\Form\Type\TrocMessageType;
 use AppBundle\Entity\TrocSection;
+use AppBundle\Form\Type\TrocAType;
+use AppBundle\Form\Type\TrocBType;
+use AppBundle\Form\Type\TrocMessageType;
+
+
+use AppBundle\Entity\Bouteille;
 
 class MessageController extends Controller
 {    
@@ -76,35 +83,27 @@ class MessageController extends Controller
      */
     public function gestionAction(Request $request, $id) {
         
-        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
-            throw $this->createNotFoundException('Accès impossible.');
-        }
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
         
         $user = $this->container->get('security.context')->getToken()->getUser();
-        if(!$user){
-            throw $this->createNotFoundException('Accès impossible.');
-        }
+        if(!$user){ throw $this->createNotFoundException('Accès impossible.'); }
         
         $em = $this->getDoctrine()->getManager();
         
         $troc = $em->getRepository('AppBundle:Troc')->find($id);
-        if(!$troc){
-            throw $this->createNotFoundException('Troc inconnu.');
-        }
-        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){
-            throw $this->createNotFoundException('Accès impossible.');
-        }
+        if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
+        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);                
         
         $trocMessage = new TrocMessage();
-        $formMessage = $this->createForm(new TrocMessageType(), null, array(
-            'action' => $this->generateUrl('front_messagerie_gestion_add_message', array('id' => $id)),
-            'method' => 'POST',
-        ));
+        $formMessage = $this->generateFormMessage($trocMessage, $id);
         
         return $this->render('AppBundle:Messages:message.html.twig', array(
             'user' => $user,
             'troc' => $troc,
             'trocArchive' => $troc->getArchived(),
+            'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
         ));
     }
@@ -114,32 +113,24 @@ class MessageController extends Controller
      */
     public function addMessageAction(Request $request, $id) {
         
-        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
-            throw $this->createNotFoundException('Accès impossible.');
-        }
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
         
         $user = $this->container->get('security.context')->getToken()->getUser();
-        if(!$user){
-            throw $this->createNotFoundException('Accès impossible.');
-        }
+        if(!$user){ throw $this->createNotFoundException('Accès impossible.'); }
         
         $em = $this->getDoctrine()->getManager();
         
         $troc = $em->getRepository('AppBundle:Troc')->find($id);
-        if(!$troc){
-            throw $this->createNotFoundException('Troc inconnu.');
-        }
-        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){
-            throw $this->createNotFoundException('Accès impossible.');
-        }
+        if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
+        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
         
         $trocMessage = new TrocMessage();
-        $formMessage = $this->createForm(new TrocMessageType(), $trocMessage, array(
-            'action' => $this->generateUrl('front_messagerie_gestion_add_message', array('id' => $id)),
-            'method' => 'POST',
-        ));
+        $formMessage = $this->generateFormMessage($trocMessage, $id);
+        
+        // traitement message
         $formMessage->handleRequest($request);
-
         if ($formMessage->isValid()) {
             $trocSection = new TrocSection();
             $em->persist($trocMessage);
@@ -159,8 +150,215 @@ class MessageController extends Controller
             'user' => $user,
             'troc' => $troc,
             'trocArchive' => $troc->getArchived(),
+            'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
         ));
+    }
+    
+    /**
+     * @Route("/messages/gestion/{id}/fin",name="front_messagerie_gestion_fin")          
+     */
+    public function finMessageAction(Request $request, $id) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(!$user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $troc = $em->getRepository('AppBundle:Troc')->find($id);
+        if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
+        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
+        
+        if($troc->getMemberA() == $user){
+            $troqueur = $troc->getMemberB();
+        }else{
+            $troqueur = $troc->getMemberA();
+        }
+                
+                
+        $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
+        
+        $trocMessage = new TrocMessage();
+        $formMessage = $this->generateFormMessage($trocMessage, $id);
+        
+        // traitement fin troc
+        $formFinTroc->handleRequest($request);
+        if ($formFinTroc->isValid()) {       
+            $quantityError = false;
+            $sendMailDeFin = false;
+            // si double validation alors finalisation terminée
+            if($troc->getFinishedA() && $troc->getFinishedB()){
+                $troc->setArchived(true);
+                if($troc->getMemberA() == $user){
+                    
+                    $user->updateNote($troc->getNoteA());
+                    $user->increaseTotalTroc();
+                    
+                    $troqueur->updateNote($troc->getNoteB());
+                    $troqueur->increaseTotalTroc();
+                    
+                    $userBouteilles = $troc->getTrocSections()[0]->getContenu()->getTrocABouteilles();
+                    $troqueurBouteilles = $troc->getTrocSections()[0]->getContenu()->getTrocBBouteilles();
+                }else {
+                    $user->updateNote($troc->getNoteB());
+                    $user->increaseTotalTroc();
+                    
+                    $troqueur->updateNote($troc->getNoteA());
+                    $troqueur->increaseTotalTroc();
+                    
+                    $userBouteilles = $troc->getTrocSections()[0]->getContenu()->getTrocBBouteilles();
+                    $troqueurBouteilles = $troc->getTrocSections()[0]->getContenu()->getTrocABouteilles();
+                }
+
+                $MessageError = "";
+
+                // on vérifie si quantité toujours disponible pour conclure le troc
+                foreach($userBouteilles as $bouteille){
+                    if($bouteille->getBouteille()->getQuantite() < $bouteille->getQuantite()){
+                        $quantityError = true;
+                        $MessageError = "Vous n'avez plus assez de quantité pour assurer votre Troc.";
+                        break;
+                    }
+                }
+                foreach($troqueurBouteilles as $bouteille){
+                    if($bouteille->getBouteille()->getQuantite() < $bouteille->getQuantite()){
+                        $quantityError = true;
+                        $MessageError = "Le troqueur n'a plus assez de quantité pour assurer le Troc.";
+                        break;
+                    }
+                }
+                if(!$quantityError){
+                    // attribue les bouteilles si addToCave
+                    if($troc->getAddToCaveA()){
+                        foreach($troqueurBouteilles as $bouteille){
+                            if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
+                                $bouteille->getBouteille()->setQuantite($bouteille->getBouteille()->getQuantite() - $bouteille->getQuantite());
+
+                                $newBouteille = clone $bouteille->getBouteille();
+                                //$newBouteille->clear();
+                                $newBouteille->setMember($user);
+                                $newBouteille->setQuantite($bouteille->getQuantite());
+                                $newBouteille->setReserved(false);
+
+                                $newImage = clone $bouteille->getBouteille()->getPhoto();
+                                if($newImage){
+                                    //$newImage->clear();
+                                    $em->persist($newImage);
+                                    $newBouteille->setPhoto($newImage);
+                                }                                    
+                                $em->persist($newBouteille);                                    
+                                $em->persist($bouteille->getBouteille());
+                            }else{
+                                $newBouteille = $bouteille->getBouteille();
+                                $newBouteille->setMember($user);
+                                $newBouteille->setReserved(false);
+                                $em->persist($newBouteille);
+                                // supprime les Trocs Lies
+                                $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
+                            }
+                        }
+                    }else{
+                        // on les retire du site
+                        foreach($troqueurBouteilles as $bouteille){
+                            if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
+                                $bouteille->getBouteille()->setQuantite($bouteille->getBouteille()->getQuantite() - $bouteille->getQuantite());
+                                $em->persist($bouteille->getBouteille());
+                            }else{
+                                // supprime les Trocs Lies
+                                $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
+                                
+                                // puis on les supprimes
+                                $em->remove($bouteille->getBouteille());
+                            }
+                        }
+                    }
+                    if($troc->getAddToCaveB()){
+                        foreach($userBouteilles as $bouteille){
+                            if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
+                                $bouteille->getBouteille()->setQuantite($bouteille->getBouteille()->getQuantite() - $bouteille->getQuantite());
+
+                                $newBouteille = clone $bouteille->getBouteille();
+                                //$newBouteille->clear();
+                                $newBouteille->setMember($troqueur);
+                                $newBouteille->setQuantite($bouteille->getQuantite());
+                                $newBouteille->setReserved(false);
+
+                                $newImage = clone $bouteille->getBouteille()->getPhoto();
+                                if($newImage){
+                                    //$newImage->clear();
+                                    $em->persist($newImage);
+                                    $newBouteille->setPhoto($newImage);
+                                }                                    
+                                $em->persist($newBouteille);                                    
+                                $em->persist($bouteille->getBouteille());
+                            }else{
+                                $newBouteille = $bouteille->getBouteille();
+                                $newBouteille->setMember($troqueur);
+                                $newBouteille->setReserved(false);
+                                $em->persist($newBouteille);
+                                // supprime les Trocs Lies
+                                $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
+                            }
+                        }
+                    }else{
+                        // on les retire du site
+                        foreach($userBouteilles as $bouteille){
+                            if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
+                                $bouteille->getBouteille()->setQuantite($bouteille->getBouteille()->getQuantite() - $bouteille->getQuantite());
+                                $em->persist($bouteille->getBouteille());
+                            }else{
+                                // supprime les Trocs Lies
+                                $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
+                                
+                                // puis on les supprimes
+                                $em->remove($bouteille->getBouteille());
+                            }
+                        }
+                    }
+
+
+                    $em->persist($user);
+                    $em->persist($troqueur);
+                    $sendMailDeFin = true;
+                }else{
+                    if($troc->getMemberA() == $user){
+                        $formFinTroc->get('finishedA')->addError(new FormError($MessageError));
+                    }else{
+                        $formFinTroc->get('finishedB')->addError(new FormError($MessageError));
+                    }
+                }
+                
+            }
+            
+            if(!$quantityError){
+                $refTroc = $troc->getId();
+                $em->persist($troc);
+
+                $em->flush();
+                
+                if($sendMailDeFin){
+                    if (!$this->get('mail_to_user')->sendEmailFinTroc($troc->getMemberA()->getEmail(),$troc->getMemberB()->getEmail(),$refTroc)) {
+                        throw $this->createNotFoundException('Unable to send fin troc mail.');
+                    }
+                }
+                
+                return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
+            }
+        }
+        
+        return $this->render('AppBundle:Messages:message.html.twig', array(
+            'user' => $user,
+            'troc' => $troc,
+            'trocArchive' => $troc->getArchived(),
+            'formFinTroc' => $formFinTroc->createView(),
+            'formMessage' => $formMessage->createView(),
+        ));
+        
+        
     }
     
     /**
@@ -192,6 +390,114 @@ class MessageController extends Controller
             'troc' => $troc,
             'trocArchive' => $troc->getArchived()
         ));
+    }
+    
+    
+    private function generateFormMessage($trocMessage, $id){        
+        $formMessage =  $this->createForm(new TrocMessageType(), $trocMessage, array(
+            'action' => $this->generateUrl('front_messagerie_gestion_add_message', array('id' => $id)),
+            'method' => 'POST',
+        ));        
+        return $formMessage;
+    }
+    
+    private function generateFormForMemberAorB($troc, $user, $id){        
+        if($troc->getMemberA() == $user){
+            $formFinTroc = $this->createForm(new TrocAType(), $troc, array(
+                'action' => $this->generateUrl('front_messagerie_gestion_fin', array('id' => $id)),
+                'method' => 'POST',
+            ));
+        }else{
+            $formFinTroc = $this->createForm(new TrocBType(), $troc, array(
+                'action' => $this->generateUrl('front_messagerie_gestion_fin', array('id' => $id)),
+                'method' => 'POST',
+            ));
+        }        
+        return $formFinTroc;
+    }
+    
+    private function supprimeTrocsLies($em, $bouteille, $id)
+    {
+        // TODO : on retire la bouteille des trocs reliés
+        $otherTrocs = $em->getRepository('AppBundle:Troc')->findTrocLiesToBottle($bouteille, $id);
+        if($otherTrocs){
+            foreach($otherTrocs as $troc){
+                $choixA = $troc->getTrocSections()[0]->getContenu()->getTrocABouteilles();
+                $choixB = $troc->getTrocSections()[0]->getContenu()->getTrocBBouteilles();                
+                foreach($choixA as $choix){
+                    if($choix->getBouteille() == $bouteille){
+                        $troc->getTrocSections()[0]->getContenu()->removeTrocABouteille($choix);
+                    }
+                }
+                foreach($choixB as $choix){
+                    if($choix->getBouteille() == $bouteille){
+                        $troc->getTrocSections()[0]->getContenu()->removeTrocBBouteille($choix);
+                    }
+                }
+            }
+            
+            $trocSection = new TrocSection();       
+            $trocMessage = new TrocMessage();
+            $trocMessage->setMessage('###TROC_BOTTLE_REMOVED###');
+            $em->persist($trocMessage);
+            $trocSection->setTroc($troc);   
+            $trocSection->setMessage($trocMessage);
+            $trocSection->setMember(null);
+            $em->persist($trocSection);
+
+            $troc->addTrocSection($trocSection);
+            $em->persist($troc);
+        }
+        
+    }
+    
+    
+    /**
+     * @Route("/messages/gestion/{id}/abandon",name="front_messagerie_gestion_abandon")          
+     */
+    public function abandonMessageAction(Request $request, $id) {
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(!$user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $troc = $em->getRepository('AppBundle:Troc')->find($id);
+        if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
+        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
+                
+        if($troc->getMemberA() == $user){
+            $troqueur = $troc->getMemberB();
+        }else{
+            $troqueur = $troc->getMemberA();
+        }
+        
+        $emailTroqueur = $troqueur->getEmail(); 
+        
+        $refTroc = $troc->getId();
+        
+        foreach($troc->getTrocSections() as $trocSection){            
+            if($trocSection->getMessage()){
+                $messageEntity = $trocSection->getMessage();
+                $trocSection->getMessage()->setTrocSection(null);    
+                $trocSection->setMessage(null);                
+                $em->remove($trocSection);
+                $em->remove($messageEntity);
+            }
+        }
+        
+        $em->remove($troc);
+        $em->flush();
+        
+        
+        if (!$this->get('mail_to_user')->sendEmailAbandonTroc($emailTroqueur,$refTroc)) {
+            throw $this->createNotFoundException('Unable to send abandon troc mail.');
+        }        
+
+        return $this->redirectToRoute('front_messagerie');
     }
     
 }

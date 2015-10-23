@@ -203,10 +203,12 @@ class TrocController extends Controller
         
         $em->flush();
         
-        if (!$this->get('mail_to_user')->sendEmailNouveauTroc($troqueur->getEmail())) {
+        $refTroc = $troc->getId();
+        
+        if (!$this->get('mail_to_user')->sendEmailNouveauTroc($troqueur->getEmail(),$refTroc)) {
             throw $this->createNotFoundException('Unable to send new troc mail.');
         }
-        if (!$this->get('mail_to_user')->sendEmailNouveauTrocOwner($user->getEmail())) {
+        if (!$this->get('mail_to_user')->sendEmailNouveauTrocOwner($user->getEmail(),$refTroc)) {
             throw $this->createNotFoundException('Unable to send new troc mail.');
         }
         
@@ -336,10 +338,12 @@ class TrocController extends Controller
         
         $em->flush();
         
-        if (!$this->get('mail_to_user')->sendEmailModifierTroc($troqueur->getEmail())) {
+        $refTroc = $troc->getId();
+        
+        if (!$this->get('mail_to_user')->sendEmailModifierTroc($troqueur->getEmail(),$refTroc)) {
             throw $this->createNotFoundException('Unable to send modifier troc mail.');
         }
-        if (!$this->get('mail_to_user')->sendEmailModifierTrocOwner($user->getEmail())) {
+        if (!$this->get('mail_to_user')->sendEmailModifierTrocOwner($user->getEmail(),$refTroc)) {
             throw $this->createNotFoundException('Unable to send modifier troc mail.');
         }
         

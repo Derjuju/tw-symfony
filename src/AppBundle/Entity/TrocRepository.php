@@ -32,4 +32,24 @@ class TrocRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
     
+    function findTrocLiesToBottle($bouteille, $id){
+        $query = $this->createQueryBuilder('t')
+                ->leftJoin('t.trocSections', 'ts')
+                ->leftJoin('ts.contenu', 'tc')
+                ->leftJoin('t.trocABouteilles', 'tba')
+                ->leftJoin('t.trocBBouteilles', 'tbb')
+                ->where('t.archived = 0')
+                ->andWhere('t.id <> :troc')
+                ->setParameter('troc', $id);
+        
+        $orQuery = $query->expr()->orx();
+        $orQuery->add($query->expr()->eq("tba.bouteille", ":bouteille"));
+        $orQuery->add($query->expr()->eq("tbb.bouteille", ":bouteille"));
+        
+        $query->andWhere($orQuery)
+            ->setParameter('bouteille', $bouteille);
+        
+        return $query->getQuery()->getResult();
+    }
+    
 }

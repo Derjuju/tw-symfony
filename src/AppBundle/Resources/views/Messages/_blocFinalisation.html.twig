@@ -1,0 +1,68 @@
+{{ form_start(formFinTroc, {'attr': {'class': 'swap-ops-container', 'id' : 'FormFinaliserTroc'} }) }}
+    <span>{{ form_errors(formFinTroc) }}</span>
+    <div>
+        <label>Troc effectué ?</label>
+        <div class="right">
+            {% if user == troc.memberA %}
+                {{ form_widget(formFinTroc.finishedA, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
+            {% else %}
+                {{ form_widget(formFinTroc.finishedB, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
+            {% endif %}
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.finishedA == 1) or (user == troc.memberB and troc.finishedB == 1) %}active{% endif %}" value="1">Oui</button>
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.finishedA == 0) or (user == troc.memberB and troc.finishedB == 0) %}active{% endif %}" value="0" >Non</button>
+        </div>
+    </div>    
+    <div>
+        <label>Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave.</label>
+        <div class="right">            
+            {% if user == troc.memberA %}
+                {{ form_widget(formFinTroc.addToCaveA, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
+            {% else %}
+                {{ form_widget(formFinTroc.addToCaveB, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
+            {% endif %}
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.addToCaveA == 1) or (user == troc.memberB and troc.addToCaveB == 1) %}active{% endif %}" value="1">Oui</button>
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.addToCaveA == 0) or (user == troc.memberB and troc.addToCaveB == 0) %}active{% endif %}" value="0">Non</button>
+        </div>
+    </div>
+    <div>
+        <label>Noter <span class="name">{% if user == troc.memberA %}{{troc.memberB.firstname}}{% else %}{{troc.memberA.firstname}}{% endif %}</span></label>
+        <div class="right">
+            <div class="rating">
+                <span class="icon-star-rate-container icon-rate" id="ratingTroqueur">
+                    {% if user == troc.memberA %}
+                        <input type="radio" id="rating-input-1-5" name="personnal-rating" value="5" {% if troc.noteB == 5 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-5"></label>
+                        <input type="radio" id="rating-input-1-4" name="personnal-rating" value="4" {% if troc.noteB == 4 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-4"></label>
+                        <input type="radio" id="rating-input-1-3" name="personnal-rating" value="3" {% if troc.noteB == 3 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-3"></label>
+                        <input type="radio" id="rating-input-1-2" name="personnal-rating" value="2" {% if troc.noteB == 2 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-2"></label>
+                        <input type="radio" id="rating-input-1-1" name="personnal-rating" value="1" {% if troc.noteB == 1 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-1"></label>
+                    {% else %}
+                        <input type="radio" id="rating-input-1-5" name="personnal-rating" value="5" {% if troc.noteA == 5 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-5"></label>
+                        <input type="radio" id="rating-input-1-4" name="personnal-rating" value="4" {% if troc.noteA == 4 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-4"></label>
+                        <input type="radio" id="rating-input-1-3" name="personnal-rating" value="3" {% if troc.noteA == 3 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-3"></label>
+                        <input type="radio" id="rating-input-1-2" name="personnal-rating" value="2" {% if troc.noteA == 2 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-2"></label>
+                        <input type="radio" id="rating-input-1-1" name="personnal-rating" value="1" {% if troc.noteA == 1 %}checked="checked"{% endif %}>
+                        <label for="rating-input-1-1"></label>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>      
+    <div>
+        <button id="FinaliserTroc" class="right btn-default">Enregistrer</button><br><br>
+        <a href="{{path('front_messagerie_gestion_abandon', {'id':troc.id}) }}" onClick="return confirmTrocSuppression();" class="btn-default btn-delete right">Abandonner</a>
+    </div>
+    {% if user == troc.memberA %}
+        {{ form_row(formFinTroc.noteB, {'label': false, 'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+    {% else %}
+        {{ form_row(formFinTroc.noteA, {'label': false, 'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+    {% endif %}
+{{ form_end(formFinTroc) }}

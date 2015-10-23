@@ -38,7 +38,7 @@ class TrocMessage
     private $addedAt;
     
     /**
-     * @ORM\ManyToOne(targetEntity="TrocSection", inversedBy="rdvs")
+     * @ORM\ManyToOne(targetEntity="TrocSection", inversedBy="message")
      * @ORM\JoinColumn(name="troc_section_id", referencedColumnName="id")
      */
     protected $trocSection;
