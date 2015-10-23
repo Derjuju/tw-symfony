@@ -1,4 +1,4 @@
-<header class="home-header">
+<header class="home-header {% if is_granted('ROLE_USER') %} connected{% endif %}">
     {% include "AppBundle:Interface:_header_mobile.html.twig" %}
     <ul class="bxslider">
         <li>
@@ -13,16 +13,20 @@
         </li>
         #}
     </ul>
-    <div class="wrapper">
+    <div class="top-header wrapper">
         <nav class="home-header-nav">
             {% if is_granted('ROLE_USER') %}
-                <a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}">Ma Cave</a>
-                <a href="{{path('logout')}}" class="">Déconnexion</a>
+                <a href="{{path('front_mode_emploi')}}" class="{{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}" title="Une Question ?"><i class="icon-question-mark {{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}"></i></a>
+                <a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}" title="Ma Cave"><i class="icon-cave {{ app.request.attributes.get('_route') == 'front_ma_cave' ? 'active' }}"></i></a>                                            
+                <a href="{{path('front_messagerie')}}" class="" title="Messages"><i class="icon-message "></i></a>
+                <a href="{{path('front_ma_cave_ajouter')}}" class="{{ app.request.attributes.get('_route') == 'front_ma_cave_ajouter' ? 'active' }}" title="Ajouter une bouteille"><i class="icon-add-bottle {{ app.request.attributes.get('_route') == 'front_ma_cave_ajouter' ? 'active' }}"></i></a>                                        
+                <a href="{{path('logout')}}" class=""><i class="icon-deconnexion"></i></a>
             {% else %}
                 <a href="{{path('front_inscription')}}" class="{{ app.request.attributes.get('_route') == 'front_inscription' ? 'active' }}">Inscription</a>
                 <a href="#" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'login' ? 'active' }}">Connexion</a>
+                <a href="{{path('front_mode_emploi')}}" class="{{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}">Mode d'emploi</a> 
             {% endif %}
-            <a href="{{path('front_mode_emploi')}}" class="{{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}">Mode d'emploi</a> 
+            
         </nav>
 
         <div class="logo-container">

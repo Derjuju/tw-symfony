@@ -622,6 +622,16 @@ a:hover .icon-deconnexion{
     border: 1px solid #e5e5e5;   
 }
 
+/* HEADER */
+.connected .home-header-nav a {
+    margin-right:5px;
+    margin-left:0px;
+    float:left;
+}
+.connected .home-header-nav a:last-child {
+    margin-right: 0;
+}
+
 /* HOME */
 .monthly-pick-thumbnail a{width:100%;height:100%;color:#FFF;display:block;text-decoration:none}
 .monthly-pick-thumbnail li:hover a{opacity:1;}
