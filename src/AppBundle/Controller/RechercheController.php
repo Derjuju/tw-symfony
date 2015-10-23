@@ -152,7 +152,16 @@ class RechercheController extends Controller
         $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));    
         
         $em = $this->getDoctrine()->getManager();
-        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
+        $regionLike = '';
+        if(isset($filtres['region'])){
+            $regionTmp = $em->getRepository('AppBundle:Address')->find($filtres['region']);
+            if($regionTmp){
+                    if($regionTmp->getRegion() != null){
+                    $regionLike = $regionTmp->getRegion();
+                }
+            }
+        }
+        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter, $regionLike);
         
         return $this->render("AppBundle:Recherche:search_troqueur.html.twig", array(                
             'formBouteille'   => $formBouteille->createView(),
@@ -177,7 +186,16 @@ class RechercheController extends Controller
         $filtres = $request->request->get('SearchTroqueur',null);
         
         $em = $this->getDoctrine()->getManager();
-        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
+        $regionLike = '';
+        if(isset($filtres['region'])){
+            $regionTmp = $em->getRepository('AppBundle:Address')->find($filtres['region']);
+            if($regionTmp){
+                    if($regionTmp->getRegion() != null){
+                    $regionLike = $regionTmp->getRegion();
+                }
+            }
+        }
+        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter, $regionLike);
         
         return $this->render("AppBundle:Recherche:listing_troqueur.html.twig", array(            
             'troqueurs'=> $troqueurs

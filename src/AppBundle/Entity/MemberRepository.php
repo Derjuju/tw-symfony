@@ -13,14 +13,14 @@ use Doctrine\ORM\EntityRepository;
 class MemberRepository extends EntityRepository
 {
     function findFromSelector($filtres){
-        return $this->applicationFilters($filtres, 0);
+        return $this->applicationFilters($filtres, 0, null);
     }
     
-    function findFromSelectorWithoutUser($filtres, $idUser){
-        return $this->applicationFilters($filtres, $idUser);
+    function findFromSelectorWithoutUser($filtres, $idUser, $regionLike){
+        return $this->applicationFilters($filtres, $idUser, $regionLike);
     }
     
-    function applicationFilters($filtres, $idUser){
+    function applicationFilters($filtres, $idUser, $regionLike){
         
         $query = $this->createQueryBuilder('m')
                 ->leftJoin('m.bouteilles', 'b')
@@ -41,6 +41,17 @@ class MemberRepository extends EntityRepository
                 ->setParameter('keyword', $filtres['keyword']);
         }
         
+        if(isset($filtres['expertLevel'])&&($filtres['expertLevel']!='')){
+            $query->andWhere('el.id = :expertLevel')
+                    ->setParameter('expertLevel', $filtres['expertLevel']);
+        }
+        
+        \Symfony\Component\VarDumper\VarDumper::dump($regionLike);
+        if(isset($regionLike)&&($regionLike != null)){
+            $query->leftJoin('m.address', 'a')
+                    ->andWhere($query->expr()->like("a.region", ":region"))
+                    ->setParameter('region', $regionLike);
+        }
         
         
         if(isset($filtres['filtrageTroqueur'])&&($filtres['filtrageTroqueur']!='')){

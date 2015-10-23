@@ -54,16 +54,16 @@
             <div class="select-swagg-container">
                 <div class="select-swagg">
                     {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['expertLevel'] is defined %}
-                        {{ form_widget(formTroqueur.expertLevel, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : ""~filtres['typeRegion'] }) }} 
+                        {{ form_widget(formTroqueur.expertLevel, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : ""~filtres['expertLevel'] }) }} 
                     {% else %}
                         {{ form_widget(formTroqueur.expertLevel, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
                     {% endif %}
                 </div>
                 <div class="select-swagg">
-                    {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['typeRegion'] is defined %}
-                        {{ form_widget(formTroqueur.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : ""~filtres['typeRegion'] }) }} 
+                    {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['region'] is defined %}
+                        {{ form_widget(formTroqueur.region, { 'label': false,'class': '', 'attr': {'class': ''}, 'value' : ""~filtres['region'] }) }} 
                     {% else %}
-                        {{ form_widget(formTroqueur.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                        {{ form_widget(formTroqueur.region, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
                     {% endif %}
                 </div>
             </div>

@@ -26,7 +26,7 @@ class SearchTroqueurType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('el');
                 }))
-            ->add('typeRegion', 'entity', array(        
+            /*->add('typeRegion', 'entity', array(        
                 'label'=>'Type',
                 'required'=>false,
                 'expanded' => false,
@@ -36,7 +36,24 @@ class SearchTroqueurType extends AbstractType
                 'class' => 'AppBundle:TypeRegion',
                 'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('e');
-                }))
+                }))*/
+            ->add('region', 'entity', array(
+                'label'=>'Région',
+                'required'=>false,
+                'expanded' => false,
+                'multiple' => false,
+                'choice_label' => 'region',
+                'empty_value' => 'Région',
+                'class' => 'AppBundle:Address',
+                'query_builder' => function(EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('a');
+                        $qb->where($qb->expr()->isNotNull('a.region'))
+                                ->groupBy('a.region')
+                                ->orderBy('a.region', 'ASC');
+                         return $qb;
+                }
+            )) 
+               
             ;
        
     }
