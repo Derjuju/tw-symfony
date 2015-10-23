@@ -36,8 +36,8 @@ class TrocRepository extends EntityRepository
         $query = $this->createQueryBuilder('t')
                 ->leftJoin('t.trocSections', 'ts')
                 ->leftJoin('ts.contenu', 'tc')
-                ->leftJoin('t.trocABouteilles', 'tba')
-                ->leftJoin('t.trocBBouteilles', 'tbb')
+                ->leftJoin('tc.trocABouteilles', 'tba')
+                ->leftJoin('tc.trocBBouteilles', 'tbb')
                 ->where('t.archived = 0')
                 ->andWhere('t.id <> :troc')
                 ->setParameter('troc', $id);

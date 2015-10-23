@@ -83,7 +83,8 @@
         $(document).ready(function () {                        
             $('#bt-action-ecrire').on('click', function(){
                 $('.panel-action-ecrire').removeClass('hidden');
-                $('.panel-action-rdv').addClass('hidden');                
+                $('.panel-action-rdv').addClass('hidden');  
+                $('#TrocMessageType_message').focus();
             });                        
             $('#bt-action-rdv').on('click', function(){
                 $('.panel-action-ecrire').addClass('hidden');   

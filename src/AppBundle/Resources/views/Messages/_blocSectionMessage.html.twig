@@ -19,6 +19,8 @@
     {% elseif section.message.message == "###TROC_BOTTLE_REMOVED###" %}
         Une des bouteilles n'est plus disponible pour votre troc.<br>
         Elle a été retirée ou échangée pendant un autre troc.
+    {% elseif section.message.message == "###TROC_TERMINE###" %}
+        Votre troc est terminé.
     {% else %}        
         {{section.message.message}}
     {% endif %}</div>

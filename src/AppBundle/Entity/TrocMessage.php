@@ -43,6 +43,7 @@ class TrocMessage
      */
     protected $trocSection;
     
+    
     public function __toString() {
         return (string) $this->id;
     }
@@ -119,7 +120,7 @@ class TrocMessage
         $this->trocSection = $trocSection;
 
         return $this;
-    }
+}
 
     /**
      * Get trocSection

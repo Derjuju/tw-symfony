@@ -336,6 +336,20 @@ class MessageController extends Controller
             
             if(!$quantityError){
                 $refTroc = $troc->getId();
+                
+                $trocSection = new TrocSection();       
+                $trocMessage = new TrocMessage();
+                $trocMessage->setMessage('###TROC_TERMINE###');
+                $em->persist($trocMessage);
+                $trocSection->setTroc($troc);   
+                $trocSection->setMessage($trocMessage);
+                $trocSection->setMember(null);
+                $em->persist($trocSection);
+
+                $troc->addTrocSection($trocSection);
+                $em->persist($troc);
+                
+                
                 $em->persist($troc);
 
                 $em->flush();
@@ -357,7 +371,6 @@ class MessageController extends Controller
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
         ));
-        
         
     }
     
@@ -422,18 +435,26 @@ class MessageController extends Controller
         $otherTrocs = $em->getRepository('AppBundle:Troc')->findTrocLiesToBottle($bouteille, $id);
         if($otherTrocs){
             foreach($otherTrocs as $troc){
-                $choixA = $troc->getTrocSections()[0]->getContenu()->getTrocABouteilles();
-                $choixB = $troc->getTrocSections()[0]->getContenu()->getTrocBBouteilles();                
+                
+                $trocContenu = $troc->getTrocSections()[0]->getContenu();
+                
+                $choixA = $trocContenu->getTrocABouteilles();
+                $choixB = $trocContenu->getTrocBBouteilles();                
                 foreach($choixA as $choix){
                     if($choix->getBouteille() == $bouteille){
-                        $troc->getTrocSections()[0]->getContenu()->removeTrocABouteille($choix);
+                        $choix->setTrocContenuA(null);
+                        $trocContenu->removeTrocABouteille($choix);
+                        $em->remove($choix);
                     }
                 }
                 foreach($choixB as $choix){
                     if($choix->getBouteille() == $bouteille){
-                        $troc->getTrocSections()[0]->getContenu()->removeTrocBBouteille($choix);
+                        $choix->setTrocContenuB(null);
+                        $trocContenu->removeTrocBBouteille($choix);
+                        $em->remove($choix);
                     }
                 }
+                $em->persist($trocContenu);
             }
             
             $trocSection = new TrocSection();       
@@ -481,12 +502,10 @@ class MessageController extends Controller
         
         foreach($troc->getTrocSections() as $trocSection){            
             if($trocSection->getMessage()){
-                $messageEntity = $trocSection->getMessage();
-                $trocSection->getMessage()->setTrocSection(null);    
-                $trocSection->setMessage(null);                
-                $em->remove($trocSection);
-                $em->remove($messageEntity);
+                //$trocSection->getMessage()->setTrocSection(null);    
+                $trocSection->setMessage(null);
             }
+            $em->remove($trocSection);
         }
         
         $em->remove($troc);
