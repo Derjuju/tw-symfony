@@ -28,6 +28,14 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/homepage/connexion",name="front_accueil_connexion")          
+     */
+    public function homepageConnexionAction() {
+        
+        return $this->render("AppBundle::homepage.html.twig", array('connexion'=>true));
+    }
+    
+    /**
      * @Route("/notre-histoire",name="front_notre_histoire")          
      */
     public function notreHistoireAction() {

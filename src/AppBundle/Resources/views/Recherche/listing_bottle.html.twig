@@ -1,0 +1,9 @@
+<div id="listingResultat" class="winethumb-container sort-container" data-total="{{bouteilles|length}}">
+    {% if bouteilles|length > 0 %}
+        {% for bouteille in bouteilles %}
+            {% include 'AppBundle:Bouteille:_blocBouteilleWithTroqueur.html.twig' with {'bouteille' : bouteille} %}
+        {% endfor %}
+    {% else %}
+        Aucun résultat ne correspond.
+    {% endif %}
+</div>

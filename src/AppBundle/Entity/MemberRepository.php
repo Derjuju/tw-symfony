@@ -12,4 +12,46 @@ use Doctrine\ORM\EntityRepository;
  */
 class MemberRepository extends EntityRepository
 {
+    function findFromSelector($filtres){
+        return $this->applicationFilters($filtres, 0);
+    }
+    
+    function findFromSelectorWithoutUser($filtres, $idUser){
+        return $this->applicationFilters($filtres, $idUser);
+    }
+    
+    function applicationFilters($filtres, $idUser){
+        
+        $query = $this->createQueryBuilder('m')
+                ->leftJoin('m.bouteilles', 'b')
+                ->leftJoin('m.expertLevel', 'el')
+                ->where("1 = 1")
+                ->andWhere("m.actif = 1")
+                ->andWhere("m.enabled = 1")
+                ->andWhere("b.id is not null")
+                ->andWhere("m.id <>  :member")
+                ->setParameter('member', $idUser);
+        
+        if(isset($filtres['keyword'])&&($filtres['keyword']!='')){
+            $orQuery = $query->expr()->orx();
+            $orQuery->add($query->expr()->like("m.lastname", ":keyword"));
+            $orQuery->add($query->expr()->like("m.firstname", ":keyword"));
+            
+            $query->andWhere($orQuery)
+                ->setParameter('keyword', $filtres['keyword']);
+        }
+        
+        
+        
+        if(isset($filtres['filtrageTroqueur'])&&($filtres['filtrageTroqueur']!='')){
+            if($filtres['filtrageTroqueur']=='lastname'){
+                $query->orderBy('m.lastname', 'ASC');
+            }
+            if($filtres['filtrageTroqueur']=='niveau'){
+                $query->orderBy('el.score', 'DESC');
+            }
+        }
+
+        return $query->getQuery()->getResult();
+    }
 }

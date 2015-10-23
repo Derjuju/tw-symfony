@@ -70,7 +70,9 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
-
+            {% if connexion is defined %}
+                    showLogin();
+            {% endif %}
         });
     </script>
 {% endblock %}

@@ -150,3 +150,47 @@ function ajaxRefreshHTML(url, target, data, modalId){
         }
     });
 }
+
+function ajaxRefreshHTMLResults(url, target, data, modalId){
+    if (typeof modalId === "undefined" || modalId === null) { 
+        modalId = "#myModal"; 
+    }
+    if (typeof data === "undefined" || data === null) { 
+        data = null; 
+    }
+    $(modalId).empty().html(displayLoadingWheel());
+    $(modalId).modal('show');
+    $.ajax({
+        type : 'POST',
+        url : url,
+        data : data,
+        timeout : 20000,
+        success : function(htmlResponse) {
+
+            $(modalId).empty().html();                 
+            $(modalId).modal('toggle');
+            $(target).empty().replaceWith(htmlResponse);   
+            
+            var total = $(target).attr('data-total');
+            $('.search-results-wrapper .red').html(total);
+            if(total>1){
+                $('.label-result-plural').html('s');
+            }else{
+                $('.label-result-plural').empty();                
+            }
+            
+            checkAjaxModal();  
+            
+            //re-render the facebook icons (in a div with id of 'content') 
+            var idDom = target.substring(1);
+            FB.XFBML.parse(document.getElementById(idDom));
+            twttr.widgets.load();
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            $(modalId).empty().html('Erreur de traitement...');                             
+            checkAjaxModal();
+        }
+    });
+}
+
+

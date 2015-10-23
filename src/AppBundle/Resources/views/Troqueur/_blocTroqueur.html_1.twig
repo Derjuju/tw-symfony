@@ -1,0 +1,19 @@
+<article class="winethumb winethumb-with-owner"
+        data-lastname="{{troqueur.lastname}}"
+        data-qte="">
+        <a href="#{#{path('front_troqueur_fiche', {'id':troqueur.id})}#}" title="Voir la Fiche">
+        <div class="image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');">
+            <span class="dot-qte">{{troqueur.bouteilles|length}}</span>
+       </div>
+        </a>
+       <div class="description">
+                <div class="owner-container">                   
+                    <p class="info-owner">{{troqueur.lastname}}<br>{{troqueur.firstname}}</p>
+                </div>
+       </div>
+       <div class="social-btns">
+               <a href="https://twitter.com/share" data-url="#{#{path('front_troqueur_fiche', {'id':troqueur.id})}#}" class="twitter-share-button" data-count="none">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+               <div class="fb-share-button" data-href="#{#{path('front_troqueur_fiche', {'id':troqueur.id})}#}" data-layout="button"></div>
+       </div>
+       <div class="clearfix"></div>
+</article>

@@ -95,6 +95,17 @@ class BouteilleRepository extends EntityRepository
             $query->andWhere('tp.id = :typePays')
                 ->setParameter('typePays', $filtres['typePays']);
         }
+        
+        
+        
+        if(isset($filtres['filtrageBottle'])&&($filtres['filtrageBottle']!='')){
+            if($filtres['filtrageBottle']=='millesime'){
+                $query->orderBy('b.millesime', 'ASC');
+            }
+            if($filtres['filtrageBottle']=='qte'){
+                $query->orderBy('b.quantite', 'DESC');
+            }
+        }
 
         return $query->getQuery()->getResult();
     }

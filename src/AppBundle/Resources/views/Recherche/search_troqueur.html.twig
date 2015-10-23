@@ -19,7 +19,7 @@
                     <br><br><br><br>
 			<div class="left sort">
 				<div class="select-swagg">
-					<select name="sort_by" class="sorter">
+					<select id="ClasserResultats" name="sort_by" class="sorter">
 						<option value="" selected="selected">Classer par ...</option>
 						<option value="lastname">A à Z</option>
 						<option value="niveau">Niveau</option>
@@ -30,15 +30,7 @@
 				<span class="red">{{troqueurs|length}}</span> résultat{% if troqueurs|length > 1 %}s{% endif %}
 			</div>
 		</div>
-                <div class="winethumb-container sort-container">
-                    {% if troqueurs|length > 0 %}
-                        {% for troqueur in troqueurs %}
-                            {% include 'AppBundle:Troqueur:_blocTroqueur.html.twig' with {'troqueur' : troqueur} %}
-                        {% endfor %}
-                    {% else %}
-                        Aucun résultat ne correspond.
-                    {% endif %}
-                </div>
+                {% include "AppBundle:Recherche:listing_troqueur.html.twig" with {'troqueurs' : troqueurs} %}                
         </div>
     </section>
 {% endblock %}
@@ -49,7 +41,25 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $(document).on('change','#ClasserResultats', function(){
+               $('#FormSelectorSearchTroqueur #SearchTroqueur_filtrageTroqueur').val($(this).val());
+               sendSearch();
+            });
+            
+            $('#FormSelectorSearchTroqueur').on('submit', function(event){
+               event.preventDefault();
+               sendSearch();
+               return false;
+            });
+            
+            function sendSearch(){
+                var form = $('#FormSelectorSearchTroqueur');             
+                var url = form.attr('action').replace('/search', '/search/ajax');
+                var target = "#listingResultat";
+                var data = form.serialize();
+                var modalId = "#myModal";
+                ajaxRefreshHTMLResults(url, target, data, modalId);
+            }
         });
     </script>
 {% endblock %}

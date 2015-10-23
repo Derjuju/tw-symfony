@@ -1,4 +1,4 @@
-{% if app.request.attributes.get('_route') == 'front_accueil' %}
+{% if app.request.attributes.get('_route') == 'front_accueil' or app.request.attributes.get('_route') == 'front_accueil_connexion' %}
     {% include "AppBundle:Interface:_header_bandeau_full.html.twig" %}
 {% else %}
     {% include "AppBundle:Interface:_header_bandeau_small.html.twig" %}

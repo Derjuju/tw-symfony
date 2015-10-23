@@ -1,0 +1,9 @@
+<div id="listingResultat" class="winethumb-container sort-container" data-total="{{troqueurs|length}}">
+    {% if troqueurs|length > 0 %}
+        {% for troqueur in troqueurs %}
+            {% include 'AppBundle:Troqueur:_blocTroqueur.html.twig' with {'troqueur' : troqueur} %}
+        {% endfor %}
+    {% else %}
+        Aucun résultat ne correspond.
+    {% endif %}
+</div>

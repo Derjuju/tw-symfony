@@ -1,10 +1,10 @@
 <div class="search-selector search-bar-toggle-enabled">
-        <a href="#" class="btn-search-bottle {% if panelOpen is defined  and panelOpen == 'bouteille' %}active{% endif %}"><i class="icon-bt"></i>Recherchez une bouteille</a>
-        <a href="#" class="btn-search-swapper {% if panelOpen is defined  and panelOpen == 'troqueur'  %}active{% endif %}"><i class="icon-rq"></i>Recherchez un troqueur</a>
+        <a href="#" class="btn-search-bottle {% if panelOpen is defined  and panelOpen == 'bouteille' %}active{% endif %}"><i class="icon-bt"></i>Rechercher une bouteille</a>
+        <a href="#" class="btn-search-swapper {% if panelOpen is defined  and panelOpen == 'troqueur'  %}active{% endif %}"><i class="icon-rq"></i>Rechercher un troqueur</a>
 </div>
 <div class="search-wrapper search-bar-toggle">
     <section class="search-container container static-search" data-default="{% if panelOpen is defined  and panelOpen == 'bouteille' %}bottle{% endif %}{% if panelOpen is defined  and panelOpen == 'troqueur' %}swapper{% endif %}">
-        {{ form_start(formBouteille, {'attr': {'class': 'form-bottle-search'} }) }}
+        {{ form_start(formBouteille, {'attr': {'class': 'form-bottle-search', 'id':'FormSelectorSearchBottle'} }) }}
             {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['keyword'] is defined %}
                 {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'}, 'value' : ""~filtres['keyword'] }) }} 
             {% else %}
@@ -40,8 +40,12 @@
                     {% endif %}
                 </div>
             </div>
+                <input type="hidden" id="SearchBouteille_filtrageBottle" name="SearchBouteille[filtrageBottle]" value="">
+                {% if filtres['typeRegionAExclure'] is defined %}
+                <input type="hidden" id="SearchBouteille_typeRegionAExclure" name="SearchBouteille[typeRegionAExclure]" value="{{filtres['typeRegionAExclure']}}">
+                {% endif %}
         {{ form_end(formBouteille) }}
-        {{ form_start(formTroqueur, {'attr': {'class': 'form-swapper-search'} }) }}            
+        {{ form_start(formTroqueur, {'attr': {'class': 'form-swapper-search', 'id':'FormSelectorSearchTroqueur'} }) }}            
             {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['keyword'] is defined %}
                 {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'}, 'value' : ""~filtres['keyword'] }) }} 
             {% else %}
@@ -63,6 +67,7 @@
                     {% endif %}
                 </div>
             </div>
+                <input type="hidden" id="SearchTroqueur_filtrageTroqueur" name="SearchTroqueur[filtrageTroqueur]" value="">                
         {{ form_end(formTroqueur) }}
     </section>
 </div>

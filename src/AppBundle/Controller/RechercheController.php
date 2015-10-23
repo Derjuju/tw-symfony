@@ -91,9 +91,51 @@ class RechercheController extends Controller
     }
     
     /**
+     * @Route("/search/ajax/bottle",name="front_search_bouteille_ajax")          
+     */
+    public function searchBottleAjaxAction(Request $request) {
+        $filtres = $request->request->get('SearchBouteille',null);   
+        
+        if(isset($filtres['typeRegionAExclure'])&&($filtres['typeRegion'] == null)){
+            $filtres['typeRegion'] = -1;
+            $filtres['typeRegionAExclure'] = $this->getRegionAExclure(array('bordeaux','bourgogne','champagne'));
+        }else{
+            if(isset($filtres['typeRegionAExclure'])){
+                unset($filtres['typeRegionAExclure']);
+            }
+        }
+        
+        return $this->lanceRechercheBouteilleAjax($filtres);
+    }
+    
+    private function lanceRechercheBouteilleAjax($filtres) {
+        
+        $idUserToFilter = 0;
+        if ($this->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if($user){ $idUserToFilter = $user->getId(); }
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        $bouteilles = array();
+        
+        $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
+        
+        return $this->render("AppBundle:Recherche:listing_bottle.html.twig", array(                
+                    'bouteilles'=> $bouteilles                    
+        ));
+    }
+    
+    /**
      * @Route("/search/troqueur",name="front_search_troqueur")          
      */
     public function searchTroqueurAction(Request $request) {
+        $idUserToFilter = 0;
+        if ($this->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if($user){ $idUserToFilter = $user->getId(); }
+        }
+        
         $troqueurs = array();
         $filtres = $request->request->get('SearchTroqueur',null);
         
@@ -110,7 +152,7 @@ class RechercheController extends Controller
         $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher'));    
         
         $em = $this->getDoctrine()->getManager();
-        $troqueurs = $em->getRepository('AppBundle:Member')->findAll();
+        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
         
         return $this->render("AppBundle:Recherche:search_troqueur.html.twig", array(                
             'formBouteille'   => $formBouteille->createView(),
@@ -118,6 +160,27 @@ class RechercheController extends Controller
             'filtres'=> $filtres,
             'troqueurs'=> $troqueurs,
             'panelOpen' => 'troqueur'
+        ));
+    }
+    
+    /**
+     * @Route("/search/ajax/troqueur",name="front_search_troqueur_ajax")          
+     */
+    public function searchTroqueurAjaxAction(Request $request) {
+        $idUserToFilter = 0;
+        if ($this->get('security.context')->isGranted('ROLE_USER') ) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if($user){ $idUserToFilter = $user->getId(); }
+        }
+        
+        $troqueurs = array();
+        $filtres = $request->request->get('SearchTroqueur',null);
+        
+        $em = $this->getDoctrine()->getManager();
+        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
+        
+        return $this->render("AppBundle:Recherche:listing_troqueur.html.twig", array(            
+            'troqueurs'=> $troqueurs
         ));
     }
 }

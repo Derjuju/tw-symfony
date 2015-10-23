@@ -44,22 +44,30 @@ function initialiseSliderHeader(){
 function initialiseSearchSelectorBar(){
     $('.btn-search-bottle').on('click', function(event) {
         event.preventDefault();
-
-        $(this).parent().children().removeClass('active');
-
-        $(this).addClass('active');
-
-        displaySearchForm("bottle");
+        if($(this).hasClass('active')){
+            if(!$('body').hasClass('search')){
+                $(this).removeClass('active');
+                displaySearchForm("none");
+            }
+        }else{
+            $(this).parent().children().removeClass('active');
+            $(this).addClass('active');
+            displaySearchForm("bottle");
+        }
     });
 
     $('.btn-search-swapper').on('click', function(event) {
-        event.preventDefault();
-        
-        $(this).parent().children().removeClass('active');
-
-        $(this).addClass('active');
-
-        displaySearchForm("swapper");
+        event.preventDefault();  
+        if($(this).hasClass('active')){
+            if(!$('body').hasClass('search')){
+                $(this).removeClass('active');
+                displaySearchForm("none");
+            }
+        }else{      
+            $(this).parent().children().removeClass('active');
+            $(this).addClass('active');
+            displaySearchForm("swapper");
+        }
     });
 }
 
@@ -84,17 +92,18 @@ function displayImage(input, target) {
 function displaySearchForm(searchForm) {
   if(searchForm === "bottle") {
     $('.form-swapper-search').removeClass('show');
-
     $('.form-bottle-search').addClass('show');
-
     $('.search-bar-toggle').addClass('unfold');
-
   } else if(searchForm === "swapper") {
     $('.form-bottle-search').removeClass('show');
-
     $('.form-swapper-search').addClass('show');
-
     $('.search-bar-toggle').addClass('unfold');
+  } else {
+      if($('body').hasClass('homepage')){
+        $('.form-swapper-search').removeClass('show');
+        $('.form-bottle-search').removeClass('show');          
+      }
+        $('.search-bar-toggle').removeClass('unfold');      
   }
 }
 

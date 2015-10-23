@@ -19,7 +19,7 @@
                     <br><br><br><br>
 			<div class="left sort">
 				<div class="select-swagg">
-					<select name="sort_by" class="sorter">
+					<select id="ClasserResultats" name="sort_by" class="sorter">
 						<option value="" selected="selected">Classer par ...</option>
 						<option value="millesime">Millesime</option>
 						<option value="qte">Quantité (Décroissant)</option>
@@ -27,18 +27,11 @@
 				</div>
 			</div>
 			<div class="center">
-				<span class="red">{{bouteilles|length}}</span> résultat{% if bouteilles|length > 1 %}s{% endif %}
+				<span class="red">{{bouteilles|length}}</span> résultat<span class="label-result-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>
 			</div>
 		</div>
-                <div class="winethumb-container sort-container">
-                    {% if bouteilles|length > 0 %}
-                        {% for bouteille in bouteilles %}
-                            {% include 'AppBundle:Bouteille:_blocBouteilleWithTroqueur.html.twig' with {'bouteille' : bouteille} %}
-                        {% endfor %}
-                    {% else %}
-                        Aucun résultat ne correspond.
-                    {% endif %}
-                </div>
+                {% include "AppBundle:Recherche:listing_bottle.html.twig" with {'bouteilles' : bouteilles} %}
+                {#{ render(controller('AppBundle:Recherche:listingBottle', { 'filtres' : filtres } )) }#}                
         </div>
     </section>
 {% endblock %}
@@ -49,7 +42,25 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
-
+            $(document).on('change','#ClasserResultats', function(){
+               $('#FormSelectorSearchBottle #SearchBouteille_filtrageBottle').val($(this).val());
+               sendSearch();
+            });
+            
+            $('#FormSelectorSearchBottle').on('submit', function(event){
+               event.preventDefault();
+               sendSearch();
+               return false;
+            });
+            
+            function sendSearch(){
+                var form = $('#FormSelectorSearchBottle');                
+                var url = form.attr('action').replace('/search', '/search/ajax');                
+                var target = "#listingResultat";
+                var data = form.serialize();
+                var modalId = "#myModal";
+                ajaxRefreshHTMLResults(url, target, data, modalId);
+            }
         });
     </script>
 {% endblock %}
