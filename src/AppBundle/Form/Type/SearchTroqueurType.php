@@ -24,19 +24,9 @@ class SearchTroqueurType extends AbstractType
                 'empty_value' => 'Niveau',
                 'class' => 'AppBundle:ExpertLevel',
                 'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('el');
+                        return $er->createQueryBuilder('el')
+                                ->orderBy('el.score', 'ASC');
                 }))
-            /*->add('typeRegion', 'entity', array(        
-                'label'=>'Type',
-                'required'=>false,
-                'expanded' => false,
-                'multiple' => false,
-                'choice_label' => 'nameFr',
-                'empty_value' => 'Région',
-                'class' => 'AppBundle:TypeRegion',
-                'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('e');
-                }))*/
             ->add('region', 'entity', array(
                 'label'=>'Région',
                 'required'=>false,

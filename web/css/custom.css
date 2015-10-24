@@ -777,6 +777,17 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     padding-bottom: 5px;
 }
 
+.add-bottle-form .data-container .data-add-aside a.btn-default.add {
+    padding: 5px;
+    width: 22%;
+    margin: 5px 0;
+    display: block;
+    border-radius: 0;
+    float: right;
+    font-weight: 300;
+    font-size: .8em;
+}
+
 /* EDIT BOUTEILLE */
 #FormEditBouteille {
     text-align:center;
@@ -789,6 +800,17 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 }
 .add-bottle-form .level-bottle .the-fullness {
     top: 20%;
+}
+
+.add-bottle-form .data-container .data-add-aside a.btn-default.add {
+    padding: 5px;
+    width: 22%;
+    margin: 5px 0;
+    display: block;
+    border-radius: 0;
+    float: right;
+    font-weight: 300;
+    font-size: .8em;
 }
 .ma-cave.editer-bouteille #ModifierBouteille, .ma-cave.editer-bouteille #SupprimerBouteille {
     position:relative;

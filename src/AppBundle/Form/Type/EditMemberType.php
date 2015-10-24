@@ -20,7 +20,8 @@ class EditMemberType extends AbstractType
             'choice_label' => 'nameFr',
             'class' => 'AppBundle:ExpertLevel',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('el');
+                    return $er->createQueryBuilder('el')
+                                ->orderBy('el.score', 'ASC');
              }))
             ->add('lastname', 'text', array('attr' => array('placeholder' => 'Nom*'),'label'=>'Nom*'))
             ->add('firstname', 'text', array('attr' => array('placeholder' => 'Prénom*'),'label'=>'Prénom*'))

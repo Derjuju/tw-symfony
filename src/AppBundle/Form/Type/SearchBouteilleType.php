@@ -24,7 +24,8 @@ class SearchBouteilleType extends AbstractType
             'empty_value' => 'Type',
             'class' => 'AppBundle:TypeDeVin',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('typeRegion', 'entity', array(        
             'label'=>'Type',
@@ -35,7 +36,8 @@ class SearchBouteilleType extends AbstractType
             'empty_value' => 'Région',
             'class' => 'AppBundle:TypeRegion',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('millesime', 'choice', array(     
             'label'=>'Millésime',
@@ -52,7 +54,8 @@ class SearchBouteilleType extends AbstractType
             'empty_value' => 'Pays',
             'class' => 'AppBundle:TypePays',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ;
        

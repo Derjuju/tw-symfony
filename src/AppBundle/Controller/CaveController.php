@@ -382,7 +382,12 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();            
+            $em = $this->getDoctrine()->getManager(); 
+            if($entity->getNameUk() == null){
+                $entity->setNameUk($entity->getNameFr());
+            }else if($entity->getNameFr() == null){
+                $entity->setNameFr($entity->getNameUk());
+            }           
             $em->persist($entity);
             $em->flush();
             
@@ -413,7 +418,12 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();            
+            $em = $this->getDoctrine()->getManager(); 
+            if($entity->getNameUk() == null){
+                $entity->setNameUk($entity->getNameFr());
+            }else if($entity->getNameFr() == null){
+                $entity->setNameFr($entity->getNameUk());
+            }
             $em->persist($entity);
             $em->flush();
             
@@ -444,7 +454,12 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();            
+            $em = $this->getDoctrine()->getManager(); 
+            if($entity->getNameUk() == null){
+                $entity->setNameUk($entity->getNameFr());
+            }else if($entity->getNameFr() == null){
+                $entity->setNameFr($entity->getNameUk());
+            }           
             $em->persist($entity);
             $em->flush();
             
@@ -475,7 +490,12 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();            
+            $em = $this->getDoctrine()->getManager(); 
+            if($entity->getNameUk() == null){
+                $entity->setNameUk($entity->getNameFr());
+            }else if($entity->getNameFr() == null){
+                $entity->setNameFr($entity->getNameUk());
+            }           
             $em->persist($entity);
             $em->flush();
             
@@ -506,7 +526,12 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();            
+            $em = $this->getDoctrine()->getManager();   
+            if($entity->getNameUk() == null){
+                $entity->setNameUk($entity->getNameFr());
+            }else if($entity->getNameFr() == null){
+                $entity->setNameFr($entity->getNameUk());
+            }         
             $em->persist($entity);
             $em->flush();
             

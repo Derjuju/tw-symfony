@@ -23,7 +23,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Type*',
             'class' => 'AppBundle:TypeDeVin',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('quantite', 'choice', array(     
             'label'=>'Quantité*',
@@ -47,7 +48,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Région*',
             'class' => 'AppBundle:TypeRegion',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('millesime', 'choice', array(     
             'label'=>'Millésime',
@@ -63,7 +65,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Pays*',
             'class' => 'AppBundle:TypePays',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('commentaire', 'textarea',['attr' => array('placeholder' => 'Commentaire'),'label'=>'Commentaire' ,'required'=>false])          
           ->add('boiteOrigine', 'checkbox',[
@@ -85,7 +88,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Domaine/Château',
             'class' => 'AppBundle:TypeDomaine',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('typeAppellation', 'entity', array(        
             'label'=>'Type',
@@ -96,7 +100,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Appellation',
             'class' => 'AppBundle:TypeAppellation',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('typeCuvee', 'entity', array(        
             'label'=>'Type',
@@ -107,7 +112,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Cuvée',
             'class' => 'AppBundle:TypeCuvee',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('apogee', 'choice', array(     
             'label'=>'Niveau',
@@ -123,7 +129,8 @@ class AddBouteilleType extends AbstractType
             'empty_value' => 'Contenance*',
             'class' => 'AppBundle:TypeContenance',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.reference', 'ASC');
             }))
           ->add('typeDeCave', 'entity', array(        
             'label'=>'Type',

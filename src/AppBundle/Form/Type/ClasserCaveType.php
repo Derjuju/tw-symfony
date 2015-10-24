@@ -24,7 +24,8 @@ class ClasserCaveType extends AbstractType
             'empty_data'  => '0',
             'class' => 'AppBundle:TypeDeVin',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e');
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.nameFr', 'ASC');
             }))
             ;
        

@@ -22,7 +22,8 @@ class RegisterMemberType extends AbstractType
             'empty_data' => null,
             'class' => 'AppBundle:ExpertLevel',
             'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('el');
+                    return $er->createQueryBuilder('el')
+                                ->orderBy('el.score', 'ASC');
              }))
             ->add('login', 'text', array('attr' => array('placeholder' => 'Pseudo*'),'label'=>'Pseudo*'))
             ->add('password','repeated', ['first_name'=>'pass', 'second_name'=>'confirm','first_options'=>['label'=>'Mot de passe*'], 'second_options'=>['label'=>'Confirmez le mot de passe*'], 'invalid_message'=>'Les mots de passe sont différents', 'label'=>'password', 'type'=>'password'])
