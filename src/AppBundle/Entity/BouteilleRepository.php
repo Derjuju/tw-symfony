@@ -26,11 +26,26 @@ class BouteilleRepository extends EntityRepository
         $query = $this->createQueryBuilder('b')
                 ->where('b.member = :member')
                 ->andWhere('b.id <> :id')
+                ->andWhere("b.online = 1")
+                ->andWhere("b.reserved = 0")
                 ->setParameter('member', $member)
                 ->setParameter('id', $id);
 
         return $query->getQuery()->getResult();
     }
+    
+    
+    function findForUserOnline($member){
+        $query = $this->createQueryBuilder('b')
+                ->where('b.member = :member')
+                ->andWhere("b.online = 1")
+                ->andWhere("b.reserved = 0")
+                ->setParameter('member', $member);
+
+        return $query->getQuery()->getResult();
+    }
+    
+    
     
     
     function findFromSelector($filtres){

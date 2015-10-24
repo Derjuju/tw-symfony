@@ -1,4 +1,4 @@
-<article class="winethumb type-region-{{bouteille.typeDeVin.reference}}"
+<article class="winethumb type-region-{{bouteille.typeDeVin.reference}} {% if not bouteille.online %}offline{% endif %}"
         data-millesime="{{bouteille.millesime}}"
         data-qte="{{bouteille.quantite}}"
         data-order="{{bouteille.id}}">
@@ -19,6 +19,12 @@
        </div>
        <div class="clearfix"></div>
     </a>
+       {% if not bouteille.online %}
+       <div class="attente-validation">
+           Bouteille non visible !<br>
+           En attente de validation par TrocWine.
+       </div>
+       {% endif %}
        {#
        <div class="actions-btns">
         <a href="{{path('front_ma_cave_editer', {'id':bouteille.id}) }}" class="btn-default btn-edit">modifier</a>

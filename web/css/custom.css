@@ -682,6 +682,14 @@ a:hover .icon-deconnexion{
     margin-top: -20px;
 }
 
+.attente-validation{    
+    text-align: center;
+    color: #740612;
+    line-height: 16px;
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
 /* PROFIL */
 .blocInfo{    
     padding-top: 5px;
@@ -729,6 +737,7 @@ a:hover .icon-deconnexion{
 
 
 /* BOUTEILLES */
+article.offline {background-color:#F1CED2;}
 article.type-region-rouge .image .dot-qte{background-color:#740612;}
 article.type-region-blanc .image .dot-qte{background-color:#eeeeee;}
 article.type-region-effervescent .image .dot-qte{background-color:#e8de46;}

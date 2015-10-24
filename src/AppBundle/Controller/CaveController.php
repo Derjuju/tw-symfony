@@ -59,12 +59,14 @@ class CaveController extends Controller
             throw $this->createNotFoundException('Troqueur inconnu.');
         }
         
+        $bouteilles = $em->getRepository('AppBundle:Bouteille')->findForUserOnline($id);
+        
         $formFiltrerCave = $this->createForm(new ClasserCaveType(), null, array(
             'action' => $this->generateUrl('front_cave_liste', array('id'=>$id, 'filtre'=>0)),
             'method' => 'POST',
         ));
         
-        return $this->render("AppBundle:Cave:cave.html.twig", ['troqueur'=>$troqueur, 'formFiltrerCave' => $formFiltrerCave->createView()]);
+        return $this->render("AppBundle:Cave:cave.html.twig", ['troqueur'=>$troqueur, 'bouteilles'=>$bouteilles, 'formFiltrerCave' => $formFiltrerCave->createView()]);
     }
     
     /**

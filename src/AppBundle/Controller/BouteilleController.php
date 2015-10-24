@@ -27,7 +27,7 @@ class BouteilleController extends Controller
         
         // on vérifie l'existence de la bouteille et si appartient à l'utilisateur
         $bouteille = $em->getRepository('AppBundle:Bouteille')->find($id);
-        if($bouteille == null){
+        if(!$bouteille){
             throw $this->createNotFoundException('Fiche inconnue.');
         }
         
