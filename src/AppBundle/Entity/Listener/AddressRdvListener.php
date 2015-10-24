@@ -16,24 +16,24 @@ class AddressRdvListener
     
     private $em;
     
-    public function prePersist(Address $address, LifecycleEventArgs $event)
+    public function prePersist(AddressRdv $address, LifecycleEventArgs $event)
     {
         $this->em = $event->getEntityManager();        
         $address = $this->geolocaliseAddress($address, true);        
     }
     
-    public function preUpdate(Address $address, LifecycleEventArgs $event)
+    public function preUpdate(AddressRdv $address, LifecycleEventArgs $event)
     {
         $this->em = $event->getEntityManager();        
         $address = $this->geolocaliseAddress($address, false);
     }
     
-    public function postUpdate(Address $address,LifecycleEventArgs $event)
+    public function postUpdate(AddressRdv $address,LifecycleEventArgs $event)
     {
         $this->em = $event->getEntityManager(); 
     }
     
-    private function geolocaliseAddress(Address $address, $force){
+    private function geolocaliseAddress(AddressRdv $address, $force){
         $uow = $this->em->getUnitOfWork();
         $changeSet = $uow->getEntityChangeSet($address);
         

@@ -86,6 +86,13 @@ class AddressRdv
     private $longitude = null;
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="TrocRDV", inversedBy="addressRdvs")
+     * @ORM\JoinColumn(name="troc_rdv_id", referencedColumnName="id")
+     * */
+    protected $trocRdv;
+    
+    
 
     public function __toString() {
         return $this->street . ' ' . $this->city;
@@ -306,5 +313,26 @@ class AddressRdv
     public function getLongitude()
     {
         return $this->longitude;
+    }
+    
+    /**
+     * Set trocRdv
+     *
+     * @param \AppBundle\Entity\TrocRDV $trocRdv
+     * @return AddressRdv
+     */
+    public function setTrocRdv(\AppBundle\Entity\TrocRDV $trocRdv = null) {
+        $this->trocRdv = $trocRdv;
+
+        return $this;
+    }
+
+    /**
+     * Get trocRdv
+     *
+     * @return \AppBundle\Entity\TrocRDV 
+     */
+    public function getTrocRdv() {
+        return $this->trocRdv;
     }
 }

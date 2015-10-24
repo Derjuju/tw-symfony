@@ -194,3 +194,34 @@ function ajaxRefreshHTMLResults(url, target, data, modalId){
 }
 
 
+
+
+var map;
+var bigMap = [];
+function initMap(){
+    map = new google.maps.Map(document.getElementById('bigMap'), {
+        center:{lat: 48.8589506, lng: 2.2773456},
+        zoom: 16
+    });
+}
+
+function initialiseBigCarte(latitude, longitude, mapId){
+    
+    var latLng = {lat: Number(latitude.substring(0,10)), lng: Number(longitude.substring(0,9))};
+
+    bigMap[mapId] = new google.maps.Map(document.getElementById('big-map-'+mapId), {    
+            center: latLng,
+            zoom: 16,
+            scrollwheel: false,
+            zoomControl: true,
+            zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE
+            }
+    });
+
+    var marker = new google.maps.Marker({
+            position: latLng,
+            map: bigMap[mapId]
+    });
+
+}

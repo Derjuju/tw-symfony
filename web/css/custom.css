@@ -877,3 +877,31 @@ body.search-troqueur article .description {
     width: 80%;
     margin-bottom: 10px;
 }
+.troc-actions .panel-actions .panel-action-rdv .address-form{
+    width:70%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.troc-actions .panel-actions .panel-action-rdv .address-form .address-title{
+    text-align: left;
+}
+.troc-actions .panel-actions .panel-action-rdv #VoirRdv{
+    display: inline-block; cursor: pointer;
+    margin-top: 10px;
+}
+.troc-actions .panel-actions .panel-action-rdv #AjouterRdv{
+    display: inline-block;
+}
+.troc-actions .panel-actions .panel-action-rdv .big-map-container{
+    width: 95%;
+    display: block;
+    border-top: 1px solid #F3F3F3;
+}
+
+.troc-actions .panel-actions .panel-action-rdv .big-map{
+    width: 90%;
+    height: 320px;
+    margin: 0 auto;
+    opacity: 1;
+    position: relative;
+}

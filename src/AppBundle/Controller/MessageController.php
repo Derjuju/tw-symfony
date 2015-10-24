@@ -10,9 +10,12 @@ use Symfony\Component\Form\FormError;
 
 use AppBundle\Entity\TrocMessage;
 use AppBundle\Entity\TrocSection;
+use AppBundle\Entity\TrocRDV;
+use AppBundle\Entity\AddressRdv;
 use AppBundle\Form\Type\TrocAType;
 use AppBundle\Form\Type\TrocBType;
 use AppBundle\Form\Type\TrocMessageType;
+use AppBundle\Form\Type\AddressRdvType;
 
 
 use AppBundle\Entity\Bouteille;
@@ -60,16 +63,6 @@ class MessageController extends Controller
         
         $messages = $em->getRepository('AppBundle:Troc')->findByAllForUser($user, $archive);
         
-        /*
-        echo count($user->getBouteilles());
-        
-        \Symfony\Component\VarDumper\VarDumper::dump($messages);
-        
-        echo count($messages);
-        
-        echo count($messages[0]->getTrocSections()[0]->getContenu()->getTrocABouteilles());
-        echo count($messages[0]->getTrocSections()[0]->getContenu()->getTrocBBouteilles());
-        */
         return $this->render('AppBundle:Messages:index.html.twig', array(
             'user' => $user,
             'trocArchive' => $archive,
@@ -99,12 +92,16 @@ class MessageController extends Controller
         $trocMessage = new TrocMessage();
         $formMessage = $this->generateFormMessage($trocMessage, $id);
         
+        $addressRDV = new AddressRdv();
+        $formRDV = $this->generateFormRdv($addressRDV, $id);
+        
         return $this->render('AppBundle:Messages:message.html.twig', array(
             'user' => $user,
             'troc' => $troc,
             'trocArchive' => $troc->getArchived(),
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
+            'formRDV' => $formRDV->createView(),
         ));
     }
     
@@ -129,6 +126,9 @@ class MessageController extends Controller
         $trocMessage = new TrocMessage();
         $formMessage = $this->generateFormMessage($trocMessage, $id);
         
+        $addressRDV = new AddressRdv();
+        $formRDV = $this->generateFormRdv($addressRDV, $id);
+        
         // traitement message
         $formMessage->handleRequest($request);
         if ($formMessage->isValid()) {
@@ -152,6 +152,66 @@ class MessageController extends Controller
             'trocArchive' => $troc->getArchived(),
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
+            'formRDV' => $formRDV->createView(),
+        ));
+    }
+    
+    /**
+     * @Route("/messages/gestion/{id}/addRdv",name="front_messagerie_gestion_add_rdv")          
+     */
+    public function addRdvAction(Request $request, $id) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(!$user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $troc = $em->getRepository('AppBundle:Troc')->find($id);
+        if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
+        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
+        
+        $trocMessage = new TrocMessage();
+        $formMessage = $this->generateFormMessage($trocMessage, $id);
+        
+        $addressRDV = new AddressRdv();
+        $formRDV = $this->generateFormRdv($addressRDV, $id);
+        
+        // traitement message
+        $formRDV->handleRequest($request);
+        if ($formRDV->isValid()) {
+            $trocSection = new TrocSection();
+            //$em->persist($addressRDV);
+            
+            $trocRdv = new TrocRDV();
+            $trocRdv->setSuggested(0);
+            $trocRdv->addAddressRdv($addressRDV);
+            $em->persist($trocRdv);
+            
+            $addressRDV->setTrocRdv($trocRdv);
+                        
+            $trocSection->setTroc($troc);   
+            $trocSection->setRdv($trocRdv);
+            $trocSection->setMember($user);
+            $em->persist($trocSection);
+
+            $troc->addTrocSection($trocSection);
+            $em->persist($troc);
+
+            $em->flush();
+            return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
+        }
+        
+        return $this->render('AppBundle:Messages:message.html.twig', array(
+            'user' => $user,
+            'troc' => $troc,
+            'trocArchive' => $troc->getArchived(),
+            'formFinTroc' => $formFinTroc->createView(),
+            'formMessage' => $formMessage->createView(),
+            'formRDV' => $formRDV->createView(),
         ));
     }
     
@@ -184,6 +244,9 @@ class MessageController extends Controller
         
         $trocMessage = new TrocMessage();
         $formMessage = $this->generateFormMessage($trocMessage, $id);
+        
+        $addressRDV = new AddressRdv();
+        $formRDV = $this->generateFormRdv($addressRDV, $id);
         
         // traitement fin troc
         $formFinTroc->handleRequest($request);
@@ -370,6 +433,7 @@ class MessageController extends Controller
             'trocArchive' => $troc->getArchived(),
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
+            'formRDV' => $formRDV->createView(),
         ));
         
     }
@@ -427,6 +491,14 @@ class MessageController extends Controller
             ));
         }        
         return $formFinTroc;
+    }
+    
+    private function generateFormRdv($addressRDV, $id){        
+        $formRDV =  $this->createForm(new AddressRdvType(), $addressRDV, array(
+            'action' => $this->generateUrl('front_messagerie_gestion_add_rdv', array('id' => $id)),
+            'method' => 'POST',
+        ));        
+        return $formRDV;
     }
     
     private function supprimeTrocsLies($em, $bouteille, $id)
@@ -504,6 +576,9 @@ class MessageController extends Controller
             if($trocSection->getMessage()){
                 //$trocSection->getMessage()->setTrocSection(null);    
                 $trocSection->setMessage(null);
+            }
+            if($trocSection->getRdv()){   
+                $trocSection->setRdv(null);
             }
             $em->remove($trocSection);
         }

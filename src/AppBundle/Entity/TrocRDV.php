@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use AppBundle\Entity\TrocSection;
 use AppBundle\Entity\AddressRdv;
@@ -27,16 +28,14 @@ class TrocRDV
     /**
      * @var boolean
      *
-     * @ORM\Column(name="accepted", type="boolean", nullable=true)
+     * @ORM\Column(name="suggested", type="integer", nullable=true)
      */
-    private $accepted;
+    private $suggested;
 
-    
     /**
-     * @ORM\OneToOne(targetEntity="AddressRdv", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
-     * */
-    protected $address;
+     * @ORM\OneToMany(targetEntity="AddressRdv", mappedBy="trocRdv", cascade={"persist", "remove"})
+     */
+    protected $addressRdvs;
 
     /**
      * @var \DateTime
@@ -57,6 +56,7 @@ class TrocRDV
     
     public function __construct() {
         $this->addedAt = new \DateTime();
+        $this->addressRdvs = new ArrayCollection();
     }
 
     /**
@@ -70,47 +70,56 @@ class TrocRDV
     }
 
     /**
-     * Set accepted
+     * Set suggested
      *
-     * @param boolean $accepted
+     * @param integer $suggested
      * @return TrocRDV
      */
-    public function setAccepted($accepted)
+    public function setSuggested($suggested)
     {
-        $this->accepted = $accepted;
+        $this->suggested = $suggested;
 
         return $this;
     }
 
     /**
-     * Get accepted
+     * Get suggested
      *
-     * @return boolean 
+     * @return integer 
      */
-    public function getAccepted()
+    public function getSuggested()
     {
-        return $this->accepted;
+        return $this->suggested;
     }
     
     /**
-     * Set address
+     * Add addressRdvs
      *
-     * @param \AppBundle\Entity\AddressRdv $address
+     * @param \AppBundle\Entity\AddressRdv $addressRdvs
      * @return TrocRDV
      */
-    public function setAddress(\AppBundle\Entity\AddressRdv $address = null) {
-        $this->address = $address;
+    public function addAddressRdv(\AppBundle\Entity\AddressRdv $addressRdvs) {
+        $this->addressRdvs[] = $addressRdvs;
 
         return $this;
     }
 
     /**
-     * Get address
+     * Remove addressRdvs
      *
-     * @return \AppBundle\Entity\AddressRdv 
+     * @param \AppBundle\Entity\AddressRdv $addressRdvs
      */
-    public function getAddress() {
-        return $this->address;
+    public function removeAddressRdv(\AppBundle\Entity\AddressRdv $addressRdvs) {
+        $this->addressRdvs->removeElement($addressRdvs);
+    }
+
+    /**
+     * Get addressRdvs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAddressRdvs() {
+        return $this->addressRdvs;
     }
 
     /**

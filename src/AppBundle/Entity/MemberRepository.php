@@ -46,7 +46,6 @@ class MemberRepository extends EntityRepository
                     ->setParameter('expertLevel', $filtres['expertLevel']);
         }
         
-        \Symfony\Component\VarDumper\VarDumper::dump($regionLike);
         if(isset($regionLike)&&($regionLike != null)){
             $query->leftJoin('m.address', 'a')
                     ->andWhere($query->expr()->like("a.region", ":region"))

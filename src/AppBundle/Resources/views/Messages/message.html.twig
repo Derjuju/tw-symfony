@@ -12,10 +12,15 @@
         {% set titreH1 = "Troc en cours" %}
     {% endif %}
     {% set use_red_title = true %}
-    
     {{ parent() }}
 {% endblock %}
 
+
+{% block topJavascripts %}
+    {{ parent() }}    
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-BhyfIb3OOf2GzYFf8n3-3I_xRfBWKOk"></script>  
+{% endblock %}
+    
 {% block content %}
     {{ parent() }}   
     <section class="message-wrapper container">
@@ -57,7 +62,7 @@
                                     {% include 'AppBundle:Messages:_blocActionEcrire.html.twig' with {'formMessage' : formMessage} %}			                                                        
                                 </div>
                                 <div class="panel-action-rdv hidden">
-                                    rdv
+                                    {% include 'AppBundle:Messages:_blocActionRDV.html.twig' with {'formRDV' : formRDV} %}			                                                        
                                 </div>
                             </div>
                         </div>
@@ -88,7 +93,8 @@
             });                        
             $('#bt-action-rdv').on('click', function(){
                 $('.panel-action-ecrire').addClass('hidden');   
-                $('.panel-action-rdv').removeClass('hidden');               
+                $('.panel-action-rdv').removeClass('hidden');
+                initMap();
             });  
             
             $('.troc-finalisation').find('.btn-choice').on('click', function(event) {
@@ -149,8 +155,56 @@
                 
                 return submitForm;
             });
+        
+        
+            $('#VoirRdv').on('click', function(event){
+                event.preventDefault();
+                var geocoder = new google.maps.Geocoder();
+                var address = ""+$('#AddressRdv_street').val()+", "+$('#AddressRdv_zipCode').val()+", "+$('#AddressRdv_city').val()+", "+$('#AddressRdv_country').val();//"1600 Amphitheatre Parkway, Mountain  View";
+        
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      map.setCenter(results[0].geometry.location);
+                      var marker = new google.maps.Marker({
+                          map: map,
+                          position: results[0].geometry.location
+                      });
+                    } else {
+                      alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+                
+            });
+            
+            
+            
+            function actualiseBigCarte(latitude, longitude, mapId){
+                
+                var latLng = {lat: latitude, lng: longitude};
+
+                map = new google.maps.Map(document.getElementById(mapId), {
+                        center: latLng,
+                        zoom: 16,
+                        scrollwheel: false,
+                        zoomControl: true,
+                        zoomControlOptions: {
+                                style: google.maps.ZoomControlStyle.LARGE
+                        }
+                });
+
+                var marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                });
+                
+            }
+            
+            $('.maps-wrapper.section-rdv').each(function(){
+                initialiseBigCarte($(this).data('lat'),$(this).data('long'),$(this).data('bigmap'));  
+            });
             
         });
-    </script>
+        
+    </script>    
     
 {% endblock %}

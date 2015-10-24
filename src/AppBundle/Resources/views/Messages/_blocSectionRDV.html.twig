@@ -1,0 +1,75 @@
+{% set trocRdv = section.rdv %}
+{% set rdvs = section.rdv.addressRdvs %}
+<div class="maps-wrapper section-rdv" data-lat="{{ rdvs[trocRdv.suggested].latitude }}" data-long="{{ rdvs[trocRdv.suggested].longitude }}" data-bigmap="{{ trocRdv.id }}">
+    <div class="small-maps-wrapper {% if rdvs|length <= 2 %}display-address{% endif %}">
+        {% for rdv in rdvs %}
+            <div class="small-map-container {% if section.rdv.suggested == loop.index0 %}selected{% endif %}">
+                    <div class="small-map"
+                         style="background-image: url('https://maps.googleapis.com/maps/api/staticmap?center={{ rdv.latitude }},{{ rdv.longitude }}&zoom=16&size=230x230&markers=color:red|{{ rdv.latitude }},{{ rdv.longitude }}')"
+                         data-messageid="{{ rdv.id }}"
+                         data-lng="{{ rdv.longitude }}"
+                         data-lat="{{ rdv.latitude }}"
+                         data-address="{{ rdv.street }} — {{ rdv.zipCode }} {{ rdv.city }}">
+
+                            <i class="icon-magnifier"></i>
+                 </div>
+
+                    <div class="selected-text">
+                            Sélectionné par
+                            <h3>{{ section.member.firstname }}</h3>
+                    </div>
+            </div>
+
+            <span class="address-container">
+                    {{ rdv.name }}
+                    {{ rdv.street }}
+
+                    {{ rdv.zipCode }} {{ rdv.city }}
+            </span>
+        {% endfor %}
+    </div>    
+    <div class="big-map-container">
+            <div class="big-map" id="big-map-{{ trocRdv.id }}"></div>
+            <em class="big-map-address big-map-address-{{ trocRdv.id }}">Cliquez sur l'une des sélections pour plus d'informations.</em>
+    </div>
+    {#
+    <div class="small-maps-wrapper <?php if(sizeof($m['place_suggestion']) <= 2 ): ?>display-address<?php endif; ?>">
+            <?php foreach($m['place_suggestion'] as $i => $map)
+                    include('block/message-maps.php');?>
+    </div>
+    <div class="big-map-container">
+            <div class="big-map" id="big-map-<?= $mID ?>"></div>
+            <em class="big-map-address big-map-address-<?= $mID ?>">Cliquez sur l'une des selections pour plus d'informations.</em>
+    </div>
+    <!-- Initialise la map selectionnée. -->
+    <script>
+            var latLng = {lat: <?= $m['lng_lat-selected'][0] ?>, lng: <?= $m['lng_lat-selected'][1] ?>};
+
+            bigMap[<?= $mID ?>] = new google.maps.Map(document.getElementById('big-map-<?= $mID ?>'), {
+                    center: latLng,
+                    zoom: 16,
+                    scrollwheel: false,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                            style: google.maps.ZoomControlStyle.LARGE
+                    }
+            });
+
+            var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: bigMap[<?= $mID ?>]
+            });
+    </script>
+
+    <!-- Foreach pour mettre les marqueurs sur la carte. -->
+    <?php foreach($m['place_suggestion'] as $i => $map): ?>
+            <script>
+                    new google.maps.Marker({
+                            position: {lng: <?= $map['lng_lat'][1] ?>, lat: <?= $map['lng_lat'][0] ?>},
+                            map: bigMap[<?= $mID ?>],
+                            title: '<?= $map['street_address'] . ' - ' . $map['zip_code'] . ' ' . $map['city'] ?>'
+                    });
+            </script>
+    <?php endforeach; ?>
+    #}
+</div>

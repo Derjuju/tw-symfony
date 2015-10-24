@@ -1,0 +1,25 @@
+{% form_theme formRDV with ['AppBundle::form_theme.html.twig', _self] %}
+{{ form_start(formRDV, {'attr': {'class': 'subscribe-form', 'id': 'FormAddMessage'} }) }}
+<div class="subscribe-inputs-container">
+    <div class="address-form">
+            <p class="address-title">Adresse : <span class="smaller"></span></p>				
+            {{ form_widget(formRDV.name, { 'label': false, 'class': '', 'attr': {'class': 'col-12'} }) }}
+            {{ form_widget(formRDV.street, { 'label': false, 'class': '', 'attr': {'class': 'col-12'} }) }}
+            <div class="container">
+                {{ form_widget(formRDV.zipCode, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
+                {{ form_widget(formRDV.city, { 'label': false, 'class': '', 'attr': {'class': 'col-9'} }) }}
+            </div>
+            <div class="container">
+                {{ form_widget(formRDV.departement, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
+                {{ form_widget(formRDV.region, { 'label': false, 'class': '', 'attr': {'class': 'col-6'} }) }}
+                {{ form_widget(formRDV.country, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
+            </div>
+            {{ form_errors(formRDV) }}
+            <a id="VoirRdv" class="submit-btn btn-default">Voir le lieu</a>  <button id="AjouterRdv" class="submit-btn btn-default">Valider le lieu</button>                                                                        
+    </div>    
+</div>
+<div class="big-map-container">
+    <em class="big-map-address bigMap-address-0">Cliquez sur voir le lieu pour afficher la carte.</em>
+    <div class="big-map" id="bigMap"></div>
+</div>
+{{ form_end(formRDV) }}

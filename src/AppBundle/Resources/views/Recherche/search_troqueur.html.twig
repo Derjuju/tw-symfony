@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="center">
-				<span class="red">{{troqueurs|length}}</span> résultat{% if troqueurs|length > 1 %}s{% endif %}
+                            <span class="red">{{troqueurs|length}}</span> résultat<span class="label-result-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>
 			</div>
 		</div>
                 {% include "AppBundle:Recherche:listing_troqueur.html.twig" with {'troqueurs' : troqueurs} %}                
