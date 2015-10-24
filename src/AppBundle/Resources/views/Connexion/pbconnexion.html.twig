@@ -1,0 +1,72 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Problème de connexion - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}pbconnexion{% endblock %}
+
+{% block header %}
+    {% set titreH1 = "Problème de connexion" %}
+    {% set use_red_title = true %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="site-wrapper"> 
+        <div class="row"> 
+            <div class="wrapper main-wrapper">  
+                <h2>Problème de connexion</h2>
+                <p></p>
+                
+                {% if emailValid!=1 %}
+                <div class="text-box">
+                     <p class="title">Veuillez saisir votre pseudo ou votre adresse e-mail.</p>
+
+                </div>
+                <section class="subscribe-wrapper wrapper">
+                {{ form_start(email_form, {'attr': {'class': 'subscribe-form'} }) }}    
+                    <div class="subscribe-inputs-container">
+                        <!-- Mettre les erreurs retournées ici -->
+			<div class="error-message">{{ form_errors(email_form) }}</div>
+                    </div>
+                    <div class="subscribe-inputs-container">
+                        <div>
+                            <div class="top-subscribe-form">
+					{{ form_widget(email_form.login, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                                        {{ form_errors(email_form.login) }}                        
+                            </div>
+                            <div class="top-subscribe-form">			
+					{{ form_widget(email_form.email, { 'label': false,'class': '', 'attr': {'class': ''} }) }} 
+                                        {{ form_errors(email_form.email) }}
+                            </div>
+                            {{ form_widget(email_form.Envoyer, { 'attr': {'class': 'col-6 btn-default'} }) }}
+                        </div>
+                        <div>
+                                <p class="desc">Vous allez recevoir un e-mail avec votre mot de passe temporaire<br> à l'adresse e-mail que vous nous avez communiquée.</p>  
+                                <p class="asterisque">* Merci de remplir un des deux champs.</p>  
+                        </div>
+                {{ form_end(email_form) }}  
+                </section>                            
+                {% else %}       
+                <div class="text-box padded">
+                     <p class="desc">Vous allez recevoir un e-mail avec votre mot de passe temporaire<br> à l'adresse e-mail que vous nous avez communiquée.</p> 
+                </div>
+                {% endif %}
+                
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}
+

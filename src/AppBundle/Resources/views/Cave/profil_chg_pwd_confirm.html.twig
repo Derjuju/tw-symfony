@@ -1,0 +1,35 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Changer mon mot de passe - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}modifier-profil{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% set titreH1 = "Changer mon mot de passe" %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+     <div class="site-wrapper"> 
+        <div class="row"> 
+            <div class="wrapper main-wrapper">                        
+                <div class="text-box padded" style="text-align:center;">
+                     <p class="desc">Vous allez recevoir un e-mail avec un rappel de votre mot de passe sur votre adresse e-mail.</p>                     
+                </div>                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
+{% endblock %}
+
