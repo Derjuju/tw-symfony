@@ -82,7 +82,7 @@ class MailToUser {
     
     
     
-    public function sendEmailNouveauTroc($to, $refTroc){
+    public function sendEmailNouveauTroc($to, $refTroc, $prenom1, $prenom2){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:nouveau_troc.html.twig', array());
         if (!$view)
@@ -94,12 +94,14 @@ class MailToUser {
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
         $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
-        $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
                         
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailNouveauTrocOwner($to, $refTroc){
+    public function sendEmailNouveauTrocOwner($to, $refTroc, $prenom1, $prenom2){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:nouveau_troc_owner.html.twig', array());
         if (!$view)
@@ -111,14 +113,16 @@ class MailToUser {
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
         $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
-        $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
                         
         return $this->sendMail($subject, $view, $to);
     }
     
     
     
-    public function sendEmailModifierTroc($to, $refTroc){
+    public function sendEmailModifierTroc($to, $refTroc, $prenom1, $prenom2){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:modifier_troc.html.twig', array());
         if (!$view)
@@ -130,12 +134,14 @@ class MailToUser {
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
         $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
-        $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
                         
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailModifierTrocOwner($to, $refTroc){
+    public function sendEmailModifierTrocOwner($to, $refTroc, $prenom1, $prenom2){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:modifier_troc_owner.html.twig', array());
         if (!$view)
@@ -147,12 +153,38 @@ class MailToUser {
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
         $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
-        $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
                         
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailAbandonTroc($to, $refTroc){        
+    
+    
+    public function sendEmailRdvTroc($to, $refTroc, $prenom1, $prenom2, $adresse){
+        $view = null;
+        $view = $this->templating->render('AppBundle:Mailing:rdv_troc.html.twig', array());
+        if (!$view)
+            return false;
+        
+        // sujet
+        $subject = "[TrocWine] #".$refTroc." - Lieu de rendez-vous proposé";
+        
+        // variables dynamiques
+        $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
+        $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
+        $view = str_replace('#ADRESSE#',$adresse, $view);
+                        
+        return $this->sendMail($subject, $view, $to);
+    }
+    
+    
+    
+    public function sendEmailAbandonTroc($to, $refTroc, $prenom1, $prenom2){       
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:abandon_troc.html.twig', array());
         if (!$view)
@@ -164,7 +196,9 @@ class MailToUser {
         // variables dynamiques
         $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
         $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
-        $view = str_replace('#LIEN_ACCES_ESPACE#',$lien_acces_espace, $view);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
         
         $view = str_replace('#REF#','#'.$refTroc, $view);
         

@@ -87,6 +87,8 @@ class MessageController extends Controller
         if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
         if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
         
+        if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
+        
         $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);                
         
         $trocMessage = new TrocMessage();
@@ -120,6 +122,8 @@ class MessageController extends Controller
         $troc = $em->getRepository('AppBundle:Troc')->find($id);
         if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
         if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
         
         $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
         
@@ -172,6 +176,18 @@ class MessageController extends Controller
         if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
         if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
         
+        if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
+        
+        if($troc->getMemberA() == $user){
+            $troqueur = $troc->getMemberB();
+        }else{
+            $troqueur = $troc->getMemberA();
+        }
+        
+        $emailTroqueur = $troqueur->getEmail(); 
+        
+        $refTroc = $troc->getId();
+        
         $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
         
         $trocMessage = new TrocMessage();
@@ -202,6 +218,13 @@ class MessageController extends Controller
             $em->persist($troc);
 
             $em->flush();
+            
+            $adresse = $addressRDV->getStreet().' - '.$addressRDV->getZipCode().' '.$addressRDV->getCity();            
+            
+            if (!$this->get('mail_to_user')->sendEmailRdvTroc($emailTroqueur,$refTroc, $troqueur->getFirstname(), $user->getFirstname(), $adresse)) {
+                throw $this->createNotFoundException('Unable to send abandon troc mail.');
+            } 
+            
             return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
         }
         
@@ -587,7 +610,7 @@ class MessageController extends Controller
         $em->flush();
         
         
-        if (!$this->get('mail_to_user')->sendEmailAbandonTroc($emailTroqueur,$refTroc)) {
+        if (!$this->get('mail_to_user')->sendEmailAbandonTroc($emailTroqueur,$refTroc, $troqueur->getFirstname(), $user->getFirstname())) {
             throw $this->createNotFoundException('Unable to send abandon troc mail.');
         }        
 

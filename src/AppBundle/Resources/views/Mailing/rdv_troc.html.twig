@@ -1,6 +1,6 @@
 {% extends "::baseMail.html.twig" %}
 
-{% set titleMail = "Nouveau troc proposé" %}
+{% set titleMail = "Un lieu de rendez-vous a été proposé" %}
 
 {% block title %} {{ parent() }} - {{ titleMail }}{% endblock %}
 
@@ -30,7 +30,14 @@
 		  <tr>
 		    <td>
 			  <font face="Arial, Helvetica, sans-serif" size="3" color="#000000" style="color: #00000; font: 14px/16px Arial, Helvetica, sans-serif;">
-			  #PRENOM2# vous a proposé un troc !<br><br><br>
+			  #PRENOM2# vous propose un lieu de rencontre.<br><br><br>
+			  </font>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td>
+			  <font face="Arial, Helvetica, sans-serif" size="3" color="#000000" style="color: #00000; font: 14px/16px Arial, Helvetica, sans-serif;">
+			  #ADRESSE#<br><br><br>
 			  </font>
 		    </td>
 		  </tr>
