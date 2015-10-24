@@ -1,0 +1,17 @@
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 767px) {
+    .search-selector {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    
+}
+
+@media screen and (max-width: 320px) {
+    
+}
