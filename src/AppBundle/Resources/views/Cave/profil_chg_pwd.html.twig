@@ -1,0 +1,81 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Changer mon mot de passe - {{ parent() }}{% endblock %}
+
+{% block bodyclass %}modifier-profil{% endblock %}
+
+{% block header %}
+    {% set withoutSearchSelector = true %}
+    {% set titreH1 = "Changer mon mot de passe" %}
+    {{ parent() }}
+{% endblock %}
+
+{% form_theme form with ['AppBundle::form_theme.html.twig', _self] %}
+
+{% block content %}
+    {{ parent() }}
+     <section class="subscribe-wrapper wrapper">
+        {{ form_start(form, {'attr': {'class': 'subscribe-form'} }) }}	
+		<div class="profile-image-container user-profile-image-container">
+                    {% if user.avatar != null %}
+                        <div class="profile-image" style="background-image: url('{{ asset( user.avatar.file) }}');">                                
+                        </div>
+                    {% else %}
+                    <div class="profile-image" style="background-image: url('{{asset('uploads/avatars/avatar_default.jpg')}}');">                            
+                    </div>
+                    {% endif %}
+                </div>
+		<div class="subscribe-inputs-container">
+			<!-- Mettre les erreurs retournées ici -->
+			<div class="error-message">{{ form_errors(form) }}</div>
+			<div class="top-subscribe-form">
+				<div class="left">
+                                    <div class="container">
+                                        <div class="col-6">
+                                            {{ form_label(form.tmppwd) }}
+                                            {{ form_widget(form.tmppwd) }}
+                                            {{ form_errors(form.tmppwd) }}
+                                        </div>
+                                        <div class="col-6">
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="col-6">
+                                            {{ form_label(form.password.pass) }}
+                                            {{ form_widget(form.password.pass) }}
+                                            {{ form_errors(form.password.pass) }}
+                                        </div>
+                                        <div class="col-6">
+                                            {{ form_label(form.password.confirm) }}
+                                            {{ form_widget(form.password.confirm) }}
+                                            {{ form_errors(form.password.confirm) }}
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="col-6">
+                                        {{ form_widget(form.submit, { 'attr': {'class': 'col-12 btn-default'} }) }}
+                                        </div>
+                                    </div>	
+				</div>
+				<div class="right">
+					
+				</div>
+			</div>
+			
+			
+			<p class="smaller">*Champs obligatoires</p>
+		</div>
+	{{ form_end(form) }}
+    </section>
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+    </script>
+{% endblock %}
+

@@ -27,7 +27,7 @@ class MailToUser {
         $this->kernel = $kernel;
     }
     
-    public function sendEmailConfirmation($to){
+    public function sendEmailConfirmation($to, $prenom){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:confirm_email.html.twig', array());
         if (!$view)
@@ -40,11 +40,12 @@ class MailToUser {
         $lien_confirmation_email = $this->app_front_url.$this->router->generate('front_valide_email', array('email' => $to));
         $lien_confirmation_email = str_replace('//valid', '/valid', $lien_confirmation_email);
         $view = str_replace('#LIEN_DE_CONFIRMATION_EMAIL#',$lien_confirmation_email, $view);
+        $view = str_replace('#PRENOM#',$prenom, $view);
                         
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailNouveauxIdentifiants($to, $login, $tmpPass){
+    public function sendEmailNouveauxIdentifiants($to, $login, $tmpPass, $prenom){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:id_perdus.html.twig', array());
         if (!$view)
@@ -54,15 +55,22 @@ class MailToUser {
         $subject = "[TrocWine] Identifiants perdus";
         
         // variables dynamiques
-        $view = str_replace('#mailtoCercle#',"mailto:".$this->reply, $view);
+        $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
+        $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM#',$prenom, $view);
         $view = str_replace('#Identifiant#',$login, $view);
         $view = str_replace('#MotDePasseTemporaire#',$tmpPass, $view);
+        
+        $lien_confirmation_email = $this->app_front_url.$this->router->generate('front_valide_email', array('email' => $to));
+        $lien_confirmation_email = str_replace('//valid', '/valid', $lien_confirmation_email);
+        $view = str_replace('#LIEN_DE_CONFIRMATION_EMAIL#',$lien_confirmation_email, $view);
         
         
         return $this->sendMail($subject, $view, $to);
     }
     
-    public function sendEmailConfirmNouveauMDP($to, $name, $civility){
+    public function sendEmailConfirmNouveauMDP($to, $login, $tmpPass, $prenom){
         $view = null;
         $view = $this->templating->render('AppBundle:Mailing:confirm_new_mdp.html.twig', array());
         if (!$view)
@@ -72,9 +80,12 @@ class MailToUser {
         $subject = "[TrocWine] Confirmation modification mot de passe";
         
         // variables dynamiques
-        $view = str_replace('#mailtoCercle#',"mailto:".$this->reply, $view);
-        $view = str_replace('#Nom#',$name, $view);
-        $view = str_replace('#Civilite#',$civility, $view);
+        $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
+        $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM#',$prenom, $view);
+        $view = str_replace('#Identifiant#',$login, $view);
+        $view = str_replace('#MotDePasseTemporaire#',$tmpPass, $view);
         
         
         return $this->sendMail($subject, $view, $to);

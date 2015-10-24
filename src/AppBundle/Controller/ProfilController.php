@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Image;
 use AppBundle\Form\Type\EditMemberType;
+use AppBundle\Form\Type\ChgPwdType;
 
 class ProfilController extends Controller
 {
@@ -97,6 +98,88 @@ class ProfilController extends Controller
     {
         $form = $this->createForm(new EditMemberType(), $entity, array(
             'action' => $this->generateUrl('front_mon_profil'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Valider'));
+
+        return $form;
+    }
+    
+    /**
+     * @Route("/mon-profil/change-pwd",name="front_mdp_changer")          
+     */
+    public function changePwdAction(Request $request) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
+            throw $this->createNotFoundException('Accès impossible.');
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        
+        $form = $this->createChgPwdForm($user);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager(); 
+            
+            $pass = $form["password"]["pass"]->getData();
+            
+            $encoder=$this->get('security.encoder_factory')->getEncoder($user);
+            $encodedPassword = $encoder->encodePassword($pass, $user->getSalt());
+            $user->setPassword($encodedPassword);
+
+            $em->persist($user);
+            $em->flush();
+
+            if(!$this->get('mail_to_user')->sendEmailConfirmNouveauMDP($user->getEmail(), $user->getLogin(), $pass, $user->getFirstname())){
+                throw $this->createNotFoundException('Unable to send mail.');
+            }
+            
+            return $this->redirect($this->generateUrl('front_mdp_changer_confirm'));
+            
+        }
+        
+
+        return $this->render('AppBundle:Cave:profil_chg_pwd.html.twig', array(
+            'user'=>$user,
+            'form'   => $form->createView(),
+        ));
+        
+    }
+    
+    
+    /**
+     * @Route("/mon-profil/change-pwd/confirm",name="front_mdp_changer_confirm")          
+     */
+    public function changePwdConfirmAction(Request $request) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) {
+            throw $this->createNotFoundException('Accès impossible.');
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        return $this->render('AppBundle:Cave:profil_chg_pwd_confirm.html.twig', array(
+        ));
+    }
+    
+    /**
+    * Creates a form to change a Member entity Password.
+    *
+    * @param Member $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createChgPwdForm(Member $entity)
+    {
+        $form = $this->createForm(new ChgPwdType(), $entity, array(
+            'action' => $this->generateUrl('front_mdp_changer'),
             'method' => 'POST',
         ));
 

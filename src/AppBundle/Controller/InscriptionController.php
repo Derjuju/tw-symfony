@@ -78,7 +78,7 @@ class InscriptionController extends Controller
                     
             $em->flush();  
             
-            if (!$this->get('mail_to_user')->sendEmailConfirmation($entity->getEmail())) {
+            if (!$this->get('mail_to_user')->sendEmailConfirmation($entity->getEmail(),$entity->getFirstname())) {
                 throw $this->createNotFoundException('Unable to send confirmation mail.');
             }
 

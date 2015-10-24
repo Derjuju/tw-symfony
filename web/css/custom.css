@@ -677,6 +677,19 @@ a:hover .icon-deconnexion{
     margin-bottom: 0px;
 }
 
+/* PB CONNEXION */
+.pbconnexion .main-wrapper{
+    max-width: 570px;
+}
+.pbconnexion .btn-default{
+    float: none;
+    margin: 0 auto 10px auto;
+    padding-bottom: 33px;
+}
+.pbconnexion .asterisque{
+   font-size: 12px; 
+}
+
 /* MA CAVE */
 .cave-wrapper {
     margin-top: -20px;

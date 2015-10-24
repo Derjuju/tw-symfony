@@ -64,4 +64,21 @@ class MemberRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+    
+    
+    
+    
+    public function generateTempPassword() {
+        $chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?!&";
+        srand((double) microtime() * 1000000);
+        $tempPassword = '';
+        $len = strlen($chars);
+        // On génère un mot de passe de 8 caractères
+        for ($i = 0; $i < 8; $i++) {
+            //... on choisit un caractère aléatoire dans $chars et on le concatène à $tempPassword
+            $tempPassword .= $chars[rand(0, $len - 1)];
+        }
+
+        return $tempPassword;
+    }
 }
