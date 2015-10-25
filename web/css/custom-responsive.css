@@ -1,4 +1,100 @@
+
+@media screen and (max-width: 1024px) {
+    .prehome-container {       
+        margin-right: 0%;
+        width: 60%;
+    }
+    
+    .monthly-pick-thumbnail a{
+        -webkit-transition: none;
+        transition: none;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+    
+    .header {
+        background-position-y: 0px;
+    }
+    
+}
+
+@media screen and (min-width: 769px) {
+    .desktop-hide {
+        display: none;
+    }
+}
+
+/* IPAD VERTICAL */
 @media screen and (max-width: 768px) {
+    .desktop-hide {
+        display: initial;
+    }
+    .prehome-container {   
+        width: 100%;
+    }
+    #MenuMobile{
+        display:none;
+        width:100%;
+        height: 100%;
+        position: fixed;
+        top:0px;
+        left:0px;
+        color:#ffffff;
+        z-index: 1000;
+    }
+    
+    #MenuMobile .home-header-nav {
+        float: left;
+        width:80%;
+        height: 100%;
+        background-color: #740612;      
+    }
+    
+    #MenuMobile .home-header-nav-close {
+        float: left; 
+        width:20%;
+        height: 100%;
+        background-color: #000000;      
+        opacity: 0.5;
+    }
+    
+    #MenuMobile .home-header-nav a{
+        display: block;
+        width: 60%;
+        margin: 20px auto;
+        text-align: center;
+        padding: 10px 10px 10px 10px;
+    }
+    #MenuMobile .home-header-nav a.btn-default{
+        font-size: 16px;
+    }
+    #MenuMobile .home-header-nav h1{
+        background-color: #D0D0D0;
+    }
+    #MenuMobile .home-header-nav h1 a{
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    
+    .connected #MenuMobile .home-header-nav a {
+        float: none;
+        padding: 0px 0px 0px 0px;
+    }
+    
+    body.search-troqueur .bottle-container .winethumb-container .winethumb .owner-container,
+    body.search-troqueur .winethumb .owner-container {
+        display: initial;
+    }
+    body.search-troqueur .winethumb .owner-container .info-owner {
+        margin: -10px 0px 20px 0px;
+    }
+    body.search-troqueur article .description {
+        padding: 20px 0px 20px 0px;
+        height: auto;
+    }
+    body.search-troqueur article .icon-star-static{width: 24px;}
     
 }
 
@@ -6,12 +102,67 @@
     .search-selector {
         display: none;
     }
+    .row {margin-right: 0px; margin-left: 0px;}
+    .qui-sommes-nous-wrapper .row .left{ width:100%;}
+    .qui-sommes-nous-wrapper .row .right{ width:100%;}
+    .qui-sommes-nous-wrapper .testimonials-container .left{ width:100%;}
+    .qui-sommes-nous-wrapper .testimonials-container .right{ width:100%;}
+    
+    
 }
 
+
+/* SMARTPHONES */
 @media screen and (max-width: 640px) {
     
 }
 
-@media screen and (max-width: 320px) {
+/* bug scroll horizontal */
+@media screen and (max-width: 569px) {
+    .monthly-pick-thumbnail li .content .title {
+        font-weight: 300;
+        font-size: .6em;
+    }    
+}
+
+
+@media screen and (max-width: 530px) {
+    .bottle-container .winethumb-container .winethumb, .winethumb {
+        min-width: 150px;
+        max-width: 142px;
+        width: 48%;
+        margin-right: 2%;
+    }
+    .bottle-container .winethumb-container .winethumb .description, .bottle-container .winethumb-container .winethumb .image, .winethumb .description, .winethumb .image{
+        max-width: 142px;
+        margin: 0 auto;
+    }
+    .winethumb .social-btns {        
+        max-width: 142px;
+        margin: 0 auto;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .prehome-disclamer .btn-ok {
+        margin-top: 20px;
+    }
+    .wrapper { padding: 10px 5%; }
     
+    .presse-wrapper li { margin-right:0; width:100%; min-height: initial;}
+    .presse-wrapper .image-container { margin: 0 auto; }
+}
+
+/* IPHONE */
+@media screen and (max-width: 320px) {
+    .winethumb-with-owner {
+        float:none;
+    }
+    .bottle-container .winethumb-container .winethumb, .winethumb {
+        margin:0 auto;
+    }
+    .bottle-container .winethumb-container .winethumb:nth-child(2n), .winethumb:nth-child(2n) {
+        margin:0 auto;
+    }
 }
