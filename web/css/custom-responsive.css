@@ -99,6 +99,8 @@
         margin-right: 5px;
     }
     
+    .search-selector { padding-left: 3%; padding-right: 3%;}
+    
     .search-wrapper form { text-align: center;}
     .form-bottle-search input[type=text], .form-swapper-search input[type=text] {
         float:none;
@@ -125,7 +127,12 @@
     }
     
     #listingResultat .bottle-container .winethumb-container .winethumb, #listingResultat .winethumb{
-        height:auto;
+        height:auto;       
+        margin-top: 30px;
+    }
+    
+    body.search-bottle article .description{
+        min-height:190px;
     }
     
     body.search-troqueur .bottle-container .winethumb-container .winethumb .owner-container,
@@ -204,7 +211,7 @@
     }
     .row {margin-right: 0px; margin-left: 0px;}
     .qui-sommes-nous-wrapper .row .left{ width:100%;}
-    .qui-sommes-nous-wrapper .row .right{ width:100%;}
+    .qui-sommes-nous-wrapper .row .right{ width:100%; margin-top:20px;}
     .qui-sommes-nous-wrapper .testimonials-container .left{ width:100%;}
     .qui-sommes-nous-wrapper .testimonials-container .right{ width:100%;}
     
@@ -288,6 +295,11 @@
     .the-message-container .maps-wrapper .big-map-container { margin:0 auto;}
     .winethumb.swap-context .description {
         padding: 10px 5px 10px 20px;
+    }
+    
+    
+    body.search-bottle article .description{
+        min-height:210px;
     }
 }
 
@@ -448,6 +460,29 @@
         width: 145px;
         min-width: 145px;
     }
+    
+    .bottle-container .winethumb-container .winethumb, .winethumb {
+        margin: 0 auto;
+        float: left;
+        max-width: initial;
+        min-width: initial;
+        margin-right: 1%;
+        margin-left: 1%;
+        width: 48%;
+    }
+    .bottle-container .winethumb-container .winethumb:nth-child(2n), .winethumb:nth-child(2n) {
+        margin: 0 auto;
+        float: left;
+        max-width: initial;
+        min-width: initial;
+        margin-right: 1%;
+        margin-left: 1%;
+        width: 48%;
+    }
+    
+    body.search-bottle article .description{
+        min-height:230px;
+    }
 }
 
 
@@ -460,9 +495,11 @@
         float:left;
     }
     
+    .fiche-bouteille .header-owner-info .span-center,
     .cave .header-owner-info .span-center {
         width: 65%;
     }
+    .fiche-bouteille .header-owner-info .span-right,
     .cave .header-owner-info .span-right{
         position: absolute;
         bottom: -50px;
@@ -470,6 +507,7 @@
         width: 200px;
         margin-left: -100px;
     }
+    .fiche-bouteille .header-owner-info .span-right #btTroquerSelection,
     .cave .header-owner-info .span-right #btTroquerSelection{
         float: none;
         margin: 0 auto;

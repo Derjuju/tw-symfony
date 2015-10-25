@@ -652,7 +652,7 @@ a:hover .icon-search{
 
 .header {
     background: url(../img/slide-01.jpg) top/cover no-repeat;  
-    background-position-y: -150px;  
+    /*background-position-y: -150px;  */
 }
 
 /* HOME */
@@ -776,14 +776,14 @@ a:hover .icon-search{
 /* BOUTEILLES */
 /*article.offline {background-color:#F1CED2;}*/
 article.type-region-rouge .image .dot-qte{background-color:#740612;}
-article.type-region-blanc .image .dot-qte{background-color:#eeeeee;}
+article.type-region-blanc .image .dot-qte{background-color:#fbff00;}
 article.type-region-effervescent .image .dot-qte{background-color:#e8de46;}
 article.type-region-champagne .image .dot-qte{background-color:#e8de46;}
 article.type-region-liquoreux .image .dot-qte{background-color:#bda500;}
 article.type-region-rose .image .dot-qte{background-color:#c96e84;}
 
 article.type-region-rouge .description{border-bottom-color:#740612;}
-article.type-region-blanc .description{border-bottom-color:#eeeeee;}
+article.type-region-blanc .description{border-bottom-color:#fbff00;}
 article.type-region-effervescent .description{border-bottom-color:#e8de46;}
 article.type-region-champagne .description{border-bottom-color:#e8de46;}
 article.type-region-liquoreux .description{border-bottom-color:#bda500;}
@@ -888,7 +888,12 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 
 /* FICHE */
 .profile-light h3 {
-    color:#ffffff;
+    /*color:#ffffff;*/
+}
+.bottle-info-wrapper .wine-image{   
+    cursor:pointer; 
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
 }
 .bottle-info-wrapper .select-bottle label{
     color: #740612;

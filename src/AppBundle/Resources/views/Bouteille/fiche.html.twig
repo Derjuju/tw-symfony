@@ -35,7 +35,7 @@
                         {% endif %}
 			<div class="image-container">
 				<div class="upload-image-container">
-					<div class="wine-image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_fiche')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+					<div data-imagezoom="{% if bouteille.photo != null %}{{asset(bouteille.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}" class="wine-image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_fiche')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
 						<span class="dot-qte">{{bouteille.quantite}}</span>
 					</div>
 				</div>

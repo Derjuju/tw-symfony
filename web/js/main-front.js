@@ -30,7 +30,10 @@ $(function() {
     }
     if($('body').hasClass('editer-bouteille')){
         initialiseBoutonBouteille();
-    }
+    }    
+    if($('body').hasClass('fiche-bouteille')){
+        initialiseFicheBouteille();
+    }    
 });
 
 function initialiseSliderHeader(){
@@ -137,4 +140,18 @@ function confirmSuppression(){
 
 function confirmTrocSuppression(){
     return confirm('Voulez-vous supprimer définitivement ce troc ?');
+}
+
+
+function initialiseFicheBouteille(){    
+    $('.bottle-info-wrapper .wine-image').on('click', function (){        
+       jQuery.fancybox({
+                //'orig'			: $(this),
+                'padding'		: 0,
+                'href'			: $(this).data('imagezoom'),
+                'title'   		: '',
+                'transitionIn'	: 'elastic',
+                'transitionOut'	: 'elastic'
+        });
+    });
 }
