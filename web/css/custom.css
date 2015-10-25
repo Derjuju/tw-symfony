@@ -724,6 +724,7 @@ a:hover .icon-search{
     line-height: 16px;
     font-size: 12px;
     padding-bottom: 10px;
+    background-color: #F1CED2;
 }
 
 /* PROFIL */
@@ -773,7 +774,7 @@ a:hover .icon-search{
 
 
 /* BOUTEILLES */
-article.offline {background-color:#F1CED2;}
+/*article.offline {background-color:#F1CED2;}*/
 article.type-region-rouge .image .dot-qte{background-color:#740612;}
 article.type-region-blanc .image .dot-qte{background-color:#eeeeee;}
 article.type-region-effervescent .image .dot-qte{background-color:#e8de46;}
@@ -815,6 +816,10 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 .add-bottle-form .level-container{
     text-align: center;
 }
+.add-bottle-form .level-container select {
+    font-weight: 300;
+    font-size: .8em;
+}
 .add-bottle-form .level-bottle .the-fullness {
     top: 20%;
 }
@@ -842,6 +847,10 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 }
 .add-bottle-form .level-container{
     text-align: center;
+}
+.add-bottle-form .level-container select {
+    font-weight: 300;
+    font-size: .8em;
 }
 .add-bottle-form .level-bottle .the-fullness {
     top: 20%;
@@ -938,6 +947,9 @@ body.search-troqueur article .description {
 .presse-wrapper li { margin-right:5%; min-height: 280px; min-width: 175px;}
 
 /* MESSAGERIE */
+.header-message {
+    border-bottom: 5px solid #8E8E8E;
+}
 .troc-actions .choix-actions form{ display:inline-block;}
 .troc-actions .choix-actions button.btn-default{ display:inline-block;}
 .troc-actions .choix-actions a.btn-default{ display:inline-block; width:140px;}

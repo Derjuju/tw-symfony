@@ -18,6 +18,14 @@
         background-position-y: 0px;
     }
     
+    h1.page-title{padding-left: 5%;}
+    
+    .troc-message .message-menu a{ text-align: center;}
+    
+    .swap-wrapper .my-cave-container .wrapper{ padding-right: 1%; width: 99%;}
+    .swap-wrapper .her-cave-container .wrapper{ padding-left: 1%; width: 99%;}
+    
+    .winethumb.swap-context .description {float: left;}
 }
 
 @media screen and (min-width: 769px) {
@@ -33,7 +41,12 @@
     }
     .prehome-container {   
         width: 100%;
-    }
+    }   
+    
+    h1.page-title{padding-left: 0%;}
+    
+    .site-wrapper .row p { white-space:normal; font-size: 12px;}
+    
     #MenuMobile{
         display:none;
         width:100%;
@@ -82,6 +95,38 @@
         float: none;
         padding: 0px 0px 0px 0px;
     }
+    .connected #MenuMobile .home-header-nav a .icon-deconnexion{
+        margin-right: 5px;
+    }
+    
+    .search-wrapper form { text-align: center;}
+    .form-bottle-search input[type=text], .form-swapper-search input[type=text] {
+        float:none;
+        position: absolute;
+        top: 72px;
+        left: 50%;
+        margin-left: -200px;
+        width: 188px;
+        min-width: 188px;
+    }
+    .form-bottle-search [type=submit], .form-swapper-search [type=submit]{
+        position: absolute;
+        left: 50%;
+        top: 72px;
+    }
+    
+    .search-results-wrapper .top .center, .search-results-wrapper .top .left {
+        float: left;
+        width: 45%;
+        margin-top: 10px;
+    }
+    .search-results-wrapper .top .center{
+        margin-top:17px;
+    }
+    
+    #listingResultat .bottle-container .winethumb-container .winethumb, #listingResultat .winethumb{
+        height:auto;
+    }
     
     body.search-troqueur .bottle-container .winethumb-container .winethumb .owner-container,
     body.search-troqueur .winethumb .owner-container {
@@ -96,6 +141,61 @@
     }
     body.search-troqueur article .icon-star-static{width: 24px;}
     
+    .pbconnexion .btn-default { padding-bottom: 10px;}
+    .subscribe-wrapper .profile-image-container {
+        position: relative;
+        z-index: 1;
+        margin-top: 0px;
+    }
+    .inscription .btn-default {padding-bottom: 10px;}
+    .subscribe-wrapper .input-hidden input {margin-bottom:0px;}
+    
+    .how-to-wrapper h3 {font-size: 23px;}
+    
+    
+    .bottle-container .winethumb-container .winethumb .description h3, .bottle-container .winethumb-container .winethumb .image h3, .winethumb .description h3, .winethumb .image h3 {
+        font-size: 1em;
+    }
+    .bottle-container .winethumb-container .winethumb, .winethumb { height:480px;}
+    .cave .bottle-container .winethumb-container .winethumb, .winethumb { height:auto;}
+    
+    .bottle-container .winethumb-container .winethumb .image,
+    .winethumb .image {
+        position: relative;
+        float: none;
+        margin:0 auto;
+        width: 100%;
+        padding: 0px 0px;
+        max-width: 142px;
+    }
+    .bottle-container .winethumb-container .winethumb .description,
+    .winethumb .description{
+        
+    }
+    
+    
+    .add-bottle-wrapper{ margin-bottom: 30px;}
+    .add-bottle-form .level-container {
+        float: right;
+        margin-right: 2.35765%;
+        width: 61.61588%;
+    }
+    
+    .swap-wrapper .page-title { 
+        margin: 0.5em 0 0.5em 0;
+        padding-bottom: 0px;
+    }
+    .swap-wrapper .top .span-right {
+        width: 65%;        
+    }
+    .swap-wrapper .top .select-swagg {
+        margin-bottom: 20px;
+    }
+    
+    .winethumb.swap-context {
+        height: initial;
+    }
+    
 }
 
 @media screen and (max-width: 767px) {
@@ -108,13 +208,87 @@
     .qui-sommes-nous-wrapper .testimonials-container .left{ width:100%;}
     .qui-sommes-nous-wrapper .testimonials-container .right{ width:100%;}
     
+    .how-to-wrapper { margin-top: 0px;}
     
+    .search .search-selector {
+        display: block;
+    }
 }
 
 
+@media screen and (max-width: 720px) {
+    .user-profile-background .col-3.avatar{
+        width:80%;
+        margin : 0 auto;
+        float: none;
+    }
+    .user-profile-background .col-3.avatar .editerProfil{ margin: 0 auto; }
+    .user-profile-background .col-3.blocInfo1{
+        width:50%;
+        margin : 0 auto;
+    }
+    .user-profile-background .col-6.blocInfo2{
+        width:50%;
+        margin : 0 auto;
+    }
+}
+
 /* SMARTPHONES */
 @media screen and (max-width: 640px) {
+    .how-to-wrapper .left{width: 100%;}
+    .how-to-wrapper .right{width: 100%;}
+    .how-to-wrapper .usage-steps-container .span {width:100%;}
+    .how-to-wrapper .limit-exchange-container .right {width: 100%;}
+    .how-to-wrapper p {white-space:normal;}
     
+    .how-to-wrapper .col-6 {width: 100%;}    
+    
+    .troc-message .message-menu{ float:none; width:100%; margin:0 auto; padding:0px 0; }
+    .troc-message .message-menu a{ float:left; width:50%; text-align: center; margin-bottom: 0px; padding-top: 10px; padding-bottom: 10px; background-color: #ffffff;}
+    .troc-message .message-menu a.active{ color:#ffffff; background-color: #740612; font-weight: initial;}
+    .troc-message .message-container{ float:none; width:100%; margin:0 auto; padding:20px 0; }
+    
+    .message-zone { padding: 1em 0 1em 0; }
+    .choix-actions { text-align: center;}
+    .troc-actions .choix-actions button.btn-default { padding: 6px; }
+    .troc-actions .choix-actions form { margin-top: 5px;}
+    .troc-actions .panel-actions textarea {
+        margin: 0 auto 10px auto;
+    }
+    .troc-actions .panel-actions button {
+        margin: 0 auto 10px auto;
+    }
+    .the-message-container .message-line{
+        width: 30%;
+        float: left;
+        overflow: hidden;
+    }
+    .the-message-container .message-line .top{ text-align: center;}
+    .the-message-container .message-line .top .image-person-container{ margin-right: auto;}
+    .the-message-container .message-line .top .break span { display: block; font-size: 12px;}
+    .the-message-container .the-message{
+        width: 65%;
+        float: left;
+        margin-left: 0px;
+        white-space:normal;
+    }
+    
+    .troc-actions .panel-actions .panel-action-rdv {text-align: center;}
+    .troc-actions .panel-actions .panel-action-rdv .address-form { margin: 0 auto 10px auto; } 
+    .troc-actions .panel-actions .panel-action-rdv .big-map-container { margin:0 auto; }
+    .big-map-container em { font-size: 12px; }
+    .big-map { height:250px;}
+    
+    .the-message-container .maps-wrapper .small-map-container {
+        width: 30%;
+        margin: 2em 0 1em 0;        
+        min-width: 230px;
+    }
+    .the-message-container .maps-wrapper .small-map-container.selected .small-map { margin : 0 auto; }    
+    .the-message-container .maps-wrapper .big-map-container { margin:0 auto;}
+    .winethumb.swap-context .description {
+        padding: 10px 5px 10px 20px;
+    }
 }
 
 /* bug scroll horizontal */
@@ -127,10 +301,17 @@
 
 
 @media screen and (max-width: 530px) {
-    .bottle-container .winethumb-container .winethumb, .winethumb {
+    /*.bottle-container .winethumb-container .winethumb, .winethumb {
         min-width: 150px;
         max-width: 142px;
         width: 48%;
+        margin-right: 2%;
+    }*/
+    .bottle-container .winethumb-container .winethumb, .winethumb {
+        margin: 0 auto;
+        max-width: 142px;
+        float: left;
+        min-width: initial;
         margin-right: 2%;
     }
     .bottle-container .winethumb-container .winethumb .description, .bottle-container .winethumb-container .winethumb .image, .winethumb .description, .winethumb .image{
@@ -140,6 +321,50 @@
     .winethumb .social-btns {        
         max-width: 142px;
         margin: 0 auto;
+    }
+    
+    .winethumb.swap-context {
+        width: 100%;
+        margin: 0 auto 20px auto;
+        float: none;
+    }
+    .winethumb.swap-context .winethumb-header {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .winethumb.swap-context .winethumb-header::after {
+        display: inline-block;
+        clear: none;
+        content: initial;
+    }
+    .winethumb.swap-context .inner-winethumb::after{
+        
+    }
+    .winethumb.swap-context .inner-winethumb {
+        height: initial;
+    }
+    .winethumb.swap-context .checkbox-container {
+        float: none;
+        width: 10%;
+        margin: 2px 0 2px 0;
+    }
+    .winethumb.swap-context .image {
+        width: 100%;
+        float: none;
+        margin: 0 auto;
+        height: 230px;
+    }
+    .winethumb.swap-context .description { float: none;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .winethumb.swap-context .description .dot-qte{
+        left: 51px;
+        top: -21px;
+    }
+    .winethumb.swap-context .checkbox-container .big-checkbox {
+       margin: -9px auto 0;    
     }
 }
 
@@ -152,17 +377,127 @@
     
     .presse-wrapper li { margin-right:0; width:100%; min-height: initial;}
     .presse-wrapper .image-container { margin: 0 auto; }
+    
+    .subscribe-wrapper .top-subscribe-form {margin-top: 0px;}
+    .subscribe-wrapper .top-subscribe-form .left{margin-left: 2%; margin-right: 2%; width: 96%;}
+    .subscribe-wrapper .top-subscribe-form .right{margin-left: 2%; margin-right: 2%; width: 96%;}
+    
+    .add-bottle-form .image-container {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .add-bottle-form .wine-image{
+        max-width: 220px;
+        margin: 0 auto;
+    }
+    
+    .add-bottle-form .data-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .add-bottle-form .level-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .add-bottle-form .data-container .data-add-aside a.btn-default.add {
+        width: 60%;
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+    
+    
+    .troc-actions .panel-actions .panel-action-rdv .address-form { width:90%; } 
+    
+    .the-message-container .maps-wrapper .small-map-container{
+        width:80%;
+        margin:2em auto 1em auto;
+        float: none;
+    }
+    .the-message-container .maps-wrapper .small-maps-wrapper.display-address .address-container{
+        width:80%;
+        margin: 0px auto 10px auto;
+        float: none;
+        text-align: center;
+    }
+    
+    .header-swapper .btns-container { float: none;
+        position: absolute;
+        top: 280px;
+        width: 100%;
+    }
+    .header-swapper .swapper-a-container { width:49%; margin-right:1%; }
+    .header-swapper .swapper-b-container { width:49%; margin-left:1%; }
+    .swap-wrapper { margin-top:80px;}
+    .search .search-selector {
+        margin-top: -20px;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: -23px;
+    }
+    .search .search-selector a{ width:50%;}
+    .form-bottle-search input[type=text], .form-swapper-search input[type=text]{
+        float: none;
+        position: absolute;
+        top: 72px;
+        left: 50%;
+        margin-left: -156px;
+        width: 145px;
+        min-width: 145px;
+    }
 }
+
 
 /* IPHONE */
 @media screen and (max-width: 320px) {
     .winethumb-with-owner {
         float:none;
     }
+    .cave .winethumb-with-owner {
+        float:left;
+    }
+    
+    .cave .header-owner-info .span-center {
+        width: 65%;
+    }
+    .cave .header-owner-info .span-right{
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        width: 200px;
+        margin-left: -100px;
+    }
+    .cave .header-owner-info .span-right #btTroquerSelection{
+        float: none;
+        margin: 0 auto;
+    }
+    
     .bottle-container .winethumb-container .winethumb, .winethumb {
         margin:0 auto;
+        overflow: hidden;        
+        max-width: 141px;
+        padding-right: 1px;
     }
     .bottle-container .winethumb-container .winethumb:nth-child(2n), .winethumb:nth-child(2n) {
         margin:0 auto;
+        max-width: 141px;
+        padding-left: 1px;
+        padding-right: 0px;
     }
+    
+    .header-message { text-align: center; }
+    .swap-wrapper .page-title { margin-top:1.2em; }
+    .swap-wrapper .top .span-right {
+        width: 85%;
+        margin:0 auto;
+        float:none;
+    }
+    
+    .search .winethumb-with-owner {
+        float:left;
+    }
+   
 }

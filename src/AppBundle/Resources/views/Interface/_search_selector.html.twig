@@ -6,9 +6,9 @@
     <section class="search-container container static-search" data-default="{% if panelOpen is defined  and panelOpen == 'bouteille' %}bottle{% endif %}{% if panelOpen is defined  and panelOpen == 'troqueur' %}swapper{% endif %}">
         {{ form_start(formBouteille, {'attr': {'class': 'form-bottle-search', 'id':'FormSelectorSearchBottle'} }) }}
             {% if panelOpen is defined  and panelOpen == 'bouteille' and filtres['keyword'] is defined %}
-                {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'}, 'value' : ""~filtres['keyword'] }) }} 
+                {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword'}, 'value' : ""~filtres['keyword'] }) }} 
             {% else %}
-                {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'} }) }} 
+                {{ form_widget(formBouteille.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword'} }) }} 
             {% endif %}            
             <div class="select-swagg-container">
                 <div class="select-swagg">
@@ -47,9 +47,9 @@
         {{ form_end(formBouteille) }}
         {{ form_start(formTroqueur, {'attr': {'class': 'form-swapper-search', 'id':'FormSelectorSearchTroqueur'} }) }}            
             {% if panelOpen is defined  and panelOpen == 'troqueur' and filtres['keyword'] is defined %}
-                {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'}, 'value' : ""~filtres['keyword'] }) }} 
+                {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword'}, 'value' : ""~filtres['keyword'] }) }} 
             {% else %}
-                {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword desktop-field'} }) }} 
+                {{ form_widget(formTroqueur.keyword, { 'label': false,'class': '', 'attr': {'class': 'keyword'} }) }} 
             {% endif %}
             <div class="select-swagg-container">
                 <div class="select-swagg">

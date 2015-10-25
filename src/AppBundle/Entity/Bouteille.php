@@ -696,11 +696,11 @@ class Bouteille
     }
 
     /**
-     * Get inTrocs
+     * Get inTroc
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getInTrocs() {
+    public function getInTroc() {
         return $this->inTroc;
     }
 }

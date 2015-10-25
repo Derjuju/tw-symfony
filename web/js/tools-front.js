@@ -21,6 +21,7 @@ function showLoginAndClose()
 
 function ouvreMenuSmartphone(){
     $('#MenuMobile').show(250);
+    $('.search-selector').css('z-index',97);
     $('.home-header-nav-close').on('click', function(event){
         event.preventDefault();
         fermeMenuSmartphone();
@@ -28,6 +29,7 @@ function ouvreMenuSmartphone(){
 }
 function fermeMenuSmartphone(){
     $('#MenuMobile').hide(250);
+    $('.search-selector').css('z-index',99);
 }
 
 

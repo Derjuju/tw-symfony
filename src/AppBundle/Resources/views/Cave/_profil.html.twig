@@ -2,7 +2,7 @@
     <div class="site-wrapper">
         <div class="row">            
             <div class="wrapper">  
-                <div class="col-3 text-center">
+                <div class="col-3 text-center avatar">
                     {% if user.avatar != null %}
                         <div class="profile-image" style="background-image: url('{{asset(user.avatar.file)|imagine_filter('avatar_resize_cave')}}');"></div>
                     {% else %}
@@ -10,7 +10,7 @@
                     {% endif %}                    
                     <a href="{{path('front_mon_profil')}}" class="btn btn-default bg-pourpre editerProfil">Modifier mes informations</a>
                 </div>
-                <div class="col-3">
+                <div class="col-3 blocInfo1">
                     <div class="blocInfo">
                         <span><br></span>
                     </div>
@@ -33,7 +33,7 @@
                         <span>{{user.mobile|default('')}}</span>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6 blocInfo2">
                     <div class="blocInfo">
                         <span><br></span>
                     </div>
