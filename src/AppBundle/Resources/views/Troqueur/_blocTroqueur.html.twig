@@ -3,7 +3,7 @@
         data-qte="">
         <a href="{{path('front_cave', {'id':troqueur.id}) }}" title="Voir la Fiche">
         <div class="image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');">
-            <div class="bouteilles-cave"><span class="dot-qte">{{troqueur.bouteilles|length}}</span> bouteilles</div>
+            <div class="bouteilles-cave"><span class="dot-qte">{{troqueur.totalBouteillesCave}}</span> bouteilles</div>
         </div>
        <div class="description">
                 <div class="owner-container">                   

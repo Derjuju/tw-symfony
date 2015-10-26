@@ -810,6 +810,22 @@ class Member  implements UserInterface
     }
     
     
+     /**
+     * Get totalBouteillesCave
+     *
+     * @return integer 
+     */
+    public function getTotalBouteillesCave()
+    {
+        $total = 0;
+        foreach($this->getBouteilles() as $bouteille){
+            if($bouteille->getOnline()){
+                $total += $bouteille->getQuantite();
+            }
+        }
+        return $total;
+    }
+    
     
 
     public function generatePassword(PasswordEncoderInterface $encode, SecureRandomInterface $securRandom) {

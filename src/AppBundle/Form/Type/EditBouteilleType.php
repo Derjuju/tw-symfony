@@ -158,7 +158,10 @@ class EditBouteilleType extends AbstractType
         //$yearsBefore = date('Y', mktime(0, 0, 0, date("m"), date("d"), date("Y") - $distance));
         $yearsBefore = date('Y', mktime(0, 0, 0, 1, 1, 1900));
         $yearsAfter = date('Y', mktime(0, 0, 0, date("m"), date("d"), date("Y")));
-        return array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));
+        $arrayDates = array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));
+        $arrayNoDates = array_combine(array(0),array('Non millésimé'));
+        
+        return array_merge($arrayNoDates,$arrayDates);
     }
     public function buildNiveauChoices() {
         //return array_combine(range(100,0, 10), range(100,0, 10));

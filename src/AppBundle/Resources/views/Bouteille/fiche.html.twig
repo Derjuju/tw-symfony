@@ -64,7 +64,7 @@
                                     <h2>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h2>					
 					<span>{{bouteille.typeRegion.nameFr|default('')}}</span>
 					<span>{{bouteille.typePays.nameFr|default('')}}</span>
-					<span>{{bouteille.millesime|default('')}}</span>
+					<span>{{bouteille.millesime|default('')|filtre_millesime}}</span>
 				</div>
 
 				<div class="info">

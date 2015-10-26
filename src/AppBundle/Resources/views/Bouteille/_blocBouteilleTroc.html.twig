@@ -24,7 +24,7 @@
                 <div class="description">
                         <span class="dot-qte">{{bouteille.quantite}}</span>
                         <h3>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
-                        <p>{{bouteille.typeRegion.nameFr|default('')}} {{bouteille.typePays.nameFr|default('')}} {{bouteille.millesime|default('')}}</p>
+                        <p>{{bouteille.typeRegion.nameFr|default('')}} {{bouteille.typePays.nameFr|default('')}} {{bouteille.millesime|default('')|filtre_millesime}}</p>
                 </div>
         </div>
 </article>
