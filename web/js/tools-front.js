@@ -200,6 +200,8 @@ function ajaxRefreshHTMLResults(url, target, data, modalId){
                 $('.label-result-plural').empty();                
             }
             
+            $('#panelInfoResultat').removeClass('hidden'); 
+            
             checkAjaxModal();  
             
             //re-render the facebook icons (in a div with id of 'content') 

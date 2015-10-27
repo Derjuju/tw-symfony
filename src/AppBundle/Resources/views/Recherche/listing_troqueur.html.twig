@@ -1,10 +1,14 @@
 <div id="listingResultat" class="winethumb-container sort-container" data-total="{{troqueurs|length}}">
-    {% if troqueurs|length > 0 %}
-        {% for troqueur in troqueurs %}
-            {% include 'AppBundle:Troqueur:_blocTroqueur.html.twig' with {'troqueur' : troqueur} %}
-        {% endfor %}
+    {% if withResults %}
+        {% if troqueurs|length > 0 %}
+            {% for troqueur in troqueurs %}
+                {% include 'AppBundle:Troqueur:_blocTroqueur.html.twig' with {'troqueur' : troqueur} %}
+            {% endfor %}
+        {% else %}
+            Aucun résultat ne correspond.
+        {% endif %}
+        <div class="clearfix"></div>
     {% else %}
-        Aucun résultat ne correspond.
+        Utilisez les filtres pour lancer une recherche.
     {% endif %}
-    <div class="clearfix"></div>
 </div>

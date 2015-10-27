@@ -15,7 +15,7 @@ class RechercheController extends Controller
      * @Route("/search/bottle",name="front_search_bouteille")          
      */
     public function searchBottleAction(Request $request) {
-        $filtres = $request->request->get('SearchBouteille',null);        
+        $filtres = $request->request->get('SearchBouteille',null);  
         return $this->lanceRechercheBouteille($filtres);
     }
     
@@ -78,13 +78,17 @@ class RechercheController extends Controller
         ));
         $formTroqueur->add('submit', 'submit', array('label' => 'Rechercher')); 
         
-        //$bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelector($filtres);
-        $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
+        $withResults = false;
+        if(isset($filtres['_token'])){
+            $withResults = true;        
+            $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
+        }
         
         return $this->render("AppBundle:Recherche:search_bottle.html.twig", array(                
                     'formBouteille'   => $formBouteille->createView(),
                     'formTroqueur'   => $formTroqueur->createView(),
                     'filtres'=> $filtres,
+                    'withResults' => $withResults,
                     'bouteilles'=> $bouteilles,
                     'panelOpen' => 'bouteille'
         ));
@@ -119,9 +123,11 @@ class RechercheController extends Controller
         $em = $this->getDoctrine()->getManager();
         $bouteilles = array();
         
+        $withResults = true;
         $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
         
         return $this->render("AppBundle:Recherche:listing_bottle.html.twig", array(                
+                    'withResults' => $withResults,
                     'bouteilles'=> $bouteilles                    
         ));
     }
@@ -161,12 +167,19 @@ class RechercheController extends Controller
                 }
             }
         }
-        $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter, $regionLike);
+        
+        $withResults = false;
+        if(isset($filtres['_token'])){
+            $withResults = true;        
+            $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter, $regionLike);
+        }
+        
         
         return $this->render("AppBundle:Recherche:search_troqueur.html.twig", array(                
             'formBouteille'   => $formBouteille->createView(),
             'formTroqueur'   => $formTroqueur->createView(),
             'filtres'=> $filtres,
+            'withResults'=>$withResults,
             'troqueurs'=> $troqueurs,
             'panelOpen' => 'troqueur'
         ));
@@ -195,10 +208,12 @@ class RechercheController extends Controller
                 }
             }
         }
+        $withResults = true;
         $troqueurs = $em->getRepository('AppBundle:Member')->findFromSelectorWithoutUser($filtres,$idUserToFilter, $regionLike);
         
         return $this->render("AppBundle:Recherche:listing_troqueur.html.twig", array(            
-            'troqueurs'=> $troqueurs
+                    'withResults' => $withResults,
+                    'troqueurs'=> $troqueurs
         ));
     }
 }

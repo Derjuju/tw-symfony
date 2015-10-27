@@ -8,6 +8,7 @@
     {% set openSearchSelectorTroqueur = true %}
     {% set titreH1 = "Recherche de Troqueur" %}
     {% set use_red_title = true %}
+    {% set selectorWithLink = true %}
     {{ parent() }}
 {% endblock %}
 
@@ -26,8 +27,8 @@
 					</select>
 				</div>
 			</div>
-			<div class="center">
-                            <span class="red">{{troqueurs|length}}</span> résultat<span class="label-result-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>
+			<div id="panelInfoResultat" class="center {% if not withResults %}hidden{% endif %}">                            
+                            <span class="red">{{troqueurs|length}}</span> résultat<span class="label-result-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>                            
 			</div>
 		</div>
                 {% include "AppBundle:Recherche:listing_troqueur.html.twig" with {'troqueurs' : troqueurs} %}                

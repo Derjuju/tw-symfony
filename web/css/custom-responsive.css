@@ -485,6 +485,21 @@
     body.search-bottle article .description{
         min-height:230px;
     }
+    
+    .user-profile-background .col-3.blocInfo1 {
+        width: 80%;
+        margin: 0 auto;
+        float: none;
+    }
+    .user-profile-background .col-6.blocInfo2 {
+        width: 80%;
+        margin: 0 auto;
+        float: none;
+    }
+    .user-profile-background .col-3.blocInfo1 .firstname,
+    .user-profile-background .col-3.blocInfo1 .lastname{
+        display: inline-block;
+    }
 }
 
 

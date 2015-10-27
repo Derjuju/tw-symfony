@@ -8,6 +8,7 @@
     {% set openSearchSelectorBouteille = true %}
     {% set titreH1 = "Recherche de Bouteille" %}
     {% set use_red_title = true %}
+    {% set selectorWithLink = true %}
     {{ parent() }}
 {% endblock %}
 
@@ -26,11 +27,11 @@
 					</select>
 				</div>
 			</div>
-			<div class="center">
-				<span class="red">{{bouteilles|length}}</span> résultat<span class="label-result-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>
+			<div id="panelInfoResultat" class="center {% if not withResults %}hidden{% endif %}">
+                            <span class="red">{{bouteilles|length}}</span> résultat<span class="label-result-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>				                            
 			</div>
 		</div>
-                {% include "AppBundle:Recherche:listing_bottle.html.twig" with {'bouteilles' : bouteilles} %}
+                {% include "AppBundle:Recherche:listing_bottle.html.twig" with {'withResults' : withResults, 'bouteilles' : bouteilles} %}
                 {#{ render(controller('AppBundle:Recherche:listingBottle', { 'filtres' : filtres } )) }#}                
         </div>
     </section>
