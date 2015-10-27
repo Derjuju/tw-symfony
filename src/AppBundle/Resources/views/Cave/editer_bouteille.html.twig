@@ -114,7 +114,8 @@
                                     </div>
                                     <div class="clearfix"></div>       
                                     <div class="data-commentaire">
-                                            {{ form_widget(form.commentaire, {'label': false,'class': '', 'attr': {'class': ''} }) }}
+                                            <label>(<span id="count_content_message" data-maxchar="255">255</span> caractères max)</label>
+                                            {{ form_widget(form.commentaire, {'label': false,'class': '', 'attr': {'class': '', 'maxlength':'255'} }) }}
                                     </div>
                             </div>
                             <div class="level-container">
@@ -150,6 +151,13 @@
     <script type="text/javascript">
         
         $(document).ready(function () {
+            
+            $(document).on('load change keyup', '#EditBouteilleType_commentaire', function () {
+                var len = $(this).val().length;
+                $('#count_content_message').html($('#count_content_message').data('maxchar') - len);
+            });        
+            var len = $('#EditBouteilleType_commentaire').val().length;
+            $('#count_content_message').html($('#count_content_message').data('maxchar') - len);
             
             $('#FormEditBouteille').on('submit', function(){
                 var selectedVal = 0;

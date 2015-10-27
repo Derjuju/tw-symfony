@@ -21,11 +21,13 @@
 		</div>
 	</div>
         {% if is_granted('ROLE_USER') %}
-	<div class="span-right">            
-            <form id="FormSelectionChoix" action="{{path('front_troc_initialise', {'idTroqueur':bouteille.member.id})}}" method="POST">
-                <input id="TroquerSelectionChoix" type="hidden" name="selectionSaCave" value="">
-                <button id="btTroquerSelection" class="btn-default"  name="valider">Troquer ma sélection</button>
-            </form>
-	</div>
+        {% if withoutTrocAction is not defined %}
+            <div class="span-right">            
+                <form id="FormSelectionChoix" action="{{path('front_troc_initialise', {'idTroqueur':bouteille.member.id})}}" method="POST">
+                    <input id="TroquerSelectionChoix" type="hidden" name="selectionSaCave" value="">
+                    <button id="btTroquerSelection" class="btn-default"  name="valider">Troquer ma sélection</button>
+                </form>
+            </div>
+        {% endif %}
         {% endif %}
 </div>

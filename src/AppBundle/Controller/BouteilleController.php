@@ -47,5 +47,37 @@ class BouteilleController extends Controller
             'bouteilles'=>$bouteilles,
         ));
     }
+    
+    /**
+     * @Route("/bouteilles/fiche/{id}/detail",name="front_bouteille_fiche_simple")          
+     */
+    public function ficheSimpleAction($id) {
+        
+        if($id == null){$id = 0; }
+
+        $request = $this->get('request');
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        // on vérifie l'existence de la bouteille et si appartient à l'utilisateur
+        $bouteille = $em->getRepository('AppBundle:Bouteille')->find($id);
+        if(!$bouteille){
+            throw $this->createNotFoundException('Fiche inconnue.');
+        }
+        
+        if($bouteille->getOnline() == 0){
+            throw $this->createNotFoundException('Fiche inconnue.');
+        }
+        
+        if($bouteille->getReserved() == 1){
+            throw $this->createNotFoundException('Fiche réservée.');
+        }
+
+        return $this->render('AppBundle:Bouteille:fiche_simple.html.twig', array(
+            'bouteille'=>$bouteille,
+        ));
+    }
         
 }

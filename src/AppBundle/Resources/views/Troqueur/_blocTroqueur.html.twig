@@ -1,7 +1,7 @@
 <article class="winethumb winethumb-with-owner"
         data-lastname="{{troqueur.lastname}}"
         data-qte="">
-        <a href="{{path('front_cave', {'id':troqueur.id}) }}" title="Voir la Fiche">
+        <a href="{{path('front_cave', {'id':troqueur.id}) }}" title="Voir la cave">
         <div class="image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');">
             <div class="bouteilles-cave"><span class="dot-qte">{{troqueur.totalBouteillesCave}}</span> bouteilles</div>
         </div>

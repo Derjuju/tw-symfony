@@ -15,8 +15,8 @@ class MailToUser {
     protected $templating;
     protected $app_front_url;
     protected $kernel;
-    private $from = "derjuju@gmail.com";
-    private $reply = "derjuju@gmail.com";
+    private $from = "info@trocwine.com";
+    private $reply = "info@trocwine.com";
     private $name = "TrocWine";
 
     public function __construct($mailer, EngineInterface $templating, RouterInterface $router, $app_front_url, $kernel) {
