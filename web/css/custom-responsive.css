@@ -131,6 +131,7 @@
     #listingResultat .bottle-container .winethumb-container .winethumb, #listingResultat .winethumb{
         height:auto;       
         margin-bottom: 30px;
+        min-width: 142px;
     }
     
     body.search-bottle article .description{
@@ -143,6 +144,10 @@
     }
     body.search-troqueur .winethumb .owner-container .info-owner {
         margin: -10px 0px 20px 0px;
+        text-align: center;
+    }
+    body.search-troqueur .winethumb .owner-container .info-owner .owner-level{
+        display:block;
     }
     body.search-troqueur article .description {
         padding: 20px 0px 20px 0px;
@@ -205,6 +210,8 @@
         height: initial;
     }
     
+    .bottle-info-wrapper .image-container { min-width:142px; }
+    
 }
 
 @media screen and (max-width: 767px) {
@@ -239,6 +246,13 @@
     .user-profile-background .col-6.blocInfo2{
         width:50%;
         margin : 0 auto;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .bottle-info-wrapper .social-btns
+    {
+        text-align: center;
     }
 }
 
@@ -384,10 +398,26 @@
 
 
 @media screen and (max-width: 480px) {
+    /* correctif effet de zoom sur smartphone */
+    .form-control{
+        font-size:16px;
+    }
+    .add-bottle-form .data-container button,
+    .add-bottle-form .data-container label,
+    .add-bottle-form .data-container select,
+    .add-bottle-form .data-container textarea,
+    .add-bottle-form .level-container select{        
+        font-size:16px;
+    }
+    .winethumb.swap-context .winethumb-header .select-swagg select {       
+        font-size:16px;
+    }
+    /* fin correctif effet de zoom */
+    
     .prehome-disclamer .btn-ok {
         margin-top: 20px;
     }
-    .wrapper { padding: 10px 5%; }
+    .wrapper { padding: 10px 0%; width:96%; }
     
     .presse-wrapper li { margin-right:0; width:100%; min-height: initial;}
     .presse-wrapper .image-container { margin: 0 auto; }
@@ -436,6 +466,8 @@
         float: none;
         text-align: center;
     }
+    
+    .troc-en-cours #FinaliserTroc { margin-bottom : 20px; }
     
     .header-swapper .btns-container { float: none;
         position: absolute;
@@ -500,17 +532,33 @@
     .user-profile-background .col-3.blocInfo1 .lastname{
         display: inline-block;
     }
+    
+}
+
+@media screen and (max-width: 380px) {
+    .bottle-info-wrapper .bottle-info {
+        width:55%;
+    }
+}
+@media screen and (max-width: 360px) {
+    .bottle-info-wrapper .bottle-info {
+        width:50%;
+    }
 }
 
 
 /* IPHONE */
 @media screen and (max-width: 320px) {
+    .bottle-info-wrapper .bottle-info {
+        width:47%;
+    }
+    /*
     .winethumb-with-owner {
         float:none;
     }
     .cave .winethumb-with-owner {
         float:left;
-    }
+    }*/
     
     .fiche-bouteille .header-owner-info .span-center,
     .cave .header-owner-info .span-center {
@@ -531,16 +579,21 @@
     }
     
     .bottle-container .winethumb-container .winethumb, .winethumb {
-        margin:0 auto;
+        /*margin:0 auto;*/
         overflow: hidden;        
-        max-width: 141px;
-        padding-right: 1px;
+        /*max-width: 141px;
+        padding-right: 1px;*/
     }
     .bottle-container .winethumb-container .winethumb:nth-child(2n), .winethumb:nth-child(2n) {
-        margin:0 auto;
+        /*margin:0 auto;
         max-width: 141px;
         padding-left: 1px;
-        padding-right: 0px;
+        padding-right: 0px;*/
+    }
+    .winethumb.swap-context:nth-child(2n) {
+        width: 100%;
+        margin: 0 auto 20px auto;
+        float: none;
     }
     
     .header-message { text-align: center; }

@@ -294,11 +294,21 @@ class TrocController extends Controller
             {
                 $bouteille->setBouteille($boutRef);
                 $bouteille->setQuantite($indice->qte);
-                $bouteille->setTrocContenuA($trocContenu);
+                if($troc->getMemberA() == $user){
+                    $bouteille->setTrocContenuA($trocContenu);
+                }else{                    
+                    $bouteille->setTrocContenuB($trocContenu);
+                }
+                //$bouteille->setTrocContenuA($trocContenu);
                 $em->persist($bouteille);
                 $boutRef->addInTroc($bouteille);
-                $em->persist($boutRef);
-                $trocContenu->addTrocABouteille($bouteille);
+                $em->persist($boutRef);                
+                if($troc->getMemberA() == $user){
+                    $trocContenu->addTrocABouteille($bouteille);
+                }else{                    
+                    $trocContenu->addTrocBBouteille($bouteille);
+                }
+                //$trocContenu->addTrocABouteille($bouteille);
             }
         }
         
@@ -309,11 +319,21 @@ class TrocController extends Controller
             {
                 $bouteille->setBouteille($boutRef);
                 $bouteille->setQuantite($indice->qte);
-                $bouteille->setTrocContenuB($trocContenu);
+                if($troc->getMemberA() == $user){
+                    $bouteille->setTrocContenuB($trocContenu);
+                }else{                    
+                    $bouteille->setTrocContenuA($trocContenu);
+                }
+                //$bouteille->setTrocContenuB($trocContenu);
                 $em->persist($bouteille);
                 $boutRef->addInTroc($bouteille);
                 $em->persist($boutRef);
-                $trocContenu->addTrocBBouteille($bouteille);
+                if($troc->getMemberA() == $user){
+                    $trocContenu->addTrocBBouteille($bouteille);
+                }else{                    
+                    $trocContenu->addTrocABouteille($bouteille);
+                }
+                //$trocContenu->addTrocBBouteille($bouteille);
             }
         }                
         $em->persist($trocContenu);
@@ -334,6 +354,16 @@ class TrocController extends Controller
         $em->persist($trocSection);
         
         $troc->addTrocSection($trocSection);
+        
+        // si jamais le troc avait été validé à moitié par un des 2
+        // et que l'autre remodifie, on dévalide pour éviter de modifier avant la fin
+        $troc->setFinishedA(false);
+        $troc->setFinishedB(false);
+        $troc->setAddToCaveA(false);
+        $troc->setAddToCaveB(false);
+        $troc->setNoteA(false);
+        $troc->setNoteB(false);
+        
         $em->persist($troc);
         
         $em->flush();

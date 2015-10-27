@@ -444,8 +444,10 @@ class MessageController extends Controller
                     if (!$this->get('mail_to_user')->sendEmailFinTroc($troc->getMemberA()->getEmail(),$troc->getMemberB()->getEmail(),$refTroc)) {
                         throw $this->createNotFoundException('Unable to send fin troc mail.');
                     }
+                    // les 2 ont finalisé le troc alors on renvoi vers messagerie
+                    return $this->redirectToRoute('front_messagerie');
                 }
-                
+                // un seul a finalisé le troc ? alors on réaffiche la gestion pour lire le message fin de troc
                 return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
             }
         }

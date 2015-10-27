@@ -6,6 +6,7 @@
 
 var xhr;
 var ajaxModalMessagesQueue;
+var twitter;
 
 function showLogin()
 {
@@ -207,7 +208,11 @@ function ajaxRefreshHTMLResults(url, target, data, modalId){
             //re-render the facebook icons (in a div with id of 'content') 
             var idDom = target.substring(1);
             FB.XFBML.parse(document.getElementById(idDom));
-            twttr.widgets.load();
+            if (typeof (twttr) != 'undefined') {
+                twttr.widgets.load();
+            } else {
+                $.getScript('http://platform.twitter.com/widgets.js');
+            }
         },
         error : function(jqXHR, textStatus, errorThrown) {
             $(modalId).empty().html('Erreur de traitement...');                             

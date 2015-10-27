@@ -30,6 +30,7 @@ class RechercheController extends Controller
         }else{
             $filtres['typeRegion'] = $this->getRegionIdByReference($reference);        
         }
+        $filtres['_token'] = 'aCtIvErEsUlTs';
         return $this->lanceRechercheBouteille($filtres);
     }
     

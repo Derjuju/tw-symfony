@@ -20,7 +20,9 @@
                         <input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/>
                     {% endif %}
                 </div>
+                <a href="{{path('front_bouteille_fiche_simple', {'id':bouteille.id})}}" title="Voir la Fiche">
                 <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_cave')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');"></div>
+                </a>
                 <div class="description">
                         <span class="dot-qte">{{bouteille.quantite}}</span>
                         <h3>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
