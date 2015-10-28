@@ -124,4 +124,30 @@ class BouteilleRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+    
+    
+    function findAllIdentiques($typeDeVin,$typeDomaine,$typeAppellation,$typeCuvee,$typeRegion,$typePays,$millesime,$typeContenance){
+        $query = $this->createQueryBuilder('b')
+                ->where("1 = 1")
+                ->andWhere("b.online = 1")
+                ->andWhere("b.typeDeVin = :typeDeVin")
+                ->andWhere("b.typeDomaine = :typeDomaine")
+                ->andWhere("b.typeAppellation = :typeAppellation")
+                ->andWhere("b.typeCuvee = :typeCuvee")
+                ->andWhere("b.typeRegion = :typeRegion")
+                ->andWhere("b.typePays = :typePays")
+                ->andWhere("b.millesime = :millesime")
+                ->andWhere("b.typeContenance = :typeContenance")
+                ->setParameter('typeDeVin', $typeDeVin)
+                ->setParameter('typeDomaine', $typeDomaine)
+                ->setParameter('typeAppellation', $typeAppellation)
+                ->setParameter('typeCuvee', $typeCuvee)
+                ->setParameter('typeRegion', $typeRegion)
+                ->setParameter('typePays', $typePays)
+                ->setParameter('millesime', $millesime)
+                ->setParameter('typeContenance', $typeContenance);
+                
+                
+        return $query->getQuery()->getResult();
+    }
 }

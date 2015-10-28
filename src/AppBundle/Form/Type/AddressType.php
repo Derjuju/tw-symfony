@@ -17,7 +17,7 @@ class AddressType extends AbstractType
           ->add('zipCode', 'text',['attr' => array('placeholder' => 'Code postal'),'label'=>'Code postal', 'required'=>false])
           ->add('city', 'text',['attr' => array('placeholder' => 'Ville'),'label'=>'Ville', 'required'=>false])
           ->add('departement', 'text',['attr' => array('placeholder' => 'Département'),'label'=>'Département', 'required'=>false])
-          ->add('region', 'text',['attr' => array('placeholder' => 'Région'),'label'=>'Région', 'required'=>false])
+          ->add('region', 'text',['attr' => array('placeholder' => 'Région*'),'label'=>'Région', 'required'=>true])
           ->add('country', 'text',['attr' => array('placeholder' => 'Pays'),'label'=>'Pays', 'required'=>false])
           ;
        

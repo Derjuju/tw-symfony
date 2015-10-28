@@ -42,4 +42,13 @@
             <a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">TrocWine®</a>
         </div>
     </div>
-</footer> 
+</footer>
+{% if app.request.attributes.get('_route') != 'front_intro' and app.request.attributes.get('_route') != 'front_politique_de_cookies'  %}        
+<div id="cookie-warn" class="hidden">
+    <div class="wrapperCookie">
+        <div class="colG">En poursuivant votre navigation sur le site, vous acceptez l'utilisation de cookies afin de vous permettre de partager des contenus sur les réseaux sociaux et d'établir des statistiques de fréquentation. Pour en savoir plus et paramètrer vos choix, <a href="{{path('front_politique_de_cookies')}}">cliquez-ici</a>.</div>
+        <div class="colD"><a href="{{path('front_politique_de_cookies')}}" onClick="return confirmCookies();" class="btn-default">Ok</a></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+{% endif %}

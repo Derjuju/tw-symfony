@@ -20,6 +20,16 @@ class RechercheController extends Controller
     }
     
     /**
+     * @Route("/search/bottle/all",name="front_search_all_bouteille")          
+     */
+    public function searchAllBottleAction(Request $request) {
+        $filtres = $request->request->get('SearchBouteille',null);
+        $filtres['_token'] = 'aCtIvErEsUlTs'; 
+        return $this->lanceRechercheBouteille($filtres);
+    }
+        
+    
+    /**
      * @Route("/search/bottle/{reference}",name="front_search_bouteille_ref_region")          
      */
     public function searchBottleRegionReferenceAction(Request $request, $reference) {

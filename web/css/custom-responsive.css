@@ -134,6 +134,10 @@
         min-width: 142px;
     }
     
+    .bottle-container .winethumb-container .winethumb .dot-qte, .winethumb .dot-qte {        
+        z-index: 10;
+    }
+    
     body.search-bottle article .description{
         min-height:190px;
     }
@@ -155,6 +159,11 @@
     }
     body.search-troqueur article .icon-star-static{width: 24px;}
     
+    .bottle-container .winethumb-container .winethumb .description, 
+    .winethumb .description {
+        height: 190px;
+    }
+    
     .pbconnexion .btn-default { padding-bottom: 10px;}
     .subscribe-wrapper .profile-image-container {
         position: relative;
@@ -171,7 +180,7 @@
         font-size: 1em;
     }
     .bottle-container .winethumb-container .winethumb, .winethumb { height:480px;}
-    .cave .bottle-container .winethumb-container .winethumb, .winethumb { height:auto;}
+    /*.cave .bottle-container .winethumb-container .winethumb, .winethumb { height:auto;}*/
     
     .bottle-container .winethumb-container .winethumb .image,
     .winethumb .image {
@@ -181,10 +190,6 @@
         width: 100%;
         padding: 0px 0px;
         max-width: 142px;
-    }
-    .bottle-container .winethumb-container .winethumb .description,
-    .winethumb .description{
-        
     }
     
     
@@ -325,6 +330,9 @@
         font-weight: 300;
         font-size: .6em;
     }    
+    .bottle-container .winethumb-container .winethumb .description, .winethumb .description {
+       height: 210px;
+    }
 }
 
 
@@ -412,6 +420,14 @@
     .winethumb.swap-context .winethumb-header .select-swagg select {       
         font-size:16px;
     }
+    
+    .form-bottle-search input, .form-bottle-search select, .form-swapper-search input, .form-swapper-search select {
+        font-size:16px;
+    }
+    .sorter{
+        font-size:16px;
+    }
+    
     /* fin correctif effet de zoom */
     
     .prehome-disclamer .btn-ok {

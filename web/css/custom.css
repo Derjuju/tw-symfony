@@ -76,6 +76,24 @@ body.error a{color: #ffffff;}
     margin-right: 5px;
 }
 
+
+.social-btns {
+    line-height: 19px;   
+}
+@-moz-document url-prefix() { 
+  .social-btns {
+    line-height: 15px;   
+  }
+}
+
+.twitter-share-button{color:#ffffff;}
+/*display:inline-block;}
+.fb_iframe_widget{display:inline-block;}
+.fb_iframe_widget span 
+{
+    vertical-align: baseline !important;
+}*/
+
 /* les formulaires */
 .subscribe-form ul{
     list-style: none;
@@ -593,6 +611,34 @@ img.loadingWheel {
   position: relative;
   display: block; }
 
+/* cookies */
+#cookie-warn {
+    background: #740612;
+    color: #FFF;
+    font-size: .8em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 90;
+}
+#cookie-warn .wrapperCookie{ position:relative; width:90%; margin:0 auto; padding: 10px 0px 10px 0px;}
+#cookie-warn .colG{
+    width: 80%;
+    float: left;
+}
+#cookie-warn .colD{
+    width: 20%;
+    float: left;
+}
+#cookie-warn .colD .btn-default{
+    background-color: #ffffff;
+    color: #740612;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 22px;
+    width: 60px;
+    margin:0 auto;
+}
 
 .icon-deconnexion{
     background: url(../img/header-icon-set.png) no-repeat;
@@ -788,6 +834,34 @@ article.type-region-effervescent .description{border-bottom-color:#e8de46;}
 article.type-region-champagne .description{border-bottom-color:#e8de46;}
 article.type-region-liquoreux .description{border-bottom-color:#bda500;}
 article.type-region-rose .description{border-bottom-color:#c96e84;}
+
+
+.star-container .icon-rate, .star-container .text {
+    display: inline-block;
+    vertical-align: middle;
+    color: #740612;
+    margin-right: 5px;
+}
+
+.icon-rate.icon-bottle-rate-container .icon-bottle-static,
+.bottle-info .star-container .icon-bottle-static{    
+    width: 11px;
+    height: 32px;
+    background: url(../img/icon-bottle-rate.png) -5px -5px no-repeat;
+    position: relative;
+    float: left;
+    margin-left: 12px;
+    display: block;
+    font-weight: 400;
+    line-height: 14px;
+    font-size: 12px;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+.icon-rate.icon-bottle-rate-container .icon-bottle-static.full-bottle,
+.bottle-info .star-container .icon-bottle-static.full-bottle {
+    background-position: -26px -5px;
+}
 
 .ma-cave article .actions-btns{
     text-align: center;

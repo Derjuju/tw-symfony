@@ -1,5 +1,7 @@
 $(function() {
     
+    initialiseCookie();
+    
     initialiseSliderHeader();
     
     initialiseSearchSelectorBar();
@@ -158,4 +160,18 @@ function initialiseFicheBouteille(){
                 'transitionOut'	: 'elastic'
         });
     });
+}
+
+function initialiseCookie(){
+    if(readCookie('accepteCookie')==null){ 
+        $('#cookie-warn').hide();     
+        $('#cookie-warn').removeClass('hidden'); 
+        $('#cookie-warn').show(500);
+    }
+}
+function confirmCookies(){
+    // valide cookie pour 30 jours
+    createCookie('accepteCookie',true,30);
+    $('#cookie-warn').hide(500);
+    return false;
 }

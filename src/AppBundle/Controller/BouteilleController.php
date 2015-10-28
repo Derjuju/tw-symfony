@@ -39,11 +39,13 @@ class BouteilleController extends Controller
             throw $this->createNotFoundException('Fiche réservée.');
         }
         
+        $noteMoyenne = $this->calculNoteMoyenne($bouteille);
         
         $bouteilles = $em->getRepository('AppBundle:Bouteille')->findOthersFrom($bouteille->getId(), $bouteille->getMember()->getId());
 
         return $this->render('AppBundle:Bouteille:fiche.html.twig', array(
             'bouteille'=>$bouteille,
+            'noteMoyenne'=>$noteMoyenne,
             'bouteilles'=>$bouteilles,
         ));
     }
@@ -75,9 +77,31 @@ class BouteilleController extends Controller
             throw $this->createNotFoundException('Fiche réservée.');
         }
 
+        $noteMoyenne = $this->calculNoteMoyenne($bouteille);
+        
         return $this->render('AppBundle:Bouteille:fiche_simple.html.twig', array(
             'bouteille'=>$bouteille,
+            'noteMoyenne'=>$noteMoyenne
         ));
     }
+      
+    private function calculNoteMoyenne($bouteille){
         
+        $em = $this->getDoctrine()->getManager();
+        
+        $bouteilles = $em->getRepository('AppBundle:Bouteille')->findAllIdentiques($bouteille->getTypeDeVin(),$bouteille->getTypeDomaine(),$bouteille->getTypeAppellation(),$bouteille->getTypeCuvee(),$bouteille->getTypeRegion(),$bouteille->getTypePays(),$bouteille->getMillesime(),$bouteille->getTypeContenance());
+        $noteTotal = 0;
+        $noteMoyenne = 0;
+        
+        
+        if($bouteilles){
+            foreach($bouteilles as $bouteille){
+                $noteTotal+= $bouteille->getNote();
+            }
+            $noteMoyenne = round($noteTotal / count($bouteilles));            
+        }
+        
+        return $noteMoyenne;
+    }
+    
 }

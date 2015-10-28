@@ -156,6 +156,13 @@
                 });
                 
                 if(toutEstOk){
+                    if((listeSelectionMaCave.length == 0)&&(listeSelectionSaCave.length == 0)){
+                        toutEstOk = false;
+                        alert("Vous devez choisir au moins une bouteille dans chaque cave.")
+                    }
+                }
+                
+                if(toutEstOk){
                     $('#TroquerSelectionChoixMaCave').val(JSON.stringify(listeSelectionMaCave));
                     $('#TroquerSelectionChoixSaCave').val(JSON.stringify(listeSelectionSaCave));
                     $('#FormSelectionChoix').submit();            
