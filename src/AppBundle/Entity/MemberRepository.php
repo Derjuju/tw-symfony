@@ -28,7 +28,8 @@ class MemberRepository extends EntityRepository
                 ->where("1 = 1")
                 ->andWhere("m.actif = 1")
                 ->andWhere("m.enabled = 1")
-                ->andWhere("b.id is not null")
+                // à activer uniquement si on ne doit afficher que ceux possédant des bouteilles
+                //->andWhere("b.id is not null")
                 ->andWhere("m.id <>  :member")
                 ->setParameter('member', $idUser);
         
@@ -38,7 +39,7 @@ class MemberRepository extends EntityRepository
             $orQuery->add($query->expr()->like("m.firstname", ":keyword"));
             
             $query->andWhere($orQuery)
-                ->setParameter('keyword', $filtres['keyword']);
+                ->setParameter('keyword', '%'.$filtres['keyword'].'%');
         }
         
         if(isset($filtres['expertLevel'])&&($filtres['expertLevel']!='')){
@@ -59,6 +60,10 @@ class MemberRepository extends EntityRepository
             }
             if($filtres['filtrageTroqueur']=='niveau'){
                 $query->orderBy('el.score', 'DESC');
+            }
+            if($filtres['filtrageTroqueur']=='note'){
+                $query->addSelect('(m.note/m.totalTroc) AS HIDDEN noteMoyenne');
+                $query->orderBy('noteMoyenne', 'DESC');
             }
         }
 

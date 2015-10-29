@@ -17,10 +17,50 @@ class AddressType extends AbstractType
           ->add('zipCode', 'text',['attr' => array('placeholder' => 'Code postal'),'label'=>'Code postal', 'required'=>false])
           ->add('city', 'text',['attr' => array('placeholder' => 'Ville'),'label'=>'Ville', 'required'=>false])
           ->add('departement', 'text',['attr' => array('placeholder' => 'Département'),'label'=>'Département', 'required'=>false])
-          ->add('region', 'text',['attr' => array('placeholder' => 'Région*'),'label'=>'Région', 'required'=>true])
+          //->add('region', 'text',['attr' => array('placeholder' => 'Région*'),'label'=>'Région', 'required'=>true])
           ->add('country', 'text',['attr' => array('placeholder' => 'Pays'),'label'=>'Pays', 'required'=>false])
           ;
+        
+        $builder->add('region', 'choice', array(     
+            'label'=>'Région',
+            'required' => true,
+            'empty_value' => 'Région*',
+            'choices' => $this->buildRegionsChoices()
+            ));
        
+    }
+    
+    
+    public function buildRegionsChoices() {
+        $arrayRegions = array(
+                'Alsace',
+                'Aquitaine',
+                'Auvergne',
+                'Basse-Normandie',
+                'Bourgogne',
+                'Bretagne',
+                'Centre-Val de Loire',
+                'Champagne-Ardenne',
+                'Corse',
+                'Franche-Comté',
+                'Guadeloupe',
+                'Guyane',
+                'Haute-Normandie',
+                'Île-de-France',
+                'La Réunion',
+                'Languedoc-Roussillon',
+                'Limousin',
+                'Lorraine',
+                'Martinique',
+                'Mayotte',
+                'Midi-Pyrénées',
+                'Nord-Pas-de-Calais',
+                'Pays de la Loire',
+                'Picardie',
+                'Poitou-Charentes',
+                "Provence-Alpes-Côte d'Azur",
+                'Rhône-Alpes');
+        return array_combine($arrayRegions,$arrayRegions);
     }
 
     public function configureOptions(OptionsResolver $resolver)

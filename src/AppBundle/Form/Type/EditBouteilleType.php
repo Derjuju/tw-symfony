@@ -161,7 +161,10 @@ class EditBouteilleType extends AbstractType
         $arrayDates = array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));
         $arrayNoDates = array_combine(array(0),array('Non millésimé'));
         
-        return array_merge($arrayNoDates,$arrayDates);
+        //$arrayMerged = array_merge($arrayNoDates,$arrayDates);
+        $arrayMerged = $arrayNoDates + $arrayDates;
+        
+        return $arrayMerged;
     }
     public function buildNiveauChoices() {
         //return array_combine(range(100,0, 10), range(100,0, 10));

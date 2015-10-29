@@ -88,7 +88,7 @@ class BouteilleRepository extends EntityRepository
             $orQuery->add($query->expr()->like("tp.nameUk", ":keyword"));
             
             $query->andWhere($orQuery)
-                ->setParameter('keyword', $filtres['keyword']);
+                ->setParameter('keyword', '%'.$filtres['keyword'].'%');
         }
         if(isset($filtres['typeDeVin'])&&($filtres['typeDeVin']!='')){
             $query->andWhere('tdv.id = :typeDeVin')

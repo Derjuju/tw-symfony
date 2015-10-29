@@ -751,6 +751,16 @@ class Member  implements UserInterface
      */
     public function getNote()
     {
+        return $this->note;
+    }
+
+    /**
+     * Get note
+     *
+     * @return integer 
+     */
+    public function getNoteMoyenne()
+    {
         if($this->note == 0){
             return $this->note;
         }else{

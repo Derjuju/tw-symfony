@@ -102,6 +102,9 @@
     .search-selector { padding-left: 3%; padding-right: 3%;}
     
     .search-wrapper form { text-align: center;}
+    .form-bottle-search, .form-swapper-search {
+       padding: 35px 0 30px 0;
+    }
     .form-bottle-search input[type=text], .form-swapper-search input[type=text] {
         float:none;
         position: absolute;

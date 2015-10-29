@@ -69,7 +69,10 @@ class SearchBouteilleType extends AbstractType
         $arrayDates = array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));
         $arrayNoDates = array_combine(array(0),array('Non millésimé'));
         
-        return array_merge($arrayNoDates,$arrayDates);
+        //$arrayMerged = array_merge($arrayNoDates,$arrayDates);
+        $arrayMerged = $arrayNoDates + $arrayDates;
+        
+        return $arrayMerged;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -51,7 +51,7 @@ class TypeRegion
 
 
     public function __toString() {
-        return (string) $this->id.' - '.$this->reference;
+        return (string) $this->id.' - '.$this->reference.' - '.$this->nameFr;
     }
     
     public function __construct() {
