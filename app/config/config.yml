@@ -151,34 +151,41 @@ liip_imagine:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [200, 320], mode: outbound }
         bouteille_resize_cave:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [142, 230], mode: outbound }
         bouteille_resize_messagerie:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [42, 62], mode: outbound }
         avatar_resize_cave:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [170, 170], mode: outbound }
         avatar_resize_header:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [130, 130], mode: outbound }
         avatar_resize_mini:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [65, 65], mode: outbound }
         avatar_resize_messagerie:
             quality: 75
             cache: ~
             filters:
+                auto_rotate: ~
                 thumbnail: { size: [75, 75], mode: outbound }
