@@ -226,6 +226,10 @@ class MailToUser {
         
         $view = $this->createOnlineVersion($view);
         
+        // pour utiliser la fonction php mail à la place du smtp
+        $transport = \Swift_MailTransport::newInstance();
+        $this->mailer = \Swift_Mailer::newInstance($transport);
+        
         $mail = \Swift_Message::newInstance()
                 ->setSubject($subject)
                 ->setFrom($this->from, $this->name)
