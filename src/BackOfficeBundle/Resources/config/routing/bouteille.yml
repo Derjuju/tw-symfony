@@ -1,0 +1,71 @@
+back_office_bouteilles:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:Bouteille:index" }
+    
+back_office_bouteilles_a_moderer:
+    path:     /moderation
+    defaults: { _controller: "BackOfficeBundle:Bouteille:indexModeration" }
+
+back_office_bouteille_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:Bouteille:show" } 
+
+back_office_bouteille_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:Bouteille:new" }
+
+back_office_bouteille_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:Bouteille:create" }
+    methods:  POST
+
+back_office_bouteille_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:Bouteille:edit" }
+
+back_office_bouteille_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:Bouteille:update" }
+    methods:  [POST, PUT] 
+
+back_office_bouteille_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:Bouteille:delete" }
+    methods:  [POST, DELETE]  
+    
+    
+
+bo_bouteille_api_appellation_add:
+    path:     /api/appellation/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addAppellation" }
+    methods:  POST 
+    
+bo_bouteille_api_cave_add:
+    path:     /api/cave/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addCave" }
+    methods:  POST  
+    
+bo_bouteille_api_contenance_add:
+    path:     /api/contenance/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addContenance" }
+    methods:  POST  
+    
+bo_bouteille_api_cuvee_add:
+    path:     /api/cuvee/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addCuvee" }
+    methods:  POST     
+    
+bo_bouteille_api_domaine_add:
+    path:     /api/domaine/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addDomaine" }
+    methods:  POST     
+    
+bo_bouteille_api_pays_add:
+    path:     /api/pays/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addPays" }
+    methods:  POST   
+    
+bo_bouteille_api_region_add:
+    path:     /api/region/add
+    defaults: { _controller: "BackOfficeBundle:Bouteille:addRegion" }
+    methods:  POST  

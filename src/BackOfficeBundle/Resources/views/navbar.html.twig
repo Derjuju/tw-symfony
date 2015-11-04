@@ -1,0 +1,110 @@
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{path('back_office_homepage')}}">TrocWine Admin</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li class="divider"></li>
+                <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="{{path('back_office_homepage')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                </li>                
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Membres<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Liste</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-plus-circle fa-fw"></i> Ajouter</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>               
+                <li>
+                    <a href="#"><i class="fa fa-bottle fa-fw"></i> Bouteilles<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">                        
+                        <li>
+                            <a href="{{path('back_office_bouteilles_a_moderer')}}"><i class="fa fa-table fa-fw"></i>Nouvelles à modérer</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_bouteilles')}}"><i class="fa fa-table fa-fw"></i>Liste</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_bouteille_new')}}"><i class="fa fa-plus-circle fa-fw"></i> Ajouter</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-th fa-fw"></i> Homepage<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">Les 3 vins</a>
+                        </li>
+                        <li>
+                            <a href="#">4 mises en avant</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-sliders fa-fw"></i> Référentiels<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="{{path('back_office_type_appellations')}}">Appellation</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_contenances')}}">Contenance</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_cuvees')}}">Cuvée</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_caves')}}">Cave</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_domaines')}}">Domaine</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_pays')}}">Pays</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_regions')}}">Région</a>
+                        </li>
+                        <li>
+                            <a href="{{path('back_office_type_vins')}}">Type de Vin</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>

@@ -1,0 +1,30 @@
+back_office_type_vins:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:index" }
+
+back_office_type_vin_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:show" } 
+
+back_office_type_vin_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:new" }
+
+back_office_type_vin_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:create" }
+    methods:  POST
+
+back_office_type_vin_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:edit" }
+
+back_office_type_vin_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_vin_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypeDeVin:delete" }
+    methods:  [POST, DELETE]  

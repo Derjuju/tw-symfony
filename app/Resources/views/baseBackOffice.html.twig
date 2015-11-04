@@ -20,25 +20,40 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('dist/css/metisMenu.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('dist/css/timeline.css') }}" />
+            <link rel="stylesheet" href="{{ asset('dist/css/font-awesome.min.css') }}" />
+            <link rel="stylesheet" href="{{ asset('dist/css/dataTables.bootstrap.css') }}" />
+            <link rel="stylesheet" href="{{ asset('dist/css/dataTables.responsive.css') }}" />
+            <link rel="stylesheet" href="{{ asset('dist/css/sb-admin-2.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/main-bo.css') }}" />
+            <link rel="stylesheet" href="{{ asset('js/vendor/fancybox/jquery.fancybox.css') }}" type="text/css" media="screen" />
             <link rel="stylesheet" href="{{ asset('css/custom-bo.css') }}" />
         {% endblock %}
     
         
         {% block topJavascripts %}
             <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
+            <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
         {% endblock %}
         
     </head>
     <body class="{% block bodyclass %}{% endblock %}">
+        <div id="wrapper">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
         {% block body %}{% endblock %}
+        </div>
         
         {% block bottomJavascripts %}
             <script src="{{ asset('js/plugins.js') }}"></script>
+            <script src="{{ asset('dist/js/metisMenu.js') }}"></script>        
+            <script src="{{ asset('dist/js/jquery.dataTables.js') }}"></script>
+            <script src="{{ asset('dist/js/dataTables.bootstrap.js') }}"></script>
+            <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
+            <script src="{{ asset('js/vendor/fancybox/jquery.fancybox.pack.js') }}"></script>
             <script src="{{ asset('js/backOffice.js') }}"></script>
         {% endblock %}
     </body>

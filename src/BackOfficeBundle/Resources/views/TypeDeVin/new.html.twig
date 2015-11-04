@@ -1,0 +1,39 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% form_theme form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:TypeDeVin:_type_contenu.html.twig" %}
+
+    {% include "BackOfficeBundle:TypeDeVin:_back_liste.html.twig" %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default col-lg-6">
+                    {{ form_start(form) }}
+                    {{ form_row(form.nameFr, { 'attr' : { 'class' : 'form-control' } }) }}
+                    {{ form_row(form.nameUk, { 'attr' : { 'class' : 'form-control' } }) }}
+                    {{ form_row(form.reference, { 'attr' : { 'class' : 'form-control' } }) }}
+                    {{ form_widget(form.submit, { 'attr' : { 'class' : 'btn submit btn-primary col-lg-6'} }) }}
+                    {{ form_widget(form.reset, { 'attr' : { 'class' : 'btn submit col-lg-6' } } ) }}     
+                    {{ form_end(form) }}
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+    });
+    </script>
+{% endblock %}

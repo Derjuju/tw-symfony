@@ -2,7 +2,40 @@ back_office_homepage:
     path:     /
     defaults: { _controller: BackOfficeBundle:Dashboard:index }
     
-
-
+back_office_bouteilles:
+    resource: "@BackOfficeBundle/Resources/config/routing/bouteille.yml"
+    prefix:     /bouteilles
+    
+back_office_type_appellations:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-appellation.yml"
+    prefix:     /type-appellations
+    
+back_office_type_contenances:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-contenance.yml"
+    prefix:     /type-contenances
+    
+back_office_type_cuvees:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-cuvee.yml"
+    prefix:     /type-cuvees
+    
+back_office_type_caves:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-cave.yml"
+    prefix:     /type-caves
+    
+back_office_type_domaines:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-domaine.yml"
+    prefix:     /type-domaines
+    
+back_office_type_pays:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-pays.yml"
+    prefix:     /type-pays
+    
+back_office_type_regions:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-region.yml"
+    prefix:     /type-regions
+    
+back_office_type_vins:
+    resource: "@BackOfficeBundle/Resources/config/routing/type-vin.yml"
+    prefix:     /type-vins
 
     

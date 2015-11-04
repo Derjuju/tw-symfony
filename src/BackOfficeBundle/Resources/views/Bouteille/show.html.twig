@@ -1,0 +1,163 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% form_theme delete_form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:Bouteille:_type_contenu.html.twig" with {'entity':entity} %}
+
+    {% include "BackOfficeBundle:Bouteille:_back_liste.html.twig" with {'entity':entity} %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="bottle-page-wrapper">
+	<section class="bottle-info-wrapper">
+		<div class="wrapper">
+			<div class="image-container">
+				<div class="upload-image-container">
+					<div data-imagezoom="{% if entity.photo != null %}{{asset(entity.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}" class="wine-image" style="background-image: url('{% if entity.photo != null %}{{asset(entity.photo.file)|imagine_filter('bouteille_resize_fiche')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
+						<span class="dot-qte">{{entity.quantite}}</span>
+					</div>
+				</div>
+				<div class="rating">
+					<span class="text">Ma note</span>
+					<span class="icon-bottle-rate-container icon-rate" id="ratingBottle">
+					    {% for i in range(1,5) %}
+                                                {% if i <= entity.note %}
+                                                        <i class="icon-bottle-static full-bottle"></i>
+                                                {% else %}
+                                                        <i class="icon-bottle-static"></i>
+                                                {% endif %}
+                                            {% endfor %}
+					</span>
+				</div>
+			</div>
+			<div class="bottle-info">
+				<div class="title">
+                                    <h2>{{entity.typeDomaine.nameFr|default('')}} {{entity.typeAppellation.nameFr|default('')}}<br>{{entity.typeCuvee.nameFr|default('')}}</h2>					
+					<span>{{entity.typeRegion.nameFr|default('')}}</span>
+					<span>{{entity.typePays.nameFr|default('')}}</span>
+					<span>{{entity.millesime|default('')|filtre_millesime}}</span>
+				</div>
+
+				<div class="info">
+					<p>
+						<b>{{entity.quantite}} bouteille{% if entity.quantite > 1 %}s{% endif %},</b>{% if entity.typeContenance is defined %} {{ entity.typeContenance.nameFr }},{% endif %}
+						conservée{% if entity.quantite > 1 %}s{% endif %} en {{entity.typeDeCave.nameFr}}
+					</p>
+
+					<p>{{entity.commentaire}}</p>
+
+					<div class="star-container">
+						<span class="text">Note moyenne</span>
+                                                <span class="icon-bottle-rate-container icon-rate" id="ratingBottleMoyenne">
+                                                {% for i in range(1,5) %}
+                                                    {% if i <= noteMoyenne %}
+                                                            <i class="icon-bottle-static full-bottle"></i>
+                                                    {% else %}
+                                                            <i class="icon-bottle-static"></i>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </span>
+					</div>
+				</div>
+			</div>
+			<div class="mobile-hide">
+				<div class="qte-level">
+					<div class="level-container">
+						<!-- Pour remplir la entity, utilisez style="top: xx%;" sur .the-fullness -->
+						<div class="level-bottle">
+							<div class="the-shape"></div>
+							<div class="the-emptyness"></div>
+							<div class="the-fullness" style="top:{{100 - entity.niveau}}%"></div>
+						</div>
+						<h4>Niveau : 
+                                                    {% if entity.niveau >= 80 %}Normal{% endif %}
+                                                    {% if entity.niveau == 77 %}Bas goulot{% endif %}
+                                                    {% if entity.niveau == 75 %}Très légèrement bas{% endif %}
+                                                    {% if entity.niveau == 72 %}Légèrement bas{% endif %}
+                                                    {% if entity.niveau == 70 %}Haute épaule{% endif %}
+                                                    {% if entity.niveau == 65 %}Mi-épaule{% endif %}
+                                                    {% if entity.niveau == 60 %}Bas{% endif %}
+                                                </h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Editer {% if entity.online == 0 %} ou modérer {% endif %}?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    <a class="btn btn-primary btn-edit btn-lg" href="{{path('back_office_bouteille_edit',{'id':entity.id})}}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Supprimer ?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    {{ form_start(delete_form) }}
+                    {{ form_widget(delete_form.submit, { 'attr' : { 'class' : 'btn submit btn-danger'}, 'id' : 'btnDelete' }) }}
+                    {{ form_end(delete_form) }}
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        $('#btnDelete').on('click',function(event){
+            //event.preventDefault();
+            return confirm('Supprimer définitivement ?');
+        });
+        
+        $('.bottle-info-wrapper .wine-image').on('click', function (){        
+            jQuery.fancybox({
+                     //'orig'			: $(this),
+                     'padding'		: 0,
+                     'href'			: $(this).data('imagezoom'),
+                     'title'   		: '',
+                     'transitionIn'	: 'elastic',
+                     'transitionOut'	: 'elastic'
+             });
+         });
+    });
+    </script>
+{% endblock %}

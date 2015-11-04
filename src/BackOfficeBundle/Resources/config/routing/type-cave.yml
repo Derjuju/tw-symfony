@@ -1,0 +1,30 @@
+back_office_type_caves:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:index" }
+
+back_office_type_cave_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:show" } 
+
+back_office_type_cave_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:new" }
+
+back_office_type_cave_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:create" }
+    methods:  POST
+
+back_office_type_cave_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:edit" }
+
+back_office_type_cave_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_cave_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypeDeCave:delete" }
+    methods:  [POST, DELETE]  

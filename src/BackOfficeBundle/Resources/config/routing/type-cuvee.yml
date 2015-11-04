@@ -1,0 +1,30 @@
+back_office_type_cuvees:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:index" }
+
+back_office_type_cuvee_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:show" } 
+
+back_office_type_cuvee_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:new" }
+
+back_office_type_cuvee_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:create" }
+    methods:  POST
+
+back_office_type_cuvee_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:edit" }
+
+back_office_type_cuvee_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_cuvee_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypeCuvee:delete" }
+    methods:  [POST, DELETE]  

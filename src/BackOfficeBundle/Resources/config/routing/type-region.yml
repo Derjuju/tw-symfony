@@ -1,0 +1,30 @@
+back_office_type_regions:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:index" }
+
+back_office_type_region_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:show" } 
+
+back_office_type_region_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:new" }
+
+back_office_type_region_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:create" }
+    methods:  POST
+
+back_office_type_region_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:edit" }
+
+back_office_type_region_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_region_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypeRegion:delete" }
+    methods:  [POST, DELETE]  

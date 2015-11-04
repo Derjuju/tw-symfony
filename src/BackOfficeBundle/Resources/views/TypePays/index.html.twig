@@ -1,0 +1,77 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:TypePays:_type_contenu.html.twig" %}
+
+    <div class="row">
+        <div class="col-lg-12"><p><a href="{{path('back_office_type_pays_new')}}" class="btn btn-primary btn-lg" role="button">Ajouter un pays</a></p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Choisir un contenu à éditer
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables">
+                            <thead>
+                                <tr>
+                                    <th width="10%">Id</th>
+                                    <th width="27%">Nom Fr</th>
+                                    <th width="27%">Nom Uk</th>
+                                    <th width="20%">reference</th>
+                                    <th width="16%" class="no-sort">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entity in entities %}
+                                <tr class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+                                    <td>{{ entity.id }}</td>
+                                    <td>{{ entity.nameFr }}</td>
+                                    <td>{{ entity.nameUk }}</td>
+                                    <td>{{ entity.reference }}</td>
+                                    <td align="center">
+                                        <a class="btn btn-info btn-show btn-xs" href="{{path('back_office_type_pays_show',{'id':entity.id})}}"><i class="fa fa-eye fa-fw"></i> See</a>
+                                        <a class="btn btn-primary btn-edit btn-xs" href="{{path('back_office_type_pays_edit',{'id':entity.id})}}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                                        {#<a class="btn btn-danger btn-delete btn-xs" href="{{path('back_office_type_pays_delete',{'id':entity.id})}}" onClick="return confirm('Supprimer définitivement ?');"><i class="fa fa-trash-o fa-lg"></i> Delete</a>#}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables').DataTable({
+                responsive: true,
+                columnDefs: [
+                    { targets: 'no-sort', orderable: false }
+                ]
+        });
+    });
+    </script>
+{% endblock %}

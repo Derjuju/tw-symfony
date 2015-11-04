@@ -1,0 +1,30 @@
+back_office_type_pays:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypePays:index" }
+
+back_office_type_pays_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypePays:show" } 
+
+back_office_type_pays_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypePays:new" }
+
+back_office_type_pays_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypePays:create" }
+    methods:  POST
+
+back_office_type_pays_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypePays:edit" }
+
+back_office_type_pays_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypePays:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_pays_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypePays:delete" }
+    methods:  [POST, DELETE]  

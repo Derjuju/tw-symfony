@@ -52,4 +52,16 @@ class TrocRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
     
+    function findAllStillLive(){
+        $query = $this->createQueryBuilder('t')
+                ->where('t.archived = 0');
+        return $query->getQuery()->getResult();
+    }
+    
+    function findAllEnded(){
+        $query = $this->createQueryBuilder('t')
+                ->where('t.archived = 1');
+        return $query->getQuery()->getResult();
+    }
+    
 }

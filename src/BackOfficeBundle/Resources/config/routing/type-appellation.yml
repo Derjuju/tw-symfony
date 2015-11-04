@@ -1,0 +1,30 @@
+back_office_type_appellations:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:index" }
+
+back_office_type_appellation_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:show" } 
+
+back_office_type_appellation_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:new" }
+
+back_office_type_appellation_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:create" }
+    methods:  POST
+
+back_office_type_appellation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:edit" }
+
+back_office_type_appellation_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_appellation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypeAppellation:delete" }
+    methods:  [POST, DELETE]  

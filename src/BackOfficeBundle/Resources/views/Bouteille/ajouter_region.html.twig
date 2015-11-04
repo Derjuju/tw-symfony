@@ -1,0 +1,32 @@
+{% form_theme form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{{ form_start(form, {'attr': {'class': 'form-inline add_new_region'} }) }}
+
+<div class="form-type-1">
+
+    <div class="p-b-10">
+        <div class="row">
+        {{ form_row(form.nameFr, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+        </div>
+        <div class="row">
+        {{ form_row(form.nameUk, {'class': 'p-right', 'attr': {'class': ''} }) }}  
+        </div>
+        <div class="row">
+        {{ form_row(form.reference, {'class': 'p-right', 'attr': {'class': ''} }) }}                                          
+        </div>
+    </div>
+
+</div>
+
+<div class="text-left p-b-30">
+    <div class="text-right">
+        <button type="submit" class="btn submit bg-pourpre bt-valid-popin-ajout" data-url="{{path('bo_bouteille_api_region_add')}}">Ajouter</button>
+        <button type="button" class="btn bt-default" data-dismiss="modal">Annuler</button>
+    </div>
+</div>
+
+<br>
+<p class="ob ob-margin">* Champs obligatoires</p>
+<!-- End .type-1 -->
+<br>
+{{ form_end(form) }}

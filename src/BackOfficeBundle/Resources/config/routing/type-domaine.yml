@@ -1,0 +1,30 @@
+back_office_type_domaines:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:index" }
+
+back_office_type_domaine_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:show" } 
+
+back_office_type_domaine_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:new" }
+
+back_office_type_domaine_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:create" }
+    methods:  POST
+
+back_office_type_domaine_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:edit" }
+
+back_office_type_domaine_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:update" }
+    methods:  [POST, PUT] 
+
+back_office_type_domaine_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:TypeDomaine:delete" }
+    methods:  [POST, DELETE]  
