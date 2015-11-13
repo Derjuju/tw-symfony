@@ -1,26 +1,40 @@
 <?php
 
-namespace AppBundle\Form\Type;
+namespace BackOfficeBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
-class AddBouteilleType extends AbstractType
+class NouvelleBouteilleType extends AbstractType
 {
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
         $builder
+          ->add('member', 'entity', array(        
+            'label'=>'Ajouter dans la cave de ?',
+            'required' => true,
+            'expanded' => false,
+            'multiple' => false,
+            'choice_label' => 'menuDeroulant',
+            'empty_value' => 'Choisir une cave*',
+            'class' => 'AppBundle:Member',
+            'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('e')
+                                ->orderBy('e.lastname', 'ASC')
+                                ->orderBy('e.firstname', 'ASC')
+                                ->orderBy('e.login', 'ASC');
+            }))
           ->add('typeDeVin', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type de vin',
             'required' => true,
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
-            'empty_value' => 'Type*',
+            'empty_value' => 'Type de vin*',
             'class' => 'AppBundle:TypeDeVin',
             'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('e')
@@ -40,7 +54,7 @@ class AddBouteilleType extends AbstractType
               'preferred_choices' => array(0),
             ])
           ->add('typeRegion', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type de région',
             'required' => true,
             'expanded' => false,
             'multiple' => false,
@@ -58,7 +72,7 @@ class AddBouteilleType extends AbstractType
             'choices' => $this->buildYearChoices()
             ))
           ->add('typePays', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Pays',
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
@@ -80,7 +94,7 @@ class AddBouteilleType extends AbstractType
             'choices' => $this->buildNiveauChoices()
             ))
           ->add('typeDomaine', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type de domaine',
             'required'=>false,
             'expanded' => false,
             'multiple' => false,
@@ -92,7 +106,7 @@ class AddBouteilleType extends AbstractType
                                 ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('typeAppellation', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type d\'appellation',
             'required'=>false,
             'expanded' => false,
             'multiple' => false,
@@ -104,7 +118,7 @@ class AddBouteilleType extends AbstractType
                                 ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('typeCuvee', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type de cuvée',
             'required'=>false,
             'expanded' => false,
             'multiple' => false,
@@ -122,7 +136,7 @@ class AddBouteilleType extends AbstractType
             'choices' => $this->buildApogeeChoices()
             ))
           ->add('typeContenance', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type de contenance',
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
@@ -133,7 +147,7 @@ class AddBouteilleType extends AbstractType
                                 ->orderBy('e.reference', 'ASC');
             }))
           ->add('typeDeCave', 'entity', array(        
-            'label'=>'Type',
+            'label'=>'Type de cave',
             'expanded' => false,
             'multiple' => false,
             'choice_label' => 'nameFr',
@@ -149,7 +163,18 @@ class AddBouteilleType extends AbstractType
             ->add('photoNiveau', new ImageType(), array(
                     'data_class' => 'AppBundle\Entity\Image',
                     'required' => false,
-                ));
+                ))
+            ->add('online', 'checkbox',[
+              'label'=>'Valider mise en ligne' ,
+              'required'=>false,
+            ])
+            /*->add('reserved', 'checkbox',[
+              'label'=>'Reserver' ,
+              'required'=>false,
+            ])*/
+            
+            
+            ;
        
     }
     
@@ -181,12 +206,11 @@ class AddBouteilleType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Bouteille',
-            'validation_groups' => array('add'),
         ));
     }
     
     public function getName()
     {
-        return 'AddBouteilleType';
+        return 'NouvelleBouteilleType';
     }
 } 

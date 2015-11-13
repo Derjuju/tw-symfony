@@ -1,0 +1,75 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% form_theme edit_form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:Selection:_type_contenu.html.twig" %}
+
+    {% include "BackOfficeBundle:Selection:_back_liste.html.twig" %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default col-lg-6">
+                    {{ form_start(edit_form) }}
+                    
+                    <div class="row">
+                        <div class="upload-image-container">
+                                <div class="mea-image mea-image-{{entity.position}}" {% if entity.photo != null %}style="background-image: url('{% if entity.photo != null %}{{asset(entity.photo.file)}}{% else %}{{asset('uploads/selections/selection_default.png')}}{% endif %}');"{% endif %}></div>
+                                <div class="input-hidden">
+                                        <input type="file" name="photo_image" id="file_picker" data-class-dest="mea-image"/>
+                                        {{ form_widget(edit_form.photo, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+                                </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                    {{ form_row(edit_form.titreFr, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_row(edit_form.titreUk, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_row(edit_form.sousTitreFr, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_row(edit_form.sousTitreUk, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_label(edit_form.lien) }}
+                        <button type="button" class="btn bt-help-tooltip btn-circle" data-container="body" data-toggle="popover" data-placement="right" data-content="Pour un lien sur le site ne mettre que l'url sans le domaine, exemple : 
+                                /bouteilles/fiche/24
+                                /cave/17
+                                Pour un lien vers un autre site, il faut tout indiquer, exemple : 
+                                http://vinexplore.com/fr/
+                                Un lien commençant par http:// ou https:// s'ouvrira dans un nouvel onglet." data-original-title="" title="">
+                            <i class="fa fa-question"></i>
+                        </button>
+                    {{ form_widget(edit_form.lien, { 'attr' : { 'class' : 'form-control' } }) }}                    
+                    {{ form_errors(edit_form.lien) }}
+                    </div>
+                    <div class="row">
+                    {{ form_widget(edit_form.submit, { 'attr' : { 'class' : 'btn submit btn-primary col-lg-6'} }) }}
+                    </div>
+                    {{ form_end(edit_form) }}
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+       
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        
+    });
+    </script>
+{% endblock %}

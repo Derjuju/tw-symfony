@@ -1,0 +1,12 @@
+back_office_selections:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:Selection:index" }
+
+back_office_selection_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:Selection:edit" }
+
+back_office_selection_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:Selection:update" }
+    methods:  [POST, PUT] 

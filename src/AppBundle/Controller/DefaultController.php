@@ -24,7 +24,7 @@ class DefaultController extends Controller
      */
     public function homepageAction() {
         
-        return $this->render("AppBundle::homepage.html.twig");
+        return $this->homepageGenerateAction(false);
     }
     
     /**
@@ -32,7 +32,18 @@ class DefaultController extends Controller
      */
     public function homepageConnexionAction() {
         
-        return $this->render("AppBundle::homepage.html.twig", array('connexion'=>true));
+        return $this->homepageGenerateAction(true);
+    }
+    
+    
+    private function homepageGenerateAction($connexion) {
+        $em = $this->getDoctrine()->getManager();
+        $selections = $em->getRepository('AppBundle:Selection')->findBy(array(),array('position'=>'ASC'));
+        
+        return $this->render("AppBundle::homepage.html.twig", array(
+            'connexion'=>$connexion,
+            'selections'=>$selections
+        ));
     }
     
     /**

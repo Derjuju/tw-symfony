@@ -7,6 +7,7 @@ body{
     width: 100%;
 }
 
+.modal-body .row{ margin-left: 0px; margin-right: 0px;}
 
 body.auth #global-wrapper{
     width:600px;
@@ -51,6 +52,12 @@ i.fa-bottle{
     background-size: cover;
 }
 .bottle-info-wrapper .wine-image {
+    cursor: pointer;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+}
+form .wine-image {
+    background-size: contain;
     cursor: pointer;
     cursor: -webkit-zoom-in;
     cursor: -moz-zoom-in;
@@ -197,4 +204,73 @@ i.fa-bottle{
     top: 90%;
     -webkit-transition: top .3s cubic-bezier(.175,.885,.32,1.275);
     transition: top .3s cubic-bezier(.175,.885,.32,1.275);
+}
+
+body.bouteilles label { min-width:150px;}
+body.bouteilles .row{ margin-bottom: 10px;}
+
+
+
+.mea-image {
+    height: 230px;
+    background: center no-repeat #ddd;
+    background-size: cover;
+}
+.mea-image-1 { height: 230px; width:475px; }
+.mea-image-2 { height: 474px; width:230px; }
+.mea-image-3 { height: 230px; width:230px; }
+.mea-image-4 { height: 230px; width:230px; }
+
+/*
+.mea-image-1.mini { height: 23px; width:47px; }
+.mea-image-2.mini { height: 47px; width:23px; }
+.mea-image-3.mini { height: 23px; width:23px; }
+.mea-image-4.mini { height: 23px; width:23px; }
+*/
+
+.bloc-mea-wrapper{
+    max-width: 720px;
+    position:relative;
+}
+.bloc-mea {
+    float: left;
+    margin: 0 2% 2% 0;
+    position: relative;
+}
+.bloc-mea.bloc-mea-1{ max-width: 480px; width: 66%; }
+.bloc-mea.bloc-mea-2{ width:32%; float: right; margin: 0 0% 2% 0;}
+.bloc-mea.bloc-mea-3{ width:32%; }
+.bloc-mea.bloc-mea-4{ width:32%; }
+.bloc-mea span{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    color:#ffffff;
+    background-color:#740612;
+    border-radius: 5px;
+    text-align: center;
+    display:block;
+    width:20px;
+}
+.bloc-mea a{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.bt-help-tooltip{
+    width: 16px;
+    height: 16px;
+    padding: 0 0 0 0;
+    background-color: #333;
+    color:#ffffff;
+}
+.bt-help-tooltip:focus,.bt-help-tooltip:hover{
+    background-color: #000000;
+    color:#ffffff;
+}
+.popover-content {
+    white-space: pre-line;
 }

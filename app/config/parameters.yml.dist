@@ -35,3 +35,7 @@ parameters:
     upload_avatars_dir_temp: /uploads/avatars/temp/
     upload_bouteilles_dir: uploads/bouteilles/
     upload_bouteilles_dir_temp: /uploads/bouteilles/temp/
+    upload_selections_dir: uploads/selections/
+    upload_selections_dir_temp: /uploads/selections/temp/
+    upload_mea_dir: uploads/mea/
+    upload_mea_dir_temp: /uploads/mea/temp/

@@ -2,8 +2,7 @@
 
 {% block bodyclass %}bouteilles{% endblock %}
 
-{% form_theme edit_form with ['bootstrap_3_layout.html.twig', _self] %}
-{% form_theme delete_form with ['bootstrap_3_layout.html.twig', _self] %}
+{% form_theme form with ['bootstrap_3_layout.html.twig', _self] %}
 
 {% block content %}
 
@@ -14,7 +13,12 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default col-lg-6">
-                {{ form_start(edit_form, {'attr': {'class': 'form-inline', 'id': 'FormEditBouteille'} }) }}
+                {{ form_start(form, {'attr': {'class': 'form-inline', 'id': 'FormEditBouteille'} }) }}
+                
+                <div class="row">
+                {{ form_row(form.member, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                
                 
                 <div class="row">
                     <div class="upload-image-container">
@@ -22,59 +26,59 @@
                             </div>
                             <div class="input-hidden">
                                     <input type="file" name="photo_image" id="file_picker" data-class-dest="wine-image"/>
-                                    {{ form_widget(edit_form.photo, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+                                    {{ form_widget(form.photo, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                             </div>
                     </div>
                 </div>
                 
                 <div class="row">
-                {{ form_row(edit_form.typeDeVin, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeDeVin, { 'attr' : { 'class' : 'form-control' } }) }}
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.typeDomaine, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeDomaine, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_domaine" id="BouteilleType_add_domaine" class="btn-default add" data-url="{{path('bo_bouteille_api_domaine_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>
                 <div class="row">                
-                {{ form_row(edit_form.typeAppellation, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeAppellation, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_appellation" id="BouteilleType_add_appellation" class="btn-default add" data-url="{{path('bo_bouteille_api_appellation_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.typeCuvee, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeCuvee, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_cuvee" id="BouteilleType_add_cuvee" class="btn-default add" data-url="{{path('bo_bouteille_api_cuvee_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.typeRegion, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeRegion, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_region" id="BouteilleType_add_region" class="btn-default add" data-url="{{path('bo_bouteille_api_region_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.typePays, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typePays, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_pays" id="BouteilleType_add_pays" class="btn-default add" data-url="{{path('bo_bouteille_api_pays_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.quantite, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.quantite, { 'attr' : { 'class' : 'form-control' } }) }}
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.boiteOrigine, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.boiteOrigine, { 'attr' : { 'class' : 'form-control' } }) }}
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.millesime, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.millesime, { 'attr' : { 'class' : 'form-control' } }) }}
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.apogee, { 'attr' : { 'class' : 'form-control' } }) }}                
+                {{ form_row(form.apogee, { 'attr' : { 'class' : 'form-control' } }) }}                
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.typeContenance, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeContenance, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_contenance" id="BouteilleType_add_contenance" class="btn-default add" data-url="{{path('bo_bouteille_api_contenance_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>
                 <div class="row">             
-                {{ form_row(edit_form.typeDeCave, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.typeDeCave, { 'attr' : { 'class' : 'form-control' } }) }}
                 <a href="#add_cave" id="BouteilleType_add_cave" class="btn-default add" data-url="{{path('bo_bouteille_api_cave_add')}}"><i class="fa fa-plus-circle"></i> Ajouter</a>
                 </div>                
                 <div class="row">
-                {{ form_row(edit_form.note, { 'attr' : { 'class' : 'form-control' } }) }}
+                {{ form_row(form.note, { 'attr' : { 'class' : 'form-control' } }) }}
                 </div>
                 <div class="row">
-                {{ form_row(edit_form.commentaire, { 'attr' : { 'class' : 'form-control' } }) }} 
+                {{ form_row(form.commentaire, { 'attr' : { 'class' : 'form-control' } }) }} 
                 </div>
                 <div class="row">
                 <div class="level-bottle">
@@ -82,38 +86,17 @@
                         <div class="the-emptyness"></div>
                         <div class="the-fullness"></div>
                 </div>
-                {{ form_widget(edit_form.niveau, {'class': '', 'attr': {'class': ''} }) }}
-                {{ form_widget(edit_form.photoNiveau, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+                {{ form_widget(form.niveau, {'class': '', 'attr': {'class': ''} }) }}
+                {{ form_widget(form.photoNiveau, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                 </div>
                 <div class="row">                
-                {{ form_row(edit_form.online, { 'attr' : { 'class' : 'form-control' } }) }}                
+                {{ form_row(form.online, { 'attr' : { 'class' : 'form-control' } }) }}                
                 </div>
                 <div class="row">
-                {{ form_widget(edit_form.submit, { 'attr' : { 'class' : 'btn submit btn-primary col-lg-6'} }) }}                
+                {{ form_widget(form.submit, { 'attr' : { 'class' : 'btn submit btn-primary col-lg-6'} }) }}
+                {{ form_widget(form.reset, { 'attr' : { 'class' : 'btn submit col-lg-6' } } ) }} 
                 </div>
-                {{ form_end(edit_form) }}
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>Supprimer ?</h4>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="col-lg-12 text-center"> 
-                    {{ form_start(delete_form) }}
-                    {{ form_widget(delete_form.submit, { 'attr' : { 'class' : 'btn submit btn-danger'}, 'id' : 'btnDelete' }) }}
-                    {{ form_end(delete_form) }}
-                    </div>
-                </div>
-                <!-- /.panel-body -->
+                {{ form_end(form) }}
             </div>
             <!-- /.panel -->
         </div>
@@ -132,17 +115,12 @@
     <script>
     $(document).ready(function() {
         
-        $(document).on('load change keyup', '#BouteilleType_commentaire', function () {
+        $(document).on('load change keyup', '#NouvelleBouteilleType_commentaire', function () {
             var len = $(this).val().length;
             $('#count_content_message').html($('#count_content_message').data('maxchar') - len);
         });        
-        var len = $('#BouteilleType_commentaire').val().length;
+        var len = $('#NouvelleBouteilleType_commentaire').val().length;
         $('#count_content_message').html($('#count_content_message').data('maxchar') - len);
-        
-        $('#btnDelete').on('click',function(event){
-            //event.preventDefault();
-            return confirm('Supprimer définitivement ?');
-        });
         
         $('.wine-image').on('click', function (){        
             jQuery.fancybox({
@@ -161,14 +139,14 @@
                 if (selected.length > 0) {
                     selectedVal = selected.val();
                 }
-                $('#BouteilleType_note').val(selectedVal);
+                $('#NouvelleBouteilleType_note').val(selectedVal);
                 
                 /*
                 var total = parseInt($('.level-bottle .the-shape').height());
                 var pourcentage = parseInt($('.level-bottle .the-fullness').css('top')) * 100 / total;
                 pourcentage = Math.round(pourcentage/10)*10;
                 pourcentage = 100 - pourcentage;
-                $('#BouteilleType_niveau').val(pourcentage);*/
+                $('#NouvelleBouteilleType_niveau').val(pourcentage);*/
                 /*var isOk = true;
                 $('input[type=file][max-size]').each(function(){
                     if(typeof this.files[0] !== 'undefined'){
@@ -187,53 +165,53 @@
                 */
             });
             
-            $('#BouteilleType_niveau').on('change', function(event){
+            $('#NouvelleBouteilleType_niveau').on('change', function(event){
                 $('.level-bottle .the-fullness').css('top', (100 - $(this).val())+'%');
             });
-            $('#BouteilleType_niveau').trigger('change');
+            $('#NouvelleBouteilleType_niveau').trigger('change');
             
-            $('#BouteilleType_add_domaine').on('click',function(event){
+            $('#NouvelleBouteilleType_add_domaine').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de domaine</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#BouteilleType_add_appellation').on('click',function(event){
+            $('#NouvelleBouteilleType_add_appellation').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type d\'appellation</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#BouteilleType_add_cuvee').on('click',function(event){
+            $('#NouvelleBouteilleType_add_cuvee').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de cuvée</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#BouteilleType_add_region').on('click',function(event){
+            $('#NouvelleBouteilleType_add_region').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de région</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#BouteilleType_add_pays').on('click',function(){
+            $('#NouvelleBouteilleType_add_pays').on('click',function(){
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de pays</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#BouteilleType_add_cave').on('click',function(event){
+            $('#NouvelleBouteilleType_add_cave').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de cave</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#BouteilleType_add_contenance').on('click',function(event){
+            $('#NouvelleBouteilleType_add_contenance').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de contenance</strong>';
@@ -264,31 +242,31 @@
             
             $(document).on('submit', 'form.add_new_domaine', function () {
                 var form = $(this);                
-                traitementForm(form, "#BouteilleType_typeDomaine");
+                traitementForm(form, "#NouvelleBouteilleType_typeDomaine");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_appellation', function () {
                 var form = $(this);                
-                traitementForm(form, "#BouteilleType_typeAppellation");
+                traitementForm(form, "#NouvelleBouteilleType_typeAppellation");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_cuvee', function () {
                 var form = $(this);                
-                traitementForm(form, "#BouteilleType_typeCuvee");
+                traitementForm(form, "#NouvelleBouteilleType_typeCuvee");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_region', function () {
                 var form = $(this);                
-                traitementForm(form, "#BouteilleType_typeRegion");
+                traitementForm(form, "#NouvelleBouteilleType_typeRegion");
                 return false;
             });
             
             $(document).on('submit', 'form.add_new_pays', function () {
                 var form = $(this);                
-                traitementForm(form, "#BouteilleType_typePays");
+                traitementForm(form, "#NouvelleBouteilleType_typePays");
                 return false;
             });
             

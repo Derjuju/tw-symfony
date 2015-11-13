@@ -37,5 +37,9 @@ back_office_type_regions:
 back_office_type_vins:
     resource: "@BackOfficeBundle/Resources/config/routing/type-vin.yml"
     prefix:     /type-vins
+    
+back_office_selections:
+    resource: "@BackOfficeBundle/Resources/config/routing/selection.yml"
+    prefix:     /selections
 
     

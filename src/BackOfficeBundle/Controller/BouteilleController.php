@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Bouteille;
 use BackOfficeBundle\Form\Type\BouteilleType;
+use BackOfficeBundle\Form\Type\NouvelleBouteilleType;
+
 
 use AppBundle\Entity\TypeDomaine;
 use BackOfficeBundle\Form\Type\TypeDomaineType;
@@ -24,6 +26,7 @@ use AppBundle\Entity\TypeRegion;
 use BackOfficeBundle\Form\Type\TypeRegionType;
 use AppBundle\Entity\TypePays;
 use BackOfficeBundle\Form\Type\TypePaysType;
+use AppBundle\Entity\Image;
 
 class BouteilleController extends Controller
 {    
@@ -74,7 +77,7 @@ class BouteilleController extends Controller
     public function newAction() {
         $entity = new Bouteille();
         $form = $this->createCreateForm($entity);
-
+        
         return $this->render('BackOfficeBundle:Bouteille:new.html.twig', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
@@ -87,22 +90,53 @@ class BouteilleController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        if ($form->isValid()) {            
+            $entity->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($entity);
             $em->flush();
             
-            $aModerer = false;
-
-            if(!$entity->getOnline()){
-                $aModerer = true;
+            //bouteille_default.jpg
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_bouteilles_dir');
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0777, true);
             }
             
-            if($aModerer){
-                return $this->forward('BackOfficeBundle:Bouteille:indexModeration');
-            }else{
-                return $this->forward('BackOfficeBundle:Bouteille:index');
+            $useDefaultAvatar = true;
+            if ($request->files && count($request->files) > 0)
+            {
+                if($request->files->get('photo_image') != null)
+                {
+                    $uploadedFile = $request->files->get('photo_image');
+                    //$nfile = $request->request->get('file_name');
+                    $file=$uploadedFile->getClientOriginalName();
+                    $ext=strrchr($file,'.');
+                    $nfile= date('YmdHis')."_".$entity->getId()."$ext";
+                    if (file_exists($dir . $nfile))
+                    {
+                        unlink($dir . $nfile);
+                    }
+                    $uploadedFile->move($dir, $nfile);
+                    $useDefaultAvatar = false;  
+                }
             }
+            if($useDefaultAvatar){
+                $nfile= date('YmdHis')."_".$entity->getId().".jpg";
+                copy($dir.'bouteille_default.jpg', $dir.$nfile);               
+            }
+            
+                    
+            $image = new Image();
+            $image->setFile($this->container->getParameter('upload_bouteilles_dir') . $nfile);
+            $image->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+            $em->persist($image);
+
+            $entity->setPhoto($image);
+            $em->persist($entity);
+                    
+            $em->flush(); 
+            
+            return $this->redirect($this->generateUrl('back_office_bouteilles'));
         }
 
         return $this->render('BackOfficeBundle:Bouteille:new.html.twig', array(
@@ -113,7 +147,7 @@ class BouteilleController extends Controller
     }
     
     private function createCreateForm(Bouteille $entity) {
-        $form = $this->createForm(new BouteilleType(), $entity, array(
+        $form = $this->createForm(new NouvelleBouteilleType(), $entity, array(
             'action' => $this->generateUrl('back_office_bouteille_create'),
             'method' => 'POST',
         ));
@@ -167,6 +201,44 @@ class BouteilleController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            
+            //bouteille_default.jpg
+            $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_bouteilles_dir');
+            if (!is_dir($dir))
+            {
+                mkdir($dir, 0777, true);
+            }
+            
+            if ($request->files && count($request->files) > 0)
+            {
+                if($request->files->get('photo_image') != null)
+                {
+                    $uploadedFile = $request->files->get('photo_image');
+                    //$nfile = $request->request->get('file_name');
+                    $file=$uploadedFile->getClientOriginalName();
+                    $ext=strrchr($file,'.');
+                    $nfile= date('YmdHis')."_".$entity->getId()."$ext";
+                    if (file_exists($dir . $nfile))
+                    {
+                        unlink($dir . $nfile);
+                    }
+                    $uploadedFile->move($dir, $nfile);
+                    if($entity->getPhoto() != null)
+                    {
+                        $entity->getPhoto()->setFile($this->container->getParameter('upload_bouteilles_dir') . $nfile);
+                    }else{
+                        $image = new Image();
+                        $image->setFile($this->container->getParameter('upload_bouteilles_dir') . $nfile);
+                        $image->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
+                        $em->persist($image);
+
+                        $entity->setPhoto($image);
+                    }
+                }
+            }
+            
+            
+            $em->persist($entity);
             $em->flush();
             
             $aModerer = false;
@@ -174,11 +246,16 @@ class BouteilleController extends Controller
             if(!$entity->getOnline()){
                 $aModerer = true;
             }
-            
+            /*
             if($aModerer){
                 return $this->forward('BackOfficeBundle:Bouteille:indexModeration');
             }else{
                 return $this->forward('BackOfficeBundle:Bouteille:index');
+            }*/
+            if($aModerer){
+                return $this->redirect($this->generateUrl('back_office_bouteilles_a_moderer'));
+            }else{
+                return $this->redirect($this->generateUrl('back_office_bouteilles'));
             }
         }
 

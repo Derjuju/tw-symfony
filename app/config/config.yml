@@ -44,6 +44,10 @@ twig:
         upload_avatars_dir_temp: "%upload_avatars_dir_temp%"
         upload_bouteilles_dir: "%upload_bouteilles_dir%"
         upload_bouteilles_dir_temp: "%upload_bouteilles_dir_temp%"
+        upload_selections_dir: "%upload_selections_dir%"
+        upload_selections_dir_temp: "%upload_selections_dir_temp%"
+        upload_mea_dir: "%upload_mea_dir%"
+        upload_mea_dir_temp: "%upload_mea_dir_temp%"
 
 # Assetic Configuration
 assetic:
@@ -189,3 +193,27 @@ liip_imagine:
             filters:
                 auto_rotate: ~
                 thumbnail: { size: [75, 75], mode: outbound }
+        homepage_selection_1:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [475, 230], mode: outbound }
+        homepage_selection_2:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [230, 475], mode: outbound }
+        homepage_selection_3:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [230, 230], mode: outbound }
+        homepage_selection_4:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [230, 230], mode: outbound }

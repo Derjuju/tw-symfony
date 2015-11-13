@@ -139,7 +139,6 @@ class CaveController extends Controller
 
         if ($form->isValid()) {
             
-            $em = $this->getDoctrine()->getManager();
             $entity->setMember($user);
             $entity->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($entity);
@@ -246,8 +245,6 @@ class CaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            
-            $em = $this->getDoctrine()->getManager();
             
             //bouteille_default.jpg
             $dir = $this->get('kernel')->getRootDir() . "/../web/" . $this->container->getParameter('upload_bouteilles_dir');

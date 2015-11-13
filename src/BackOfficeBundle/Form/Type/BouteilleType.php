@@ -116,7 +116,7 @@ class BouteilleType extends AbstractType
                                 ->orderBy('e.nameFr', 'ASC');
             }))
           ->add('apogee', 'choice', array(     
-            'label'=>'Niveau',
+            'label'=>'Apogée',
             'required' => false,
             'empty_value' => 'Apogée',
             'choices' => $this->buildApogeeChoices()

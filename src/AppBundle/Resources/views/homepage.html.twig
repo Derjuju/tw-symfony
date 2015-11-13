@@ -26,6 +26,17 @@
 		<span class="subtitle">Le meilleur de TrocWine</span>
 
 		<ul class="monthly-pick-thumbnail">
+                    {% for selection in selections %}
+			<li style="background-image: url('{% if selection.photo != null %}{{asset(selection.photo.file|imagine_filter('homepage_selection_'~selection.position))}}{% else %}{{asset('uploads/selections/selection_default.png')}}{% endif %}');">
+				<a href="{{ selection.lien }}" {% if 'http://' in selection.lien or 'https://' in selection.lien %}target="_blank"{% endif %}>
+					<div class="content">
+                                            {% if selection.titreFr|length > 0 %}<h3 class="title">{{ selection.titreFr|nl2br }}</h3>{% endif %}
+                                            {% if selection.sousTitreFr|length > 0 %}<p class="description">{{ selection.sousTitreFr|nl2br }}</p>{% endif %}						
+					</div>
+				</a>
+			</li>
+                    {% endfor %}
+                    {#    
 			<li style="background-image: url('{{asset('img/pick-1.jpg')}}');">
 				<a href="{{path('front_cave', {'id':22}) }}">
 					<div class="content">
@@ -58,6 +69,7 @@
 					</div>
 				</a>
 			</li>
+                        #}
 		</ul>
 	</section>
     </section>
@@ -71,7 +83,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             {% if connexion is defined %}
-                    showLogin();
+                {% if connexion == true %}
+                showLogin();
+                {% endif %}
             {% endif %}
         });
     </script>

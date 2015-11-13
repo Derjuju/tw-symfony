@@ -1,5 +1,9 @@
-<div class="row">
+<div class="row">   
+    {% if entity.id is not null %}
     <div class="col-lg-12"><p><a href="{% if entity.online == 0 %}{{path('back_office_bouteilles_a_moderer')}}{% else %}{{path('back_office_bouteilles')}}{% endif %}" class="btn btn-default btn-sm" role="button"><i class="fa fa-caret-left fa-fw"></i> Retour</a></p></div>
+    {% else %}
+    <div class="col-lg-12"><p><a href="{{path('back_office_bouteilles')}}" class="btn btn-default btn-sm" role="button"><i class="fa fa-caret-left fa-fw"></i> Retour</a></p></div>
+    {% endif %}
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->

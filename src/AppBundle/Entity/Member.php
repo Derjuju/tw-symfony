@@ -836,6 +836,10 @@ class Member  implements UserInterface
         return $total;
     }
     
+    public function getMenuDeroulant(){
+        return $this->lastname." ".$this->firstname." [".$this->login."]";
+    }
+    
     
 
     public function generatePassword(PasswordEncoderInterface $encode, SecureRandomInterface $securRandom) {

@@ -180,7 +180,7 @@ class Bouteille
     }
     
     public function __construct() {
-        $this->online = 0;
+        $this->online = false;
         $this->reserved = 0;
         $this->createdAt = new \Symfony\Component\Validator\Constraints\DateTime();
         $this->inTroc = new ArrayCollection();
