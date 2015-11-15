@@ -1,0 +1,25 @@
+back_office_meas:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:Mea:index" }
+
+back_office_mea_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:Mea:new" }
+
+back_office_mea_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:Mea:create" }
+    methods:  POST
+
+back_office_mea_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:Mea:edit" }
+
+back_office_mea_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:Mea:update" }
+    methods:  [POST, PUT] 
+
+back_office_mea_active:
+    path:     /{id}/active
+    defaults: { _controller: "BackOfficeBundle:Mea:active" }

@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Inscription</source>
+                <target>Inscription</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Connexion</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Mode d'emploi</source>
+                <target>Mode d'emploi</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Rechercher une bouteille</source>
+                <target>Rechercher une bouteille</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Rechercher un troqueur</source>
+                <target>Rechercher un troqueur</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Troqueurs autour de vous</source>
+                <target>Troqueurs autour de vous</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Troquez des vins d'exception</source>
+                <target>Troquez des vins d'exception</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Échangez vos bouteilles de vins entre amateurs ou experts</source>
+                <target>Échangez vos bouteilles de vins entre amateurs ou experts</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Tous les vins à l'échange</source>
+                <target>Tous les vins à l'échange</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Notre sélection du mois</source>
+                <target>Notre sélection du mois</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Le meilleur de TrocWine</source>
+                <target>Le meilleur de TrocWine</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Une Question ?</source>
+                <target>Une Question ?</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Ma Cave</source>
+                <target>Ma Cave</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Messages</source>
+                <target>Messages</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Ajouter une bouteille</source>
+                <target>Ajouter une bouteille</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Accueil</source>
+                <target>Accueil</target>
+            </trans-unit>            
+            <trans-unit id="17">
+                <source>Notre histoire</source>
+                <target>Notre histoire</target>
+            </trans-unit>            
+            <trans-unit id="18">
+                <source>Contact</source>
+                <target>Contact</target>
+            </trans-unit>            
+            <trans-unit id="19">
+                <source>Partenaires</source>
+                <target>Partenaires</target>
+            </trans-unit>            
+            <trans-unit id="20">
+                <source>Presse</source>
+                <target>Presse</target>
+            </trans-unit>            
+            <trans-unit id="21">
+                <source>Plan du site</source>
+                <target>Plan du site</target>
+            </trans-unit>            
+            <trans-unit id="22">
+                <source>Mon espace</source>
+                <target>Mon espace</target>
+            </trans-unit>            
+            <trans-unit id="23">
+                <source>L'abus d'alcool est dangereux pour la santé, à consommer avec modération</source>
+                <target>L'abus d'alcool est dangereux pour la santé, à consommer avec modération</target>
+            </trans-unit>            
+            <trans-unit id="24">
+                <source>Mentions légales</source>
+                <target>Mentions légales</target>
+            </trans-unit>            
+            <trans-unit id="25">
+                <source>Politique de Cookies</source>
+                <target>Politique de Cookies</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Type</source>
+                <target>Type</target>
+            </trans-unit>  
+            <trans-unit id="27">
+                <source>Région</source>
+                <target>Région</target>
+            </trans-unit> 
+            <trans-unit id="28">
+                <source>Millésime</source>
+                <target>Millésime</target>
+            </trans-unit> 
+            <trans-unit id="29">
+                <source>Pays</source>
+                <target>Pays</target>
+            </trans-unit> 
+            <trans-unit id="30">
+                <source>Rechercher</source>
+                <target>Rechercher</target>
+            </trans-unit> 
+            <trans-unit id="31">
+                <source>Niveau</source>
+                <target>Niveau</target>
+            </trans-unit> 
+            <trans-unit id="32">
+                <source>Consultez sa cave</source>
+                <target>Consultez sa cave</target>
+            </trans-unit>           
+            <trans-unit id="33">
+                <source>Notre Histoire</source>
+                <target>Notre Histoire</target>
+            </trans-unit>           
+            <trans-unit id="34">
+                <source>Identification</source>
+                <target>Identification</target>
+            </trans-unit>           
+            <trans-unit id="35">
+                <source>Veuillez vous identifier</source>
+                <target>Veuillez vous identifier</target>
+            </trans-unit>                       
+            <trans-unit id="36">
+                <source>Mon identifiant</source>
+                <target>Mon identifiant</target>
+            </trans-unit>                      
+            <trans-unit id="37">
+                <source>Mot de passe</source>
+                <target>Mot de passe</target>
+            </trans-unit>                      
+            <trans-unit id="38">
+                <source>Je n'arrive pas à me connecter à mon espace</source>
+                <target>Je n'arrive pas à me connecter à mon espace</target>
+            </trans-unit>                      
+            <trans-unit id="39">
+                <source>Pas encore inscrit ?</source>
+                <target>Pas encore inscrit ?</target>
+            </trans-unit>                      
+            <trans-unit id="40">
+                <source>Problème de connexion</source>
+                <target>Problème de connexion</target>
+            </trans-unit>                    
+            <trans-unit id="41">
+                <source>Veuillez saisir votre pseudo ou votre adresse e-mail.</source>
+                <target>Veuillez saisir votre pseudo ou votre adresse e-mail.</target>
+            </trans-unit>                    
+            <trans-unit id="42">
+                <source>Modifier</source>
+                <target>Modifier</target>
+            </trans-unit>                   
+            <trans-unit id="43">
+                <source>Adresse</source>
+                <target>Adresse</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

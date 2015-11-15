@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Presse - {{ parent() }}{% endblock %}
+{% block title %}{{"Presse"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}presse{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Presse" %}
+    {% set titreH1 = "Presse"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
@@ -14,69 +14,15 @@
     {{ parent() }}
     <section class="presse-wrapper wrapper">
 	<ul>
+            {% for presse in presses %}
             <li>
-                <a href="http://lesgourmands2-0.com/2014/10/07/trocwine-le-premier-site-dechange-de-bouteilles-de-vins/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-4.png')}}');"></div>
-                    <h3 class="presse-name">Les Gourmands 2.0</h3>
-                    <time class="date-review" datetime="2014-10-07 ">07 / 10 / 2014</time>
+                <a href="{{presse.lien}}" target="_blank">
+                    <div class="image-container" style="background-image: url('{% if presse.photo != null %}{{asset(presse.photo.file|imagine_filter('section_presse'))}}{% else %}{{asset('uploads/presse/presse_default.png')}}{% endif %}');"></div>
+                    <h3 class="presse-name">{% if app.session.get( '_locale' ) == 'en' %}{{presse.titreUk}}{% else %}{{presse.titreFr}}{% endif %}</h3>
+                    <time class="date-review" datetime="{{presse.createdAt|date('Y-m-d')}}">{% if app.session.get( '_locale' ) == 'en' %}{{presse.createdAt|date('m / d / Y')}}{% else %}{{presse.createdAt|date('d / m / Y')}}{% endif %}</time>
                 </a>
             </li>
-            <li>
-                <a href="http://foodwineandstyle.com/2014/10/16/soutenez-trocwine-sur-fundovino/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-foodwineandstyle.png')}}');"></div>
-                    <h3 class="presse-name">Food Wine and Style</h3>
-                    <time class="date-review" datetime="2014-10-16 ">16 / 10 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://mag.lyonresto.com/article/chez-soi/trocwine-le-site-de-troc-entre-amateurs-de-vin/4288.html" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-5.png')}}');"></div>
-                    <h3 class="presse-name">lyonresto.com</h3>
-                    <time class="date-review" datetime="2014-10-27 ">27 / 10 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.maddyness.com/startup/2014/10/31/startups-trocwine-ufx-bizmarks-et-save-my-smartphone/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-maddyness.png')}}');"></div>
-                    <h3 class="presse-name">Maddyness</h3>
-                    <time class="date-review" datetime="2014-10-31 ">31 / 10 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://lentreprise.lexpress.fr/creation-entreprise/idees-business/trocwine-troc-en-ligne-de-bouteilles-de-vin_1618414.html" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-lesxpresse.png')}}');"></div>
-                    <h3 class="presse-name">L'Express - L'entreprise</h3>
-                    <time class="date-review" datetime="2014-11-04 ">04 / 11 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.agro-media.fr/actualite/vin-trocwine-premier-site-troc-vin-16875.html" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-agromedia.png')}}');"></div>
-                    <h3 class="presse-name">Agro Media</h3>
-                    <time class="date-review" datetime="2014-11-05 ">05 / 11 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://laboiteactu.blogbachelor.fr/2014/11/07/trocwine-un-ovni-dans-le-monde-du-vin/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-3.png')}}');"></div>
-                    <h3 class="presse-name">Business Box</h3>
-                    <time class="date-review" datetime="2014-11-07 ">07 / 11 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.terredevins.com/actualites/hep-garcon-trocwine/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-2.png')}}');"></div>
-                    <h3 class="presse-name">Terre de vin</h3>
-                    <time class="date-review" datetime="2014-11-12 ">12 / 11 / 2014</time>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.journaldunet.com/economie/magazine/idees-de-business-dans-le-vin/trocwine.shtml" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/presse-1.png')}}');"></div>
-                    <h3 class="presse-name">Journal du net</h3>
-                    <time class="date-review" datetime="2015-01-13 ">13 / 01 / 2015</time>
-                </a>
-            </li>
+            {% endfor %}
         </ul>
     </section>
 {% endblock %}

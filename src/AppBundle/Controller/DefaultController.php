@@ -38,12 +38,50 @@ class DefaultController extends Controller
     
     private function homepageGenerateAction($connexion) {
         $em = $this->getDoctrine()->getManager();
+        
+        $meas = $em->getRepository('AppBundle:Mea')->findBy(array('actif'=>1),array('position'=>'ASC'));
+        
         $selections = $em->getRepository('AppBundle:Selection')->findBy(array(),array('position'=>'ASC'));
         
         return $this->render("AppBundle::homepage.html.twig", array(
             'connexion'=>$connexion,
+            'meas'=>$meas,
             'selections'=>$selections
         ));
+    }
+    
+    /**
+     * @Route("/toggle_lang/{lang}",name="toggle_lang")          
+     */
+    public function toggleLangAction($lang) {
+        
+        if(!in_array($lang, array('fr','en'))){            
+            $lang = 'fr';
+        }
+        
+        $this->get('request')->attributes->set('_locale', null);
+        
+        $request = $this->getRequest();
+
+        // get last requested path
+        $referer = $request->server->get('HTTP_REFERER');
+        $lastPath = substr($referer, strpos($referer, $request->getBaseUrl()));
+        $lastPath = str_replace($request->getBaseUrl(), '', $lastPath);
+
+        // get last route
+        $matcher = $this->get('router')->getMatcher();
+        $parameters = $matcher->match($lastPath);
+
+        // set new locale (to session and to the route parameters)
+        //$parameters['_locale'] = $lang;
+        $this->get('session')->set('_locale', $lang);
+
+        // default parameters has to be unsetted!
+        $route = $parameters['_route'];
+        unset($parameters['_route']);
+        unset($parameters['_controller']);
+
+        return $this->redirect($this->generateUrl($route, $parameters));                
     }
     
     /**
@@ -57,7 +95,13 @@ class DefaultController extends Controller
      * @Route("/partenaires",name="front_partenaires")          
      */
     public function partenairesAction() {
-        return $this->render("AppBundle:Pages:partenaires.html.twig");
+        $em = $this->getDoctrine()->getManager();
+        
+        $partenaires = $em->getRepository('AppBundle:Partenaire')->findBy(array('actif'=>1),array('position'=>'ASC'));
+        
+        return $this->render("AppBundle:Pages:partenaires.html.twig", array(
+            'partenaires'=>$partenaires
+        ));
     }
     
     /**
@@ -71,7 +115,13 @@ class DefaultController extends Controller
      * @Route("/presse",name="front_presse")          
      */
     public function presseAction() {
-        return $this->render("AppBundle:Pages:presse.html.twig");
+        $em = $this->getDoctrine()->getManager();
+        
+        $presses = $em->getRepository('AppBundle:Presse')->findBy(array('actif'=>1),array('createdAt'=>'ASC'));
+        
+        return $this->render("AppBundle:Pages:presse.html.twig", array(
+            'presses'=>$presses
+        ));
     }
     
     /**

@@ -38,8 +38,20 @@ back_office_type_vins:
     resource: "@BackOfficeBundle/Resources/config/routing/type-vin.yml"
     prefix:     /type-vins
     
+back_office_meas:
+    resource: "@BackOfficeBundle/Resources/config/routing/mea.yml"
+    prefix:     /meas
+    
 back_office_selections:
     resource: "@BackOfficeBundle/Resources/config/routing/selection.yml"
     prefix:     /selections
+    
+back_office_partenaires:
+    resource: "@BackOfficeBundle/Resources/config/routing/partenaire.yml"
+    prefix:     /partenaires
+    
+back_office_presses:
+    resource: "@BackOfficeBundle/Resources/config/routing/presse.yml"
+    prefix:     /presses
 
     

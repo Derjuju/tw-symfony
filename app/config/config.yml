@@ -48,6 +48,10 @@ twig:
         upload_selections_dir_temp: "%upload_selections_dir_temp%"
         upload_mea_dir: "%upload_mea_dir%"
         upload_mea_dir_temp: "%upload_mea_dir_temp%"
+        upload_presse_dir: "%upload_presse_dir%"
+        upload_presse_dir_temp: "%upload_presse_dir_temp%"
+        upload_partenaire_dir: "%upload_partenaire_dir%"
+        upload_partenaire_dir_temp: "%upload_partenaire_dir_temp%"
 
 # Assetic Configuration
 assetic:
@@ -193,6 +197,12 @@ liip_imagine:
             filters:
                 auto_rotate: ~
                 thumbnail: { size: [75, 75], mode: outbound }
+        homepage_mea:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [228, 228], mode: outbound }
         homepage_selection_1:
             quality: 75
             cache: ~
@@ -217,3 +227,15 @@ liip_imagine:
             filters:
                 auto_rotate: ~
                 thumbnail: { size: [230, 230], mode: outbound }
+        section_presse:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [175, 175], mode: outbound }
+        section_partenaire:
+            quality: 75
+            cache: ~
+            filters:
+                auto_rotate: ~
+                thumbnail: { size: [175, 175], mode: outbound }

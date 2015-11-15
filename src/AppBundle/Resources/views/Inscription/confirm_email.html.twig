@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Inscription - {{ parent() }}{% endblock %}
+{% block title %}{{"Inscription"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}inscription{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Inscription" %}
+    {% set titreH1 = "Inscription"|trans %}
     {{ parent() }}
 {% endblock %}
 
@@ -14,9 +14,15 @@
     <div class="site-wrapper"> 
         <div class="row"> 
             <div class="wrapper">  
+                {% if app.session.get( '_locale' ) == 'en' %}
+                <h2>Email confirmed.</h2>
+                <p>Your email has been confirmed.</p>
+                <p>You can log and manage your cellar by <a href="#" onClick="showLogin(); return false;">signing here</a></p>
+                {% else %}
                 <h2>Confirmation de votre adresse mail.</h2>
                 <p>Votre adresse a bien été confirmée.</p>
                 <p>Vous pouvez accéder à votre espace en vous <a href="#" onClick="showLogin(); return false;">identifiant ici</a></p>
+                {% endif %}
             </div>
         </div>
     </div>

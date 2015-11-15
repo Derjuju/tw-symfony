@@ -1,0 +1,7 @@
+{% set route_params = path('toggle_lang', {'lang':'en'}) %}
+
+{% if app.session.get( '_locale' ) == 'en' %}
+{% set route_params = path('toggle_lang', {'lang':'fr'}) %}
+{% endif %}
+
+<a href="{{ route_params }}" class="langSelector"><img src="{% if app.session.get( '_locale' ) == 'en' %}{{asset('img/fr.png')}}{% else %}{{asset('img/uk.png')}}{% endif %}"></a>

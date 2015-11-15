@@ -274,3 +274,219 @@ body.bouteilles .row{ margin-bottom: 10px;}
 .popover-content {
     white-space: pre-line;
 }
+
+/* MEAS HOME */
+
+body.meas .bloc-mea-wrapper{
+    max-width: 100%;
+    position:relative;
+}
+body.meas .bloc-mea {
+    float: left;
+    margin: 0 1% 2% 0;
+    position: relative;
+    width: 24%;
+}
+body.meas .bloc-mea span.etiquetteNom {
+    position: absolute;
+    top: 90px;
+    left: 5%;
+    width: 90%;
+    text-align: center;
+    z-index: 10;
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: block;    
+}
+
+body.meas .mea-image.mini {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;   
+    width:247px;
+    height: 227px;
+    margin-right: 1%;
+    overflow: hidden;
+}
+
+body.meas .bloc-mea a.btn-active{
+    position: absolute;
+    bottom: 10px;
+    left: 80px;
+    z-index: 10;
+}
+
+body.meas .mea-image.mea-image-edit {       
+    width:247px;
+    height: 227px;
+    background: center no-repeat #ddd;
+    background-size: cover;
+    margin:0 auto;
+}
+
+
+/* PRESSE */
+
+.presse-image {
+    height: 175px;
+    background: center no-repeat #ddd;
+    background-size: cover;
+}
+body.presses .bloc-presse-wrapper{
+    max-width: 100%;
+    position:relative;
+}
+body.presses .bloc-presse {
+    float: left;
+    margin: 0 1% 2% 0;
+    position: relative;
+    width: 16%;
+    min-width: 175px;
+}
+body.presses .bloc-presse span.etiquetteNom {
+    position: relative;    
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    display: block; 
+    
+    font-family: Vollkorn,serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #740612;
+    margin: 0;
+}
+body.presses .bloc-presse span.etiquette {
+    position: relative;    
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    display: block; 
+    
+    font-family: sans-serif;
+    font-size: .8em;
+    font-weight: 300;
+    color: #8E8E8E;
+    margin: 0;
+}
+
+body.presses .presse-image.mini {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;   
+    width:175px;
+    height: 175px;
+    margin-right: 1%;
+    overflow: hidden;
+}
+
+body.presses .bloc-presse a.btn-edit{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 10;
+}
+
+body.presses .bloc-presse a.btn-active{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 10;
+}
+
+body.presses .presse-image.presse-image-edit {       
+    width:175px;
+    height: 175px;
+    background: center no-repeat #ddd;
+    background-size: cover;
+    margin:0 auto;
+}
+
+body.presses .checkbox input[type=checkbox] {
+    margin-top:-7px;
+}
+
+
+/* PARTENAIRE */
+
+.partenaire-image {
+    height: 175px;
+    background: center no-repeat #ddd;
+    background-size: cover;
+}
+body.partenaires .bloc-partenaire-wrapper{
+    max-width: 100%;
+    position:relative;
+}
+body.partenaires .bloc-partenaire {
+    float: left;
+    margin: 0 1% 2% 0;
+    position: relative;
+    width: 16%;
+}
+body.partenaires .bloc-partenaire span.etiquetteNom {
+    position: relative;    
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    display: block; 
+    
+    font-family: Vollkorn,serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #740612;
+    margin: 0;
+}
+body.partenaires .bloc-partenaire span.etiquette {
+    position: relative;    
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    display: block; 
+    
+    font-family: sans-serif;
+    font-size: .8em;
+    font-weight: 300;
+    color: #8E8E8E;
+    margin: 0;
+}
+
+body.partenaires .partenaire-image.mini {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;   
+    width:175px;
+    height: 175px;
+    margin-right: 1%;
+    overflow: hidden;
+}
+
+body.partenaires .bloc-partenaire a.btn-edit{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 10;
+}
+
+body.partenaires .bloc-partenaire a.btn-active{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 10;
+}
+
+body.partenaires .partenaire-image.partenaire-image-edit {       
+    width:175px;
+    height: 175px;
+    background: center no-repeat #ddd;
+    background-size: cover;
+    margin:0 auto;
+}
+
+body.partenaires .checkbox input[type=checkbox] {
+    margin-top:-7px;
+}

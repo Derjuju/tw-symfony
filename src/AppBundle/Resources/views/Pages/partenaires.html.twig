@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Partenaires - {{ parent() }}{% endblock %}
+{% block title %}{{"Partenaires"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}partenaires{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Partenaires" %}
+    {% set titreH1 = "Partenaires"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
@@ -14,20 +14,15 @@
     {{ parent() }}
     <section class="presse-wrapper wrapper">
 	<ul>
+            {% for partenaire in partenaires %}
             <li>
-                <a href="http://www.troc-cadeaux.com/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/partenaire-troc-cadeaux.jpg')}}');"></div>
-                    <h3 class="presse-name">Troc cadeaux</h3>
+                <a href="{{partenaire.lien}}" target="_blank">
+                    <div class="image-container" style="background-image: url('{% if partenaire.photo != null %}{{asset(partenaire.photo.file|imagine_filter('section_partenaire'))}}{% else %}{{asset('uploads/partenaire/partenaire_default.png')}}{% endif %}');"></div>
+                    <h3 class="presse-name">{% if app.session.get( '_locale' ) == 'en' %}{{partenaire.titreUk}}{% else %}{{partenaire.titreFr}}{% endif %}</h3>
                     <time class="date-review" datetime=""></time>
                 </a>
             </li>
-            <li>
-                <a href="http://vinexplore.com/" target="_blank">
-                    <div class="image-container" style="background-image: url('{{asset('img/partenaire-vinexplore.jpg')}}');"></div>
-                    <h3 class="presse-name">Vinexplore</h3>
-                    <time class="date-review" datetime=""></time>
-                </a>
-            </li>
+            {% endfor %}
         </ul>
     </section>
 {% endblock %}

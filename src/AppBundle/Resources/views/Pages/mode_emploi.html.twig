@@ -1,18 +1,87 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Mode d'emploi - {{ parent() }}{% endblock %}
+{% block title %}{{"Mode d'emploi"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}mode-emploi{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Mode d'emploi" %}
+    {% set titreH1 = "Mode d'emploi"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
 
 {% block content %}
     {{ parent() }}
+    {% if app.session.get( '_locale' ) == 'en' %}
                 <section class="how-to-wrapper">
+                    <div class="row usage-steps-container">
+                            <div class="wrapper">
+                                    <div class="left">
+                                            <h3>Create your profil</h3>
+                                    </div>
+                                    <div class="right">
+                                            <div class="span">
+                                                    <i class="icon-cave-big"></i>
+
+                                                    <p>Post on TrocWine 
+                                                        the bottles you want 
+                                                        to exchange.</p>
+                                            </div>
+                                            <div class="span">
+                                                    <i class="icon-magnifier-big"></i>
+
+                                                    <p>Find 
+                                                        your dreamed bottles,</p>
+                                            </div>
+                                            <div class="span">
+                                                    <i class="icon-swap-bottle-big"></i>
+
+                                                    <p>once found, 
+                                                        make the best offer 
+                                                        to the best swapper !</p>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="wrapper">
+                                    <div class="left">
+                                            <h3>The Swap</h3>
+                                    </div>
+                                    <div class="right">
+                                            <div class="col-6">
+                                                    <i class="icon-map-big"></i>
+                                                    <p>The offer accepted, 
+                                                        TrocWine provides you 
+                                                        the best places closer to you 
+                                                        in order to finalize your swap.</p>
+                                            </div>
+                                            <div class="col-6">
+                                                    <i class="icon-swap-place-big"></i>
+                                                    <p>These places can be wine bars, 
+                                                        french « bistrots » or restaurants selected 
+                                                        for their host quality or wine list.</p>
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="row limit-exchange-container">
+                            <div class="wrapper">
+                                    <div class="left">
+                                            <h3>Limit?</h3>
+                                    </div>
+                                    <div class="right">
+                                            <p>
+                                                    No limit ! You can swap as many bottles as you want… 
+                                                    One against one hundred if it’s decided by the two swappers. 
+                                            </p>
+                                            <p><span class="red">Your single currency is wine !</span></p>
+                                    </div>
+                            </div>
+                    </div>
+            </section>
+    {% else %}
+            <section class="how-to-wrapper">
                     <div class="row usage-steps-container">
                             <div class="wrapper">
                                     <div class="left">
@@ -79,6 +148,7 @@
                             </div>
                     </div>
             </section>
+    {% endif %}
 {% endblock %}
 
 

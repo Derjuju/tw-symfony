@@ -1,0 +1,69 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% block bodyclass %}meas{% endblock %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:Mea:_type_contenu.html.twig" %}
+    
+    <div class="row">
+        <div class="col-lg-12"><p><a href="{{path('back_office_mea_new')}}" class="btn btn-primary btn-lg" role="button">Ajouter une mise en avant</a></p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Choisir une des mises en avant à éditer
+                </div>
+                <!-- /.panel-heading -->
+                
+                <div class="panel-heading mea-active">
+                    Mises en avant actives (Attention ne garder que 4 actives maximum)
+                </div>
+                <!-- /.panel-heading -->
+                <div class="bloc-mea-wrapper">
+                    {% set separatorActif = true %}
+                    {% for mea in meas %}
+                        {% if separatorActif == true and mea.actif == 0 %}
+                            {% set separatorActif = false %}
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-heading mea-inactive">
+                            Mises en avant inactives
+                        </div>
+                        <!-- /.panel-heading -->
+                        {% endif %}
+                        <div class="bloc-mea">
+                            <span class="etiquette">{{mea.position}}</span>
+                            <span class="etiquetteNom">{{mea.nameFr}}</span>
+                            <div class="mea-image mini" style="background-image: url('{% if mea.photo != null %}{{asset(mea.photo.file|imagine_filter('homepage_mea'))}}{% else %}{{asset('uploads/mea/mea_default.png')}}{% endif %}');"></div>
+                            <a class="btn btn-primary btn-edit btn-xs" href="{{path('back_office_mea_edit',{'id':mea.id})}}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                            <a class="btn {% if mea.actif == 0 %}btn-success{% else %}btn-danger{% endif %} btn-active btn-xs" href="{{path('back_office_mea_active',{'id':mea.id})}}">{% if mea.actif == 0 %}<i class="fa fa-check fa-fw"></i> Activer{% else %}<i class="fa fa-times fa-fw"></i> Désactiver{% endif %}</a>
+                        </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        
+    });
+    </script>
+{% endblock %}

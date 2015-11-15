@@ -1,0 +1,73 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% block bodyclass %}meas{% endblock %}
+
+{% form_theme edit_form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:Mea:_type_contenu.html.twig" %}
+
+    {% include "BackOfficeBundle:Mea:_back_liste.html.twig" %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default col-lg-6">
+                    {{ form_start(edit_form) }}
+                    
+                    <div class="row">
+                        <div class="upload-image-container">
+                                <div class="mea-image mea-image-edit" {% if entity.photo != null %}style="background-image: url('{% if entity.photo != null %}{{asset(entity.photo.file)}}{% else %}{{asset('uploads/mea/mea_default.png')}}{% endif %}');"{% endif %}></div>
+                                <div class="input-hidden">
+                                        <input type="file" name="photo_image" id="file_picker" data-class-dest="mea-image"/>
+                                        {{ form_widget(edit_form.photo, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+                                </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                    {{ form_row(edit_form.nameFr, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_row(edit_form.nameUk, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_row(edit_form.position, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_row(edit_form.actif, { 'attr' : { 'class' : 'form-control' } }) }}
+                    </div>
+                    <div class="row">
+                    {{ form_label(edit_form.referenceVin) }}
+                        <button type="button" class="btn bt-help-tooltip btn-circle" data-container="body" data-toggle="popover" data-placement="right" data-content="Il faut indiquer la référence saisie dans le référentiel TypeDeVin.
+                                Pour une référence 'Autres régions', il faut indiquer : others-regions" data-original-title="" title="">
+                            <i class="fa fa-question"></i>
+                        </button>
+                    {{ form_widget(edit_form.referenceVin, { 'attr' : { 'class' : 'form-control' } }) }}                    
+                    {{ form_errors(edit_form.referenceVin) }}
+                    </div>
+                    <div class="row">
+                    {{ form_widget(edit_form.submit, { 'attr' : { 'class' : 'btn submit btn-primary col-lg-6'} }) }}
+                    </div>
+                    {{ form_end(edit_form) }}
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+       
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        
+    });
+    </script>
+{% endblock %}

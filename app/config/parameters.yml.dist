@@ -39,3 +39,7 @@ parameters:
     upload_selections_dir_temp: /uploads/selections/temp/
     upload_mea_dir: uploads/mea/
     upload_mea_dir_temp: /uploads/mea/temp/
+    upload_presse_dir: uploads/presse/
+    upload_presse_dir_temp: /uploads/presse/temp/
+    upload_partenaire_dir: uploads/partenaire/
+    upload_partenaire_dir_temp: /uploads/partenaire/temp/

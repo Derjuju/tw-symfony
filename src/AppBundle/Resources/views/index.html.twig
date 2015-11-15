@@ -5,14 +5,33 @@
 {% block body %}
     {{ parent() }}
     <div class="prehome-bg"></div>
+    {% include "AppBundle:Interface:_langue_selector.html.twig" %}</div>
     <div class="wrapper">
             <section class="prehome-container">
                     <header>
+                        {% if app.session.get( '_locale' ) == 'en' %}
+                            <p class="greetings-title">Welcome<br>on</p>
+                            <h1 class="full-logo">TrocWine</h1>
+                            <h2>Constituez votre cave sans dépenser un centime.</h2>
+                        {% else %}
                             <p class="greetings-title">Bienvenue<br>sur</p>
                             <h1 class="full-logo">TrocWine</h1>
                             <h2>Constituez votre cave sans dépenser un centime.</h2>
+                        {% endif %}
                     </header>
                     <article class="prehome-disclamer">
+                        {% if app.session.get( '_locale' ) == 'en' %}
+                            <p><!--
+                            -->To enter in our website, 
+                                    you should be old enough to consume 
+                                    alcohol under the laws in force 
+                                    in your country of residence. 
+                                    
+                                    If there is no legislation 
+                                    in this regard in your country 
+                                    you must be 21 years minimum.
+                            </p>
+                        {% else %}
                             <p><!--
                             -->Pour visiter notre site,
                                     vous devez être en âge de consommer
@@ -24,6 +43,7 @@
                                     vous devez être âgé
                                     de 21 ans au moins.
                             </p>
+                        {% endif %}
                             <a href="{{path('front_accueil')}}" class="btn-ok">Ok</a>
                     </article>
             </section>

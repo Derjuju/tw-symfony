@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Problème de connexion - {{ parent() }}{% endblock %}
+{% block title %}{{"Problème de connexion"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}pbconnexion{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Problème de connexion" %}
+    {% set titreH1 = "Problème de connexion"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
@@ -15,12 +15,12 @@
     <div class="site-wrapper"> 
         <div class="row"> 
             <div class="wrapper main-wrapper">  
-                <h2>Problème de connexion</h2>
+                <h2>{{"Problème de connexion"|trans}}</h2>
                 <p></p>
                 
                 {% if emailValid!=1 %}
                 <div class="text-box">
-                     <p class="title">Veuillez saisir votre pseudo ou votre adresse e-mail.</p>
+                     <p class="title">{{"Veuillez saisir votre pseudo ou votre adresse e-mail."|trans}}</p>
 
                 </div>
                 <section class="subscribe-wrapper wrapper">
@@ -42,14 +42,23 @@
                             {{ form_widget(email_form.Envoyer, { 'attr': {'class': 'col-6 btn-default'} }) }}
                         </div>
                         <div>
+                            {% if app.session.get( '_locale' ) == 'en' %}
+                                <p class="desc">You will receive a mail with a temporary password<br> in the mailbox you have provided.</p>  
+                                <p class="asterisque">* Please fill at least one of the fields.</p>  
+                            {% else %}
                                 <p class="desc">Vous allez recevoir un e-mail avec votre mot de passe temporaire<br> à l'adresse e-mail que vous nous avez communiquée.</p>  
                                 <p class="asterisque">* Merci de remplir un des deux champs.</p>  
+                            {% endif %}
                         </div>
                 {{ form_end(email_form) }}  
                 </section>                            
                 {% else %}       
                 <div class="text-box padded">
-                     <p class="desc">Vous allez recevoir un e-mail avec votre mot de passe temporaire<br> à l'adresse e-mail que vous nous avez communiquée.</p> 
+                    {% if app.session.get( '_locale' ) == 'en' %}
+                    <p class="desc">You will receive a mail with a temporary password<br> in the mailbox you have provided.</p> 
+                    {% else %}
+                    <p class="desc">Vous allez recevoir un e-mail avec votre mot de passe temporaire<br> à l'adresse e-mail que vous nous avez communiquée.</p> 
+                    {% endif %}
                 </div>
                 {% endif %}
                 

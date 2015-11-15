@@ -1,0 +1,25 @@
+back_office_presses:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:Presse:index" }
+
+back_office_presse_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:Presse:new" }
+
+back_office_presse_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:Presse:create" }
+    methods:  POST
+
+back_office_presse_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:Presse:edit" }
+
+back_office_presse_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:Presse:update" }
+    methods:  [POST, PUT] 
+
+back_office_presse_active:
+    path:     /{id}/active
+    defaults: { _controller: "BackOfficeBundle:Presse:active" }

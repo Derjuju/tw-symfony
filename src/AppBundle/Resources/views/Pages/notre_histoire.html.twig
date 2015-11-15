@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Notre Histoire - {{ parent() }}{% endblock %}
+{% block title %}{{"Notre Histoire"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}notre-histoire{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Notre Histoire" %}
+    {% set titreH1 = "Notre Histoire"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
@@ -16,15 +16,32 @@
     <section class="qui-sommes-nous-wrapper">
         <div class="row">
                 <div class="wrapper">
+                    {% if app.session.get( '_locale' ) == 'en' %}
+                        <h3>TrocWine is the first website dedicated to swap bottle of wine bottles online.</h3>
+                    {% else %}                        
                         <h3>TrocWine c’est le premier site exclusivement dédié à l’échange de bouteilles de vins en ligne. Pour la première fois, particuliers comme professionnels pourront acquérir les bouteilles de leur choix sans dépenser un centime.</h3>
+                    {% endif %}                           
                 </div>
         </div>
         <div class="row">
                 <div class="wrapper">
                         <div class="left">
+                            {% if app.session.get( '_locale' ) == 'en' %}
+                                <h2>Why we created Troc<i>W</i>ine ?</h2>
+                            {% else %}
                                 <h2>Pourquoi avoir créer Troc<i>W</i>ine ?</h2>
+                            {% endif %}
                         </div>
                         <div class="right">
+                            {% if app.session.get( '_locale' ) == 'en' %}
+                                <ul>
+                                        <li>To create your proper wine cellar without spending money.</li>
+                                        <li>To fight against price inflation.</li>
+                                        <li>To fight against wine critics who decide everything.</li>
+                                        <li>To drink and find « Grands Crus » without spending money.</li>
+                                        <li>To extend the love and passion for wine.</li>
+                                </ul>
+                            {% else %}
                                 <ul>
                                         <li>Pour acquérir sans débourser.</li>
                                         <li>Pour lutter contre l’inflation du prix des bouteilles.</li>
@@ -33,6 +50,7 @@
                                         <li>Pour enfin accéder aux Grands Crus sans dépenser des milles.</li>
                                         <li>Pour étendre l’amour de ce breuvage.</li>
                                 </ul>
+                            {% endif %}
                         </div>
                 </div>
         </div>
@@ -40,13 +58,20 @@
                 <div class="wrapper">
                         <div class="left">
                                 <div class="image-container" style="background-image: url('{{asset('img/arthur.png')}}');"></div>
-                                <a href="{{path('front_cave', {'id':17}) }}" class="btn-default btn-serif">Consultez sa cave</a>
+                                <a href="{{path('front_cave', {'id':17}) }}" class="btn-default btn-serif">{{"Consultez sa cave"|trans}}</a>
                         </div>
                         <div class="right">
+                            {% if app.session.get( '_locale' ) == 'en' %}                                   
+                                <p>« I have always been passionate.
+                                        Wine is an infinite world . I stop everything to devote myself to my passion. But with the price of the bottles, it’s hard to offer and drink the best wines ... Moreover, the rare and sought-after wines are no longer on the market but rather in the cellars of Winelovers ! I created TrocWine to offer the opportunity to all to find bottles of wine and create your cellar without spending one euro. A website that meets every Winelovers ! »
+                                        <span class="author">Arthur Tutin - fondateur</span>
+                                </p>
+                            {% else %}                                    
                                 <p>« J'ai toujours été un passionné.
                                         Un passionné de toute chose, mais comme beaucoup de personnes, une fois touché par le vin il est impossible d'en sortir ! C'est un monde infini. J'ai tout mis de côté pour me consacrer à ma passion : le vin. Seulement, avec l'inflation des prix des bouteilles, il est souvent difficile de s'offrir ou même de goûter les très bons et très grands vins... De plus, les vins rares et recherchés ne sont plus sur le marché, mais bel et bien dans les caves de passionnés tel que nous. Voilà comment TrocWine est né ! J’ai créé une plateforme où chacun pourra enfin trouver ses bouteilles de coeur et les échanger entre winelovers ! »
                                         <span class="author">Arthur Tutin - fondateur</span>
                                 </p>
+                            {% endif %}
                         </div>
                 </div>
         </div>
@@ -54,9 +79,15 @@
                 <div class="wrapper">
                         <div class="left">
                                 <div class="image-container" style="background-image: url('{{asset('img/florestan.png')}}');"></div>
-                                <a href="{{path('front_cave', {'id':26}) }}" class="btn-default btn-serif">Consultez sa cave</a>
+                                <a href="{{path('front_cave', {'id':26}) }}" class="btn-default btn-serif">{{"Consultez sa cave"|trans}}</a>
                         </div>
                         <div class="right">
+                            {% if app.session.get( '_locale' ) == 'en' %}
+                                <p>Fascinated by the mysterious and enchanting world of wines and spirits, I have chosen to dedicate my life to the promotion of these precious elixirs.
+                                        As Arthur, I see that this passion at a cost and some bottles, depending on the area, the soil or the vintage, have become true luxury. The wine should not be seen simply as a financial investment but as a passion for the product. From vine to bottling, it is primarily sublimation by the hand of man, a wonderful fruit of nature. TrocWine is a response to purists, enthusiasts, connoisseurs or amateurs who see and Wine prices soar sometimes without reason, to heights that often are staggering. We offer the possibility to swappers establish themselves Wine prices and get hold of wines they long dreamed of but would never have dared to afford a day. <em>Florestan Loriot de Rouvray</em>
+                                        <span class="author">Famille Rouvray Co-Fondatrice</span>
+                                </p>
+                            {% else %} 
                                 <p>Passionné par l’univers mystérieux et envoûtant des vins et spiritueux, j’ai fait le choix de consacrer ma vie à la promotion de ces précieux élixirs.
                                         Comme Arthur, je constate que cette passion à un coût et que certaines bouteilles, en fonction du domaine, du terroir ou du millésime, sont devenues de véritables objets de luxe.
                                         Le vin ne doit pas être vu, simplement, comme un placement financier mais bien comme un produit de passion.
@@ -65,6 +96,7 @@
                                         Nous offrons la possibilité aux troqueurs d’établir eux-mêmes la cote des vins et de mettre la main sur des cuvées dont ils ont longtemps rêvé mais qu’ils n’auraient jamais osé pouvoir s’offrir un jour. <em>Florestan Loriot de Rouvray</em>
                                         <span class="author">Famille Rouvray Co-Fondatrice</span>
                                 </p>
+                            {% endif %}
                         </div>
                 </div>
         </div>

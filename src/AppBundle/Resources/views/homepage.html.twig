@@ -8,68 +8,38 @@
     <section class="wrapper home-wrapper">
 
 	<section class="featured-wines">
-		<h2 class="title">Troquez des vins d'exception</h2>
-		<span class="subtitle">Échangez vos bouteilles de vins entre amateurs ou experts</span>
+		<h2 class="title">{{ "Troquez des vins d'exception"|trans }}</h2>
+		<span class="subtitle">{{ "Échangez vos bouteilles de vins entre amateurs ou experts"|trans }}</span>
 
 		<ul class="featured-wines-thumbnails">
-			<li style="background-image: url('{{asset('img/bordeaux.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'bordeaux'})}}" title="Recherche bouteilles de Bordeaux"><span>Bordeaux</span></a></li>
-			<li style="background-image: url('{{asset('img/bourgogne.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'bourgogne'})}}" title="Recherche bouteilles de Bourgogne"><span>Bourgogne</span></a></li>
-			<li style="background-image: url('{{asset('img/champagne.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'champagne'})}}" title="Recherche bouteilles de Champagne"><span>Champagne</span></a></li>
-			<li style="background-image: url('{{asset('img/autres-regions.jpg')}}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':'others-regions'})}}" title="Recherche bouteilles autres régions"><span>Autres Régions</span></a></li>
+                    {% for mea in meas %}
+                        <li style="background-image: url('{% if mea.photo != null %}{{asset(mea.photo.file|imagine_filter('homepage_mea'))}}{% else %}{{asset('uploads/mea/mea_default.png')}}{% endif %}');"><a href="{{path('front_search_bouteille_ref_region', {'reference':mea.referenceVin})}}" title="{% if app.session.get( '_locale' ) == 'en' %}Find wines from {{mea.nameUk}}{% else %}Recherche bouteilles de {{mea.nameFr}}{% endif %}"><span>{% if app.session.get( '_locale' ) == 'en' %}{{mea.nameUk}}{% else %}{{mea.nameFr}}{% endif %}</span></a></li>
+                    {% endfor %}
 		</ul>
 
-		<a href="{{path('front_search_all_bouteille')}}" class="btn-default">Tous les vins à l'échange</a>
+		<a href="{{path('front_search_all_bouteille')}}" class="btn-default">{{ "Tous les vins à l'échange"|trans }}</a>
 	</section>
 
 	<section class="monthly-pick">
-		<h2 class="title">Notre sélection du mois</h2>
-		<span class="subtitle">Le meilleur de TrocWine</span>
+		<h2 class="title">{{ "Notre sélection du mois"|trans }}</h2>
+		<span class="subtitle">{{ "Le meilleur de TrocWine"|trans }}</span>
 
 		<ul class="monthly-pick-thumbnail">
                     {% for selection in selections %}
 			<li style="background-image: url('{% if selection.photo != null %}{{asset(selection.photo.file|imagine_filter('homepage_selection_'~selection.position))}}{% else %}{{asset('uploads/selections/selection_default.png')}}{% endif %}');">
 				<a href="{{ selection.lien }}" {% if 'http://' in selection.lien or 'https://' in selection.lien %}target="_blank"{% endif %}>
 					<div class="content">
-                                            {% if selection.titreFr|length > 0 %}<h3 class="title">{{ selection.titreFr|nl2br }}</h3>{% endif %}
-                                            {% if selection.sousTitreFr|length > 0 %}<p class="description">{{ selection.sousTitreFr|nl2br }}</p>{% endif %}						
+                                            {% if app.session.get( '_locale' ) == 'en' %}
+                                                {% if selection.titreUk|length > 0 %}<h3 class="title">{{ selection.titreUk|nl2br }}</h3>{% endif %}
+                                                {% if selection.sousTitreUk|length > 0 %}<p class="description">{{ selection.sousTitreUk|nl2br }}</p>{% endif %}
+                                            {% else %}
+                                                {% if selection.titreFr|length > 0 %}<h3 class="title">{{ selection.titreFr|nl2br }}</h3>{% endif %}
+                                                {% if selection.sousTitreFr|length > 0 %}<p class="description">{{ selection.sousTitreFr|nl2br }}</p>{% endif %}
+                                            {% endif %}						
 					</div>
 				</a>
 			</li>
                     {% endfor %}
-                    {#    
-			<li style="background-image: url('{{asset('img/pick-1.jpg')}}');">
-				<a href="{{path('front_cave', {'id':22}) }}">
-					<div class="content">
-						<h3 class="title">L’équipe TrocWine<br>vous propose...</h3>
-						<p class="description">Notre sélection rien que pour vous.</p>
-					</div>
-				</a>
-			</li>
-			<li style="background-image: url('{{asset('img/pick-5.jpg')}}');">
-				<a href="http://vinexplore.com/fr/" target="_blank">
-					<div class="content">
-						<h3 class="title">Télécharger l'application Vinexplore</h3>
-						<p class="description"></p>
-					</div>
-				</a>
-			</li>
-			<li style="background-image: url('{{asset('img/pick-6.jpg')}}');">
-				<a href="{{path('front_cave', {'id':17}) }}">
-					<div class="content">
-						<h3 class="title">Le troqueur du mois</h3>
-						<p class="description">Notre fondateur</p>
-					</div>
-				</a>
-			</li>
-			<li style="background-image: url('{{asset('img/pick-corton-grancey.jpg')}}');">
-				<a href="{{path('front_bouteille_fiche', {'id':24}) }}">
-					<div class="content">
-						<h3 class="title">La « perle » du mois</h3>
-						<p class="description"></p>
-					</div>
-				</a>
-			</li>
-                        #}
 		</ul>
 	</section>
     </section>

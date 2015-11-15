@@ -1,24 +1,24 @@
 <footer class="footer">
     <div class="footer-top wrapper">
         <ul class="link-container">
-            <li><a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">Notre histoire</a></li>
-            <li><a href="{{path('front_contact')}}" class="{{ app.request.attributes.get('_route') == 'front_contact' ? 'active' }}">Contact</a></li>
+            <li><a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">{{ "Notre histoire"|trans }}</a></li>
+            <li><a href="{{path('front_contact')}}" class="{{ app.request.attributes.get('_route') == 'front_contact' ? 'active' }}">{{ "Contact"|trans }}</a></li>
         </ul>
 
         <ul class="link-container">
-            <li><a href="{{path('front_partenaires')}}" class="{{ app.request.attributes.get('_route') == 'front_partenaires' ? 'active' }}">Partenaires</a></li>
-            <li><a href="{{path('front_presse')}}" class="{{ app.request.attributes.get('_route') == 'front_presse' ? 'active' }}">Presse</a></li>
+            <li><a href="{{path('front_partenaires')}}" class="{{ app.request.attributes.get('_route') == 'front_partenaires' ? 'active' }}">{{ "Partenaires"|trans }}</a></li>
+            <li><a href="{{path('front_presse')}}" class="{{ app.request.attributes.get('_route') == 'front_presse' ? 'active' }}">{{ "Presse"|trans }}</a></li>
         </ul>
 
         <ul class="link-container">
             <li>
-                Plan du site
+                {{ "Plan du site"|trans }}
                 <ul>
-                    <li><a href="{{path('front_accueil')}}">Home</a></li>
+                    <li><a href="{{path('front_accueil')}}">{{ "Accueil"|trans }}</a></li>
                     {% if is_granted('ROLE_USER') %}
-                    <li><a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">Mon espace</a></li>
+                    <li><a href="{{path('front_ma_cave')}}" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">{{ "Mon espace"|trans }}</a></li>
                     {% else %}
-                    <li><a href="#" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">Mon espace</a></li>
+                    <li><a href="#" onClick="showLogin(); return false;" class="{{ app.request.attributes.get('_route') == 'front_mon_espace' ? 'active' }}">{{ "Mon espace"|trans }}</a></li>
                     {% endif %}
                 </ul>
             </li>
@@ -34,11 +34,11 @@
     </div>
     <div class="footer-bottom wrapper">
         <div class="left">
-            <span>L'abus d'alcool est dangereux pour la santé, à consommer avec modération</span>
+            <span>{{ "L'abus d'alcool est dangereux pour la santé, à consommer avec modération"|trans }}</span>
         </div>
         <div class="right">
-            <a href="{{path('front_mentions_legales')}}" class="{{ app.request.attributes.get('_route') == 'front_mentions_legales' ? 'active' }}">Mentions légales</a> -
-            <a href="{{path('front_politique_de_cookies')}}" class="{{ app.request.attributes.get('_route') == 'front_politique_de_cookies' ? 'active' }}">Politique de Cookies</a> -
+            <a href="{{path('front_mentions_legales')}}" class="{{ app.request.attributes.get('_route') == 'front_mentions_legales' ? 'active' }}">{{ "Mentions légales"|trans }}</a> -
+            <a href="{{path('front_politique_de_cookies')}}" class="{{ app.request.attributes.get('_route') == 'front_politique_de_cookies' ? 'active' }}">{{ "Politique de Cookies"|trans }}</a> -
             <a href="{{path('front_notre_histoire')}}" class="{{ app.request.attributes.get('_route') == 'front_notre_histoire' ? 'active' }}">TrocWine</a>
         </div>
     </div>
@@ -46,7 +46,13 @@
 {% if app.request.attributes.get('_route') != 'front_intro' and app.request.attributes.get('_route') != 'front_politique_de_cookies'  %}        
 <div id="cookie-warn" class="hidden">
     <div class="wrapperCookie">
-        <div class="colG">En poursuivant votre navigation sur le site, vous acceptez l'utilisation de cookies afin de vous permettre de partager des contenus sur les réseaux sociaux et d'établir des statistiques de fréquentation. Pour en savoir plus et paramètrer vos choix, <a href="{{path('front_politique_de_cookies')}}">cliquez-ici</a>.</div>
+        <div class="colG">
+            {% if app.session.get( '_locale' ) == 'en' %}
+            En poursuivant votre navigation sur le site, vous acceptez l'utilisation de cookies afin de vous permettre de partager des contenus sur les réseaux sociaux et d'établir des statistiques de fréquentation. Pour en savoir plus et paramètrer vos choix, <a href="{{path('front_politique_de_cookies')}}">cliquez-ici</a>.
+            {% else %}
+            En poursuivant votre navigation sur le site, vous acceptez l'utilisation de cookies afin de vous permettre de partager des contenus sur les réseaux sociaux et d'établir des statistiques de fréquentation. Pour en savoir plus et paramètrer vos choix, <a href="{{path('front_politique_de_cookies')}}">cliquez-ici</a>.
+            {% endif %}
+        </div>
         <div class="colD"><a href="{{path('front_politique_de_cookies')}}" onClick="return confirmCookies();" class="btn-default">Ok</a></div>
         <div class="clearfix"></div>
     </div>

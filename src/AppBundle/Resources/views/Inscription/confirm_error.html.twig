@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Inscription - {{ parent() }}{% endblock %}
+{% block title %}{{"Inscription"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}inscription{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Inscription" %}
+    {% set titreH1 = "Inscription"|trans %}
     {{ parent() }}
 {% endblock %}
 
@@ -14,9 +14,15 @@
     <div class="site-wrapper"> 
         <div class="row"> 
             <div class="wrapper">  
+                {% if app.session.get( '_locale' ) == 'en' %}
+                <h2>Subscription error.</h2>
+                <p>Your email has not been found.</p>
+                <p>Please check again the link you had received or contact us.</p>
+                {% else %}
                 <h2>Erreur de confirmation de votre inscription.</h2>
-            <p>Votre adresse mail n'a pas été retrouvée.</p>
-            <p>Merci de vérifier le lien que vous avez reçu ou contactez-nous.</p>
+                <p>Votre adresse mail n'a pas été retrouvée.</p>
+                <p>Merci de vérifier le lien que vous avez reçu ou contactez-nous.</p>
+                {% endif %}
             </div>
         </div>
     </div>

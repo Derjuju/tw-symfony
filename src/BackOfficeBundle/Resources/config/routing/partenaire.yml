@@ -1,0 +1,25 @@
+back_office_partenaires:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:Partenaire:index" }
+
+back_office_partenaire_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:Partenaire:new" }
+
+back_office_partenaire_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:Partenaire:create" }
+    methods:  POST
+
+back_office_partenaire_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:Partenaire:edit" }
+
+back_office_partenaire_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:Partenaire:update" }
+    methods:  [POST, PUT] 
+
+back_office_partenaire_active:
+    path:     /{id}/active
+    defaults: { _controller: "BackOfficeBundle:Partenaire:active" }

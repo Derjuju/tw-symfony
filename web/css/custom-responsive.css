@@ -99,6 +99,10 @@
         margin-right: 5px;
     }
     
+    #MenuMobile .home-header-nav a.langSelector{
+        height:45px;
+    }
+    
     .search-selector { padding-left: 3%; padding-right: 3%;}
     
     .search-wrapper form { text-align: center;}
