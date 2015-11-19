@@ -3,12 +3,12 @@
         data-qte="">
         <a href="{{path('front_cave', {'id':troqueur.id}) }}" title="Voir la cave">
         <div class="image" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');">
-            <div class="bouteilles-cave"><span class="dot-qte">{{troqueur.totalBouteillesCave}}</span> bouteille{% if troqueur.totalBouteillesCave > 1 %}s{% endif %}</div>
+            <div class="bouteilles-cave"><span class="dot-qte">{{troqueur.totalBouteillesCave}}</span> {{"bouteille"|trans}}{% if troqueur.totalBouteillesCave > 1 %}s{% endif %}</div>
         </div>
        <div class="description">
                 <div class="owner-container">                   
                     <p class="info-owner">{{troqueur.lastname}}<br>{{troqueur.firstname}}
-                        <span class="owner-level">{{troqueur.expertLevel.nameFr}}</span>
+                        <span class="owner-level">{% if app.session.get( '_locale' ) == 'en' %}{{troqueur.expertLevel.nameUk}}{% else %}{{troqueur.expertLevel.nameFr}}{% endif %}</span>
                         <div class="star-container">
                                 {% for i in range(1,5) %}
                                         {% if i <= troqueur.noteMoyenne %}

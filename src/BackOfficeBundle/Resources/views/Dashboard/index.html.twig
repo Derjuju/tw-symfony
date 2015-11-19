@@ -50,8 +50,8 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">XXX</div>
-                            <div>Nouvelles bouteilles</div>
+                            <div class="huge">{{ totalNewBottles }}</div>
+                            <div>Nouvelle{% if totalNewBottles > 1 %}s{% endif %} bouteille{% if totalNewBottles > 1 %}s{% endif %}</div>
                         </div>
                     </div>
                 </div>
@@ -64,53 +64,105 @@
                 </a>
             </div>
         </div>
-        {#
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-9">                    
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-shopping-cart fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
-                            <div>New Orders!</div>
-                        </div>
-                    </div>
+                    <i class="fa fa-bar-chart-o fa-fw"></i> INSCRIPTIONS ACTIVES : Suivi dans le temps                            
                 </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div id="morris-bar-chart-inscrit" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            </div>
+                        </div>
+                        <!-- /.col-lg-9 (nested) -->
                     </div>
-                </a>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-body -->
             </div>
+            <!-- /.panel -->
+
         </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
+        <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-9">                    
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-support fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
-                            <div>Support Tickets!</div>
-                        </div>
-                    </div>
+                    <i class="fa fa-bar-chart-o fa-fw"></i> BOUTEILLES EN LIGNE : Suivi dans le temps                            
                 </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div id="morris-bar-chart-bottle" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            </div>
+                        </div>
+                        <!-- /.col-lg-9 (nested) -->
                     </div>
-                </a>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-body -->
             </div>
+            <!-- /.panel -->
+
         </div>
-        #}
+        <!-- /.col-lg-9 -->
     </div>
     <!-- /.row -->
 
+{% endblock %}
+{% block bottomJavascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {            
+            Morris.Bar({
+                element: 'morris-bar-chart-inscrit',
+                data: [
+        {% set totalInscrits = 0 %}
+        {% for memberStat in membersStats %}
+        {% set totalInscrits = totalInscrits + memberStat.total %}
+                {
+                    y: '{{memberStat.month|display_as_letters}} {{memberStat.year}}',
+                    a: {{memberStat.total}},
+                    b: {{totalInscrits}}
+                },
+        {% endfor %}
+                ],
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Total nouveaux inscrits', 'Total inscrits'],
+                hideHover: 'auto',
+                resize: true
+            });
+            
+            Morris.Bar({
+                element: 'morris-bar-chart-bottle',
+                data: [
+        {% set totalBouteilles = 0 %}
+        {% for bouteillesStat in bouteillesStats %}
+        {% set totalBouteilles = totalBouteilles + bouteillesStat.total %}
+                {
+                    y: '{{bouteillesStat.month|display_as_letters}} {{bouteillesStat.year}}',
+                    a: {{bouteillesStat.total}},
+                    b: {{totalBouteilles}}
+                },
+        {% endfor %}
+                ],
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Total nouvelles bouteilles', 'Total bouteilles'],
+                hideHover: 'auto',
+                resize: true
+            });
+    });
+    </script>
 {% endblock %}

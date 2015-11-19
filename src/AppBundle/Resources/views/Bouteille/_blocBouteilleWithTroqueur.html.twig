@@ -2,7 +2,7 @@
         data-millesime="{{bouteille.millesime}}"
         data-qte="{{bouteille.quantite}}"
         data-order="{{bouteille.id}}">
-        <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="Voir la Fiche">
+        <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="{{"Voir la Fiche"|trans}}">
         <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_cave')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
                <span class="dot-qte">{{bouteille.quantite}}</span>
        </div>
@@ -12,11 +12,19 @@
                     <div class="image-container" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
                     <p class="info-owner">{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</p>
                 </div>
+            {% if app.session.get( '_locale' ) == 'en' %}
+               <h3>{{bouteille.typeDomaine.nameUk|default('')}}</h3>
+               <h3>{{bouteille.typeAppellation.nameUk|default('')}}</h3>
+               <h3>{{bouteille.typeCuvee.nameUk|default('')}}</h3>
+
+               <p>{{bouteille.typeRegion.nameUk}}<br>{{bouteille.typePays.nameUk}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+            {% else %}
                <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
                <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
                <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
 
                <p>{{bouteille.typeRegion.nameFr}}<br>{{bouteille.typePays.nameFr}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+            {% endif %}
        </div>
        <div class="social-btns">
                <a href="https://twitter.com/share" data-url="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" class="twitter-share-button" data-count="none">Tweet</a>

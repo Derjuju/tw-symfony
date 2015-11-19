@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html lang="fr" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]><html lang="fr" class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"><![endif]-->
-<!--[if IE 8]><html lang="fr" class="no-js lt-ie10 lt-ie9 ie8"><![endif]-->
-<!--[if IE 9]><html lang="fr" class="no-js lt-ie10 ie9"><![endif]-->
-<!--[if (gt IE 9)|!(IE)]><html lang="fr" class="no-js"><![endif]-->
-<!--[if !IE]><html lang="fr"><![endif]-->
+{% set codeLang = 'fr' %}{% set codeLangIso = 'fr_FR' %}
+{% if app.session.get( '_locale' ) == 'en' %}{% set codeLang = 'en' %}{% set codeLangIso = 'en_EN' %}{% endif %}
+<!--[if lt IE 7]><html lang="{{codeLang}}" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html lang="{{codeLang}}" class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"><![endif]-->
+<!--[if IE 8]><html lang="{{codeLang}}" class="no-js lt-ie10 lt-ie9 ie8"><![endif]-->
+<!--[if IE 9]><html lang="{{codeLang}}" class="no-js lt-ie10 ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><html lang="{{codeLang}}" class="no-js"><![endif]-->
+<!--[if !IE]><html lang="{{codeLang}}"><![endif]-->
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -45,7 +47,7 @@
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4";
+		js.src = "//connect.facebook.net/{{codeLangIso}}/sdk.js#xfbml=1&version=v2.4";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

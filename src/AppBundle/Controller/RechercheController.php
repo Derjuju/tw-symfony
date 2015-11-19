@@ -68,6 +68,8 @@ class RechercheController extends Controller
     
     private function lanceRechercheBouteille($filtres) {
         
+        $lang = $this->get('session')->get('_locale', 'fr');
+        
         $idUserToFilter = 0;
         if ($this->get('security.context')->isGranted('ROLE_USER') ) {
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -77,13 +79,13 @@ class RechercheController extends Controller
         $em = $this->getDoctrine()->getManager();
         $bouteilles = array();
         
-        $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
+        $formBouteille = $this->createForm(new SearchBouteilleType($lang), null, array(
             'action' => $this->generateUrl('front_search_bouteille'),
             'method' => 'POST',
         ));
         $formBouteille->add('submit', 'submit', array('label' => 'Rechercher'));   
                
-        $formTroqueur = $this->createForm(new SearchTroqueurType(), null, array(
+        $formTroqueur = $this->createForm(new SearchTroqueurType($lang), null, array(
             'action' => $this->generateUrl('front_search_troqueur'),
             'method' => 'POST',
         ));
@@ -147,6 +149,9 @@ class RechercheController extends Controller
      * @Route("/search/troqueur",name="front_search_troqueur")          
      */
     public function searchTroqueurAction(Request $request) {
+        
+        $lang = $this->get('session')->get('_locale', 'fr');
+        
         $idUserToFilter = 0;
         if ($this->get('security.context')->isGranted('ROLE_USER') ) {
             $user = $this->container->get('security.context')->getToken()->getUser();
@@ -156,13 +161,13 @@ class RechercheController extends Controller
         $troqueurs = array();
         $filtres = $request->request->get('SearchTroqueur',null);
         
-        $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
+        $formBouteille = $this->createForm(new SearchBouteilleType($lang), null, array(
             'action' => $this->generateUrl('front_search_bouteille'),
             'method' => 'POST',
         ));
         $formBouteille->add('submit', 'submit', array('label' => 'Rechercher'));                
         
-        $formTroqueur = $this->createForm(new SearchTroqueurType(), null, array(
+        $formTroqueur = $this->createForm(new SearchTroqueurType($lang), null, array(
             'action' => $this->generateUrl('front_search_troqueur'),
             'method' => 'POST',
         ));

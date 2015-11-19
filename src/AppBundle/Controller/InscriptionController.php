@@ -132,7 +132,9 @@ class InscriptionController extends Controller
     */
     private function createCreateForm(Member $entity)
     {
-        $form = $this->createForm(new RegisterMemberType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        
+        $form = $this->createForm(new RegisterMemberType($lang), $entity, array(
             'action' => $this->generateUrl('front_inscription'),
             'method' => 'POST',
         ));

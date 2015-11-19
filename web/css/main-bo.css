@@ -26,6 +26,7 @@ i.fa-bottle{
 }
 
 .table .image{height:230px;width:142px;float:left;background-repeat:no-repeat;background-size:cover;background-position:center}
+body.membres .table .image{height:65px;width:65px;float:left;background-repeat:no-repeat;background-size:cover;background-position:center}
 
 
 /* bouteille show */
@@ -209,6 +210,18 @@ form .wine-image {
 body.bouteilles label { min-width:150px;}
 body.bouteilles .row{ margin-bottom: 10px;}
 
+
+/* MEMBRES */
+body.membres label { min-width:150px;}
+body.membres .row{ margin-bottom: 10px;}
+body.membres .form-group div.form-inline { display: inline; }
+body.membres.show span{
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+}
+
+/* MEAS */
 
 
 .mea-image {
@@ -427,6 +440,7 @@ body.partenaires .bloc-partenaire {
     margin: 0 1% 2% 0;
     position: relative;
     width: 16%;
+    min-width: 175px;
 }
 body.partenaires .bloc-partenaire span.etiquetteNom {
     position: relative;    

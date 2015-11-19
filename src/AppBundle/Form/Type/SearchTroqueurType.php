@@ -9,24 +9,17 @@ use Doctrine\ORM\EntityRepository;
 
 class SearchTroqueurType extends AbstractType
 {
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
         $builder
             ->add('keyword', 'text',['required'=>false,'label'=>'Rechercher un troqueur', 'attr' => array('placeholder' => 'Rechercher un troqueur')])
-            ->add('expertLevel', 'entity', array(        
-                'label'=>'Niveau',
-                'required'=>false,
-                'expanded' => false,
-                'multiple' => false,
-                'choice_label' => 'nameFr',
-                'empty_value' => 'Niveau',
-                'class' => 'AppBundle:ExpertLevel',
-                'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('el')
-                                ->orderBy('el.score', 'ASC');
-                }))
             ->add('region', 'entity', array(
                 'label'=>'Région',
                 'required'=>false,
@@ -42,9 +35,42 @@ class SearchTroqueurType extends AbstractType
                                 ->orderBy('a.region', 'ASC');
                          return $qb;
                 }
-            )) 
-               
+            ))                
             ;
+            
+        if($this->lang == 'en'){ 
+            $builder
+                ->add('expertLevel', 'entity', array(        
+                   'label'=>'Niveau',
+                   'required'=>false,
+                   'expanded' => false,
+                   'multiple' => false,
+                   'choice_label' => 'nameUk',
+                   'empty_value' => 'Niveau',
+                   'class' => 'AppBundle:ExpertLevel',
+                   'query_builder' => function(EntityRepository $er) {
+                           return $er->createQueryBuilder('el')
+                                   ->orderBy('el.score', 'ASC');
+                   }))
+                ; 
+            
+        }else{
+            $builder
+                ->add('expertLevel', 'entity', array(        
+                   'label'=>'Niveau',
+                   'required'=>false,
+                   'expanded' => false,
+                   'multiple' => false,
+                   'choice_label' => 'nameFr',
+                   'empty_value' => 'Niveau',
+                   'class' => 'AppBundle:ExpertLevel',
+                   'query_builder' => function(EntityRepository $er) {
+                           return $er->createQueryBuilder('el')
+                                   ->orderBy('el.score', 'ASC');
+                   }))
+                ;
+            
+        }
        
     }
     

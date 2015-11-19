@@ -1,0 +1,30 @@
+back_office_membres:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:Membre:index" }
+
+back_office_membre_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:Membre:show" } 
+
+back_office_membre_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:Membre:new" }
+
+back_office_membre_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:Membre:create" }
+    methods:  POST
+
+back_office_membre_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:Membre:edit" }
+
+back_office_membre_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:Membre:update" }
+    methods:  [POST, PUT] 
+
+back_office_membre_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:Membre:delete" }
+    methods:  [POST, DELETE]  

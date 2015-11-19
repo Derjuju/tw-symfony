@@ -9,55 +9,105 @@ use Doctrine\ORM\EntityRepository;
 
 class SearchBouteilleType extends AbstractType
 {
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
         $builder
           ->add('keyword', 'text',['required'=>false,'label'=>'Rechercher une bouteille', 'attr' => array('placeholder' => 'Rechercher une bouteille')])
-          ->add('typeDeVin', 'entity', array(        
-            'label'=>'Type',
-            'required'=>false,
-            'expanded' => false,
-            'multiple' => false,
-            'choice_label' => 'nameFr',
-            'empty_value' => 'Type',
-            'class' => 'AppBundle:TypeDeVin',
-            'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e')
-                                ->orderBy('e.nameFr', 'ASC');
-            }))
-          ->add('typeRegion', 'entity', array(        
-            'label'=>'Type',
-            'required'=>false,
-            'expanded' => false,
-            'multiple' => false,
-            'choice_label' => 'nameFr',
-            'empty_value' => 'Région',
-            'class' => 'AppBundle:TypeRegion',
-            'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e')
-                                ->orderBy('e.nameFr', 'ASC');
-            }))
           ->add('millesime', 'choice', array(     
             'label'=>'Millésime',
             'required' => false,
             'empty_value' => 'Millésime',
             'choices' => $this->buildYearChoices()
-            ))
-          ->add('typePays', 'entity', array(        
-            'label'=>'Type',
-            'required'=>false,
-            'expanded' => false,
-            'multiple' => false,
-            'choice_label' => 'nameFr',
-            'empty_value' => 'Pays',
-            'class' => 'AppBundle:TypePays',
-            'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('e')
-                                ->orderBy('e.nameFr', 'ASC');
-            }))
+            ))          
           ;
+        if($this->lang == 'en'){            
+            $builder
+                ->add('typeDeVin', 'entity', array(        
+                  'label'=>'Type',
+                  'required'=>false,
+                  'expanded' => false,
+                  'multiple' => false,
+                  'choice_label' => 'nameUk',
+                  'empty_value' => 'Type',
+                  'class' => 'AppBundle:TypeDeVin',
+                  'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('e')
+                                      ->orderBy('e.nameUk', 'ASC');
+                  }))
+                ->add('typeRegion', 'entity', array(        
+                  'label'=>'Type',
+                  'required'=>false,
+                  'expanded' => false,
+                  'multiple' => false,
+                  'choice_label' => 'nameUk',
+                  'empty_value' => 'Région',
+                  'class' => 'AppBundle:TypeRegion',
+                  'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('e')
+                                      ->orderBy('e.nameUk', 'ASC');
+                  }))
+                  ->add('typePays', 'entity', array(        
+                  'label'=>'Type',
+                  'required'=>false,
+                  'expanded' => false,
+                  'multiple' => false,
+                  'choice_label' => 'nameUk',
+                  'empty_value' => 'Pays',
+                  'class' => 'AppBundle:TypePays',
+                  'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('e')
+                                      ->orderBy('e.nameUk', 'ASC');
+                  }))
+                ;
+        }else{
+            $builder
+                ->add('typeDeVin', 'entity', array(        
+                  'label'=>'Type',
+                  'required'=>false,
+                  'expanded' => false,
+                  'multiple' => false,
+                  'choice_label' => 'nameFr',
+                  'empty_value' => 'Type',
+                  'class' => 'AppBundle:TypeDeVin',
+                  'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('e')
+                                      ->orderBy('e.nameFr', 'ASC');
+                  }))
+                ->add('typeRegion', 'entity', array(        
+                  'label'=>'Type',
+                  'required'=>false,
+                  'expanded' => false,
+                  'multiple' => false,
+                  'choice_label' => 'nameFr',
+                  'empty_value' => 'Région',
+                  'class' => 'AppBundle:TypeRegion',
+                  'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('e')
+                                      ->orderBy('e.nameFr', 'ASC');
+                  }))
+                  ->add('typePays', 'entity', array(        
+                  'label'=>'Type',
+                  'required'=>false,
+                  'expanded' => false,
+                  'multiple' => false,
+                  'choice_label' => 'nameFr',
+                  'empty_value' => 'Pays',
+                  'class' => 'AppBundle:TypePays',
+                  'query_builder' => function(EntityRepository $er) {
+                          return $er->createQueryBuilder('e')
+                                      ->orderBy('e.nameFr', 'ASC');
+                  }))
+                ;
+        }
+        
+          
        
     }
     

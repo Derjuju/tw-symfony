@@ -22,10 +22,21 @@ class DashboardController extends Controller
         if($trocs){
             $totalTrocsEnded = count($trocs);
         }
+        $totalNewBottles = 0;
+        $entities = $em->getRepository('AppBundle:Bouteille')->findBy(array('online'=>0), array('createdAt'=>'ASC'));
+        if($trocs){
+            $totalNewBottles = count($entities);
+        }
+        
+        $membersStats = $em->getRepository('AppBundle:Member')->getTotalByMonthYear();
+        $bouteillesStats = $em->getRepository('AppBundle:Bouteille')->getTotalByMonthYear();
         
         return $this->render('BackOfficeBundle:Dashboard:index.html.twig', array(
             'totalTrocs' => $totalTrocs,
-            'totalTrocsEnded' => $totalTrocsEnded
+            'totalTrocsEnded' => $totalTrocsEnded,
+            'totalNewBottles' => $totalNewBottles,
+            'membersStats' => $membersStats,
+            'bouteillesStats' => $bouteillesStats
         ));
     }
 }

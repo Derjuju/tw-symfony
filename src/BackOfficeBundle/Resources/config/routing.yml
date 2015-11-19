@@ -2,6 +2,10 @@ back_office_homepage:
     path:     /
     defaults: { _controller: BackOfficeBundle:Dashboard:index }
     
+back_office_membres:
+    resource: "@BackOfficeBundle/Resources/config/routing/membre.yml"
+    prefix:     /membres
+    
 back_office_bouteilles:
     resource: "@BackOfficeBundle/Resources/config/routing/bouteille.yml"
     prefix:     /bouteilles

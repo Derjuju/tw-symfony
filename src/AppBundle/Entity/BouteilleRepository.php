@@ -150,4 +150,20 @@ class BouteilleRepository extends EntityRepository
                 
         return $query->getQuery()->getResult();
     }
+    
+    
+    public function getTotalByMonthYear(){
+        $emConfig = $this->getEntityManager()->getConfiguration();
+        $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+        $emConfig->addCustomDatetimeFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
+        
+        $query = $this->createQueryBuilder('b')
+                ->select("YEAR(b.createdAt) as year, MONTH(b.createdAt) as month, count(b.id) as total")
+                ->where("1 = 1")
+                ->andWhere("b.online = 1")
+                ->groupBy("year")                
+                ->groupBy("month");
+        
+        return $query->getQuery()->getResult();
+    }
 }

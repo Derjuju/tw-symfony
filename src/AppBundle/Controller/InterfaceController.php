@@ -28,14 +28,17 @@ class InterfaceController extends Controller
     
     private function searchSelectorConstruct($panelOpen, Request $request) {
         
-        $formBouteille = $this->createForm(new SearchBouteilleType(), null, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        //$this->get('translator')->trans('Rechercher')
+        
+        $formBouteille = $this->createForm(new SearchBouteilleType($lang), null, array(
             'action' => $this->generateUrl('front_search_bouteille'),
             'method' => 'POST',
         ));
         $formBouteille->add('submit', 'submit', array('label' => 'Rechercher'));        
         $formBouteille->handleRequest($request);
         
-        $formTroqueur = $this->createForm(new SearchTroqueurType(), null, array(
+        $formTroqueur = $this->createForm(new SearchTroqueurType($lang), null, array(
             'action' => $this->generateUrl('front_search_troqueur'),
             'method' => 'POST',
         ));

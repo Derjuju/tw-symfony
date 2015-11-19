@@ -1,0 +1,138 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% block bodyclass %}membres show{% endblock %}
+
+{% form_theme delete_form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:Membre:_type_contenu.html.twig" with {'entity':entity} %}
+
+    {% include "BackOfficeBundle:Membre:_back_liste.html.twig" with {'entity':entity} %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default col-lg-6">
+                
+                <div class="row">
+                    <h2>{{ entity.username }}</h2>
+                </div>
+                
+                <div class="row">
+                    <div class="upload-image-container">
+                            <div data-imagezoom="{% if entity.avatar != null %}{{asset(entity.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}"  class="wine-image" style="background-image: url('{% if entity.avatar != null %}{{asset(entity.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');">                                    
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <span>Niveau d'expertise :</span> {{ entity.expertLevel }}
+                </div>
+                <div class="row">
+                    <span>Nom :</span> {{ entity.lastname }}
+                </div>
+                <div class="row">
+                    <span>Prénom :</span> {{ entity.firstname }}
+                </div>
+                <div class="row">
+                    <span>Email :</span> {{ entity.email }}
+                </div>
+                <div class="row">
+                    <span>Téléphone :</span> {{ entity.telephon }}
+                </div>
+                <div class="row">
+                    <span>Mobile :</span> {{ entity.mobile }}
+                </div>
+                <div class="row">
+                    <span>Date de naissance :</span> {{ entity.birthdate|date('d/m/Y') }}
+                </div>
+                <div class="row">
+                    <span>Rue :</span> {{ entity.address.street }}
+                </div>
+                <div class="row">
+                    <span>Code postal :</span> {{ entity.address.zipCode }}
+                </div>
+                <div class="row">
+                    <span>Ville :</span> {{ entity.address.city }}
+                </div>
+                <div class="row">
+                    <span>Département :</span> {{ entity.address.departement }}
+                </div>
+                <div class="row">
+                    <span>Région :</span> {{ entity.address.region }}
+                </div>
+                <div class="row">
+                    <span>Pays :</span> {{ entity.address.country }}
+                </div>
+                <div class="row">
+                    <span>Compte actif ?</span> {% if entity.actif  == 1 %}oui{% else %}non{% endif %}
+                </div>
+                <div class="row">
+                    <span>Connexion autorisée ?</span> {% if entity.enabled  == 1 %}oui{% else %}non{% endif %}
+                </div>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Editer ?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    <a class="btn btn-primary btn-edit btn-lg" href="{{path('back_office_membre_edit',{'id':entity.id})}}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Supprimer ?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    {{ form_start(delete_form) }}
+                    {{ form_widget(delete_form.submit, { 'attr' : { 'class' : 'btn submit btn-danger'}, 'id' : 'btnDelete' }) }}
+                    {{ form_end(delete_form) }}
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        $('#btnDelete').on('click',function(event){
+            //event.preventDefault();
+            return confirm('Supprimer définitivement ?');
+        });
+    });
+    </script>
+{% endblock %}

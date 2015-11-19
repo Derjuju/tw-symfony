@@ -70,6 +70,20 @@ class MemberRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
     
+    public function getTotalByMonthYear(){
+        $emConfig = $this->getEntityManager()->getConfiguration();
+        $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+        $emConfig->addCustomDatetimeFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
+        
+        $query = $this->createQueryBuilder('m')
+                ->select("YEAR(m.createdAt) as year, MONTH(m.createdAt) as month, count(m.id) as total")
+                ->where("1 = 1")
+                ->andWhere("m.actif = 1")
+                ->groupBy("year")                
+                ->groupBy("month");
+        
+        return $query->getQuery()->getResult();
+    }
     
     
     

@@ -1,12 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Recherche de Bouteille - {{ parent() }}{% endblock %}
+{% block title %}{{"Recherche de Bouteille"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}search search-bottle{% endblock %}
 
 {% block header %}
     {% set openSearchSelectorBouteille = true %}
-    {% set titreH1 = "Recherche de Bouteille" %}
+    {% set titreH1 = "Recherche de Bouteille"|trans %}
     {% set use_red_title = true %}
     {% set selectorWithLink = true %}
     {{ parent() }}
@@ -21,14 +21,14 @@
 			<div class="left sort">
 				<div class="select-swagg">
 					<select id="ClasserResultats" name="sort_by" class="sorter">
-						<option value="" selected="selected">Classer par ...</option>
-						<option value="millesime">Millesime</option>
-						<option value="qte">Quantité (Décroissant)</option>
+						<option value="" selected="selected">{{"Classer par ..."|trans}}</option>
+						<option value="millesime">{{"Millésime"|trans}}</option>
+						<option value="qte">{{"Quantité (Décroissant)"|trans}}</option>
 					</select>
 				</div>
 			</div>
 			<div id="panelInfoResultat" class="center {% if not withResults %}hidden{% endif %}">
-                            <span class="red">{{bouteilles|length}}</span> résultat<span class="label-result-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>				                            
+                            <span class="red">{{bouteilles|length}}</span> {{"résultat"|trans}}<span class="label-result-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>				                            
 			</div>
 		</div>
                 {% include "AppBundle:Recherche:listing_bottle.html.twig" with {'withResults' : withResults, 'bouteilles' : bouteilles} %}

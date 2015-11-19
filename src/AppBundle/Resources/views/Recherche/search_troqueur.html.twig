@@ -1,12 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Recherche de Troqueur - {{ parent() }}{% endblock %}
+{% block title %}{{"Recherche de Troqueur"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}search search-troqueur{% endblock %}
 
 {% block header %}
     {% set openSearchSelectorTroqueur = true %}
-    {% set titreH1 = "Recherche de Troqueur" %}
+    {% set titreH1 = "Recherche de Troqueur"|trans %}
     {% set use_red_title = true %}
     {% set selectorWithLink = true %}
     {{ parent() }}
@@ -21,15 +21,15 @@
 			<div class="left sort">
 				<div class="select-swagg">
 					<select id="ClasserResultats" name="sort_by" class="sorter">
-						<option value="" selected="selected">Classer par ...</option>
-						<option value="lastname">A à Z</option>
-						<option value="niveau">Niveau</option>
-						<option value="note">Note</option>
+						<option value="" selected="selected">{{"Classer par ..."|trans}}</option>
+						<option value="lastname">{{"A à Z"|trans}}</option>
+						<option value="niveau">{{"Niveau"|trans}}</option>
+						<option value="note">{{"Note"|trans}}</option>
 					</select>
 				</div>
 			</div>
 			<div id="panelInfoResultat" class="center {% if not withResults %}hidden{% endif %}">                            
-                            <span class="red">{{troqueurs|length}}</span> résultat<span class="label-result-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>                            
+                            <span class="red">{{troqueurs|length}}</span> {{"résultat"|trans}}<span class="label-result-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>                            
 			</div>
 		</div>
                 {% include "AppBundle:Recherche:listing_troqueur.html.twig" with {'troqueurs' : troqueurs} %}                

@@ -6,7 +6,7 @@
                 <div class="select-swagg">
                     {% if is_granted('ROLE_USER') %}
                     <select id="select-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}">
-                        <option value="" selected="selected">Quantité</option>
+                        <option value="" selected="selected">{{"Quantité"|trans}}</option>
                         {% for i in range(1,bouteille.quantite) %}
                                 <option value="{{i}}">{{i}}</option>
                         {% endfor %}

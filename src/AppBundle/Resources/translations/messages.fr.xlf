@@ -173,7 +173,128 @@
             <trans-unit id="43">
                 <source>Adresse</source>
                 <target>Adresse</target>
-            </trans-unit>
+            </trans-unit>                   
+            <trans-unit id="44">
+                <source>Recherche de Bouteille</source>
+                <target>Recherche de Bouteille</target>
+            </trans-unit>                
+            <trans-unit id="45">
+                <source>Recherche de Troqueur</source>
+                <target>Recherche de Troqueur</target>
+            </trans-unit>                  
+            <trans-unit id="46">
+                <source>Classer par ...</source>
+                <target>Classer par ...</target>
+            </trans-unit>                  
+            <trans-unit id="47">
+                <source>résultat</source>
+                <target>résultat</target>
+            </trans-unit>                   
+            <trans-unit id="48">
+                <source>résultats</source>
+                <target>résultats</target>
+            </trans-unit>                  
+            <trans-unit id="49">
+                <source>Quantité (Décroissant)</source>
+                <target>Quantité (Décroissant)</target>
+            </trans-unit>               
+            <trans-unit id="50">
+                <source>A à Z</source>
+                <target>A à Z</target>
+            </trans-unit>              
+            <trans-unit id="51">
+                <source>Note</source>
+                <target>Note</target>
+            </trans-unit>             
+            <trans-unit id="52">
+                <source>Utilisez les filtres pour lancer une recherche.</source>
+                <target>Utilisez les filtres pour lancer une recherche.</target>
+            </trans-unit>             
+            <trans-unit id="53">
+                <source>Aucun résultat ne correspond.</source>
+                <target>Aucun résultat ne correspond.</target>
+            </trans-unit>            
+            <trans-unit id="54">
+                <source>bouteille</source>
+                <target>bouteille</target>
+            </trans-unit>            
+            <trans-unit id="55">
+                <source>Voir la Fiche</source>
+                <target>Voir la Fiche</target>
+            </trans-unit>           
+            <trans-unit id="56">
+                <source>Pseudo*</source>
+                <target>Pseudo*</target>
+            </trans-unit>          
+            <trans-unit id="57">
+                <source>Niveau*</source>
+                <target>Niveau*</target>
+            </trans-unit>         
+            <trans-unit id="58">
+                <source>Mot de passe*</source>
+                <target>Mot de passe*</target>
+            </trans-unit>        
+            <trans-unit id="59">
+                <source>Confirmez le mot de passe*</source>
+                <target>Confirmez le mot de passe*</target>
+            </trans-unit>         
+            <trans-unit id="60">
+                <source>Nom*</source>
+                <target>Nom*</target>
+            </trans-unit>          
+            <trans-unit id="61">
+                <source>Prénom*</source>
+                <target>Prénom*</target>
+            </trans-unit>           
+            <trans-unit id="62">
+                <source>Date de naissance*</source>
+                <target>Date de naissance*</target>
+            </trans-unit>         
+            <trans-unit id="63">
+                <source>Téléphone fixe</source>
+                <target>Téléphone fixe</target>
+            </trans-unit>         
+            <trans-unit id="64">
+                <source>Adresse mail*</source>
+                <target>Adresse mail*</target>
+            </trans-unit>          
+            <trans-unit id="65">
+                <source>Téléphone portable</source>
+                <target>Téléphone portable</target>
+            </trans-unit>          
+            <trans-unit id="66">
+                <source>N° voie / Rue</source>
+                <target>N° voie / Rue</target>
+            </trans-unit>          
+            <trans-unit id="67">
+                <source>Code postal</source>
+                <target>Code postal</target>
+            </trans-unit>          
+            <trans-unit id="68">
+                <source>Ville</source>
+                <target>Ville</target>
+            </trans-unit>          
+            <trans-unit id="69">
+                <source>Département</source>
+                <target>Département</target>
+            </trans-unit>          
+            <trans-unit id="70">
+                <source>Région</source>
+                <target>Région</target>
+            </trans-unit>          
+            <trans-unit id="71">
+                <source>Valider</source>
+                <target>Valider</target>
+            </trans-unit>          
+            <trans-unit id="72">
+                <source>*Champs obligatoires</source>
+                <target>*Champs obligatoires</target>
+            </trans-unit>          
+            <trans-unit id="73">
+                <source>Quantité</source>
+                <target>Quantité</target>
+            </trans-unit> 
+            
         </body>
     </file>
 </xliff>

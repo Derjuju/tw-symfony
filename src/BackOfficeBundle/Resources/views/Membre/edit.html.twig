@@ -1,0 +1,142 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% block bodyclass %}membres{% endblock %}
+
+{% form_theme edit_form with ['bootstrap_3_layout.html.twig', _self] %}
+{% form_theme delete_form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:Membre:_type_contenu.html.twig" with {'entity':entity} %}
+
+    {% include "BackOfficeBundle:Membre:_back_liste.html.twig" with {'entity':entity} %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default col-lg-6">
+                {{ form_start(edit_form, {'attr': {'class': 'form-inline', 'id': 'FormEditMembre'} }) }}
+                
+                <div class="row">
+                    <h2>{{ entity.username }}</h2>
+                </div>
+                
+                <div class="row">
+                    <div class="upload-image-container">
+                            <div data-imagezoom="{% if entity.avatar != null %}{{asset(entity.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}"  class="wine-image" style="background-image: url('{% if entity.avatar != null %}{{asset(entity.avatar.file)}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');">                                    
+                            </div>
+                            <div class="input-hidden">
+                                    <input type="file" name="avatar_image" id="file_picker" data-class-dest="wine-image"/>
+                                    {{ form_widget(edit_form.avatar, { 'label': false,'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                {{ form_row(edit_form.expertLevel, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.lastname, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.firstname, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.email, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.telephon, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.mobile, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.birthdate, { 'attr' : { 'class' : '' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.address.street, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.address.zipCode, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.address.city, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.address.departement, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.address.region, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.address.country, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.actif, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_row(edit_form.enabled, { 'attr' : { 'class' : 'form-control' } }) }}
+                </div>
+                <div class="row">
+                {{ form_widget(edit_form.submit, { 'attr' : { 'class' : 'btn submit btn-primary col-lg-6'} }) }}                
+                </div>
+                {{ form_end(edit_form) }}
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Supprimer ?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    {{ form_start(delete_form) }}
+                    {{ form_widget(delete_form.submit, { 'attr' : { 'class' : 'btn submit btn-danger'}, 'id' : 'btnDelete' }) }}
+                    {{ form_end(delete_form) }}
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        
+        $('#btnDelete').on('click',function(event){
+            //event.preventDefault();
+            return confirm('Supprimer définitivement ?');
+        });
+        
+        $('.wine-image').on('click', function (){        
+            jQuery.fancybox({
+                     //'orig'			: $(this),
+                     'padding'		: 0,
+                     'href'			: $(this).data('imagezoom'),
+                     'title'   		: '',
+                     'transitionIn'	: 'elastic',
+                     'transitionOut'	: 'elastic'
+             });
+         });
+         
+                        
+    });
+    </script>
+{% endblock %}

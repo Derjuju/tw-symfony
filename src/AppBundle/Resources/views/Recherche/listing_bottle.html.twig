@@ -5,10 +5,10 @@
                 {% include 'AppBundle:Bouteille:_blocBouteilleWithTroqueur.html.twig' with {'bouteille' : bouteille} %}
             {% endfor %}
         {% else %}
-            Aucun résultat ne correspond.
+            {{"Aucun résultat ne correspond."|trans}}
         {% endif %}
         <div class="clearfix"></div>
     {% else %}
-        Utilisez les filtres pour lancer une recherche.
+        {{"Utilisez les filtres pour lancer une recherche."|trans}}
     {% endif %}
 </div>

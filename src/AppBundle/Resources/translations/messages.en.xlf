@@ -120,7 +120,7 @@
             </trans-unit> 
             <trans-unit id="30">
                 <source>Rechercher</source>
-                <target>Rechercher</target>
+                <target>Search</target>
             </trans-unit> 
             <trans-unit id="31">
                 <source>Niveau</source>
@@ -173,7 +173,127 @@
             <trans-unit id="43">
                 <source>Adresse</source>
                 <target>Address</target>
-            </trans-unit>
+            </trans-unit>                
+            <trans-unit id="44">
+                <source>Recherche de Bouteille</source>
+                <target>Find wines</target>
+            </trans-unit>                 
+            <trans-unit id="45">
+                <source>Recherche de Troqueur</source>
+                <target>Find swappers</target>
+            </trans-unit>                 
+            <trans-unit id="46">
+                <source>Classer par ...</source>
+                <target>Order by ...</target>
+            </trans-unit>                  
+            <trans-unit id="47">
+                <source>résultat</source>
+                <target>result</target>
+            </trans-unit>                   
+            <trans-unit id="48">
+                <source>résultats</source>
+                <target>results</target>
+            </trans-unit>                  
+            <trans-unit id="49">
+                <source>Quantité (Décroissant)</source>
+                <target>Quantity (Decreasing)</target>
+            </trans-unit>               
+            <trans-unit id="50">
+                <source>A à Z</source>
+                <target>A to Z</target>
+            </trans-unit>              
+            <trans-unit id="51">
+                <source>Note</source>
+                <target>Score</target>
+            </trans-unit>            
+            <trans-unit id="52">
+                <source>Utilisez les filtres pour lancer une recherche.</source>
+                <target>Use filters to search.</target>
+            </trans-unit>            
+            <trans-unit id="53">
+                <source>Aucun résultat ne correspond.</source>
+                <target>No result found.</target>
+            </trans-unit>           
+            <trans-unit id="54">
+                <source>bouteille</source>
+                <target>bottle</target>
+            </trans-unit>           
+            <trans-unit id="55">
+                <source>Voir la Fiche</source>
+                <target>See detail</target>
+            </trans-unit>          
+            <trans-unit id="56">
+                <source>Pseudo*</source>
+                <target>Username*</target>
+            </trans-unit>         
+            <trans-unit id="57">
+                <source>Niveau*</source>
+                <target>Level*</target>
+            </trans-unit>         
+            <trans-unit id="58">
+                <source>Mot de passe*</source>
+                <target>Password*</target>
+            </trans-unit>        
+            <trans-unit id="59">
+                <source>Confirmez le mot de passe*</source>
+                <target>Confirm password*</target>
+            </trans-unit>         
+            <trans-unit id="60">
+                <source>Nom*</source>
+                <target>Lastname*</target>
+            </trans-unit>          
+            <trans-unit id="61">
+                <source>Prénom*</source>
+                <target>Firstname*</target>
+            </trans-unit>           
+            <trans-unit id="62">
+                <source>Date de naissance*</source>
+                <target>Birthdate*</target>
+            </trans-unit>         
+            <trans-unit id="63">
+                <source>Téléphone fixe</source>
+                <target>Telephon</target>
+            </trans-unit>         
+            <trans-unit id="64">
+                <source>Adresse mail*</source>
+                <target>Mail address*</target>
+            </trans-unit>          
+            <trans-unit id="65">
+                <source>Téléphone portable</source>
+                <target>Mobile</target>
+            </trans-unit>          
+            <trans-unit id="66">
+                <source>N° voie / Rue</source>
+                <target>Street</target>
+            </trans-unit>          
+            <trans-unit id="67">
+                <source>Code postal</source>
+                <target>Zip code</target>
+            </trans-unit>          
+            <trans-unit id="68">
+                <source>Ville</source>
+                <target>City</target>
+            </trans-unit>          
+            <trans-unit id="69">
+                <source>Département</source>
+                <target>Department</target>
+            </trans-unit>          
+            <trans-unit id="70">
+                <source>Région</source>
+                <target>Region</target>
+            </trans-unit>          
+            <trans-unit id="71">
+                <source>Valider</source>
+                <target>Submit</target>
+            </trans-unit>          
+            <trans-unit id="72">
+                <source>*Champs obligatoires</source>
+                <target>*Requiered fields</target>
+            </trans-unit>          
+            <trans-unit id="73">
+                <source>Quantité</source>
+                <target>Quantity</target>
+            </trans-unit> 
         </body>
     </file>
 </xliff>
