@@ -220,6 +220,11 @@ body.membres.show #page-wrapper span{
     width: 150px;
     font-weight: bold;
 }
+body.membres .wine-image {
+    height: 308px;
+    width: 300px;
+    margin: 0 auto;
+}
 
 /* MEAS */
 
@@ -299,6 +304,8 @@ body.meas .bloc-mea {
     margin: 0 1% 2% 0;
     position: relative;
     width: 24%;
+    overflow: hidden;
+    max-width: 247px;
 }
 body.meas .bloc-mea span.etiquetteNom {
     position: absolute;
@@ -395,6 +402,7 @@ body.presses .presse-image.mini {
     height: 175px;
     margin-right: 1%;
     overflow: hidden;
+    margin: 0 auto;
 }
 
 body.presses .bloc-presse a.btn-edit{
@@ -477,6 +485,7 @@ body.partenaires .partenaire-image.mini {
     height: 175px;
     margin-right: 1%;
     overflow: hidden;
+    margin: 0 auto;
 }
 
 body.partenaires .bloc-partenaire a.btn-edit{
