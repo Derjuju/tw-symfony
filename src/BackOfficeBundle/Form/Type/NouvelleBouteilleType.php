@@ -181,9 +181,12 @@ class NouvelleBouteilleType extends AbstractType
     public function buildYearChoices() {
         //$distance = 5;
         //$yearsBefore = date('Y', mktime(0, 0, 0, date("m"), date("d"), date("Y") - $distance));
-        $yearsBefore = date('Y', mktime(0, 0, 0, 1, 1, 1900));
+        /*$yearsBefore = date('Y', mktime(0, 0, 0, 1, 1, 1850));
         $yearsAfter = date('Y', mktime(0, 0, 0, date("m"), date("d"), date("Y")));
-        $arrayDates = array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));
+        $arrayDates = array_combine(range($yearsAfter, $yearsBefore), range($yearsAfter, $yearsBefore));*/
+        
+        $arrayDates = array_combine(range(date("Y"),1850), range(date("Y"),1850));
+        
         $arrayNoDates = array_combine(array(0),array('Non millésimé'));
         
         //$arrayMerged = array_merge($arrayNoDates,$arrayDates);

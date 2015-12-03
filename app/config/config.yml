@@ -119,7 +119,7 @@ easy_admin:
         - AppBundle\Entity\TypeDomaine
         - AppBundle\Entity\TypePays
         - AppBundle\Entity\TypeRegion
-        - AppBundle\Entity\Bouteille
+        - AppBundle\Entity\Image
 
 # KNP Pagniator
 knp_paginator:
