@@ -35,7 +35,7 @@ class BouteilleController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         
-        $entities = $em->getRepository('AppBundle:Bouteille')->findAll();
+        $entities = $em->getRepository('AppBundle:Bouteille')->findAllNotArchived();
         
         return $this->render('BackOfficeBundle:Bouteille:index.html.twig', array(
             'entities' => $entities,

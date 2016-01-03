@@ -299,6 +299,8 @@ class MessageController extends Controller
                     $userBouteilles = $troc->getTrocSections()[0]->getContenu()->getTrocBBouteilles();
                     $troqueurBouteilles = $troc->getTrocSections()[0]->getContenu()->getTrocABouteilles();
                 }
+                
+                $trocContenu = $troc->getTrocSections()[0]->getContenu();
 
                 $MessageError = "";
 
@@ -319,6 +321,7 @@ class MessageController extends Controller
                 }
                 if(!$quantityError){
                     // attribue les bouteilles si addToCave
+                    
                     if($troc->getAddToCaveA()){
                         foreach($troqueurBouteilles as $bouteille){
                             if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
@@ -347,21 +350,43 @@ class MessageController extends Controller
                                 $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
                             }
                         }
-                    }else{
+                    }else{                        
                         // on les retire du site
                         foreach($troqueurBouteilles as $bouteille){
                             if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
                                 $bouteille->getBouteille()->setQuantite($bouteille->getBouteille()->getQuantite() - $bouteille->getQuantite());
                                 $em->persist($bouteille->getBouteille());
-                            }else{
-                                // supprime les Trocs Lies
+                            }else{  
+                                // soit on supprime
+                                
+                                /*$bouteilleToDelete = $bouteille->getBouteille();
+                                // on annule la liaison avec ce troc
+                                if($troc->getMemberA() == $user){
+                                    $bouteille->setBouteille(null);
+                                    $bouteille->setTrocContenuB(null);
+                                    $trocContenu->removeTrocBBouteille($bouteille);
+                                }else{
+                                    $bouteille->setBouteille(null);
+                                    $bouteille->setTrocContenuA(null);
+                                    $trocContenu->removeTrocABouteille($bouteille);
+                                }
+                                $em->persist($trocContenu);
+                                // puis on supprime les autres Trocs Lies
                                 $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
                                 
                                 // puis on les supprimes
-                                $em->remove($bouteille->getBouteille());
+                                $em->remove($bouteille);
+                                $em->remove($bouteilleToDelete);                                 
+                                 */
+                                
+                                // soit on retire juste l'appartenance à l'ancien propriétaire
+                                $bouteilleToDelete = $bouteille->getBouteille();
+                                $bouteilleToDelete->setMember(null);
+                                $em->persist($bouteilleToDelete);
                             }
                         }
                     }
+                    
                     if($troc->getAddToCaveB()){
                         foreach($userBouteilles as $bouteille){
                             if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
@@ -396,16 +421,37 @@ class MessageController extends Controller
                             if($bouteille->getBouteille()->getQuantite() > $bouteille->getQuantite()){
                                 $bouteille->getBouteille()->setQuantite($bouteille->getBouteille()->getQuantite() - $bouteille->getQuantite());
                                 $em->persist($bouteille->getBouteille());
-                            }else{
-                                // supprime les Trocs Lies
+                            }else{    
+                                // soit on supprime
+                                
+                                /*$bouteilleToDelete = $bouteille->getBouteille();                        
+                                // on annule la liaison avec ce troc
+                                if($troc->getMemberA() == $user){
+                                    $bouteille->setBouteille(null);
+                                    $bouteille->setTrocContenuB(null);
+                                    $trocContenu->removeTrocBBouteille($bouteille);
+                                }else{
+                                    $bouteille->setBouteille(null);
+                                    $bouteille->setTrocContenuA(null);
+                                    $trocContenu->removeTrocABouteille($bouteille);
+                                }
+                                $em->persist($trocContenu);
+                                // puis on supprime les autres Trocs Lies
                                 $this->supprimeTrocsLies($em, $bouteille->getBouteille(), $id);
                                 
                                 // puis on les supprimes
-                                $em->remove($bouteille->getBouteille());
+                                $em->remove($bouteille);
+                                $em->remove($bouteilleToDelete);                               
+                                 */
+                                
+                                // soit on retire juste l'appartenance à l'ancien propriétaire
+                                $bouteilleToDelete = $bouteille->getBouteille();
+                                $bouteilleToDelete->setMember(null);
+                                $em->persist($bouteilleToDelete);
                             }
                         }
                     }
-
+                    
 
                     $em->persist($user);
                     $em->persist($troqueur);
@@ -539,6 +585,7 @@ class MessageController extends Controller
                 $choixB = $trocContenu->getTrocBBouteilles();                
                 foreach($choixA as $choix){
                     if($choix->getBouteille() == $bouteille){
+                        $bouteille->setBouteille(null);
                         $choix->setTrocContenuA(null);
                         $trocContenu->removeTrocABouteille($choix);
                         $em->remove($choix);
@@ -546,6 +593,7 @@ class MessageController extends Controller
                 }
                 foreach($choixB as $choix){
                     if($choix->getBouteille() == $bouteille){
+                        $bouteille->setBouteille(null);
                         $choix->setTrocContenuB(null);
                         $trocContenu->removeTrocBBouteille($choix);
                         $em->remove($choix);

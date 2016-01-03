@@ -13,6 +13,8 @@
 {% endblock %}
 
 {% block content %}
+    {% set clicable = true %}
+    {% if trocArchive %}{% set clicable = false %}{% endif %}    
     {{ parent() }}  
     <section class="message-wrapper container">
 	<nav class="message-menu">
@@ -23,7 +25,7 @@
 	<section class="message-container">
 		<div class="top">
                     {% for message in messages %}
-                        {% include 'AppBundle:Messages:_blocMessage.html.twig' with {'user' : user, 'message' : message, 'clicable' : true} %}			
+                        {% include 'AppBundle:Messages:_blocMessage.html.twig' with {'user' : user, 'message' : message, 'clicable' : clicable, 'trocArchive' : trocArchive} %}
                     {% endfor %}
 		</div>
         </section>

@@ -9,20 +9,20 @@
 {% endif %}
 {% if clicable %}<a href="{{path('front_messagerie_gestion', {'id':message.id})}}">{% endif %}
 <div class="header-message">
-        {% if not clicable %}<a href="{{path('front_troc_modifier', {'idTroc':troc.id})}}" title="Voir la cave">{% endif %}
+        {% if not clicable and not trocArchive %}<a href="{{path('front_troc_modifier', {'idTroc':troc.id})}}" title="Voir la cave">{% endif %}
         <div class="image-person-container" style="background-image: url('{% if troqueur.avatar != null %}{{asset(troqueur.avatar.file)|imagine_filter('avatar_resize_messagerie')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
-        {% if not clicable %}</a>{% endif %}
+        {% if not clicable and not trocArchive %}</a>{% endif %}
         <div class="break">
                 <h3>{{troqueur.lastname}}</h3>
                 <span>( {{troqueur.expertLevel.nameFr}} )</span>
         </div>    
         <div class="break">
                 {% for item in troqueurBouteilles %}
-                    {% if not clicable %}<a href="{{path('front_bouteille_fiche_simple', {'id':item.bouteille.id})}}" title="Voir la Fiche">{% endif %}
+                    {% if not clicable and not trocArchive %}<a href="{{path('front_bouteille_fiche_simple', {'id':item.bouteille.id})}}" title="Voir la Fiche">{% endif %}
                         <span class="image-wine-container" style="background-image: url('{% if item.bouteille.photo != null %}{{asset(item.bouteille.photo.file)|imagine_filter('bouteille_resize_messagerie')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}')">
                                 <span class="dot-qte">{{item.quantite}}</span>
                         </span>
-                    {% if not clicable %}</a>{% endif %}
+                    {% if not clicable and not trocArchive %}</a>{% endif %}
                 {% endfor %}
                 {#% if troqueurBouteilles|length > 3 %}
                 <button class="btn-ops">...</button>
@@ -31,11 +31,11 @@
         <div class="break">
                 <h3>Contre</h3>
                 {% for item in mesBouteilles %}
-                    {% if not clicable %}<a href="{{path('front_bouteille_fiche_simple', {'id':item.bouteille.id})}}" title="Voir la Fiche">{% endif %}
+                    {% if not clicable and not trocArchive %}<a href="{{path('front_bouteille_fiche_simple', {'id':item.bouteille.id})}}" title="Voir la Fiche">{% endif %}
                         <span class="image-wine-container" style="background-image: url('{% if item.bouteille.photo != null %}{{asset(item.bouteille.photo.file)|imagine_filter('bouteille_resize_messagerie')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}')">
                                 <span class="dot-qte">{{item.quantite}}</span>
                         </span>
-                    {% if not clicable %}</a>{% endif %}
+                    {% if not clicable and not trocArchive %}</a>{% endif %}
                 {% endfor %}
                 {% if mesBouteilles|length > 3 %}
                 <button class="btn-ops">...</button>

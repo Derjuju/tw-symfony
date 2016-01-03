@@ -12,6 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class BouteilleRepository extends EntityRepository
 {
+    function findAllNotArchived(){
+        $query = $this->createQueryBuilder('b')
+                ->where('b.member IS NOT NULL');
+
+        return $query->getQuery()->getResult();
+    }
+    
     function findForIdAndUser($id, $member){
         $query = $this->createQueryBuilder('b')
                 ->where('b.member = :member')
