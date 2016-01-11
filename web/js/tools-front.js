@@ -225,9 +225,15 @@ function ajaxRefreshHTMLResults(url, target, data, modalId){
 
 
 var map;
+var map_tw;
 var bigMap = [];
+var bigMap_tw = [];
 function initMap(){
     map = new google.maps.Map(document.getElementById('bigMap'), {
+        center:{lat: 48.8589506, lng: 2.2773456},
+        zoom: 16
+    });
+    map_tw = new google.maps.Map(document.getElementById('bigMap-tw'), {
         center:{lat: 48.8589506, lng: 2.2773456},
         zoom: 16
     });
@@ -254,7 +260,43 @@ function initialiseBigCarte(latitude, longitude, mapId){
 
 }
 
+function getAddressForMap(url, id){
+    var modalId = "#myModal";
+    $(modalId).empty().html(displayLoadingWheel());
+    $(modalId).modal('show');
+    
+    var data = {'id':id};
+    
+    $.ajax({
+        type : 'POST',
+        url : url,
+        data : data,
+        timeout : 20000,
+        success : function(htmlResponse) {
 
+            $(modalId).empty().html();                 
+            $(modalId).modal('toggle');
+            updateMapFromAddress(htmlResponse); 
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            $(modalId).empty().html('Erreur de traitement...');  
+        }
+    });
+}
+function updateMapFromAddress(address){
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map_tw.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+              map: map_tw,
+              position: results[0].geometry.location
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
+}
 
 function createCookie(name,value,days) {
 	if (days) {

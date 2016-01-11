@@ -1,8 +1,57 @@
+{{ form_start(formTrocTW, {'attr': {'class': 'subscribe-form', 'id': 'FormAddMessageTw'} }) }}        
+<div class="subscribe-inputs-container select-address-tw" data-get-address="{{path('front_messagerie_get_address_tw')}}">
+    <p class="address-title pourpre">Choisissez une sélection proposée par TrocWine :</p>
+    <div class="address-form">
+        <div class="container">
+            <select id="selectVous" class="col-6">
+                <option>Choisir près de chez vous</option>
+                {% for proche in prochesVous %}
+                    <option value="{{proche.id}}">{{proche.name}}{% if proche.distance != 999 %} à {{proche.distance|number_format(3)}}km {% endif %}{% if proche.distanceB != 999 %} ({{proche.distanceB|number_format(3)}}km de lui){% endif %}</option>
+                {% endfor %}
+            </select>
+            <select id="selectLui" class="col-6">
+                <option>Choisir près de chez lui</option>
+                {% for proche in prochesLui %}
+                    <option value="{{proche.id}}">{{proche.name}}{% if proche.distance != 999 %} à {{proche.distance|number_format(3)}}km {% endif %}{% if proche.distanceB != 999 %} ({{proche.distanceB|number_format(3)}}km de vous){% endif %}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="address-form">
+        <div class="container">
+            <select id="selectRegion" class="col-12">
+                <option>Choisir dans vos régions</option>
+                {% set regionGroup = '' %}
+                {% for proche in dansRegions %}
+                    {% if proche.region != regionGroup %}
+                        {% if regionGroup != '' %}
+                        </optgroup>
+                        {% endif %}
+                        {% set regionGroup = proche.region %}
+                        <optgroup label="{{regionGroup}}">
+                    {% endif %}
+                    <option value="{{proche.id}}">{{proche.city}} - {{proche.name}}{% if proche.distance != 999 %} à {{proche.distance|number_format(3)}}km {% endif %}{% if proche.distanceB != 999 %} ({{proche.distanceB|number_format(3)}}km de vous){% endif %}</option>
+                {% endfor %}
+                {% if regionGroup != '' %}
+                        </optgroup>
+                {% endif %}
+            </select>            
+        </div>
+    </div>
+    <div class="address-form">
+        <button id="ProposerRdv" class="submit-btn btn-default">Proposer ce lieu</button>            
+    </div>
+</div>
+<div class="big-map-container-tw">
+    <em class="big-map-address bigMap-address-tw-0">Sélectionnez un lieu pour afficher sur la carte.</em>
+    <div class="big-map-tw" id="bigMap-tw"></div>
+</div>
+{{ form_end(formTrocTW) }}
 {% form_theme formRDV with ['AppBundle::form_theme.html.twig', _self] %}
 {{ form_start(formRDV, {'attr': {'class': 'subscribe-form', 'id': 'FormAddMessage'} }) }}
 <div class="subscribe-inputs-container">
     <div class="address-form">
-            <p class="address-title">Adresse : <span class="smaller"></span></p>				
+            <p class="address-title pourpre">Ou proposez une adresse : <span class="smaller"></span></p>				
             {{ form_widget(formRDV.name, { 'label': false, 'class': '', 'attr': {'class': 'col-12'} }) }}
             {{ form_widget(formRDV.street, { 'label': false, 'class': '', 'attr': {'class': 'col-12'} }) }}
             <div class="container">
@@ -19,7 +68,7 @@
     </div>    
 </div>
 <div class="big-map-container">
-    <em class="big-map-address bigMap-address-0">Cliquez sur voir le lieu pour afficher la carte.</em>
+    <em class="big-map-address bigMap-address-0">Cliquez sur voir le lieu pour afficher sur la carte.</em>
     <div class="big-map" id="bigMap"></div>
 </div>
 {{ form_end(formRDV) }}

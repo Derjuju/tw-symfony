@@ -48,6 +48,9 @@
                                 {% if section.rdv != null %}
                                     {% include 'AppBundle:Messages:_blocSectionRDV.html.twig' with {'user' : user, 'section' : section} %}			                    
                                 {% endif %}
+                                {% if section.rdvTW != null %}
+                                    {% include 'AppBundle:Messages:_blocSectionRDVTW.html.twig' with {'user' : user, 'section' : section} %}			                    
+                                {% endif %}
                                 </article>
                             {% endif %}
                         {% endfor %}
@@ -64,7 +67,7 @@
                                     {% include 'AppBundle:Messages:_blocActionEcrire.html.twig' with {'formMessage' : formMessage} %}			                                                        
                                 </div>
                                 <div class="panel-action-rdv hidden">
-                                    {% include 'AppBundle:Messages:_blocActionRDV.html.twig' with {'formRDV' : formRDV} %}			                                                        
+                                    {% include 'AppBundle:Messages:_blocActionRDV.html.twig' with {'formRDV' : formRDV, 'formTrocTW' : formTrocTW, 'prochesVous':prochesVous, 'prochesLui':prochesLui, 'dansRegions':dansRegions} %}			                                                        
                                 </div>
                             </div>
                         </div>
@@ -178,7 +181,14 @@
                 
             });
             
-            
+            $('.select-address-tw select').on('change', function(event){
+                event.preventDefault();
+                if($(this).val() != ''){
+                    var url = $('.select-address-tw').attr('data-get-address');
+                    getAddressForMap(url, $(this).val());
+                    $('#form_idaddresstw').val($(this).val());
+                }
+            });
             
             function actualiseBigCarte(latitude, longitude, mapId){
                 
@@ -202,7 +212,7 @@
             }
             
             $('.maps-wrapper.section-rdv').each(function(){
-                initialiseBigCarte($(this).data('lat'),$(this).data('long'),$(this).data('bigmap'));  
+                initialiseBigCarte($(this).data('lat'),$(this).data('long'),$(this).data('bigmap'));                  
             });
             
         });

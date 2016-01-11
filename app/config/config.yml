@@ -87,6 +87,40 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        
+        dql:
+            string_functions:
+                acos: DoctrineExtensions\Query\Mysql\Acos
+                asin: DoctrineExtensions\Query\Mysql\Asin
+                atan2: DoctrineExtensions\Query\Mysql\Atan2
+                atan: DoctrineExtensions\Query\Mysql\Atan
+                charlength: DoctrineExtensions\Query\Mysql\CharLength
+                concatws: DoctrineExtensions\Query\Mysql\ConcatWs
+                cos: DoctrineExtensions\Query\Mysql\Cos
+                cot: DoctrineExtensions\Query\Mysql\Cot
+                countif: DoctrineExtensions\Query\Mysql\CountIf
+                dateadd: DoctrineExtensions\Query\Mysql\DateAdd
+                datediff: DoctrineExtensions\Query\Mysql\DateDiff
+                day: DoctrineExtensions\Query\Mysql\Day
+                degrees: DoctrineExtensions\Query\Mysql\Degrees
+                field: DoctrineExtensions\Query\Mysql\Field
+                findinset: DoctrineExtensions\Query\Mysql\FindInSet
+                groupconcat: DoctrineExtensions\Query\Mysql\GroupConcat
+                ifelse: DoctrineExtensions\Query\Mysql\IfElse
+                ifnull: DoctrineExtensions\Query\Mysql\IfNull
+                matchagainst: DoctrineExtensions\Query\Mysql\MatchAgainst
+                md5: DoctrineExtensions\Query\Mysql\Md5
+                month: DoctrineExtensions\Query\Mysql\Month
+                nullif: DoctrineExtensions\Query\Mysql\NullIf
+                radians: DoctrineExtensions\Query\Mysql\Radians
+                sha1: DoctrineExtensions\Query\Mysql\Sha1
+                sha2: DoctrineExtensions\Query\Mysql\Sha2
+                sin: DoctrineExtensions\Query\Mysql\Sin
+                strtodate: DoctrineExtensions\Query\Mysql\StrToDate
+                tan: DoctrineExtensions\Query\Mysql\Tan
+                timestampdiff: DoctrineExtensions\Query\Mysql\TimestampDiff
+                week: DoctrineExtensions\Query\Mysql\Week
+                year: DoctrineExtensions\Query\Mysql\Year
 
 # Swiftmailer Configuration
 swiftmailer:

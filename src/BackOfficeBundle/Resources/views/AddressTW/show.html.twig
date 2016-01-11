@@ -1,0 +1,103 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+{% block bodyclass %}adresses_tw show{% endblock %}
+
+{% form_theme delete_form with ['bootstrap_3_layout.html.twig', _self] %}
+
+{% block content %}
+
+    {% include "BackOfficeBundle:AddressTW:_type_contenu.html.twig" with {'entity':entity} %}
+
+    {% include "BackOfficeBundle:AddressTW:_back_liste.html.twig" with {'entity':entity} %}
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default col-lg-6">
+                
+                <div class="row">
+                    <h2>{{ entity.name }}</h2>
+                </div>
+                <div class="row">
+                    <span>Rue :</span> {{ entity.street }}
+                </div>
+                <div class="row">
+                    <span>Code postal :</span> {{ entity.zipCode }}
+                </div>
+                <div class="row">
+                    <span>Ville :</span> {{ entity.city }}
+                </div>
+                <div class="row">
+                    <span>Département :</span> {{ entity.departement }}
+                </div>
+                <div class="row">
+                    <span>Région :</span> {{ entity.region }}
+                </div>
+                <div class="row">
+                    <span>Pays :</span> {{ entity.country }}
+                </div>
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Editer ?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    <a class="btn btn-primary btn-edit btn-lg" href="{{path('back_office_addresses_tw_edit',{'id':entity.id})}}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Supprimer ?</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-lg-12 text-center"> 
+                    {{ form_start(delete_form) }}
+                    {{ form_widget(delete_form.submit, { 'attr' : { 'class' : 'btn submit btn-danger'}, 'id' : 'btnDelete' }) }}
+                    {{ form_end(delete_form) }}
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+
+{% endblock %}
+
+
+{% block bottomJavascripts %}
+
+    {{ parent() }}
+
+    <script>
+    $(document).ready(function() {
+        $('#btnDelete').on('click',function(event){
+            //event.preventDefault();
+            return confirm('Supprimer définitivement ?');
+        });
+    });
+    </script>
+{% endblock %}

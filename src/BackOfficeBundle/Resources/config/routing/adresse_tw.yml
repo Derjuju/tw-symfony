@@ -1,0 +1,30 @@
+back_office_adresses_tw:
+    path:     /
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:index" }
+
+back_office_adresse_tw_show:
+    path:     /{id}/show
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:show" } 
+
+back_office_adresse_tw_new:
+    path:     /new
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:new" }
+
+back_office_adresse_tw_create:
+    path:     /create
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:create" }
+    methods:  POST
+
+back_office_adresse_tw_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:edit" }
+
+back_office_adresse_tw_update:
+    path:     /{id}/update
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:update" }
+    methods:  [POST, PUT] 
+
+back_office_adresse_tw_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:delete" }
+    methods:  [POST, DELETE]  

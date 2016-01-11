@@ -226,9 +226,17 @@ body.membres .wine-image {
     margin: 0 auto;
 }
 
+/* ADDRESS_TW */
+body.adresses_tw label { min-width:150px;}
+body.adresses_tw .row{ margin-bottom: 10px;}
+body.adresses_tw .form-group div.form-inline { display: inline; }
+body.adresses_tw.show #page-wrapper span{
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+}
+
 /* MEAS */
-
-
 .mea-image {
     height: 230px;
     background: center no-repeat #ddd;

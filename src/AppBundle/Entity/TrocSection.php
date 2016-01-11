@@ -44,6 +44,12 @@ class TrocSection
      * @ORM\JoinColumn(name="troc_rdv_id", referencedColumnName="id")
      * */
     protected $rdv;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="TrocTW", inversedBy="trocSection", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\JoinColumn(name="troc_tw_id", referencedColumnName="id")
+     * */
+    protected $rdvTW;
 
     /**
      * @var \DateTime
@@ -168,6 +174,27 @@ class TrocSection
      */
     public function getRdv() {
         return $this->rdv;
+    }
+    
+    /**
+     * Set rdvTW
+     *
+     * @param \AppBundle\Entity\TrocTW $rdvTW
+     * @return TrocSection
+     */
+    public function setRdvTW(\AppBundle\Entity\TrocTW $rdvTW = null) {
+        $this->rdvTW = $rdvTW;
+
+        return $this;
+    }
+
+    /**
+     * Get rdvTW
+     *
+     * @return \AppBundle\Entity\TrocTW
+     */
+    public function getRdvTW() {
+        return $this->rdvTW;
     }
     
     

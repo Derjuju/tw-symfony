@@ -1060,13 +1060,18 @@ body.search-troqueur article .description {
 .troc-actions .panel-actions .panel-action-rdv #AjouterRdv{
     display: inline-block;
 }
-.troc-actions .panel-actions .panel-action-rdv .big-map-container{
+.troc-actions .panel-actions .panel-action-rdv #ProposerRdv{
+    display: inline-block;
+}
+.troc-actions .panel-actions .panel-action-rdv .big-map-container,
+.troc-actions .panel-actions .panel-action-rdv .big-map-container-tw{
     width: 95%;
     display: block;
     border-top: 1px solid #F3F3F3;
 }
 
-.troc-actions .panel-actions .panel-action-rdv .big-map{
+.troc-actions .panel-actions .panel-action-rdv .big-map,
+.troc-actions .panel-actions .panel-action-rdv .big-map-tw{
     width: 90%;
     height: 320px;
     margin: 0 auto;

@@ -12,6 +12,7 @@ use AppBundle\Entity\TrocMessage;
 use AppBundle\Entity\TrocSection;
 use AppBundle\Entity\TrocRDV;
 use AppBundle\Entity\AddressRdv;
+use AppBundle\Entity\TrocTW;
 use AppBundle\Form\Type\TrocAType;
 use AppBundle\Form\Type\TrocBType;
 use AppBundle\Form\Type\TrocMessageType;
@@ -72,6 +73,27 @@ class MessageController extends Controller
     
     
     /**
+     * @Route("/messages/addressTW/get",name="front_messagerie_get_address_tw")          
+     */
+    public function getAddressTWAction(Request $request) {
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $id = $request->get('id',0);
+        
+        $entity = $em->getRepository('AppBundle:AddressTW')->find($id);
+        if(!$entity){ throw $this->createNotFoundException('Address TW inconnue.'); }
+        
+        $addressForMap = $entity->getStreet().', '.$entity->getZipCode().', '.$entity->getCity().', '.$entity->getCountry();
+        
+        return $this->render('AppBundle:Messages:addressForMap.html.twig', array(
+            'addressForMap' => $addressForMap,
+            ));
+        
+    }
+    
+    /**
      * @Route("/messages/gestion/{id}",name="front_messagerie_gestion")          
      */
     public function gestionAction(Request $request, $id) {
@@ -97,6 +119,18 @@ class MessageController extends Controller
         $addressRDV = new AddressRdv();
         $formRDV = $this->generateFormRdv($addressRDV, $id);
         
+        $formTrocTW = $this->generateFormTrocTw($id);
+        
+        
+        if($troc->getMemberA() == $user){
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+        }else{
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+        }
+        $dansRegions = $em->getRepository('AppBundle:AddressTW')->findInRegionsAandB($troc->getMemberA(), $troc->getMemberB());
+        
         return $this->render('AppBundle:Messages:message.html.twig', array(
             'user' => $user,
             'troc' => $troc,
@@ -104,6 +138,10 @@ class MessageController extends Controller
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
             'formRDV' => $formRDV->createView(),
+            'formTrocTW' => $formTrocTW->createView(),
+            'prochesVous' => $prochesVous,
+            'prochesLui' => $prochesLui,
+            'dansRegions' => $dansRegions,
         ));
     }
     
@@ -132,6 +170,20 @@ class MessageController extends Controller
         
         $addressRDV = new AddressRdv();
         $formRDV = $this->generateFormRdv($addressRDV, $id);
+                
+        $formTrocTW = $this->generateFormTrocTw($id);
+        
+        
+        if($troc->getMemberA() == $user){
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+        }else{
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+        }
+        $dansRegions = $em->getRepository('AppBundle:AddressTW')->findInRegionsAandB($troc->getMemberA(), $troc->getMemberB());
+        
+        
         
         // traitement message
         $formMessage->handleRequest($request);
@@ -157,6 +209,10 @@ class MessageController extends Controller
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
             'formRDV' => $formRDV->createView(),
+            'formTrocTW' => $formTrocTW->createView(),
+            'prochesVous' => $prochesVous,
+            'prochesLui' => $prochesLui,
+            'dansRegions' => $dansRegions,
         ));
     }
     
@@ -195,6 +251,20 @@ class MessageController extends Controller
         
         $addressRDV = new AddressRdv();
         $formRDV = $this->generateFormRdv($addressRDV, $id);
+        
+        $formTrocTW = $this->generateFormTrocTw($id);
+        
+        
+        if($troc->getMemberA() == $user){
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+        }else{
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+        }
+        $dansRegions = $em->getRepository('AppBundle:AddressTW')->findInRegionsAandB($troc->getMemberA(), $troc->getMemberB());
+        
+        
         
         // traitement message
         $formRDV->handleRequest($request);
@@ -235,6 +305,109 @@ class MessageController extends Controller
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
             'formRDV' => $formRDV->createView(),
+            'formTrocTW' => $formTrocTW->createView(),
+            'prochesVous' => $prochesVous,
+            'prochesLui' => $prochesLui,
+            'dansRegions' => $dansRegions,
+        ));
+    }
+    
+    /**
+     * @Route("/messages/gestion/{id}/addRdvTW",name="front_messagerie_gestion_add_rdv_tw")          
+     */
+    public function addRdvTWAction(Request $request, $id) {
+        
+        if (! $this->get('security.context')->isGranted('ROLE_USER') ) { throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if(!$user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $troc = $em->getRepository('AppBundle:Troc')->find($id);
+        if(!$troc){ throw $this->createNotFoundException('Troc inconnu.'); }
+        if($troc->getMemberA() != $user && $troc->getMemberB() != $user){ throw $this->createNotFoundException('Accès impossible.'); }
+        
+        if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
+        
+        if($troc->getMemberA() == $user){
+            $troqueur = $troc->getMemberB();
+        }else{
+            $troqueur = $troc->getMemberA();
+        }
+        
+        $emailTroqueur = $troqueur->getEmail(); 
+        
+        $refTroc = $troc->getId();
+        
+        $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
+        
+        $trocMessage = new TrocMessage();
+        $formMessage = $this->generateFormMessage($trocMessage, $id);
+        
+        $addressRDV = new AddressRdv();
+        $formRDV = $this->generateFormRdv($addressRDV, $id);
+        
+        $formTrocTW = $this->generateFormTrocTw($id);
+        
+        
+        if($troc->getMemberA() == $user){
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+        }else{
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+        }
+        $dansRegions = $em->getRepository('AppBundle:AddressTW')->findInRegionsAandB($troc->getMemberA(), $troc->getMemberB());
+        
+        
+        
+        // traitement message
+        $formTrocTW->handleRequest($request);
+        if ($formTrocTW->isValid()) {
+            $data = $formTrocTW->getData();
+            $addressTW = $em->getRepository('AppBundle:AddressTW')->find($data['idaddresstw']);
+            
+            if(!$addressTW){ throw $this->createNotFoundException('Address TW inconnue.'); }
+            
+            $trocSection = new TrocSection();
+            //$em->persist($addressRDV);
+            
+            $trocTW = new TrocTW();
+            $trocTW->setSuggested(1);
+            $trocTW->setAddressTW($addressTW);
+            $em->persist($trocTW);
+                        
+            $trocSection->setTroc($troc);   
+            $trocSection->setRdvTW($trocTW);
+            $trocSection->setMember($user);
+            $em->persist($trocSection);
+
+            $troc->addTrocSection($trocSection);
+            $em->persist($troc);
+
+            $em->flush();
+            
+            $adresse = $addressTW->getStreet().' - '.$addressTW->getZipCode().' '.$addressTW->getCity();            
+            
+            if (!$this->get('mail_to_user')->sendEmailRdvTroc($emailTroqueur,$refTroc, $troqueur->getFirstname(), $user->getFirstname(), $adresse)) {
+                throw $this->createNotFoundException('Unable to send rendez-vous troc mail.');
+            } 
+            
+            return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
+        }
+        
+        return $this->render('AppBundle:Messages:message.html.twig', array(
+            'user' => $user,
+            'troc' => $troc,
+            'trocArchive' => $troc->getArchived(),
+            'formFinTroc' => $formFinTroc->createView(),
+            'formMessage' => $formMessage->createView(),
+            'formRDV' => $formRDV->createView(),
+            'formTrocTW' => $formTrocTW->createView(),
+            'prochesVous' => $prochesVous,
+            'prochesLui' => $prochesLui,
+            'dansRegions' => $dansRegions,
         ));
     }
     
@@ -270,6 +443,20 @@ class MessageController extends Controller
         
         $addressRDV = new AddressRdv();
         $formRDV = $this->generateFormRdv($addressRDV, $id);
+        
+        $trocTW = new TrocTW();
+        $formTrocTW = $this->generateFormTrocTw($id);
+        
+        
+        if($troc->getMemberA() == $user){
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+        }else{
+            $prochesVous = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberB(), $troc->getMemberA());
+            $prochesLui = $em->getRepository('AppBundle:AddressTW')->findNearAwithB($troc->getMemberA(), $troc->getMemberB());
+        }
+        $dansRegions = $em->getRepository('AppBundle:AddressTW')->findInRegionsAandB($troc->getMemberA(), $troc->getMemberB());
+        
         
         // traitement fin troc
         $formFinTroc->handleRequest($request);
@@ -505,6 +692,10 @@ class MessageController extends Controller
             'formFinTroc' => $formFinTroc->createView(),
             'formMessage' => $formMessage->createView(),
             'formRDV' => $formRDV->createView(),
+            'formTrocTW' => $formTrocTW->createView(),
+            'prochesVous' => $prochesVous,
+            'prochesLui' => $prochesLui,
+            'dansRegions' => $dansRegions,
         ));
         
     }
@@ -570,6 +761,17 @@ class MessageController extends Controller
             'method' => 'POST',
         ));        
         return $formRDV;
+    }
+    
+    private function generateFormTrocTw($id){   
+        $data = array();
+        $formTrocTW = $this->createFormBuilder($data, array(
+                'action' => $this->generateUrl('front_messagerie_gestion_add_rdv_tw', array('id' => $id)),
+                'method' => 'POST',
+            ))
+            ->add('idaddresstw', 'hidden', ['required'=>true])
+            ->getForm();
+        return $formTrocTW;
     }
     
     private function supprimeTrocsLies($em, $bouteille, $id)

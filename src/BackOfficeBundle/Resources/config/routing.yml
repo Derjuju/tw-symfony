@@ -57,5 +57,9 @@ back_office_partenaires:
 back_office_presses:
     resource: "@BackOfficeBundle/Resources/config/routing/presse.yml"
     prefix:     /presses
+    
+back_office_adresses_tw:
+    resource: "@BackOfficeBundle/Resources/config/routing/adresse_tw.yml"
+    prefix:     /adresses_tw
 
     
