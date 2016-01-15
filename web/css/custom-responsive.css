@@ -206,6 +206,10 @@
         margin-right: 2.35765%;
         width: 61.61588%;
     }
+    .add-bottle-form .data-container .form-top .qte{
+        width: 100%;
+        margin-top:10px;
+    }
     
     .swap-wrapper .page-title { 
         margin: 0.5em 0 0.5em 0;

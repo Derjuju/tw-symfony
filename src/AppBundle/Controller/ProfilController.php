@@ -96,7 +96,9 @@ class ProfilController extends Controller
     */
     private function createEditForm(Member $entity)
     {
-        $form = $this->createForm(new EditMemberType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        
+        $form = $this->createForm(new EditMemberType($lang), $entity, array(
             'action' => $this->generateUrl('front_mon_profil'),
             'method' => 'POST',
         ));

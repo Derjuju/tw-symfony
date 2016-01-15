@@ -20,8 +20,8 @@
             <a href="{{path('logout')}}" class=""><i class="icon-deconnexion"></i></a>
         {% else %}            
             <a href="{{path('front_inscription')}}" class="btn-default {{ app.request.attributes.get('_route') == 'front_inscription' ? 'active' }}">{{ "Inscription"|trans }}</a>
-            <a href="#" onClick="showLoginAndClose(); return false;" class="btn-default {{ app.request.attributes.get('_route') == 'login' ? 'active' }}">{{ "Connexion"|trans }}Connexion</a>
-            <a href="{{path('front_mode_emploi')}}" class="btn-default {{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}">{{ "Mode d'emploi"|trans }}Mode d'emploi</a> 
+            <a href="#" onClick="showLoginAndClose(); return false;" class="btn-default {{ app.request.attributes.get('_route') == 'login' ? 'active' }}">{{ "Connexion"|trans }}</a>
+            <a href="{{path('front_mode_emploi')}}" class="btn-default {{ app.request.attributes.get('_route') == 'front_mode_emploi' ? 'active' }}">{{ "Mode d'emploi"|trans }}</a> 
         {% endif %} 
             {% include "AppBundle:Interface:_langue_selector.html.twig" %}           
     </nav>

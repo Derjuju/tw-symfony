@@ -9,6 +9,12 @@ use Doctrine\ORM\EntityRepository;
 
 class EditMemberType extends AbstractType
 {
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
@@ -29,7 +35,7 @@ class EditMemberType extends AbstractType
             ->add('email', 'email', array('attr' => array('placeholder' => 'Adresse mail*'),'label'=>'Adresse mail*'))
             ->add('telephon', 'text',['attr' => array('placeholder' => 'Téléphone fixe'),'label'=>'Téléphone fixe' ,'required'=>false])
             ->add('mobile', 'text',['attr' => array('placeholder' => 'Téléphone portable'),'label'=>'Téléphone portable' ,'required'=>false])
-            ->add('address', new AddressType())
+            ->add('address', new AddressType($this->lang))
             ->add('avatar', new ImageType(), array(
                     'data_class' => 'AppBundle\Entity\Image',
                     'required' => false,
