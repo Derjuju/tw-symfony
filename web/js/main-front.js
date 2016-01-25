@@ -141,11 +141,19 @@ function initialiseBoutonBouteille(){
 }
 
 function confirmSuppression(){
-    return confirm('Voulez-vous supprimer définitivement cette bouteille ?');
+    if(langSite == 'en'){
+        return confirm('Do you wish to delete definitively this bottle?');
+    }else{
+        return confirm('Voulez-vous supprimer définitivement cette bouteille ?');
+    }
 }
 
 function confirmTrocSuppression(){
-    return confirm('Voulez-vous supprimer définitivement ce troc ?');
+    if(langSite == 'en'){
+        return confirm('Do you wish to delete definitively this swap?');
+    }else{
+        return confirm('Voulez-vous supprimer définitivement ce troc ?');
+    }    
 }
 
 

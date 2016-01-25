@@ -1,31 +1,31 @@
 {{ form_start(formFinTroc, {'attr': {'class': 'swap-ops-container', 'id' : 'FormFinaliserTroc'} }) }}
     <span>{{ form_errors(formFinTroc) }}</span>
     <div>
-        <label>Troc effectué ?</label>
+        <label>{{"Troc effectué ?"|trans}}</label>
         <div class="right">
             {% if user == troc.memberA %}
                 {{ form_widget(formFinTroc.finishedA, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
             {% else %}
                 {{ form_widget(formFinTroc.finishedB, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
             {% endif %}
-                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.finishedA == 1) or (user == troc.memberB and troc.finishedB == 1) %}active{% endif %}" value="1">Oui</button>
-                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.finishedA == 0) or (user == troc.memberB and troc.finishedB == 0) %}active{% endif %}" value="0" >Non</button>
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.finishedA == 1) or (user == troc.memberB and troc.finishedB == 1) %}active{% endif %}" value="1">{{"Oui"|trans}}</button>
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.finishedA == 0) or (user == troc.memberB and troc.finishedB == 0) %}active{% endif %}" value="0" >{{"Non"|trans}}</button>
         </div>
     </div>    
     <div>
-        <label>Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave.</label>
+        <label>{{"Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave."|trans}}</label>
         <div class="right">            
             {% if user == troc.memberA %}
                 {{ form_widget(formFinTroc.addToCaveA, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
             {% else %}
                 {{ form_widget(formFinTroc.addToCaveB, {'label': false,'class': '', 'attr': {'class': 'hidden_field'} }) }}
             {% endif %}
-                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.addToCaveA == 1) or (user == troc.memberB and troc.addToCaveB == 1) %}active{% endif %}" value="1">Oui</button>
-                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.addToCaveA == 0) or (user == troc.memberB and troc.addToCaveB == 0) %}active{% endif %}" value="0">Non</button>
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.addToCaveA == 1) or (user == troc.memberB and troc.addToCaveB == 1) %}active{% endif %}" value="1">{{"Oui"|trans}}</button>
+                <button class="btn-default btn-choice {% if (user == troc.memberA and troc.addToCaveA == 0) or (user == troc.memberB and troc.addToCaveB == 0) %}active{% endif %}" value="0">{{"Non"|trans}}</button>
         </div>
     </div>
     <div>
-        <label>Noter <span class="name">{% if user == troc.memberA %}{{troc.memberB.firstname}}{% else %}{{troc.memberA.firstname}}{% endif %}</span></label>
+        <label>{{"Noter"|trans}} <span class="name">{% if user == troc.memberA %}{{troc.memberB.firstname}}{% else %}{{troc.memberA.firstname}}{% endif %}</span></label>
         <div class="right">
             <div class="rating">
                 <span class="icon-star-rate-container icon-rate" id="ratingTroqueur">
@@ -57,8 +57,8 @@
         </div>
     </div>      
     <div>
-        <button id="FinaliserTroc" class="right btn-default">Enregistrer</button><br><br>
-        <a href="{{path('front_messagerie_gestion_abandon', {'id':troc.id}) }}" onClick="return confirmTrocSuppression();" class="btn-default btn-delete right">Abandonner</a>
+        <button id="FinaliserTroc" class="right btn-default">{{"Enregistrer"|trans}}</button><br><br>
+        <a href="{{path('front_messagerie_gestion_abandon', {'id':troc.id}) }}" onClick="return confirmTrocSuppression();" class="btn-default btn-delete right">{{"Abandonner"|trans}}</a>
     </div>
     {% if user == troc.memberA %}
         {{ form_row(formFinTroc.noteB, {'label': false, 'class': 'hidden', 'attr': {'class': 'hidden'} }) }}

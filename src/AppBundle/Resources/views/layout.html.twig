@@ -29,6 +29,8 @@
 {% block bottomJavascripts %}
     {{ parent() }}
     <script type="text/javascript">
+        var langSite = '{{ app.session.get( '_locale' )}}';
+        
         $(document).ready(function () {
             {% if displayModalFlash %}
             $('#flashBagModal').modal('show');

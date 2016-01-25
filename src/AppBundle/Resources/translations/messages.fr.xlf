@@ -293,8 +293,393 @@
             <trans-unit id="73">
                 <source>Quantité</source>
                 <target>Quantité</target>
-            </trans-unit> 
+            </trans-unit>          
+            <trans-unit id="74">
+                <source>Fiche bouteille n°</source>
+                <target>Fiche bouteille n°</target>
+            </trans-unit>          
+            <trans-unit id="75">
+                <source>Sélectionner</source>
+                <target>Sélectionner</target>
+            </trans-unit>         
+            <trans-unit id="76">
+                <source>Ma note</source>
+                <target>Ma note</target>
+            </trans-unit>         
+            <trans-unit id="77">
+                <source>bouteille</source>
+                <target>bouteille</target>
+            </trans-unit>         
+            <trans-unit id="78">
+                <source>conservée</source>
+                <target>conservée</target>
+            </trans-unit>         
+            <trans-unit id="79">
+                <source>Note moyenne</source>
+                <target>Note moyenne</target>
+            </trans-unit>         
+            <trans-unit id="80">
+                <source>Normal</source>
+                <target>Normal</target>
+            </trans-unit>         
+            <trans-unit id="81">
+                <source>Bas goulot</source>
+                <target>Bas goulot</target>
+            </trans-unit>         
+            <trans-unit id="82">
+                <source>Très légèrement bas</source>
+                <target>Très légèrement bas</target>
+            </trans-unit>         
+            <trans-unit id="83">
+                <source>Légèrement bas</source>
+                <target>Légèrement bas</target>
+            </trans-unit>         
+            <trans-unit id="84">
+                <source>Haute épaule</source>
+                <target>Haute épaule</target>
+            </trans-unit>         
+            <trans-unit id="85">
+                <source>Mi-épaule</source>
+                <target>Mi-épaule</target>
+            </trans-unit>         
+            <trans-unit id="86">
+                <source>Bas</source>
+                <target>Bas</target>
+            </trans-unit>         
+            <trans-unit id="87">
+                <source>Aussi dans sa cave</source>
+                <target>Aussi dans sa cave</target>
+            </trans-unit>         
+            <trans-unit id="88">
+                <source>Vous devez indiquer une quantité.</source>
+                <target>Vous devez indiquer une quantité.</target>
+            </trans-unit>         
+            <trans-unit id="89">
+                <source>Modifier mes informations</source>
+                <target>Modifier mes informations</target>
+            </trans-unit>       
+            <trans-unit id="90">
+                <source>Ajouter</source>
+                <target>Ajouter</target>
+            </trans-unit>       
+            <trans-unit id="91">
+                <source>Annuler</source>
+                <target>Annuler</target>
+            </trans-unit>       
+            <trans-unit id="92">
+                <source>Troc effectué ?</source>
+                <target>Troc effectué ?</target>
+            </trans-unit>      
+            <trans-unit id="93">
+                <source>Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave.</source>
+                <target>Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave.</target>
+            </trans-unit>      
+            <trans-unit id="94">
+                <source>Dans sa boite d'origine</source>
+                <target>Dans sa boite d'origine</target>
+            </trans-unit>      
+            <trans-unit id="95">
+                <source>caractères max</source>
+                <target>caractères max</target>
+            </trans-unit>      
+            <trans-unit id="96">
+                <source>Ajouter à ma cave</source>
+                <target>Ajouter à ma cave</target>
+            </trans-unit>      
+            <trans-unit id="97">
+                <source>un type de domaine</source>
+                <target>un type de domaine</target>
+            </trans-unit>       
+            <trans-unit id="98">
+                <source>un type d\'appellation</source>
+                <target>un type d\'appellation</target>
+            </trans-unit>        
+            <trans-unit id="99">
+                <source>un type de cuvée</source>
+                <target>un type de cuvée</target>
+            </trans-unit>        
+            <trans-unit id="100">
+                <source>un type de région</source>
+                <target>un type de région</target>
+            </trans-unit>        
+            <trans-unit id="101">
+                <source>un type de pays</source>
+                <target>un type de pays</target>
+            </trans-unit>        
+            <trans-unit id="102">
+                <source>erreur de soumission</source>
+                <target>erreur de soumission</target>
+            </trans-unit>        
+            <trans-unit id="103">
+                <source>Cave n°</source>
+                <target>Cave n°</target>
+            </trans-unit>        
+            <trans-unit id="104">
+                <source>Dans sa cave</source>
+                <target>Dans sa cave</target>
+            </trans-unit>        
+            <trans-unit id="105">
+                <source>Modifier une bouteille</source>
+                <target>Modifier une bouteille</target>
+            </trans-unit>        
+            <trans-unit id="106">
+                <source>Supprimer</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>Ma cave</source>
+                <target>Ma cave</target>
+            </trans-unit>
+            <trans-unit id="108">
+                <source>Aucune bouteille dans votre cave.</source>
+                <target>Aucune bouteille dans votre cave.</target>
+            </trans-unit>
+            <trans-unit id="109">
+                <source>Aucune bouteille dans la cave.</source>
+                <target>Aucune bouteille dans la cave.</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>Changer mon mot de passe</source>
+                <target>Changer mon mot de passe</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>Modifier mon profil</source>
+                <target>Modifier mon profil</target>
+            </trans-unit>
+            <trans-unit id="112">
+                <source>Changer de mot de passe</source>
+                <target>Changer de mot de passe</target>
+            </trans-unit>
+            <trans-unit id="113">
+                <source>Troquer ma sélection</source>
+                <target>Troquer ma sélection</target>
+            </trans-unit>
+            <trans-unit id="114">
+                <source>Proposer un troc</source>
+                <target>Proposer un troc</target>
+            </trans-unit>
+            <trans-unit id="115">
+                <source>Modifier le troc</source>
+                <target>Modifier le troc</target>
+            </trans-unit>
+            <trans-unit id="116">
+                <source>Annuler le troc</source>
+                <target>Annuler le troc</target>
+            </trans-unit>
+            <trans-unit id="117">
+                <source>Valider le message</source>
+                <target>Valider le message</target>
+            </trans-unit>
+            <trans-unit id="118">
+                <source>Choisissez une sélection proposée par TrocWine :</source>
+                <target>Choisissez une sélection proposée par TrocWine :</target>
+            </trans-unit>
+            <trans-unit id="119">
+                <source>Choisir près de chez vous</source>
+                <target>Choisir près de chez vous</target>
+            </trans-unit>
+            <trans-unit id="120">
+                <source>à</source>
+                <target>à</target>
+            </trans-unit>            
+            <trans-unit id="121">
+                <source>de lui</source>
+                <target>de lui</target>
+            </trans-unit>
+            <trans-unit id="122">
+                <source>Choisir près de chez lui</source>
+                <target>Choisir près de chez lui</target>
+            </trans-unit>           
+            <trans-unit id="123">
+                <source>de vous</source>
+                <target>de vous</target>
+            </trans-unit>
+            <trans-unit id="124">
+                <source>Choisir dans vos régions</source>
+                <target>Choisir dans vos régions</target>
+            </trans-unit>            
+            <trans-unit id="125">
+                <source>Proposer ce lieu</source>
+                <target>Proposer ce lieu</target>
+            </trans-unit>            
+            <trans-unit id="126">
+                <source>Sélectionnez un lieu pour afficher sur la carte.</source>
+                <target>Sélectionnez un lieu pour afficher sur la carte.</target>
+            </trans-unit>            
+            <trans-unit id="127">
+                <source>Ou proposez une adresse :</source>
+                <target>Ou proposez une adresse :</target>
+            </trans-unit>            
+            <trans-unit id="128">
+                <source>Voir le lieu</source>
+                <target>Voir le lieu</target>
+            </trans-unit>
             
+            <trans-unit id="129">
+                <source>Valider le lieu</source>
+                <target>Valider le lieu</target>
+            </trans-unit>
+            <trans-unit id="130">
+                <source>Cliquez sur voir le lieu pour afficher sur la carte.</source>
+                <target>Cliquez sur voir le lieu pour afficher sur la carte.</target>
+            </trans-unit>            
+            <trans-unit id="131">
+                <source>Troc effectué ?</source>
+                <target>Troc effectué ?</target>
+            </trans-unit>            
+            <trans-unit id="132">
+                <source>Oui</source>
+                <target>Oui</target>
+            </trans-unit>            
+            <trans-unit id="133">
+                <source>Non</source>
+                <target>Non</target>
+            </trans-unit>            
+            <trans-unit id="134">
+                <source>Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave.</source>
+                <target>Ajouter ma/mes nouvelle(s) bouteille(s) à ma cave.</target>
+            </trans-unit>            
+            <trans-unit id="135">
+                <source>Noter</source>
+                <target>Noter</target>
+            </trans-unit>            
+            <trans-unit id="136">
+                <source>Enregistrer</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            <trans-unit id="137">
+                <source>Abandonner</source>
+                <target>Abandonner</target>
+            </trans-unit>
+            <trans-unit id="138">
+                <source>Voir la cave</source>
+                <target>Voir la cave</target>
+            </trans-unit>
+            <trans-unit id="139">
+                <source>Messagerie</source>
+                <target>Messagerie</target>
+            </trans-unit>
+            <trans-unit id="140">
+                <source>Trocs en cours</source>
+                <target>Trocs en cours</target>
+            </trans-unit>
+            <trans-unit id="141">
+                <source>Anciens trocs</source>
+                <target>Anciens trocs</target>
+            </trans-unit>
+            <trans-unit id="142">
+                <source>Troc</source>
+                <target>Troc</target>
+            </trans-unit>
+            <trans-unit id="143">
+                <source>terminé</source>
+                <target>terminé</target>
+            </trans-unit>
+            <trans-unit id="144">
+                <source>en cours</source>
+                <target>en cours</target>
+            </trans-unit>
+            <trans-unit id="145">
+                <source>Troc terminé</source>
+                <target>Troc terminé</target>
+            </trans-unit>
+            <trans-unit id="146">
+                <source>Troc en cours</source>
+                <target>Troc en cours</target>
+            </trans-unit>
+            <trans-unit id="147">
+                <source>Retour</source>
+                <target>Retour</target>
+            </trans-unit>
+            <trans-unit id="148">
+                <source>Ecrire un message</source>
+                <target>Ecrire un message</target>
+            </trans-unit>
+            <trans-unit id="149">
+                <source>Donner rendez-vous</source>
+                <target>Donner rendez-vous</target>
+            </trans-unit>
+            <trans-unit id="150">
+                <source>Troc à initialiser</source>
+                <target>Troc à initialiser</target>
+            </trans-unit>
+            <trans-unit id="151">
+                <source>Sélectionné par</source>
+                <target>Sélectionné par</target>
+            </trans-unit>
+            <trans-unit id="152">
+                <source>Adresse proposée par TrocWine :</source>
+                <target>Adresse proposée par TrocWine :</target>
+            </trans-unit>
+            <trans-unit id="153">
+                <source>Cliquez sur l'une des sélections pour plus d'informations.</source>
+                <target>Cliquez sur l'une des sélections pour plus d'informations.</target>
+            </trans-unit>
+            <trans-unit id="154">
+                <source>Nouveau troc proposé. Merci de vérifier la nouvelle proposition.</source>
+                <target>Nouveau troc proposé. Merci de vérifier la nouvelle proposition.</target>
+            </trans-unit>
+            <trans-unit id="155">
+                <source>Une des bouteilles n'est plus disponible pour votre troc.</source>
+                <target>Une des bouteilles n'est plus disponible pour votre troc.</target>
+            </trans-unit>
+            <trans-unit id="156">
+                <source>Elle a été retirée ou échangée pendant un autre troc.</source>
+                <target>Elle a été retirée ou échangée pendant un autre troc.</target>
+            </trans-unit>
+            <trans-unit id="157">
+                <source>Votre troc est terminé.</source>
+                <target>Votre troc est terminé.</target>
+            </trans-unit>
+            <trans-unit id="158">
+                <source>Vous devez indiquer si le troc a été effectué ou non.</source>
+                <target>Vous devez indiquer si le troc a été effectué ou non.</target>
+            </trans-unit>
+            <trans-unit id="159">
+                <source>Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave.</source>
+                <target>Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave.</target>
+            </trans-unit>
+            <trans-unit id="160">
+                <source>Vous devez indiquer une note pour le troqueur.</source>
+                <target>Vous devez indiquer une note pour le troqueur.</target>
+            </trans-unit>
+            <trans-unit id="161">
+                <source>Vous avez des questions à propos de TrocWine, ou vous souhaitez nous faire une remarque ?</source>
+                <target>Vous avez des questions à propos de TrocWine, ou vous souhaitez nous faire une remarque ?</target>
+            </trans-unit>
+            <trans-unit id="162">
+                <source>Nous vous répondons tous les jours !</source>
+                <target>Nous vous répondons tous les jours !</target>
+            </trans-unit>
+            <trans-unit id="163">
+                <source>Contactez-nous</source>
+                <target>Contactez-nous</target>
+            </trans-unit>
+            <trans-unit id="164">
+                <source>de A à Z</source>
+                <target>de A à Z</target>
+            </trans-unit>
+            <trans-unit id="165">
+                <source>de Z à A</source>
+                <target>de Z à A</target>
+            </trans-unit>
+            <trans-unit id="166">
+                <source>Sa cave</source>
+                <target>Sa cave</target>
+            </trans-unit>            
+            <trans-unit id="167">
+                <source>Aucune bouteille dans sa cave.</source>
+                <target>Aucune bouteille dans sa cave.</target>
+            </trans-unit>            
+            <trans-unit id="168">
+                <source>Vous devez choisir au moins une bouteille dans chaque cave.</source>
+                <target>Vous devez choisir au moins une bouteille dans chaque cave.</target>
+            </trans-unit>            
+            <trans-unit id="169">
+                <source>Troc à modifier</source>
+                <target>Troc à modifier</target>
+            </trans-unit>
+                        
         </body>
     </file>
 </xliff>

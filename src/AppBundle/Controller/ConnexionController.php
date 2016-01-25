@@ -19,7 +19,8 @@ class ConnexionController extends Controller
         
         $user=new Member();
         
-        $form=$this->createForm(new UsernameMemberType(),$user);                          
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form=$this->createForm(new UsernameMemberType($lang),$user);                          
         $form->add('Envoyer','submit');
         
         $emailValid=-1;

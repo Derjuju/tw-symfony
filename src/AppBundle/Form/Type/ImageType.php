@@ -9,6 +9,12 @@ use Doctrine\ORM\EntityRepository;
 
 class ImageType extends AbstractType {
 
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
+    
     /**
      * @param FormBuilderInterface $builder
      * @param array $options

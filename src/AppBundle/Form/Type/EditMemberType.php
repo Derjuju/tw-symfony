@@ -19,16 +19,6 @@ class EditMemberType extends AbstractType
     {
         
         $builder
-            ->add('expertLevel', 'entity', array(        
-            'label'=>'Niveau*',
-            'expanded' => false,
-            'multiple' => false,
-            'choice_label' => 'nameFr',
-            'class' => 'AppBundle:ExpertLevel',
-            'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('el')
-                                ->orderBy('el.score', 'ASC');
-             }))
             ->add('lastname', 'text', array('attr' => array('placeholder' => 'Nom*'),'label'=>'Nom*'))
             ->add('firstname', 'text', array('attr' => array('placeholder' => 'Prénom*'),'label'=>'Prénom*'))
             ->add('birthdate', 'date', array('attr' => array('placeholder' => 'Date de naissance*') ,'label'=>'Date de naissance*','widget' => 'single_text','format' => 'dd/MM/yyyy'))
@@ -36,10 +26,44 @@ class EditMemberType extends AbstractType
             ->add('telephon', 'text',['attr' => array('placeholder' => 'Téléphone fixe'),'label'=>'Téléphone fixe' ,'required'=>false])
             ->add('mobile', 'text',['attr' => array('placeholder' => 'Téléphone portable'),'label'=>'Téléphone portable' ,'required'=>false])
             ->add('address', new AddressType($this->lang))
-            ->add('avatar', new ImageType(), array(
+            ->add('avatar', new ImageType($this->lang), array(
                     'data_class' => 'AppBundle\Entity\Image',
                     'required' => false,
                 ));
+             
+             
+        if($this->lang == 'en'){
+            $builder
+                ->add('expertLevel', 'entity', array(        
+                'label'=>'Niveau*',
+                'expanded' => false,
+                'multiple' => false,
+                'choice_label' => 'nameUk',
+                'empty_value' => 'Niveau*',
+                'empty_data' => null,
+                'class' => 'AppBundle:ExpertLevel',
+                'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('el')
+                                    ->orderBy('el.score', 'ASC');
+                 }))
+             ;
+            
+        }else{
+            $builder
+                ->add('expertLevel', 'entity', array(        
+                'label'=>'Niveau*',
+                'expanded' => false,
+                'multiple' => false,
+                'choice_label' => 'nameFr',
+                'empty_value' => 'Niveau*',
+                'empty_data' => null,
+                'class' => 'AppBundle:ExpertLevel',
+                'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('el')
+                                    ->orderBy('el.score', 'ASC');
+                 }))
+             ;
+        }
        
     }
     

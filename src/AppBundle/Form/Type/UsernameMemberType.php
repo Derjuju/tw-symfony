@@ -7,6 +7,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class UsernameMemberType extends AbstractType
 {
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         

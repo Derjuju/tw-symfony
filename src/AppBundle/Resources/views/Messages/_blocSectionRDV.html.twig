@@ -15,7 +15,7 @@
                  </div>
 
                     <div class="selected-text">
-                            Sélectionné par
+                            {{"Sélectionné par"|trans}}
                             <h3>{{ section.member.firstname }}</h3>
                     </div>
             </div>
@@ -29,7 +29,7 @@
     </div>    
     <div class="big-map-container">
             <div class="big-map" id="big-map-{{ trocRdv.id }}"></div>
-            <em class="big-map-address big-map-address-{{ trocRdv.id }}">Cliquez sur l'une des sélections pour plus d'informations.</em>
+            <em class="big-map-address big-map-address-{{ trocRdv.id }}">{{"Cliquez sur l'une des sélections pour plus d'informations."|trans}}</em>
     </div>
     {#
     <div class="small-maps-wrapper <?php if(sizeof($m['place_suggestion']) <= 2 ): ?>display-address<?php endif; ?>">

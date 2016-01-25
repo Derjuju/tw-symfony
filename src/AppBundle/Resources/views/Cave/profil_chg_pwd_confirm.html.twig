@@ -1,12 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Changer mon mot de passe - {{ parent() }}{% endblock %}
+{% block title %}{{"Changer mon mot de passe"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}modifier-profil{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
-    {% set titreH1 = "Changer mon mot de passe" %}
+    {% set titreH1 = "Changer mon mot de passe"|trans %}
     {{ parent() }}
 {% endblock %}
 
@@ -16,7 +16,11 @@
         <div class="row"> 
             <div class="wrapper main-wrapper">                        
                 <div class="text-box padded" style="text-align:center;">
-                     <p class="desc">Vous allez recevoir un e-mail avec un rappel de votre mot de passe sur votre adresse e-mail.</p>                     
+                    {% if app.session.get( '_locale' ) == 'en' %}
+                        <p class="desc">You will receive a mail with a reminder of your password in the mailbox you have provided.</p>                     
+                    {% else %}
+                        <p class="desc">Vous allez recevoir un e-mail avec un rappel de votre mot de passe sur votre adresse e-mail.</p>                     
+                    {% endif %}                    
                 </div>                
             </div>
         </div>

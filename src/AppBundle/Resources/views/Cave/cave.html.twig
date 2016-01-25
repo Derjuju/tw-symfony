@@ -1,13 +1,13 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Cave n° {{ troqueur.id }} - {{ parent() }}{% endblock %}
+{% block title %}{{"Cave n°"|trans}} {{ troqueur.id }} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}cave fiche-bouteille{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
     {% set cave_owner = true %}    
-    {% set titreH1 = "Cave n°"~troqueur.id %}
+    {% set titreH1 = "Cave n°"|trans ~troqueur.id %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
@@ -17,7 +17,7 @@
     <section class="bottle-page-wrapper">
 	{% if troqueur.bouteilles|length > 0 %}
 	<section class="in-his-cave wrapper">
-		<h3 class="page-title">Dans sa cave</h3>
+		<h3 class="page-title">{{"Dans sa cave"|trans}}</h3>
                 {% include "AppBundle:Cave:_toolbar_troqueur.html.twig" with {'formFiltrerCave' : formFiltrerCave} %}                       
                 {% include 'AppBundle:Cave:listeTroqueur.html.twig' with {'bouteilles' : bouteilles} %}
 	</section>
@@ -56,7 +56,7 @@
                 var dataSelect = $(this).attr('data-select');
                 if($(this).prop( "checked")){
                    if($('#select-'+dataSelect).val() < 1){
-                        alert("Vous devez indiquer une quantité.");
+                        alert("{{"Vous devez indiquer une quantité."|trans}}");
                         $(this).prop( "checked", false );
                    }
                 } 
@@ -71,7 +71,7 @@
                     var dataSelect = $(this).attr('data-select');
                     if($(this).prop( "checked")){
                        if($('#select-'+dataSelect).val() < 1){
-                            alert("Vous devez indiquer une quantité.");
+                            alert("{{"Vous devez indiquer une quantité."|trans}}");
                             $(this).prop( "checked", false );
                             toutEstOk = false;
                        }else{

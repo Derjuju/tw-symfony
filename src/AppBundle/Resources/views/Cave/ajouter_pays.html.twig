@@ -5,7 +5,11 @@
 <div class="form-type-1">
 
     <div class="p-b-10">
-        {{ form_row(form.nameFr, {'class': 'p-right', 'attr': {'class': ''} }) }}                                          
+        {% if app.session.get( '_locale' ) == 'en' %}
+            {{ form_row(form.nameUk, {'class': 'p-right', 'attr': {'class': ''} }) }}                                          
+        {% else %}
+            {{ form_row(form.nameFr, {'class': 'p-right', 'attr': {'class': ''} }) }}                                          
+        {% endif %}                                          
     </div>
 
 </div>

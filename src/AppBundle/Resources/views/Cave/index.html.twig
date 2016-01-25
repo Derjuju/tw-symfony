@@ -1,11 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Ma cave - {{ parent() }}{% endblock %}
+{% block title %}{{"Ma cave"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}ma-cave{% endblock %}
 
 {% block header %}
-    {% set titreH1 = "Ma cave" %}
+    {% set titreH1 = "Ma cave"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}

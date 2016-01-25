@@ -4,10 +4,10 @@
         data-order="{{bouteille.id}}">
         <div class="top-in-his-cave">
             {% if is_granted('ROLE_USER') %}
-                <label><input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/> Sélectionner</label>
+                <label><input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/> {{"Sélectionner"|trans}}</label>
                 <div class="select-swagg">
                         <select id="select-qte-for-{{bouteille.id}}" name="qte" class="qte-select qte-for-{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}">
-                                <option value="" selected="selected">Quantité</option>
+                                <option value="" selected="selected">{{"Quantité"|trans}}</option>
                                 {% for i in range(1,bouteille.quantite) %}
                                         <option value="{{i}}">{{i}}</option>
                                 {% endfor %}
@@ -15,7 +15,7 @@
                 </div>
             {% endif %}
         </div>
-        <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="Voir la Fiche">
+        <a href="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" title="{{"Voir la Fiche"|trans}}">
         <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_cave')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
                <span class="dot-qte">{{bouteille.quantite}}</span>
        </div>
@@ -25,11 +25,19 @@
                     <div class="image-container" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
                     <p class="info-owner">{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</p>
                 </div>
-               <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
-               <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
-               <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+                {% if app.session.get( '_locale' ) == 'en' %}
+                    <h3>{{bouteille.typeDomaine.nameUk|default('')}}</h3>
+                    <h3>{{bouteille.typeAppellation.nameUk|default('')}}</h3>
+                    <h3>{{bouteille.typeCuvee.nameUk|default('')}}</h3>
 
-               <p>{{bouteille.typeRegion.nameFr}}<br>{{bouteille.typePays.nameFr}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+                    <p>{{bouteille.typeRegion.nameUk}}<br>{{bouteille.typePays.nameUk}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+                {% else %}
+                    <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
+                    <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
+                    <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+
+                    <p>{{bouteille.typeRegion.nameFr}}<br>{{bouteille.typePays.nameFr}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+                {% endif %}               
        </div>
        <div class="social-btns">
                <a href="https://twitter.com/share" data-url="{{path('front_bouteille_fiche', {'id':bouteille.id})}}" class="twitter-share-button" data-count="none">Tweet</a>

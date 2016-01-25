@@ -28,7 +28,7 @@ class RegisterMemberType extends AbstractType
             ->add('telephon', 'text',['attr' => array('placeholder' => 'Téléphone fixe'),'label'=>'Téléphone fixe' ,'required'=>false])
             ->add('mobile', 'text',['attr' => array('placeholder' => 'Téléphone portable'),'label'=>'Téléphone portable' ,'required'=>false])
             ->add('address', new AddressType($this->lang))
-            ->add('avatar', new ImageType(), array(
+            ->add('avatar', new ImageType($this->lang), array(
                     'data_class' => 'AppBundle\Entity\Image',
                     'required' => false,
                 ));

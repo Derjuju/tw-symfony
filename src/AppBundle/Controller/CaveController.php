@@ -39,7 +39,8 @@ class CaveController extends Controller
         
         $user = $this->container->get('security.context')->getToken()->getUser();
         
-        $formFiltrerCave = $this->createForm(new ClasserCaveType(), null, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $formFiltrerCave = $this->createForm(new ClasserCaveType($lang), null, array(
             'action' => $this->generateUrl('front_ma_cave_liste', array('filtre'=>0)),//front_ma_cave_filtrer'),
             'method' => 'POST',
         ));
@@ -61,7 +62,8 @@ class CaveController extends Controller
         
         $bouteilles = $em->getRepository('AppBundle:Bouteille')->findForUserOnline($id);
         
-        $formFiltrerCave = $this->createForm(new ClasserCaveType(), null, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $formFiltrerCave = $this->createForm(new ClasserCaveType($lang), null, array(
             'action' => $this->generateUrl('front_cave_liste', array('id'=>$id, 'filtre'=>0)),
             'method' => 'POST',
         ));
@@ -207,7 +209,8 @@ class CaveController extends Controller
     */
     private function createAddForm(Bouteille $entity)
     {
-        $form = $this->createForm(new AddBouteilleType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new AddBouteilleType($lang), $entity, array(
             'action' => $this->generateUrl('front_ma_cave_ajouter'),
             'method' => 'POST',
         ));
@@ -306,7 +309,8 @@ class CaveController extends Controller
     */
     private function createEditForm(Bouteille $entity)
     {
-        $form = $this->createForm(new EditBouteilleType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new EditBouteilleType($lang), $entity, array(
             'action' => $this->generateUrl('front_ma_cave_editer', array('id'=>$entity->getId())),
             'method' => 'POST',
         ));
@@ -373,7 +377,8 @@ class CaveController extends Controller
         
         $entity = new TypeDomaine();
         
-        $form = $this->createForm(new AddDomaineType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new AddDomaineType($lang), $entity, array(
             'action' => $this->generateUrl('front_domaine_add'),
             'method' => 'POST',
         ));
@@ -409,7 +414,8 @@ class CaveController extends Controller
         
         $entity = new TypeAppellation();
         
-        $form = $this->createForm(new AddAppellationType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new AddAppellationType($lang), $entity, array(
             'action' => $this->generateUrl('front_appellation_add'),
             'method' => 'POST',
         ));
@@ -445,7 +451,8 @@ class CaveController extends Controller
         
         $entity = new TypeCuvee();
         
-        $form = $this->createForm(new AddCuveeType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new AddCuveeType($lang), $entity, array(
             'action' => $this->generateUrl('front_cuvee_add'),
             'method' => 'POST',
         ));
@@ -481,7 +488,8 @@ class CaveController extends Controller
         
         $entity = new TypeRegion();
         
-        $form = $this->createForm(new AddRegionType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new AddRegionType($lang), $entity, array(
             'action' => $this->generateUrl('front_region_add'),
             'method' => 'POST',
         ));
@@ -517,7 +525,8 @@ class CaveController extends Controller
         
         $entity = new TypePays();
         
-        $form = $this->createForm(new AddPaysType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new AddPaysType($lang), $entity, array(
             'action' => $this->generateUrl('front_pays_add'),
             'method' => 'POST',
         ));

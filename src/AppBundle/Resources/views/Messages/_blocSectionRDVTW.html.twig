@@ -14,13 +14,13 @@
                  </div>
 
                     <div class="selected-text">
-                            Sélectionné par
+                            {{"Sélectionné par"|trans}}
                             <h3>{{ section.member.firstname }}</h3>
                     </div>
             </div>
 
             <span class="address-container">
-                <span class="pourpre">Adresse proposée par TrocWine :</span>
+                <span class="pourpre">{{"Adresse proposée par TrocWine :"|trans}}</span>
                     {{ rdv.name }}
                     {{ rdv.street }}
                     {{ rdv.zipCode }} {{ rdv.city }}
@@ -28,46 +28,6 @@
     </div>    
     <div class="big-map-container">
             <div class="big-map" id="big-map-{{ trocRdv.id }}"></div>
-            <em class="big-map-address big-map-address-{{ trocRdv.id }}">Cliquez sur l'une des sélections pour plus d'informations.</em>
+            <em class="big-map-address big-map-address-{{ trocRdv.id }}">{{"Cliquez sur l'une des sélections pour plus d'informations."|trans}}</em>
     </div>
-    {#
-    <div class="small-maps-wrapper <?php if(sizeof($m['place_suggestion']) <= 2 ): ?>display-address<?php endif; ?>">
-            <?php foreach($m['place_suggestion'] as $i => $map)
-                    include('block/message-maps.php');?>
-    </div>
-    <div class="big-map-container">
-            <div class="big-map" id="big-map-<?= $mID ?>"></div>
-            <em class="big-map-address big-map-address-<?= $mID ?>">Cliquez sur l'une des selections pour plus d'informations.</em>
-    </div>
-    <!-- Initialise la map selectionnée. -->
-    <script>
-            var latLng = {lat: <?= $m['lng_lat-selected'][0] ?>, lng: <?= $m['lng_lat-selected'][1] ?>};
-
-            bigMap[<?= $mID ?>] = new google.maps.Map(document.getElementById('big-map-<?= $mID ?>'), {
-                    center: latLng,
-                    zoom: 16,
-                    scrollwheel: false,
-                    zoomControl: true,
-                    zoomControlOptions: {
-                            style: google.maps.ZoomControlStyle.LARGE
-                    }
-            });
-
-            var marker = new google.maps.Marker({
-                    position: latLng,
-                    map: bigMap[<?= $mID ?>]
-            });
-    </script>
-
-    <!-- Foreach pour mettre les marqueurs sur la carte. -->
-    <?php foreach($m['place_suggestion'] as $i => $map): ?>
-            <script>
-                    new google.maps.Marker({
-                            position: {lng: <?= $map['lng_lat'][1] ?>, lat: <?= $map['lng_lat'][0] ?>},
-                            map: bigMap[<?= $mID ?>],
-                            title: '<?= $map['street_address'] . ' - ' . $map['zip_code'] . ' ' . $map['city'] ?>'
-                    });
-            </script>
-    <?php endforeach; ?>
-    #}
 </div>

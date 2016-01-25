@@ -9,12 +9,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class AddAppellationType extends AbstractType
 {
     
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
-        $builder          
-          ->add('nameFr', 'text',['attr' => array('placeholder' => 'Nom'),'label'=>'Nom' ,'required'=>true])          
-          ;
+        if($this->lang == 'en'){
+            $builder          
+                ->add('nameUk', 'text',['attr' => array('placeholder' => 'Name'),'label'=>'Name' ,'required'=>true])          
+            ;
+        }else{
+            $builder          
+                ->add('nameFr', 'text',['attr' => array('placeholder' => 'Nom'),'label'=>'Nom' ,'required'=>true])          
+            ;
+        }
        
     }
 

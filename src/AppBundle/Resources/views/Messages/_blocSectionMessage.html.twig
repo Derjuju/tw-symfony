@@ -8,19 +8,23 @@
                     <h3>TrocWine</h3>
                     {% else %}
                     <h3>{{troqueur.lastname}}</h3>
-                    <span>( {{troqueur.expertLevel.nameFr}} )</span>
+                    {% if app.session.get( '_locale' ) == 'en' %}
+                        <span>( {{troqueur.expertLevel.nameUk}} )</span>
+                    {% else %}                    
+                        <span>( {{troqueur.expertLevel.nameFr}} )</span>
+                    {% endif %}
                     {% endif %}
                 </div>
         </div>
 </div>
 <div class="the-message">
     {% if section.message.message == "###NEW_TROC###" %}
-        Nouveau troc proposé. Merci de vérifier la nouvelle proposition.
+        {{"Nouveau troc proposé. Merci de vérifier la nouvelle proposition."|trans}}        
     {% elseif section.message.message == "###TROC_BOTTLE_REMOVED###" %}
-        Une des bouteilles n'est plus disponible pour votre troc.<br>
-        Elle a été retirée ou échangée pendant un autre troc.
+        {{"Une des bouteilles n'est plus disponible pour votre troc."|trans}}<br>
+        {{"Elle a été retirée ou échangée pendant un autre troc."|trans}}                
     {% elseif section.message.message == "###TROC_TERMINE###" %}
-        Votre troc est terminé.
+        {{"Votre troc est terminé."|trans}}        
     {% else %}        
         {{section.message.message}}
     {% endif %}</div>

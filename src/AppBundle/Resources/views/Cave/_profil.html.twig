@@ -8,7 +8,7 @@
                     {% else %}
                         <div class="profile-image" style="background-image: url('{{asset('uploads/avatars/avatar_default.jpg')}}');"></div>
                     {% endif %}                    
-                    <a href="{{path('front_mon_profil')}}" class="btn btn-default bg-pourpre editerProfil">Modifier mes informations</a>
+                    <a href="{{path('front_mon_profil')}}" class="btn btn-default bg-pourpre editerProfil">{{"Modifier mes informations"|trans}}</a>
                 </div>
                 <div class="col-3 blocInfo1">
                     <div class="blocInfo">
@@ -38,7 +38,7 @@
                         <span><br></span>
                     </div>
                     <div class="blocInfo">
-                        <h2 class="gris Vollkorn">{{user.login}} <span class="txt13px">{{user.expertLevel.nameFr}}</span></h2>                    
+                        <h2 class="gris Vollkorn">{{user.login}} <span class="txt13px">{% if app.session.get( '_locale' ) == 'en' %}{{user.expertLevel.nameUk}}{% else %}{{user.expertLevel.nameFr}}{% endif %}</span></h2>                    
                     </div>
                     <div class="blocInfo">
                         <span><br></span>

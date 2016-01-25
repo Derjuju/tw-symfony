@@ -20,13 +20,18 @@
                         <input id="checkbox-qte-for-{{bouteille.id}}" type="checkbox" class="big-checkbox" name="selection" value="{{bouteille.id}}" data-select="qte-for-{{bouteille.id}}"/>
                     {% endif %}
                 </div>
-                <a href="{{path('front_bouteille_fiche_simple', {'id':bouteille.id})}}" title="Voir la Fiche">
+                <a href="{{path('front_bouteille_fiche_simple', {'id':bouteille.id})}}" title="{{"Voir la Fiche"|trans}}">
                 <div class="image" style="background-image: url('{% if bouteille.photo != null %}{{asset(bouteille.photo.file)|imagine_filter('bouteille_resize_cave')}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');"></div>
                 </a>
                 <div class="description">
                         <span class="dot-qte">{{bouteille.quantite}}</span>
-                        <h3>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
-                        <p>{{bouteille.typeRegion.nameFr|default('')}} {{bouteille.typePays.nameFr|default('')}} {{bouteille.millesime|default('')|filtre_millesime}}</p>
+                        {% if app.session.get( '_locale' ) == 'en' %}
+                            <h3>{{bouteille.typeDomaine.nameUk|default('')}} {{bouteille.typeAppellation.nameUk|default('')}}<br>{{bouteille.typeCuvee.nameUk|default('')}}</h3>
+                            <p>{{bouteille.typeRegion.nameUk|default('')}} {{bouteille.typePays.nameUk|default('')}} {{bouteille.millesime|default('')|filtre_millesime}}</p>
+                        {% else %}
+                            <h3>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+                            <p>{{bouteille.typeRegion.nameFr|default('')}} {{bouteille.typePays.nameFr|default('')}} {{bouteille.millesime|default('')|filtre_millesime}}</p>
+                        {% endif %}
                 </div>
         </div>
 </article>

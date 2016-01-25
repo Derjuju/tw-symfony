@@ -1,13 +1,13 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Troc à initialiser - {{ parent() }}{% endblock %}
+{% block title %}{{"Troc à initialiser"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}troc-initialise{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
     {% set swappers = true %}    
-    {% set titreH1 = "Troc à initialiser" %}
+    {% set titreH1 = "Troc à initialiser"|trans %}
     {% set use_red_title = true %}
     {{ parent() }}
 {% endblock %}
@@ -19,15 +19,15 @@
 		<div class="wrapper">
 			<div class="top">
 				<div class="span-left">
-					<h3 class="page-title">Ma cave</h3>
+					<h3 class="page-title">{{"Ma cave"|trans}}</h3>
 				</div>
 				<div class="span-right">
 					<div class="select-swagg">
 						<select name="sort_by" class="sorter">
-							<option value="" selected="selected">Classer par ...</option>
-							<option value="a-z">de A à Z</option>
-							<option value="z-a">de Z à A</option>
-							<option value="quantity">Quantité</option>
+							<option value="" selected="selected">{{"Classer par ..."|trans}}</option>
+							<option value="a-z">{{"de A à Z"|trans}}</option>
+							<option value="z-a">{{"de Z à A"|trans}}</option>
+							<option value="quantity">{{"Quantité"|trans}}</option>
 						</select>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
                                         {% include 'AppBundle:Bouteille:_blocBouteilleTroc.html.twig' with {'bouteille' : bouteille} %}
                                     {% endfor %}
                                 {% else %}
-                                    Aucune bouteille dans votre cave.
+                                    {{"Aucune bouteille dans votre cave."|trans}}
                                 {% endif %}
 			</section>
 		</div>
@@ -47,15 +47,15 @@
 		<div class="wrapper">
 			<div class="top">
 				<div class="span-left">
-					<h3 class="page-title">Sa cave</h3>
+					<h3 class="page-title">{{"Sa cave"|trans}}</h3>
 				</div>
 				<div class="span-right">
 					<div class="select-swagg">
 						<select name="sort_by" class="sorter">
-							<option value="" selected="selected">Classer par ...</option>
-							<option value="a-z">de A à Z</option>
-							<option value="z-a">de Z à A</option>
-							<option value="quantity">Quantité</option>
+							<option value="" selected="selected">{{"Classer par ..."|trans}}</option>
+							<option value="a-z">{{"de A à Z"|trans}}</option>
+							<option value="z-a">{{"de Z à A"|trans}}</option>
+							<option value="quantity">{{"Quantité"|trans}}</option>
 						</select>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
                                         {% include 'AppBundle:Bouteille:_blocBouteilleTroc.html.twig' with {'bouteille' : bouteille} %}
                                     {% endfor %}
                                 {% else %}
-                                    Aucune bouteille dans sa cave.
+                                    {{"Aucune bouteille dans sa cave."|trans}}
                                 {% endif %}
 			</section>
 		</div>
@@ -96,7 +96,7 @@
                 var dataSelect = $(this).attr('data-select');
                 if($(this).prop( "checked")){
                    if($('#select-'+dataSelect).val() < 1){
-                        alert("Vous devez indiquer une quantité.");
+                        alert("{{"Vous devez indiquer une quantité."|trans}}");
                         $(this).prop( "checked", false );
                    }
                 } 
@@ -130,7 +130,7 @@
                     var dataSelect = $(this).attr('data-select');
                     if($(this).prop( "checked")){
                        if($('#select-'+dataSelect).val() < 1){
-                            alert("Vous devez indiquer une quantité.");
+                            alert("{{"Vous devez indiquer une quantité."|trans}}");
                             $(this).prop( "checked", false );
                             toutEstOk = false;
                        }else{
@@ -145,7 +145,7 @@
                     var dataSelect = $(this).attr('data-select');
                     if($(this).prop( "checked")){
                        if($('#select-'+dataSelect).val() < 1){
-                            alert("Vous devez indiquer une quantité.");
+                            alert("{{"Vous devez indiquer une quantité."|trans}}");
                             $(this).prop( "checked", false );
                             toutEstOk = false;
                        }else{
@@ -157,7 +157,7 @@
                 if(toutEstOk){
                     if((listeSelectionMaCave.length == 0)&&(listeSelectionSaCave.length == 0)){
                         toutEstOk = false;
-                        alert("Vous devez choisir au moins une bouteille dans chaque cave.")
+                        alert("{{"Vous devez choisir au moins une bouteille dans chaque cave."|trans}}")
                     }
                 }
                 

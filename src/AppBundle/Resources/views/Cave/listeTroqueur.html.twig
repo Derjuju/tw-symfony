@@ -4,6 +4,6 @@
             {% include 'AppBundle:Bouteille:_blocOtherBouteilleWithTroqueur.html.twig' with {'bouteille' : item} %}
         {% endfor %}
     {% else %}
-        Aucune bouteille dans la cave.
+        {{"Aucune bouteille dans la cave."|trans}}
     {% endif %}
 </div>

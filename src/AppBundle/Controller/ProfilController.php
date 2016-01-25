@@ -180,7 +180,8 @@ class ProfilController extends Controller
     */
     private function createChgPwdForm(Member $entity)
     {
-        $form = $this->createForm(new ChgPwdType(), $entity, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $form = $this->createForm(new ChgPwdType($lang), $entity, array(
             'action' => $this->generateUrl('front_mdp_changer'),
             'method' => 'POST',
         ));

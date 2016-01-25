@@ -7,7 +7,7 @@
                         {% include 'AppBundle:Bouteille:_blocBouteille.html.twig' with {'bouteille' : bouteille} %}
                     {% endfor %}
                 {% else %}
-                    Aucune bouteille dans votre cave.
+                    {{"Aucune bouteille dans votre cave."|trans}}
                 {% endif %}
             </section>
         </div>

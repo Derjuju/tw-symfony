@@ -732,8 +732,9 @@ class MessageController extends Controller
     }
     
     
-    private function generateFormMessage($trocMessage, $id){        
-        $formMessage =  $this->createForm(new TrocMessageType(), $trocMessage, array(
+    private function generateFormMessage($trocMessage, $id){
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $formMessage =  $this->createForm(new TrocMessageType($lang), $trocMessage, array(
             'action' => $this->generateUrl('front_messagerie_gestion_add_message', array('id' => $id)),
             'method' => 'POST',
         ));        
@@ -741,13 +742,14 @@ class MessageController extends Controller
     }
     
     private function generateFormForMemberAorB($troc, $user, $id){        
-        if($troc->getMemberA() == $user){
-            $formFinTroc = $this->createForm(new TrocAType(), $troc, array(
+        $lang = $this->get('session')->get('_locale', 'fr');
+        if($troc->getMemberA() == $user){            
+            $formFinTroc = $this->createForm(new TrocAType($lang), $troc, array(
                 'action' => $this->generateUrl('front_messagerie_gestion_fin', array('id' => $id)),
                 'method' => 'POST',
             ));
         }else{
-            $formFinTroc = $this->createForm(new TrocBType(), $troc, array(
+            $formFinTroc = $this->createForm(new TrocBType($lang), $troc, array(
                 'action' => $this->generateUrl('front_messagerie_gestion_fin', array('id' => $id)),
                 'method' => 'POST',
             ));
@@ -755,8 +757,9 @@ class MessageController extends Controller
         return $formFinTroc;
     }
     
-    private function generateFormRdv($addressRDV, $id){        
-        $formRDV =  $this->createForm(new AddressRdvType(), $addressRDV, array(
+    private function generateFormRdv($addressRDV, $id){ 
+        $lang = $this->get('session')->get('_locale', 'fr');
+        $formRDV =  $this->createForm(new AddressRdvType($lang), $addressRDV, array(
             'action' => $this->generateUrl('front_messagerie_gestion_add_rdv', array('id' => $id)),
             'method' => 'POST',
         ));        

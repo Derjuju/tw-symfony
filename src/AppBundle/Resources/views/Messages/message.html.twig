@@ -1,15 +1,15 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Troc {% if trocArchive %}terminé{% else %}en cours{% endif %} - {{ parent() }}{% endblock %}
+{% block title %}{{"Troc"|trans}} {% if trocArchive %}{{"terminé"|trans}}{% else %}{{"en cours"|trans}}{% endif %} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}troc-message {% if trocArchive %}troc-archive{% else %}troc-en-cours{% endif %}{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
     {% if trocArchive %}
-        {% set titreH1 = "Troc terminé" %}
+        {% set titreH1 = "Troc terminé"|trans %}
     {% else %}
-        {% set titreH1 = "Troc en cours" %}
+        {% set titreH1 = "Troc en cours"|trans %}
     {% endif %}
     {% set use_red_title = true %}
     {{ parent() }}
@@ -26,13 +26,13 @@
     {{ parent() }}   
     <section class="message-wrapper container">
 	<nav class="message-menu">
-		<a href="{{path('front_messagerie')}}" class="{% if not trocArchive %}active{% endif %}">Trocs en cours</a>
-		<a href="{{path('front_messagerie_archives')}}" class="{% if trocArchive %}active{% endif %}">Anciens trocs</a>
+		<a href="{{path('front_messagerie')}}" class="{% if not trocArchive %}active{% endif %}">{{"Trocs en cours"|trans}}</a>
+		<a href="{{path('front_messagerie_archives')}}" class="{% if trocArchive %}active{% endif %}">{{"Anciens trocs"|trans}}</a>
                 <div class="clearfix"></div>
 	</nav>
 	<section class="message-container">
 		<div class="top">
-                    <a href="{% if trocArchive %}{{path('front_messagerie_archives')}}{% else %}{{path('front_messagerie')}}{% endif %}" class="btn-default" style="width:100px;"><i class="icon-arrow-left"></i> Retour</a>                    
+                    <a href="{% if trocArchive %}{{path('front_messagerie_archives')}}{% else %}{{path('front_messagerie')}}{% endif %}" class="btn-default" style="width:100px;"><i class="icon-arrow-left"></i> {{"Retour"|trans}}</a>                    
                         {% include 'AppBundle:Messages:_blocMessage.html.twig' with {'user' : user, 'message' : troc, 'clicable' : false} %}			                    
 		</div>
 		<section class="message-zone" role="main">
@@ -60,7 +60,7 @@
                         
                         <div class="troc-actions">
                             <div class="choix-actions">
-                                <button id="bt-action-ecrire" class="btn-default"> Ecrire un message</button> <button id="bt-action-rdv" class="btn-default"> Donner rendez-vous</button> <form id="FormSelectionChoix" action="{{path('front_troc_modifier', {'idTroc':troc.id})}}" method="POST"><button id="bt-action-changer" class="btn-default"> Modifier le troc</button></form>
+                                <button id="bt-action-ecrire" class="btn-default"> {{"Ecrire un message"|trans}}</button> <button id="bt-action-rdv" class="btn-default"> {{"Donner rendez-vous"|trans}}</button> <form id="FormSelectionChoix" action="{{path('front_troc_modifier', {'idTroc':troc.id})}}" method="POST"><button id="bt-action-changer" class="btn-default"> {{"Modifier le troc"|trans}}</button></form>
                             </div>
                             <div class="panel-actions">
                                 <div class="panel-action-ecrire hidden">
@@ -123,37 +123,37 @@
         {% if user == troc.memberA %}     
                 if($('#TrocAType_finishedA').val() == null){
                     submitForm = false;
-                    alert('Vous devez indiquer si le troc a été effectué ou non.');
+                    alert('{{"Vous devez indiquer si le troc a été effectué ou non."|trans}}');
                 }
                 if(submitForm){
                     if($('#TrocAType_addToCaveA').val() == null){
                         submitForm = false;
-                        alert('Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave.');
+                        alert('{{"Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave."|trans}}');
                     }
                 }
                 if(submitForm){
                     $('#TrocAType_noteB').val(selectedVal);
                     if(selectedVal == 0){
                         submitForm = false;
-                        alert('Vous devez indiquer une note pour le troqueur.');
+                        alert('{{"Vous devez indiquer une note pour le troqueur."|trans}}');
                     }
                 }
         {% else %}
                 if($('#TrocBType_finishedB').val() == null){
                     submitForm = false;
-                    alert('Vous devez indiquer si le troc a été effectué ou non.');
+                    alert('{{"Vous devez indiquer si le troc a été effectué ou non."|trans}}');
                 }
                 if(submitForm){
                     if($('#TrocBType_addToCaveB').val() == null){
                         submitForm = false;
-                        alert('Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave.');
+                        alert('{{"Vous devez indiquer si vous ajoutez la/les bouteille(s) dans votre cave."|trans}}');
                     }
                 }
                 if(submitForm){
                     $('#TrocBType_noteA').val(selectedVal);
                     if(selectedVal == 0){
                         submitForm = false;
-                        alert('Vous devez indiquer une note pour le troqueur.');
+                        alert('{{"Vous devez indiquer une note pour le troqueur."|trans}}');
                     }
                 }
         {% endif %}

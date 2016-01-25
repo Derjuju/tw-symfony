@@ -1,6 +1,6 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Modifier une bouteille - {{ parent() }}{% endblock %}
+{% block title %}{{"Modifier une bouteille"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}ma-cave editer-bouteille{% endblock %}
 
@@ -22,7 +22,7 @@
                             <div class="image-container">
                                     <div class="upload-image-container">
                                             <div class="wine-image" style="background-image: url('{% if entity.photo != null %}{{asset(entity.photo.file)}}{% else %}{{asset('uploads/bouteilles/bouteille_default.jpg')}}{% endif %}');">
-                                                    <a href="#" class="btn-modify upload-btn">Modifier</a>
+                                                    <a href="#" class="btn-modify upload-btn">{{"Modifier"|trans}}</a>
                                             </div>
                                             <div class="input-hidden">
                                                     <input type="file" name="photo_image" id="file_picker" data-class-dest="wine-image"/>
@@ -31,10 +31,10 @@
                                     </div>
                                     <label class="bte-origine-label desktop-hide">
                                             <input type="checkbox" name="bte-origine" class="big-checkbox"/>
-                                            Dans sa boite d'origine
+                                            {{"Dans sa boite d'origine"|trans}}
                                     </label>
                                     <div class="rating">
-                                            <span class="text">Ma note</span>
+                                            <span class="text">{{"Ma note"|trans}}</span>
 
                                             <span class="icon-bottle-rate-container icon-rate" id="ratingBottle">
                                                 <input type="radio" id="rating-input-1-5" name="personnal-rating" value="5" {% if entity.note == 5 %}checked="checked"{% endif %}>
@@ -65,38 +65,38 @@
                                                     <div class="select-swagg domaine">
                                                             {{ form_widget(form.typeDomaine, { 'label': false,'class': '', 'attr': {'class': ''} }) }}                  
                                                     </div>
-                                                    <a href="#add_domaine" id="EditBouteilleType_add_domaine" class="btn-default add" data-url="{{path('front_domaine_add')}}">Ajouter</a>
+                                                    <a href="#add_domaine" id="EditBouteilleType_add_domaine" class="btn-default add" data-url="{{path('front_domaine_add')}}">{{"Ajouter"|trans}}</a>
                                             </div>
                                             <div class="data-add-aside data-appelation">
                                                     <div class="select-swagg appelation">
                                                             {{ form_widget(form.typeAppellation, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                                     </div>
-                                                    <a href="#add_appellation" id="EditBouteilleType_add_appellation" class="btn-default add" data-url="{{path('front_appellation_add')}}">Ajouter</a>
+                                                    <a href="#add_appellation" id="EditBouteilleType_add_appellation" class="btn-default add" data-url="{{path('front_appellation_add')}}">{{"Ajouter"|trans}}</a>
                                             </div>
                                             <div class="data-add-aside data-cuvee">
                                                     <div class="select-swagg cuvee">
                                                             {{ form_widget(form.typeCuvee, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                                     </div>
-                                                    <a href="#add_cuvee" id="EditBouteilleType_add_cuvee" class="btn-default add" data-url="{{path('front_cuvee_add')}}">Ajouter</a>
+                                                    <a href="#add_cuvee" id="EditBouteilleType_add_cuvee" class="btn-default add" data-url="{{path('front_cuvee_add')}}">{{"Ajouter"|trans}}</a>
                                             </div>
                                             <div class="data-add-aside data-region">
                                                     <div class="select-swagg qte">
                                                             {{ form_widget(form.typeRegion, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                                     </div>
-                                                    <a href="#add_region" id="EditBouteilleType_add_region" class="btn-default add" data-url="{{path('front_region_add')}}">Ajouter</a>
+                                                    <a href="#add_region" id="EditBouteilleType_add_region" class="btn-default add" data-url="{{path('front_region_add')}}">{{"Ajouter"|trans}}</a>
                                             </div>
                                             <div class="data-add-aside data-pays">
                                                 <div class="select-swagg pays">
                                                         {{ form_widget(form.typePays, { 'label': false,'class': '', 'attr': {'class': ''} }) }}                                                                                                
                                                 </div>
-                                                <a href="#add_pays" id="EditBouteilleType_add_pays" class="btn-default add" data-url="{{path('front_pays_add')}}">Ajouter</a>
+                                                <a href="#add_pays" id="EditBouteilleType_add_pays" class="btn-default add" data-url="{{path('front_pays_add')}}">{{"Ajouter"|trans}}</a>
                                             </div>
                                     </div>
                                     <div class="span-right">
                                             <div class="form-top">
                                                     <label class="mobile-hide">
                                                         {{ form_row(form.boiteOrigine, {'label': false, 'class': '', 'attr': {'class': 'big-checkbox'} }) }}                                                             
-                                                            Dans sa boite d'origine
+                                                            {{"Dans sa boite d'origine"|trans}}
                                                     </label>
                                             </div>
                                             <div class="select-swagg millesime">
@@ -114,12 +114,12 @@
                                     </div>
                                     <div class="clearfix"></div>       
                                     <div class="data-commentaire">
-                                            <label>(<span id="count_content_message" data-maxchar="255">255</span> caractères max)</label>
+                                            <label>(<span id="count_content_message" data-maxchar="255">255</span> {{"caractères max"|trans}})</label>
                                             {{ form_widget(form.commentaire, {'label': false,'class': '', 'attr': {'class': '', 'maxlength':'255'} }) }}
                                     </div>
                             </div>
                             <div class="level-container">
-                                    <h4>Niveau</h4>
+                                    <h4>{{"Niveau"|trans}}</h4>
                                     <!-- Pour remplir la bouteille, utilisez style="top: xx%;" sur .the-fullness -->
                                     <div class="level-bottle mobile-hide">
                                             <div class="the-shape"></div>
@@ -133,7 +133,7 @@
                             </div>
                     </div>
 
-                    <button id="ModifierBouteille" class="submit-btn btn-default">Valider</button> <a href="{{path('front_ma_cave_supprimer', {'id':entity.id}) }}" onClick="return confirmSuppression();" class="btn-default btn-delete">Supprimer</a>
+                    <button id="ModifierBouteille" class="submit-btn btn-default">{{"Valider"|trans}}</button> <a href="{{path('front_ma_cave_supprimer', {'id':entity.id}) }}" onClick="return confirmSuppression();" class="btn-default btn-delete">{{"Supprimer"|trans}}</a>
                     <br>
                 {{ form_row(form.submit, {'class': 'hidden', 'attr': {'class': 'hidden'} }) }}
                 {{ form_row(form.note, {'class': 'hidden', 'attr': {'class': ''} }) }} 
@@ -199,31 +199,31 @@
             $('#EditBouteilleType_add_domaine').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
-                title = 'Ajouter <strong>un type de domaine</strong>';
+                title = '{{"Ajouter"|trans}} <strong>{{"un type de domaine"|trans}}</strong>';
                 openModalAddEntity(url, title);
             });
             
             $('#EditBouteilleType_add_appellation').on('click',function(){
                 url = $(this).attr('data-url'); 
-                title = 'Ajouter <strong>un type d\'appellation</strong>';
+                title = '{{"Ajouter"|trans}} <strong>{{"un type d\'appellation"|trans}}</strong>';
                 openModalAddEntity(url, title);
             });
             
             $('#EditBouteilleType_add_cuvee').on('click',function(){
                 url = $(this).attr('data-url'); 
-                title = 'Ajouter <strong>un type de cuvée</strong>';
+                title = '{{"Ajouter"|trans}} <strong>{{"un type de cuvée"|trans}}</strong>';
                 openModalAddEntity(url, title);
             });
             
             $('#EditBouteilleType_add_region').on('click',function(){
                 url = $(this).attr('data-url'); 
-                title = 'Ajouter <strong>un type de région</strong>';
+                title = '{{"Ajouter"|trans}} <strong>{{"un type de région"|trans}}</strong>';
                 openModalAddEntity(url, title);
             });
             
             $('#EditBouteilleType_add_pays').on('click',function(){
                 url = $(this).attr('data-url'); 
-                title = 'Ajouter <strong>un type de pays</strong>';
+                title = '{{"Ajouter"|trans}} <strong>{{"un type de pays"|trans}}</strong>';
                 openModalAddEntity(url, title);
             });
             
@@ -293,7 +293,7 @@
                             $(cibleSelect).append('<option value='+jsonResponse.id+'>'+jsonResponse.name+'</option>');
                             $(cibleSelect).val(jsonResponse.id);
                         }else{
-                            alert('erreur de soumission');
+                            alert('{{"erreur de soumission"|trans}}');
                         }
                     }
                 });

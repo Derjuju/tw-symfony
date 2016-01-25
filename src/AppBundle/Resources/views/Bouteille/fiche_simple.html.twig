@@ -1,6 +1,6 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Fiche bouteille n° {{ bouteille.id }} - {{ parent() }}{% endblock %}
+{% block title %}{{"Fiche bouteille n°"|trans}} {{ bouteille.id }} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}fiche-bouteille{% endblock %}
 
@@ -8,7 +8,7 @@
     {% set withoutSearchSelector = true %}
     {% set bottle_owner = true %}    
     {% set withoutTrocAction = true %}
-    {% set titreH1 = "Fiche bouteille n°"~bouteille.id %}
+    {% set titreH1 = "Fiche bouteille n°"|trans~bouteille.id %}
     {{ parent() }}
 {% endblock %}
 
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<div class="rating">
-					<span class="text">Ma note</span>
+					<span class="text">{{"Ma note"|trans}}</span>
 					<span class="icon-bottle-rate-container icon-rate" id="ratingBottle">
 					    {% for i in range(1,5) %}
                                                 {% if i <= bouteille.note %}
@@ -42,22 +42,34 @@
 			</div>
 			<div class="bottle-info">
 				<div class="title">
-                                    <h2>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h2>					
+                                    {% if app.session.get( '_locale' ) == 'en' %}
+                                        <h2>{{bouteille.typeDomaine.nameUk|default('')}} {{bouteille.typeAppellation.nameUk|default('')}}<br>{{bouteille.typeCuvee.nameUk|default('')}}</h2>					
+					<span>{{bouteille.typeRegion.nameUk|default('')}}</span>
+					<span>{{bouteille.typePays.nameUk|default('')}}</span>
+					<span>{{bouteille.millesime|default('')|filtre_millesime}}</span>
+                                    {% else %}
+                                        <h2>{{bouteille.typeDomaine.nameFr|default('')}} {{bouteille.typeAppellation.nameFr|default('')}}<br>{{bouteille.typeCuvee.nameFr|default('')}}</h2>					
 					<span>{{bouteille.typeRegion.nameFr|default('')}}</span>
 					<span>{{bouteille.typePays.nameFr|default('')}}</span>
 					<span>{{bouteille.millesime|default('')|filtre_millesime}}</span>
+                                    {% endif %}
 				</div>
 
 				<div class="info">
 					<p>
-						<b>{{bouteille.quantite}} bouteille{% if bouteille.quantite > 1 %}s{% endif %},</b>{% if bouteille.typeContenance is defined %} {{ bouteille.typeContenance.nameFr }},{% endif %}
-						conservée{% if bouteille.quantite > 1 %}s{% endif %} en {{bouteille.typeDeCave.nameFr}}
+						{% if app.session.get( '_locale' ) == 'en' %}
+                                                <b>{{bouteille.quantite}} {{"bouteille"|trans}}{% if bouteille.quantite > 1 %}s{% endif %},</b>{% if bouteille.typeContenance is defined %} {{ bouteille.typeContenance.nameUk }},{% endif %}
+						{{"conservée"|trans}} in {{bouteille.typeDeCave.nameUk}}
+                                            {% else %}
+                                                <b>{{bouteille.quantite}} {{"bouteille"|trans}}{% if bouteille.quantite > 1 %}s{% endif %},</b>{% if bouteille.typeContenance is defined %} {{ bouteille.typeContenance.nameFr }},{% endif %}
+						{{"conservée"|trans}}{% if bouteille.quantite > 1 %}s{% endif %} en {{bouteille.typeDeCave.nameFr}}
+                                            {% endif %}
 					</p>
 
 					<p>{{bouteille.commentaire}}</p>
 
 					<div class="star-container">
-						<span class="text">Note moyenne</span>
+						<span class="text">{{"Note moyenne"|trans}}</span>
                                                 <span class="icon-bottle-rate-container icon-rate" id="ratingBottleMoyenne">
                                                 {% for i in range(1,5) %}
                                                     {% if i <= noteMoyenne %}
@@ -80,14 +92,14 @@
 							<div class="the-emptyness"></div>
 							<div class="the-fullness" style="top:{{100 - bouteille.niveau}}%"></div>
 						</div>
-						<h4>Niveau : 
-                                                    {% if bouteille.niveau >= 80 %}Normal{% endif %}
-                                                    {% if bouteille.niveau == 77 %}Bas goulot{% endif %}
-                                                    {% if bouteille.niveau == 75 %}Très légèrement bas{% endif %}
-                                                    {% if bouteille.niveau == 72 %}Légèrement bas{% endif %}
-                                                    {% if bouteille.niveau == 70 %}Haute épaule{% endif %}
-                                                    {% if bouteille.niveau == 65 %}Mi-épaule{% endif %}
-                                                    {% if bouteille.niveau == 60 %}Bas{% endif %}
+						<h4>{{"Niveau"|trans}} : 
+                                                    {% if bouteille.niveau >= 80 %}{{"Normal"|trans}}{% endif %}
+                                                    {% if bouteille.niveau == 77 %}{{"Bas goulot"|trans}}{% endif %}
+                                                    {% if bouteille.niveau == 75 %}{{"Très légèrement bas"|trans}}{% endif %}
+                                                    {% if bouteille.niveau == 72 %}{{"Légèrement bas"|trans}}{% endif %}
+                                                    {% if bouteille.niveau == 70 %}{{"Haute épaule"|trans}}{% endif %}
+                                                    {% if bouteille.niveau == 65 %}{{"Mi-épaule"|trans}}{% endif %}
+                                                    {% if bouteille.niveau == 60 %}{{"Bas"|trans}}{% endif %}
                                                 </h4>
 					</div>
 				</div>

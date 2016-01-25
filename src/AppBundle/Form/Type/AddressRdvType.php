@@ -9,27 +9,54 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class AddressRdvType extends AbstractType
 {
     
+    private $lang;
+    
+    public function __construct($lang) {
+        $this->lang = $lang;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
-        $builder
-          ->add('name', 'text',['attr' => array('placeholder' => 'Donner un nom'),'label'=>'Donner un nom','required'=>true])
-          ->add('street', 'text',['attr' => array('placeholder' => 'N° voie / Rue'),'label'=>'N° voie / Rue','required'=>true])
-          ->add('zipCode', 'text',['attr' => array('placeholder' => 'Code postal'),'label'=>'Code postal', 'required'=>true])
-          ->add('city', 'text',['attr' => array('placeholder' => 'Ville'),'label'=>'Ville', 'required'=>true])
-          ->add('departement', 'text',['attr' => array('placeholder' => 'Département'),'label'=>'Département', 'required'=>false])
-          //->add('region', 'text',['attr' => array('placeholder' => 'Région'),'label'=>'Région', 'required'=>false])
-          ->add('country', 'text',['attr' => array('placeholder' => 'Pays'),'label'=>'Pays', 'required'=>false])
-          ;
+        if($this->lang == 'en'){
+            $builder
+                ->add('name', 'text',['attr' => array('placeholder' => 'Give a name'),'label'=>'Give a name','required'=>true])
+                ->add('street', 'text',['attr' => array('placeholder' => 'Street name'),'label'=>'Street name','required'=>true])
+                ->add('zipCode', 'text',['attr' => array('placeholder' => 'Zipcode'),'label'=>'Zipcode', 'required'=>true])
+                ->add('city', 'text',['attr' => array('placeholder' => 'City'),'label'=>'City', 'required'=>true])
+                ->add('departement', 'text',['attr' => array('placeholder' => 'Departement'),'label'=>'Departement', 'required'=>false])
+                ->add('country', 'text',['attr' => array('placeholder' => 'Country'),'label'=>'Country', 'required'=>false])
+                ;
+
+
+
+              $builder->add('region', 'choice', array(     
+                  'label'=>'Region',
+                  'required' => false,
+                  'empty_value' => 'Region',
+                  'choices' => $this->buildRegionsChoices()
+                  ));
+        }else{
+            $builder
+                ->add('name', 'text',['attr' => array('placeholder' => 'Donner un nom'),'label'=>'Donner un nom','required'=>true])
+                ->add('street', 'text',['attr' => array('placeholder' => 'N° voie / Rue'),'label'=>'N° voie / Rue','required'=>true])
+                ->add('zipCode', 'text',['attr' => array('placeholder' => 'Code postal'),'label'=>'Code postal', 'required'=>true])
+                ->add('city', 'text',['attr' => array('placeholder' => 'Ville'),'label'=>'Ville', 'required'=>true])
+                ->add('departement', 'text',['attr' => array('placeholder' => 'Département'),'label'=>'Département', 'required'=>false])
+                ->add('country', 'text',['attr' => array('placeholder' => 'Pays'),'label'=>'Pays', 'required'=>false])
+                ;
+
+
+
+              $builder->add('region', 'choice', array(     
+                  'label'=>'Région',
+                  'required' => false,
+                  'empty_value' => 'Région',
+                  'choices' => $this->buildRegionsChoices()
+                  ));
+        }
         
         
-        
-        $builder->add('region', 'choice', array(     
-            'label'=>'Région',
-            'required' => false,
-            'empty_value' => 'Région',
-            'choices' => $this->buildRegionsChoices()
-            ));
        
     }
 

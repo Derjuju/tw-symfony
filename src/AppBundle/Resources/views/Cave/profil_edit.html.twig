@@ -1,12 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Modifier mon profil - {{ parent() }}{% endblock %}
+{% block title %}{{"Modifier mon profil"|trans}} - {{ parent() }}{% endblock %}
 
 {% block bodyclass %}modifier-profil{% endblock %}
 
 {% block header %}
     {% set withoutSearchSelector = true %}
-    {% set titreH1 = "Modifier mon profil" %}
+    {% set titreH1 = "Modifier mon profil"|trans %}
     {{ parent() }}
 {% endblock %}
 
@@ -19,11 +19,11 @@
 		<div class="profile-image-container user-profile-image-container">
                     {% if user.avatar != null %}
                         <div class="profile-image" style="background-image: url('{{ asset( user.avatar.file) }}');">
-                                <a href="#" class="btn-modify upload-btn">Modifier</a>
+                                <a href="#" class="btn-modify upload-btn">{{"Modifier"|trans}}</a>
                         </div>
                     {% else %}
                     <div class="profile-image" style="background-image: url('{{asset('uploads/avatars/avatar_default.jpg')}}');">
-                            <a href="#" class="btn-modify upload-btn">Modifier</a>
+                            <a href="#" class="btn-modify upload-btn">{{"Modifier"|trans}}</a>
                     </div>
                     {% endif %}
                     <div class="input-hidden">
@@ -40,7 +40,7 @@
                                         {{ form_errors(form.lastname) }}
 					{{ form_widget(form.firstname, { 'label': false,'class': '', 'attr': {'class': ''} }) }}
                                         {{ form_errors(form.firstname) }}
-                                        <a href="{{path('front_mdp_changer') }}" class="btn-default btn-delete">Changer de mot de passe</a>
+                                        <a href="{{path('front_mdp_changer') }}" class="btn-default btn-delete">{{"Changer de mot de passe"|trans}}</a>
 				</div>
 				<div class="right">
 					<div class="select-swagg">
@@ -75,7 +75,12 @@
 				</div>
 			</div>
 			<div class="address-form">
-                            <p class="address-title">Adresse :<br><span class="smaller">(Cette adresse ne sera jamais divulguée à une tierce personne. Votre adresse nous sera utile pour vous donner un lieu de rendez-vous en cas de troc.)</span></p>				
+                            <p class="address-title">Adresse :<br><span class="smaller">
+                                    {% if app.session.get( '_locale' ) == 'en' %}
+                                        (This address will never be transmit to other persons. Your address will only be usefull for us to propose a meeting place for your swaps.)
+                                    {% else %}
+                                        (Cette adresse ne sera jamais divulguée à une tierce personne. Votre adresse nous sera utile pour vous donner un lieu de rendez-vous en cas de troc.)
+                                    {% endif %}</span></p>				
 				{{ form_widget(form.address.street, { 'label': false, 'class': '', 'attr': {'class': 'col-12'} }) }}
                                 <div class="container">
                                     {{ form_widget(form.address.zipCode, { 'label': false, 'class': '', 'attr': {'class': 'col-3'} }) }}
@@ -89,7 +94,7 @@
                                 {{ form_errors(form.address) }}
 			</div>
 			{{ form_widget(form.submit, { 'attr': {'class': 'col-12 btn-default'} }) }}
-			<p class="smaller">*Champs obligatoires</p>
+			<p class="smaller">{{"*Champs obligatoires"|trans}}</p>
 		</div>
 	{{ form_end(form) }}
     </section>
