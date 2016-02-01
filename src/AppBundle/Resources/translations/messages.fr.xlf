@@ -678,8 +678,19 @@
             <trans-unit id="169">
                 <source>Troc à modifier</source>
                 <target>Troc à modifier</target>
-            </trans-unit>
-                        
+            </trans-unit>         
+            <trans-unit id="170">
+                <source>Sa note</source>
+                <target>Sa note</target>
+            </trans-unit>           
+            <trans-unit id="171">
+                <source>référence</source>
+                <target>référence</target>
+            </trans-unit>           
+            <trans-unit id="172">
+                <source>troqueur</source>
+                <target>troqueur</target>
+            </trans-unit>  
         </body>
     </file>
 </xliff>

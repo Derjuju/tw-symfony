@@ -28,10 +28,11 @@
 				</div>
 			</div>
 			<div id="panelInfoResultat" class="center {% if not withResults %}hidden{% endif %}">
-                            <span class="red">{{bouteilles|length}}</span> {{"résultat"|trans}}<span class="label-result-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>				                            
+                            <span class="red total-bottle">{{totalBouteilles}}</span> {{"bouteille"|trans}}<span class="label-result-bottle-plural">{% if totalBouteilles > 1 %}s{% endif %}</span>				                            
+                            / <span class="red total-ref">{{bouteilles|length}}</span> {{"référence"|trans}}<span class="label-result-ref-plural">{% if bouteilles|length > 1 %}s{% endif %}</span>				                                                        
 			</div>
 		</div>
-                {% include "AppBundle:Recherche:listing_bottle.html.twig" with {'withResults' : withResults, 'bouteilles' : bouteilles} %}
+                {% include "AppBundle:Recherche:listing_bottle.html.twig" with {'withResults' : withResults, 'totalBouteilles' : totalBouteilles, 'bouteilles' : bouteilles} %}
                 {#{ render(controller('AppBundle:Recherche:listingBottle', { 'filtres' : filtres } )) }#}                
         </div>
     </section>

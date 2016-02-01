@@ -47,6 +47,15 @@
     
     .site-wrapper .row p { white-space:normal; font-size: 12px;}
     
+    .mobile-header h2 {
+        color: #ffffff;
+        text-align: center;
+        text-shadow: 1px 1px 2px #222;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+    
     #MenuMobile{
         display:none;
         width:100%;
@@ -416,7 +425,8 @@
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px) {    
+    
     /* correctif effet de zoom sur smartphone */
     .form-control{
         font-size:16px;

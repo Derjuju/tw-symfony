@@ -97,11 +97,14 @@ class RechercheController extends Controller
             $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
         }
         
+        $totalBouteilles = $this->generateTotal($bouteilles);
+        
         return $this->render("AppBundle:Recherche:search_bottle.html.twig", array(                
                     'formBouteille'   => $formBouteille->createView(),
                     'formTroqueur'   => $formTroqueur->createView(),
                     'filtres'=> $filtres,
                     'withResults' => $withResults,
+                    'totalBouteilles' => $totalBouteilles,
                     'bouteilles'=> $bouteilles,
                     'panelOpen' => 'bouteille'
         ));
@@ -139,8 +142,11 @@ class RechercheController extends Controller
         $withResults = true;
         $bouteilles = $em->getRepository('AppBundle:Bouteille')->findFromSelectorWithoutUser($filtres,$idUserToFilter);
         
+        $totalBouteilles = $this->generateTotal($bouteilles);
+        
         return $this->render("AppBundle:Recherche:listing_bottle.html.twig", array(                
                     'withResults' => $withResults,
+                    'totalBouteilles' => $totalBouteilles,
                     'bouteilles'=> $bouteilles                    
         ));
     }
@@ -232,4 +238,16 @@ class RechercheController extends Controller
                     'troqueurs'=> $troqueurs
         ));
     }
+    
+    
+    private function generateTotal($bouteilles){
+        $total = 0;
+        
+        foreach($bouteilles as $bouteille){
+            $total+=$bouteille->getQuantite();
+        }
+        
+        return $total;
+    }
+    
 }

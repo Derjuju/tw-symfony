@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div id="panelInfoResultat" class="center {% if not withResults %}hidden{% endif %}">                            
-                            <span class="red">{{troqueurs|length}}</span> {{"résultat"|trans}}<span class="label-result-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>                            
+                            <span class="red total-troqueur">{{troqueurs|length}}</span> {{"troqueur"|trans}}<span class="label-result-troqueur-plural">{% if troqueurs|length > 1 %}s{% endif %}</span>                            
 			</div>
 		</div>
                 {% include "AppBundle:Recherche:listing_troqueur.html.twig" with {'troqueurs' : troqueurs} %}                

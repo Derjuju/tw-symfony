@@ -193,12 +193,37 @@ function ajaxRefreshHTMLResults(url, target, data, modalId){
             $(modalId).modal('toggle');
             $(target).empty().replaceWith(htmlResponse);   
             
-            var total = $(target).attr('data-total');
-            $('.search-results-wrapper .red').html(total);
-            if(total>1){
-                $('.label-result-plural').html('s');
-            }else{
-                $('.label-result-plural').empty();                
+            if($(target).hasClass('bottle-list')){
+                var total = $(target).attr('data-total-bottle');
+                $('.search-results-wrapper .red.total-bottle').html(total);
+                if(total>1){
+                    $('.label-result-bottle-plural').html('s');
+                }else{
+                    $('.label-result-bottle-plural').empty();                
+                }
+                var totalRef = $(target).attr('data-total-ref');
+                $('.search-results-wrapper .red.total-ref').html(totalRef);
+                if(totalRef>1){
+                    $('.label-result-ref-plural').html('s');
+                }else{
+                    $('.label-result-ref-plural').empty();                
+                }
+            }else if($(target).hasClass('swapper-list')){
+                var totalTroqueur = $(target).attr('data-total-troqueur');
+                $('.search-results-wrapper .red.total-troqueur').html(totalTroqueur);
+                if(totalTroqueur>1){
+                    $('.label-result-troqueur-plural').html('s');
+                }else{
+                    $('.label-result-troqueur-plural').empty();                
+                }
+            }else {
+                var total = $(target).attr('data-total');
+                $('.search-results-wrapper .red').html(total);
+                if(totalTroqueur>1){
+                    $('.label-result-plural').html('s');
+                }else{
+                    $('.label-result-plural').empty();                
+                }
             }
             
             $('#panelInfoResultat').removeClass('hidden'); 

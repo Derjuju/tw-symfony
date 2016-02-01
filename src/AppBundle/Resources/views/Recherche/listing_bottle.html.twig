@@ -1,4 +1,4 @@
-<div id="listingResultat" class="winethumb-container sort-container" data-total="{{bouteilles|length}}">
+<div id="listingResultat" class="winethumb-container sort-container bottle-list" data-total-bottle="{{totalBouteilles}}" data-total-ref="{{bouteilles|length}}">
     {% if withResults %}
         {% if bouteilles|length > 0 %}
             {% for bouteille in bouteilles %}
