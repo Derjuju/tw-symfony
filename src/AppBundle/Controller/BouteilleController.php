@@ -41,8 +41,11 @@ class BouteilleController extends Controller
         
         $noteMoyenne = $this->calculNoteMoyenne($bouteille);
         
-        $bouteilles = $em->getRepository('AppBundle:Bouteille')->findOthersFrom($bouteille->getId(), $bouteille->getMember()->getId());
-
+        if($bouteille->getMember()){
+            $bouteilles = $em->getRepository('AppBundle:Bouteille')->findOthersFrom($bouteille->getId(), $bouteille->getMember()->getId());
+        }else{
+            $bouteilles = null;
+        }
         return $this->render('AppBundle:Bouteille:fiche.html.twig', array(
             'bouteille'=>$bouteille,
             'noteMoyenne'=>$noteMoyenne,
