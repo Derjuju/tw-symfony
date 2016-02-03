@@ -26,8 +26,15 @@ class VarsExtension extends \Twig_Extension {
     public function getFilters() {
         return array(
             'filtre_millesime' => new \Twig_Filter_Method($this, 'filtreMillesime'),
-            'display_as_letters' => new \Twig_Filter_Method($this, 'displayAsLetters'),
+            'display_as_letters' => new \Twig_Filter_Method($this, 'displayAsLetters'),            
         );
+    }
+    
+    public function getTests ()
+    {
+        return [
+            new \Twig_SimpleTest('instance_of_addressrdv', function ($address) { return $address instanceof \AppBundle\Entity\AddressRdv; }),            
+        ];
     }
 
     public function filtreMillesime($millesime) {

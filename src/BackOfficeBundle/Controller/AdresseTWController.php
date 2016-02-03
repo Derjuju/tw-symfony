@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\AddressTW;
+use AppBundle\Entity\AddressRdv;
 use BackOfficeBundle\Form\Type\AddressTWType;
+use BackOfficeBundle\Form\Type\AddressRdvType;
 use BackOfficeBundle\Form\Type\NouvelleAddressTWType;
 
 class AdresseTWController extends Controller
@@ -21,6 +23,17 @@ class AdresseTWController extends Controller
         $entities = $em->getRepository('AppBundle:AddressTW')->findAll();
         
         return $this->render('BackOfficeBundle:AddressTW:index.html.twig', array(
+            'entities' => $entities
+        ));
+    }
+    
+    public function indexRdvAction(Request $request) {
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $entities = $em->getRepository('AppBundle:AddressRdv')->findAllNotChecked();
+        
+        return $this->render('BackOfficeBundle:AddressTW:indexRdv.html.twig', array(
             'entities' => $entities
         ));
     }
@@ -39,6 +52,22 @@ class AdresseTWController extends Controller
         return $this->render('BackOfficeBundle:AddressTW:show.html.twig', array(
                     'entity' => $entity,
                     'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    public function showRdvAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:AddressRdv')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find entity.');
+        }
+
+        $ignoreForm = $this->createIgnoreForm($id);
+
+        return $this->render('BackOfficeBundle:AddressTW:showRdv.html.twig', array(
+                    'entity' => $entity,
+                    'ignore_form' => $ignoreForm->createView(),
         ));
     }
     public function newAction() {
@@ -101,6 +130,24 @@ class AdresseTWController extends Controller
                     'delete_form' => $deleteForm->createView(),
         ));
     }
+    public function editRdvAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:AddressRdv')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find entity.');
+        }
+
+        $editForm = $this->createEditRdvForm($entity);
+        $ignoreForm = $this->createIgnoreForm($id);
+
+        return $this->render('BackOfficeBundle:AddressTW:editRdv.html.twig', array(
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'ignore_form' => $ignoreForm->createView(),
+        ));
+    }
     
     private function createEditForm(AddressTW $entity) {
         $form = $this->createForm(new AddressTWType(), $entity, array(
@@ -112,6 +159,18 @@ class AdresseTWController extends Controller
 
         return $form;
     }
+    private function createEditRdvForm(AddressRdv $entity) {
+        $form = $this->createForm(new AddressRdvType(), $entity, array(
+            'action' => $this->generateUrl('back_office_adresse_tw_rdv_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Modifier'));
+        $form->add('submit2', 'submit', array('label' => 'Ajouter aux suggestions'));
+
+        return $form;
+    }
+    
     public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
@@ -140,6 +199,48 @@ class AdresseTWController extends Controller
         ));
         
     }
+    public function updateRdvAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:AddressRdv')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find entity.');
+        }
+
+        $ignoreForm = $this->createIgnoreForm($id);
+        $editForm = $this->createEditRdvForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {            
+            if($editForm->get('submit2')->isClicked()){
+                $entity->setCheckedForSuggestion(1);                
+                // création nouvelle AddressTW
+                $addressTw = new AddressTW();
+                $addressTw->setName($entity->getName());
+                $addressTw->setStreet($entity->getStreet());
+                $addressTw->setZipCode($entity->getZipCode());
+                $addressTw->setCity($entity->getCity());
+                $addressTw->setDepartement($entity->getDepartement());
+                $addressTw->setRegion($entity->getRegion());
+                $addressTw->setCountry($entity->getCountry());
+                $addressTw->setLatitude($entity->getLatitude());
+                $addressTw->setLongitude($entity->getLongitude());
+                $em->persist($addressTw);
+            }
+            $em->persist($entity);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('back_office_adresses_tw_rdv'));            
+        }
+
+        return $this->render('BackOfficeBundle:AddressTW:editRdv.html.twig', array(
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'ignore_form' => $ignoreForm->createView(),
+        ));
+        
+    }
     
     public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
@@ -162,6 +263,27 @@ class AdresseTWController extends Controller
         return $this->redirect($this->generateUrl('back_office_adresses_tw'));        
     }
     
+    public function ignoreRdvAction(Request $request, $id) {
+        $form = $this->createIgnoreForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('AppBundle:AddressRdv')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find entity.');
+            }
+            
+            $entity->setCheckedForSuggestion(1);
+                    
+            $em->persist($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('back_office_adresses_tw_rdv'));        
+    }
+    
     
     private function createDeleteForm($id) {
         return $this->createFormBuilder()
@@ -171,6 +293,18 @@ class AdresseTWController extends Controller
                         ->getForm()
         ;
     }
+    
+    
+    private function createIgnoreForm($id) {
+        return $this->createFormBuilder()
+                        ->setAction($this->generateUrl('back_office_adresse_tw_rdv_ignore', array('id' => $id)))
+                        ->setMethod('POST')
+                        ->add('submit', 'submit', array('label' => 'Ignorer'))
+                        ->getForm()
+        ;
+    }
+    
+    
     
     private function supprimeTrocsLies($em, $addressTW, $id)
     {

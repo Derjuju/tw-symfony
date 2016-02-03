@@ -1,10 +1,18 @@
 back_office_adresses_tw:
     path:     /
     defaults: { _controller: "BackOfficeBundle:AdresseTW:index" }
+    
+back_office_adresses_tw_rdv:
+    path:     /rdv
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:indexRdv" }    
 
 back_office_adresse_tw_show:
     path:     /{id}/show
-    defaults: { _controller: "BackOfficeBundle:AdresseTW:show" } 
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:show" }   
+
+back_office_adresse_tw_rdv_show:
+    path:     /{id}/rdv/show
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:showRdv" } 
 
 back_office_adresse_tw_new:
     path:     /new
@@ -19,12 +27,26 @@ back_office_adresse_tw_edit:
     path:     /{id}/edit
     defaults: { _controller: "BackOfficeBundle:AdresseTW:edit" }
 
+back_office_adresse_tw_rdv_edit:
+    path:     /{id}/rdv/edit
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:editRdv" }
+
 back_office_adresse_tw_update:
     path:     /{id}/update
     defaults: { _controller: "BackOfficeBundle:AdresseTW:update" }
     methods:  [POST, PUT] 
 
+back_office_adresse_tw_rdv_update:
+    path:     /{id}/rdv/update
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:updateRdv" }
+    methods:  [POST, PUT] 
+
 back_office_adresse_tw_delete:
     path:     /{id}/delete
     defaults: { _controller: "BackOfficeBundle:AdresseTW:delete" }
-    methods:  [POST, DELETE]  
+    methods:  [POST, DELETE]
+
+back_office_adresse_tw_rdv_ignore:
+    path:     /{id}/rdv/ignore
+    defaults: { _controller: "BackOfficeBundle:AdresseTW:ignoreRdv" }
+    methods:  [POST]      

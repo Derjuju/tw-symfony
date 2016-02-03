@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class AddressRdvRepository extends EntityRepository
 {
+    
+    public function findAllNotChecked(){
+        $query = $this->createQueryBuilder('a')
+                    ->where('a.name IS NOT NULL')
+                    ->andWhere('a.checkedForSuggestion IS NULL');
+        
+        return $query->getQuery()->getResult();
+    }
+    
 }

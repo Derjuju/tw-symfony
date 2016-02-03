@@ -91,6 +91,13 @@ class AddressRdv
      * @ORM\JoinColumn(name="troc_rdv_id", referencedColumnName="id")
      * */
     protected $trocRdv;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="checked_for_suggestion", type="integer", nullable=true)
+     */
+    private $checkedForSuggestion;
     
     
 
@@ -334,5 +341,29 @@ class AddressRdv
      */
     public function getTrocRdv() {
         return $this->trocRdv;
+    }
+    
+    
+    /**
+     * Set checkedForSuggestion
+     *
+     * @param integer $checkedForSuggestion
+     * @return TrocRDV
+     */
+    public function setCheckedForSuggestion($checkedForSuggestion)
+    {
+        $this->checkedForSuggestion = $checkedForSuggestion;
+
+        return $this;
+    }
+
+    /**
+     * Get checkedForSuggestion
+     *
+     * @return integer 
+     */
+    public function getCheckedForSuggestion()
+    {
+        return $this->checkedForSuggestion;
     }
 }

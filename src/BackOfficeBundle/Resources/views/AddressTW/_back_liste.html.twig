@@ -1,5 +1,13 @@
-<div class="row">   
+<div class="row"> 
+    {% if entity.id is not null %}
+        {% if entity is instance_of_addressrdv %}
+            <div class="col-lg-12"><p><a href="{{path('back_office_adresses_tw_rdv')}}" class="btn btn-default btn-sm" role="button"><i class="fa fa-caret-left fa-fw"></i> Retour</a></p></div>    
+        {% else %}
+            <div class="col-lg-12"><p><a href="{{path('back_office_adresses_tw')}}" class="btn btn-default btn-sm" role="button"><i class="fa fa-caret-left fa-fw"></i> Retour</a></p></div>    
+        {% endif %}
+    {% else %}
     <div class="col-lg-12"><p><a href="{{path('back_office_adresses_tw')}}" class="btn btn-default btn-sm" role="button"><i class="fa fa-caret-left fa-fw"></i> Retour</a></p></div>    
+    {% endif %}    
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
