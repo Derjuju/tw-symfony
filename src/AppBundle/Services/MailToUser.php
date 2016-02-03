@@ -193,6 +193,25 @@ class MailToUser {
         return $this->sendMail($subject, $view, $to);
     }
     
+    public function sendEmailMessageTroc($to, $refTroc, $prenom1, $prenom2){
+        $view = null;
+        $view = $this->templating->render('AppBundle:Mailing:message_troc.html.twig', array());
+        if (!$view)
+            return false;
+        
+        // sujet
+        $subject = "[TrocWine] #".$refTroc." - Nouveau message";
+        
+        // variables dynamiques
+        $lien_acces_espace = $this->app_front_url.$this->router->generate('front_accueil_connexion');
+        $lien_acces_espace = str_replace('//homepage', '/homepage', $lien_acces_espace);
+        $view = str_replace('#LIEN_ACCES_DIRECT#',$lien_acces_espace, $view);
+        $view = str_replace('#PRENOM1#',$prenom1, $view);
+        $view = str_replace('#PRENOM2#',$prenom2, $view);
+                        
+        return $this->sendMail($subject, $view, $to);
+    }
+    
     
     
     public function sendEmailAbandonTroc($to, $refTroc, $prenom1, $prenom2){       

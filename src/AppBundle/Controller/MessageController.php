@@ -199,6 +199,11 @@ class MessageController extends Controller
             $em->persist($troc);
 
             $em->flush();
+            
+            if (!$this->get('mail_to_user')->sendEmailMessageTroc($emailTroqueur,$refTroc, $troqueur->getFirstname(), $user->getFirstname())) {
+                throw $this->createNotFoundException('Unable to send message troc mail.');
+            } 
+            
             return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
         }
         
@@ -292,7 +297,7 @@ class MessageController extends Controller
             $adresse = $addressRDV->getStreet().' - '.$addressRDV->getZipCode().' '.$addressRDV->getCity();            
             
             if (!$this->get('mail_to_user')->sendEmailRdvTroc($emailTroqueur,$refTroc, $troqueur->getFirstname(), $user->getFirstname(), $adresse)) {
-                throw $this->createNotFoundException('Unable to send abandon troc mail.');
+                throw $this->createNotFoundException('Unable to send rendez-vous troc mail.');
             } 
             
             return $this->redirectToRoute('front_messagerie_gestion', ['id' => $troc->getId()]);
