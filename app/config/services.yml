@@ -12,4 +12,9 @@ services:
          class: AppBundle\Twig\VarsExtension
          tags:
              - { name: twig.extension }
-         arguments: ["@service_container", %locale%]
+         arguments: ["@service_container", %locale%]         
+    app.locale_listener:
+        class: AppBundle\EventListener\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber, priority: 17  }

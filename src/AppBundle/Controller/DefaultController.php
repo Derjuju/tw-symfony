@@ -5,8 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use AppBundle\Form\Type\SearchBouteilleType;
-use AppBundle\Form\Type\SearchTroqueurType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DefaultController extends Controller
 {
@@ -59,6 +58,7 @@ class DefaultController extends Controller
             $lang = 'fr';
         }
         
+        /*
         $this->get('request')->attributes->set('_locale', null);
         
         $request = $this->getRequest();
@@ -81,7 +81,25 @@ class DefaultController extends Controller
         unset($parameters['_route']);
         unset($parameters['_controller']);
 
-        return $this->redirect($this->generateUrl($route, $parameters));                
+        return $this->redirect($this->generateUrl($route, $parameters));          
+         */               
+        
+        
+        if($lang != null)
+        {
+            // On enregistre la langue en session
+            $this->get('session')->set('_locale', $lang);
+        }
+
+        // on tente de rediriger vers la page d'origine
+        $url = $this->container->get('request')->headers->get('referer');
+        if(empty($url))
+        {
+            $url = $this->container->get('router')->generate('front_intro');
+        }
+
+        return new RedirectResponse($url);
+        
     }
     
     /**
