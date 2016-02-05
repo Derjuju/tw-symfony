@@ -70,6 +70,14 @@ class MemberRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
     
+    
+    public function countAll(){
+        $query = $this->createQueryBuilder('m')
+                ->select("count(m.id)");
+        
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    
     public function getTotalByMonthYear(){
         $emConfig = $this->getEntityManager()->getConfiguration();
         $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');

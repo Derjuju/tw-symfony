@@ -64,4 +64,26 @@ class TrocRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
     
+    
+    public function countAll(){
+        $query = $this->createQueryBuilder('b')
+                ->select("count(b.id)");
+        
+        return $query->getQuery()->getSingleScalarResult();
+    }
+    
+    public function getTotalByMonthYear(){
+        $emConfig = $this->getEntityManager()->getConfiguration();
+        $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+        $emConfig->addCustomDatetimeFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
+        
+        $query = $this->createQueryBuilder('b')
+                ->select("YEAR(b.createdAt) as year, MONTH(b.createdAt) as month, count(b.id) as total")
+                ->where("1 = 1")
+                ->groupBy("year")                
+                ->groupBy("month");
+        
+        return $query->getQuery()->getResult();
+    }
+    
 }

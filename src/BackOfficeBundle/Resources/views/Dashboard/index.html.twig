@@ -47,6 +47,25 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{ (totalAllTrocs/totalAllUsers)|number_format(2, '.', ',') }}</div>
+                            <div>Moyenne Trocs / membre</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
@@ -61,7 +80,7 @@
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
-                </a>
+                </a>        
             </div>
         </div>
     </div>
@@ -118,6 +137,32 @@
         <!-- /.col-lg-9 -->
     </div>
     <!-- /.row -->
+    
+    <div class="row">
+        <div class="col-lg-9">                    
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> TROCS CREES : Suivi dans le temps                            
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div id="morris-bar-chart-troc" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            </div>
+                        </div>
+                        <!-- /.col-lg-9 (nested) -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
 
 {% endblock %}
 {% block bottomJavascripts %}
@@ -139,7 +184,7 @@
                 ],
                 xkey: 'y',
                 ykeys: ['a', 'b'],
-                labels: ['Total nouveaux inscrits', 'Total inscrits'],
+                labels: ['Total nouveaux inscrits', 'Total cumul inscrits'],
                 hideHover: 'auto',
                 resize: true
             });
@@ -159,10 +204,34 @@
                 ],
                 xkey: 'y',
                 ykeys: ['a', 'b'],
-                labels: ['Total nouvelles bouteilles', 'Total bouteilles'],
+                labels: ['Total nouvelles bouteilles', 'Total cumul bouteilles'],
                 hideHover: 'auto',
                 resize: true
             });
+            
+            Morris.Bar({
+                element: 'morris-bar-chart-troc',
+                data: [
+        {% set totalTrocsStat = 0 %}
+        {% for trocsStat in trocsStats %}
+        {% set totalTrocsStat = totalTrocsStat + trocsStat.total %}
+                {
+                    y: '{{trocsStat.month|display_as_letters}} {{trocsStat.year}}',
+                    a: {{trocsStat.total}},
+                    b: {{totalTrocsStat}}
+                },
+        {% endfor %}
+                ],
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Total nouveaux trocs', 'Total cumul trocs'],
+                hideHover: 'auto',
+                resize: true
+            });
+            
+            
+            
+            
     });
     </script>
 {% endblock %}
