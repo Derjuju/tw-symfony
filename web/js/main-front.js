@@ -183,3 +183,41 @@ function confirmCookies(){
     $('#cookie-warn').hide(500);
     return false;
 }
+
+
+function updateUrlSearch(form){
+    
+    var urlHash = '';
+    
+    if(form.find('input').val()!= ''){
+        urlHash += form.find('input').attr('id')+'='+encodeURI(form.find('input').val());
+    }
+    form.find('select').each(function(){
+       if($(this).find('option:selected')){
+           if(urlHash != ''){
+               urlHash +='&';
+           }
+           urlHash += $(this).attr('id')+'='+$(this).find('option:selected').val();
+       }
+    });
+    
+    if(urlHash != '')
+        document.location.hash = urlHash;
+}
+
+function initialiseFromUrl(){    
+    if(document.location.hash.length > 0){   
+        var parameters = document.location.hash.substring(1).split("&");
+        for(var i=0; i< parameters.length; i++){
+            var decoupe = parameters[i].split('=');
+            $('#'+decoupe[0]).val(decodeURI(decoupe[1]));
+        }
+        sendSearch();
+    }else{
+        if($('.form-bottle-search').hasClass('show')){
+            updateUrlSearch($('#FormSelectorSearchBottle'));
+        }else if($('.form-bottle-swapper').hasClass('show')){
+            updateUrlSearch($('#FormSelectorSearchTroqueur'));
+        }
+    }
+}

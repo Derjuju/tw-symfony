@@ -44,6 +44,9 @@
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
+            
+            initialiseFromUrl();
+            
             $(document).on('change','#ClasserResultats', function(){
                $('#FormSelectorSearchBottle #SearchBouteille_filtrageBottle').val($(this).val());
                sendSearch();
@@ -62,6 +65,7 @@
                 var data = form.serialize();
                 var modalId = "#myModal";
                 ajaxRefreshHTMLResults(url, target, data, modalId);
+                updateUrlSearch($('#FormSelectorSearchBottle'));
             }
         });
     </script>
