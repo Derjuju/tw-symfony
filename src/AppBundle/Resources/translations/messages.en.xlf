@@ -690,7 +690,47 @@
             <trans-unit id="172">
                 <source>troqueur</source>
                 <target>swapper</target>
+            </trans-unit>         
+            <trans-unit id="173">
+                <source>Quantité*</source>
+                <target>Quantity*</target>
             </trans-unit> 
+            <trans-unit id="174">
+                <source>Type*</source>
+                <target>Type*</target>
+            </trans-unit>  
+            <trans-unit id="175">
+                <source>Région*</source>
+                <target>Region*</target>
+            </trans-unit> 
+            <trans-unit id="176">
+                <source>Millésime*</source>
+                <target>Vintage*</target>
+            </trans-unit>
+            <trans-unit id="177">
+                <source>Contenance*</source>
+                <target>Capacity*</target>
+            </trans-unit>
+            <trans-unit id="178">
+                <source>Non millésimé</source>
+                <target>No vintage</target>
+            </trans-unit>
+            <trans-unit id="179">
+                <source>Apogée</source>
+                <target>Apogée</target>
+            </trans-unit>
+            <trans-unit id="180">
+                <source>Type de cave*</source>
+                <target>Type of Cellar*</target>
+            </trans-unit>
+            <trans-unit id="181">
+                <source>Pays*</source>
+                <target>Country*</target>
+            </trans-unit> 
+            <trans-unit id="182">
+                <source>Commentaire</source>
+                <target>Comment</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
