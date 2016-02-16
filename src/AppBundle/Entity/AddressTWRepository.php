@@ -202,9 +202,11 @@ class AddressTWRepository extends EntityRepository
         
                 if(count($selections) > 0){
                     foreach($selections as $selection){
+                        $distance = 999;
+                        $distanceB = 999;
                         $latitude = $selection->getLatitude();
                         $longitude = $selection->getLongitude();
-                        $retour[] = array('id'=>$selection->getId(), 'name'=>$selection->getName(), 'city'=>$selection->getCity(), 'region'=>$selection->getRegion(), 'latitude'=>$latitude, 'longitude'=>$longitude);                
+                        $retour[] = array('id'=>$selection->getId(), 'name'=>$selection->getName(), 'city'=>$selection->getCity(), 'region'=>$selection->getRegion(), 'distance'=>$distance, 'distanceB'=>$distanceB, 'latitude'=>$latitude, 'longitude'=>$longitude);                
                     }
                 }
             }                       

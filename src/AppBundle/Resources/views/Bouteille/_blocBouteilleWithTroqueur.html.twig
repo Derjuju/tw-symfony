@@ -17,13 +17,13 @@
                <h3>{{bouteille.typeAppellation.nameUk|default('')}}</h3>
                <h3>{{bouteille.typeCuvee.nameUk|default('')}}</h3>
 
-               <p>{{bouteille.typeRegion.nameUk}}<br>{{bouteille.typePays.nameUk}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+               <p>{{bouteille.typeRegion.nameUk|default('')}}<br>{{bouteille.typePays.nameUk|default('')}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
             {% else %}
                <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
                <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
                <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
 
-               <p>{{bouteille.typeRegion.nameFr}}<br>{{bouteille.typePays.nameFr}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
+               <p>{{bouteille.typeRegion.nameFr|default('')}}<br>{{bouteille.typePays.nameFr|default('')}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
             {% endif %}
        </div>
        <div class="social-btns">
