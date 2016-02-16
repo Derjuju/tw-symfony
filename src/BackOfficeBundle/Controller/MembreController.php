@@ -248,21 +248,11 @@ class MembreController extends Controller
                 throw $this->createNotFoundException('Unable to find entity.');
             }
             
-            if(!$entity->getOnline()){
-                $aModerer = true;
-            }
-            
-            $this->supprimeTrocsLies($em, $entity, $id);
-
             $em->remove($entity);
             $em->flush();
         }
 
-        if($aModerer){
-            return $this->redirect($this->generateUrl('back_office_membres_a_moderer'));
-        }else{
-            return $this->redirect($this->generateUrl('back_office_membres'));
-        }
+        return $this->redirect($this->generateUrl('back_office_membres'));        
     }
     
     
