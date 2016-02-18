@@ -163,6 +163,16 @@ class MessageController extends Controller
         
         if($troc->getArchived()){ throw $this->createNotFoundException('Action impossible. Le troc est déjà terminé.'); }
         
+        if($troc->getMemberA() == $user){
+            $troqueur = $troc->getMemberB();
+        }else{
+            $troqueur = $troc->getMemberA();
+        }
+        
+        $emailTroqueur = $troqueur->getEmail(); 
+        
+        $refTroc = $troc->getId();
+        
         $formFinTroc = $this->generateFormForMemberAorB($troc, $user, $id);
         
         $trocMessage = new TrocMessage();

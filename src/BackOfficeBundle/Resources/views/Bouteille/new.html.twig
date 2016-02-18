@@ -139,14 +139,14 @@
                 if (selected.length > 0) {
                     selectedVal = selected.val();
                 }
-                $('#NouvelleBouteilleType_note').val(selectedVal);
+                $('#BouteilleType_note').val(selectedVal);
                 
                 /*
                 var total = parseInt($('.level-bottle .the-shape').height());
                 var pourcentage = parseInt($('.level-bottle .the-fullness').css('top')) * 100 / total;
                 pourcentage = Math.round(pourcentage/10)*10;
                 pourcentage = 100 - pourcentage;
-                $('#NouvelleBouteilleType_niveau').val(pourcentage);*/
+                $('#BouteilleType_niveau').val(pourcentage);*/
                 /*var isOk = true;
                 $('input[type=file][max-size]').each(function(){
                     if(typeof this.files[0] !== 'undefined'){
@@ -165,53 +165,53 @@
                 */
             });
             
-            $('#NouvelleBouteilleType_niveau').on('change', function(event){
+            $('#BouteilleType_niveau').on('change', function(event){
                 $('.level-bottle .the-fullness').css('top', (100 - $(this).val())+'%');
             });
-            $('#NouvelleBouteilleType_niveau').trigger('change');
+            $('#BouteilleType_niveau').trigger('change');
             
-            $('#NouvelleBouteilleType_add_domaine').on('click',function(event){
+            $('#BouteilleType_add_domaine').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de domaine</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#NouvelleBouteilleType_add_appellation').on('click',function(event){
+            $('#BouteilleType_add_appellation').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type d\'appellation</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#NouvelleBouteilleType_add_cuvee').on('click',function(event){
+            $('#BouteilleType_add_cuvee').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de cuvée</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#NouvelleBouteilleType_add_region').on('click',function(event){
+            $('#BouteilleType_add_region').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de région</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#NouvelleBouteilleType_add_pays').on('click',function(){
+            $('#BouteilleType_add_pays').on('click',function(){
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de pays</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#NouvelleBouteilleType_add_cave').on('click',function(event){
+            $('#BouteilleType_add_cave').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de cave</strong>';
                 openModalAddEntity(url, title);
             });
             
-            $('#NouvelleBouteilleType_add_contenance').on('click',function(event){
+            $('#BouteilleType_add_contenance').on('click',function(event){
                 event.preventDefault();
                 url = $(this).attr('data-url'); 
                 title = 'Ajouter <strong>un type de contenance</strong>';
