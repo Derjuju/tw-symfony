@@ -134,6 +134,7 @@
          });
          
          $('#FormEditBouteille').on('submit', function(){
+                /*                
                 var selectedVal = 0;
                 var selected = $("#ratingBottle input[type='radio']:checked");
                 if (selected.length > 0) {
@@ -141,13 +142,12 @@
                 }
                 $('#BouteilleType_note').val(selectedVal);
                 
-                /*
                 var total = parseInt($('.level-bottle .the-shape').height());
                 var pourcentage = parseInt($('.level-bottle .the-fullness').css('top')) * 100 / total;
                 pourcentage = Math.round(pourcentage/10)*10;
                 pourcentage = 100 - pourcentage;
-                $('#BouteilleType_niveau').val(pourcentage);*/
-                /*var isOk = true;
+                $('#BouteilleType_niveau').val(pourcentage);
+                var isOk = true;
                 $('input[type=file][max-size]').each(function(){
                     if(typeof this.files[0] !== 'undefined'){
                         var maxSize = parseInt($(this).attr('max-size'),10),
