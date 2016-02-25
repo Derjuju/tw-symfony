@@ -93,6 +93,9 @@ body.error a{color: #ffffff;}
 {
     vertical-align: baseline !important;
 }*/
+.social-btns .twitter-share-button{
+    margin: 4px 10px -4px;
+}
 
 /* les formulaires */
 .subscribe-form ul{
@@ -889,6 +892,25 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
 
 .winethumb h3 {
     min-height: 18px;
+    
+    display: -webkit-box;
+    max-height: 38px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    
+    font-family: Vollkorn,serif;
+    font-weight: 300;
+    
+}
+.winethumb .description-inner-wrap{
+    height: 209px;
+    overflow-y: hidden;
+    width: 100%;
+    margin-top: -10px;
+    padding-top: 10px;
 }
 
 /* AJOUT BOUTEILLE */
@@ -976,6 +998,10 @@ article.type-region-rose .description{border-bottom-color:#c96e84;}
     cursor:pointer; 
     cursor: -webkit-zoom-in;
     cursor: -moz-zoom-in;
+}
+.bottle-info-wrapper .select-bottle{
+    float:none;
+    width: 100%;
 }
 .bottle-info-wrapper .select-bottle label{
     color: #740612;

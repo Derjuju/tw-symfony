@@ -8,23 +8,25 @@
        </div>
         </a>
        <div class="description">
+           <div class="description-inner-wrap">
                 <div class="owner-container">
                     <div class="image-container" style="background-image: url('{% if bouteille.member.avatar != null %}{{asset(bouteille.member.avatar.file)|imagine_filter('avatar_resize_mini')}}{% else %}{{asset('uploads/avatars/avatar_default.jpg')}}{% endif %}');"></div>
                     <p class="info-owner">{{bouteille.member.lastname}}<br>{{bouteille.member.firstname}}</p>
                 </div>
             {% if app.session.get( '_locale' ) == 'en' %}
-               <h3>{{bouteille.typeDomaine.nameUk|default('')}}</h3>
-               <h3>{{bouteille.typeAppellation.nameUk|default('')}}</h3>
-               <h3>{{bouteille.typeCuvee.nameUk|default('')}}</h3>
+               {% if bouteille.typeDomaine %}<h3>{{bouteille.typeDomaine.nameUk|default('')}}</h3>{% endif %}
+               {% if bouteille.typeAppellation %}<h3>{{bouteille.typeAppellation.nameUk|default('')}}</h3>{% endif %}
+               {% if bouteille.typeCuvee %}<h3>{{bouteille.typeCuvee.nameUk|default('')}}</h3>{% endif %}
 
                <p>{{bouteille.typeRegion.nameUk|default('')}}<br>{{bouteille.typePays.nameUk|default('')}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
             {% else %}
-               <h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>
-               <h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>
-               <h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>
+               {% if bouteille.typeDomaine %}<h3>{{bouteille.typeDomaine.nameFr|default('')}}</h3>{% endif %}
+               {% if bouteille.typeAppellation %}<h3>{{bouteille.typeAppellation.nameFr|default('')}}</h3>{% endif %}
+               {% if bouteille.typeCuvee %}<h3>{{bouteille.typeCuvee.nameFr|default('')}}</h3>{% endif %}
 
                <p>{{bouteille.typeRegion.nameFr|default('')}}<br>{{bouteille.typePays.nameFr|default('')}}<br>{{bouteille.millesime|filtre_millesime}}</p>               
             {% endif %}
+           </div>
        </div>
        <div class="social-btns">
            {#

@@ -219,6 +219,9 @@
         width: 100%;
         margin-top:10px;
     }
+    .add-bottle-form .data-container .data-commentaire textarea{
+        display:block;
+    }
     
     .swap-wrapper .page-title { 
         margin: 0.5em 0 0.5em 0;
@@ -236,6 +239,8 @@
     }
     
     .bottle-info-wrapper .image-container { min-width:142px; }
+    
+    .bottle-info-wrapper .qte-level{ width:100%;}
     
 }
 

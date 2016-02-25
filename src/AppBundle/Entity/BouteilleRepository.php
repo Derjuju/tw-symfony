@@ -136,25 +136,49 @@ class BouteilleRepository extends EntityRepository
     function findAllIdentiques($typeDeVin,$typeDomaine,$typeAppellation,$typeCuvee,$typeRegion,$typePays,$millesime,$typeContenance){
         $query = $this->createQueryBuilder('b')
                 ->where("1 = 1")
-                ->andWhere("b.online = 1")
-                ->andWhere("b.typeDeVin = :typeDeVin")
-                ->andWhere("b.typeDomaine = :typeDomaine")
-                ->andWhere("b.typeAppellation = :typeAppellation")
-                ->andWhere("b.typeCuvee = :typeCuvee")
-                ->andWhere("b.typeRegion = :typeRegion")
-                ->andWhere("b.typePays = :typePays")
-                ->andWhere("b.millesime = :millesime")
-                ->andWhere("b.typeContenance = :typeContenance")
-                ->setParameter('typeDeVin', $typeDeVin)
-                ->setParameter('typeDomaine', $typeDomaine)
-                ->setParameter('typeAppellation', $typeAppellation)
-                ->setParameter('typeCuvee', $typeCuvee)
-                ->setParameter('typeRegion', $typeRegion)
-                ->setParameter('typePays', $typePays)
-                ->setParameter('millesime', $millesime)
-                ->setParameter('typeContenance', $typeContenance);
-                
-                
+                ->andWhere("b.online = 1");
+        
+        if($typeDeVin != null){
+            $query->andWhere("b.typeDeVin = :typeDeVin")->setParameter('typeDeVin', $typeDeVin);
+        }else{
+            $query->andWhere("b.typeDeVin IS NULL");
+        }
+        if($typeDomaine != null){
+            $query->andWhere("b.typeDomaine = :typeDomaine")->setParameter('typeDomaine', $typeDomaine);
+        }else{
+            $query->andWhere("b.typeDomaine IS NULL");
+        }
+        if($typeAppellation != null){
+            $query->andWhere("b.typeAppellation = :typeAppellation")->setParameter('typeAppellation', $typeAppellation);
+        }else{
+            $query->andWhere("b.typeAppellation IS NULL");
+        }
+        if($typeCuvee != null){
+            $query->andWhere("b.typeCuvee = :typeCuvee")->setParameter('typeCuvee', $typeCuvee);
+        }else{
+            $query->andWhere("b.typeCuvee IS NULL");
+        }
+        if($typeRegion != null){
+            $query->andWhere("b.typeRegion = :typeRegion")->setParameter('typeRegion', $typeRegion);
+        }else{
+            $query->andWhere("b.typeRegion IS NULL");
+        }
+        if($typePays != null){
+            $query->andWhere("b.typePays = :typePays")->setParameter('typePays', $typePays);
+        }else{
+            $query->andWhere("b.typePays IS NULL");
+        }
+        if($millesime != null){
+            $query->andWhere("b.millesime = :millesime")->setParameter('millesime', $millesime);
+        }else{
+            $query->andWhere("b.millesime IS NULL");
+        }
+        if($typeContenance != null){
+            $query->andWhere("b.typeContenance = :typeContenance")->setParameter('typeContenance', $typeContenance);
+        }else{
+            $query->andWhere("b.typeContenance IS NULL");
+        }
+        
         return $query->getQuery()->getResult();
     }
     
